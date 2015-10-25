@@ -54,15 +54,67 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\themes\base\accordion.css" />
+    <Content Include="Content\themes\base\all.css" />
+    <Content Include="Content\themes\base\autocomplete.css" />
+    <Content Include="Content\themes\base\base.css" />
+    <Content Include="Content\themes\base\button.css" />
+    <Content Include="Content\themes\base\core.css" />
+    <Content Include="Content\themes\base\datepicker.css" />
+    <Content Include="Content\themes\base\dialog.css" />
+    <Content Include="Content\themes\base\draggable.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\menu.css" />
+    <Content Include="Content\themes\base\progressbar.css" />
+    <Content Include="Content\themes\base\resizable.css" />
+    <Content Include="Content\themes\base\selectable.css" />
+    <Content Include="Content\themes\base\selectmenu.css" />
+    <Content Include="Content\themes\base\slider.css" />
+    <Content Include="Content\themes\base\sortable.css" />
+    <Content Include="Content\themes\base\spinner.css" />
+    <Content Include="Content\themes\base\tabs.css" />
+    <Content Include="Content\themes\base\theme.css" />
+    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Css\loginStyle.css" />
+    <Content Include="Css\mainStyle.css" />
     <Content Include="Dumps\wproject.sql" />
     <Content Include="Dumps\wproject_data.sql" />
     <Content Include="Global.asax" />
     <Content Include="home.aspx" />
     <Content Include="index.html" />
+    <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\PublishForBeta.pubxml" />
     <None Include="Properties\PublishProfiles\PublishForPreProduction.pubxml" />
     <None Include="Properties\PublishProfiles\PublishForProduction.pubxml" />
     <None Include="Properties\PublishProfiles\PublishForTesting.pubxml" />
+    <Content Include="Resources\Fonts\segoeui.ttf" />
+    <Content Include="Resources\Fonts\segoeuib.ttf" />
+    <Content Include="Resources\Fonts\segoeuii.ttf" />
+    <Content Include="Resources\Fonts\segoeuil.ttf" />
+    <Content Include="Resources\Fonts\segoeuisl.ttf" />
+    <Content Include="Resources\Fonts\segoeuiz.ttf" />
+    <Content Include="Resources\Fonts\seguibl.ttf" />
+    <Content Include="Resources\Fonts\seguibli.ttf" />
+    <Content Include="Resources\Fonts\seguili.ttf" />
+    <Content Include="Resources\Fonts\seguisb.ttf" />
+    <Content Include="Resources\Fonts\seguisbi.ttf" />
+    <Content Include="Resources\Fonts\seguisli.ttf" />
+    <None Include="Scripts\jQuery\jquery-2.1.4.intellisense.js" />
+    <Content Include="Scripts\jQuery\jquery-2.1.4.js" />
+    <Content Include="Scripts\jQuery\jquery-2.1.4.min.js" />
+    <Content Include="Scripts\jQuery\jquery-2.1.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -99,6 +151,7 @@
     <Content Include="Resources\Icons\chat_l.png" />
     <Content Include="Resources\Icons\chat_m.png" />
     <Content Include="Resources\Icons\chat_s.png" />
+    <Content Include="Resources\Icons\circle.png" />
     <Content Include="Resources\Icons\close_l.png" />
     <Content Include="Resources\Icons\close_m.png" />
     <Content Include="Resources\Icons\close_s.png" />
@@ -267,6 +320,8 @@
     <Content Include="Resources\Icons\warning_s.png" />
     <Content Include="Resources\Images\LoginBlurBk.png" />
     <Content Include="Resources\Logo.png" />
+    <Content Include="Scripts\jQuery\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jQuery\jquery-ui-1.11.4.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -281,6 +336,7 @@
       <DependentUpon>home.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Scripts\loginScript.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WProject.BusinessLibrary\WProject.BusinessLibrary.csproj">
@@ -296,6 +352,7 @@
       <Name>WProject.Library</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
