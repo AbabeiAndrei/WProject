@@ -44,9 +44,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -54,45 +59,13 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\themes\base\accordion.css" />
-    <Content Include="Content\themes\base\all.css" />
-    <Content Include="Content\themes\base\autocomplete.css" />
-    <Content Include="Content\themes\base\base.css" />
-    <Content Include="Content\themes\base\button.css" />
-    <Content Include="Content\themes\base\core.css" />
-    <Content Include="Content\themes\base\datepicker.css" />
-    <Content Include="Content\themes\base\dialog.css" />
-    <Content Include="Content\themes\base\draggable.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\menu.css" />
-    <Content Include="Content\themes\base\progressbar.css" />
-    <Content Include="Content\themes\base\resizable.css" />
-    <Content Include="Content\themes\base\selectable.css" />
-    <Content Include="Content\themes\base\selectmenu.css" />
-    <Content Include="Content\themes\base\slider.css" />
-    <Content Include="Content\themes\base\sortable.css" />
-    <Content Include="Content\themes\base\spinner.css" />
-    <Content Include="Content\themes\base\tabs.css" />
-    <Content Include="Content\themes\base\theme.css" />
-    <Content Include="Content\themes\base\tooltip.css" />
+    <Content Include="Css\animationStyle.css" />
     <Content Include="Css\loginStyle.css" />
     <Content Include="Css\mainStyle.css" />
     <Content Include="Dumps\wproject.sql" />
     <Content Include="Dumps\wproject_data.sql" />
     <Content Include="Global.asax" />
-    <Content Include="home.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="index.html" />
     <Content Include="packages.config" />
     <None Include="Properties\PublishProfiles\PublishForBeta.pubxml" />
@@ -111,10 +84,6 @@
     <Content Include="Resources\Fonts\seguisb.ttf" />
     <Content Include="Resources\Fonts\seguisbi.ttf" />
     <Content Include="Resources\Fonts\seguisli.ttf" />
-    <None Include="Scripts\jQuery\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\jQuery\jquery-2.1.4.js" />
-    <Content Include="Scripts\jQuery\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jQuery\jquery-2.1.4.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -152,6 +121,7 @@
     <Content Include="Resources\Icons\chat_m.png" />
     <Content Include="Resources\Icons\chat_s.png" />
     <Content Include="Resources\Icons\circle.png" />
+    <Content Include="Resources\Icons\circle_dash.png" />
     <Content Include="Resources\Icons\close_l.png" />
     <Content Include="Resources\Icons\close_m.png" />
     <Content Include="Resources\Icons\close_s.png" />
@@ -320,23 +290,22 @@
     <Content Include="Resources\Icons\warning_s.png" />
     <Content Include="Resources\Images\LoginBlurBk.png" />
     <Content Include="Resources\Logo.png" />
-    <Content Include="Scripts\jQuery\jquery-ui-1.11.4.js" />
-    <Content Include="Scripts\jQuery\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\utilScripts.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="home.aspx.cs">
-      <DependentUpon>home.aspx</DependentUpon>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="home.aspx.designer.cs">
-      <DependentUpon>home.aspx</DependentUpon>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="Scripts\loginScript.js" />
+    <Content Include="Scripts\loginScripts.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WProject.BusinessLibrary\WProject.BusinessLibrary.csproj">
@@ -350,6 +319,10 @@
     <ProjectReference Include="..\WProject.Library\WProject.Library.csproj">
       <Project>{6d8e2b1f-931e-45a9-99ab-4f338ff0888a}</Project>
       <Name>WProject.Library</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WProject.WebApiClasses\WProject.WebApiClasses.csproj">
+      <Project>{393B81BC-61F8-4278-9221-B2054D447331}</Project>
+      <Name>WProject.WebApiClasses</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

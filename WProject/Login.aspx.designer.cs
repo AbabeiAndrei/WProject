@@ -10,7 +10,7 @@
 namespace WProject {
     
     
-    public partial class home {
+    public partial class LoginPage {
         
         /// <summary>
         /// txtEmail control.

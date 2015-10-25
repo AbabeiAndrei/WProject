@@ -116,10 +116,11 @@
 {
     position:relative;
     float: right;
-    margin: 8px 16px 8px 8px;
+    margin: 16px 16px 8px 8px;
+    padding-right: 60px;
 }
 
-.loginForm > .login > img
+.loginLoginControlTransparent
 {
     -ms-opacity: 0.4;
     opacity: 0.4;
@@ -129,7 +130,7 @@
     filter: alpha(opacity=40);
 }
 
-.loginForm > .login > img:hover
+.loginLoginControlOpaque
 {
     -ms-opacity: 1;
     opacity: 1;
