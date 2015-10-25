@@ -1,0 +1,2712 @@
+﻿<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="WProject.BusinessLibrary.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:devart="http://devart.com/schemas/edml/StorageSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="WModelStoreContainer">
+          <EntitySet Name="accesses" EntityType="WProject.BusinessLibrary.Store.access" store:Type="Tables" Schema="wproject" Table="access" />
+          <EntitySet Name="access_objects" EntityType="WProject.BusinessLibrary.Store.access_object" store:Type="Tables" Schema="wproject" Table="access_object" />
+          <EntitySet Name="active_sessions" EntityType="WProject.BusinessLibrary.Store.active_session" store:Type="Tables" Schema="wproject" Table="active_session" />
+          <EntitySet Name="app_settings" EntityType="WProject.BusinessLibrary.Store.app_setting" store:Type="Tables" Schema="wproject" Table="app_setting" />
+          <EntitySet Name="backlogs" EntityType="WProject.BusinessLibrary.Store.backlog" store:Type="Tables" Schema="wproject" Table="backlog" />
+          <EntitySet Name="categories" EntityType="WProject.BusinessLibrary.Store.category" store:Type="Tables" Schema="wproject" Table="category" />
+          <EntitySet Name="dict_items" EntityType="WProject.BusinessLibrary.Store.dict_item" store:Type="Tables" Schema="wproject" Table="dict_item" />
+          <EntitySet Name="files" EntityType="WProject.BusinessLibrary.Store.file" store:Type="Tables" Schema="wproject" Table="file" />
+          <EntitySet Name="groups" EntityType="WProject.BusinessLibrary.Store.group" store:Type="Tables" Schema="wproject" Table="group" />
+          <EntitySet Name="logs" EntityType="WProject.BusinessLibrary.Store.log" store:Type="Tables" Schema="wproject" Table="log" />
+          <EntitySet Name="projects" EntityType="WProject.BusinessLibrary.Store.project" store:Type="Tables" Schema="wproject" Table="project" />
+          <EntitySet Name="project_settings" EntityType="WProject.BusinessLibrary.Store.project_setting" store:Type="Tables" Schema="wproject" Table="project_setting" />
+          <EntitySet Name="springs" EntityType="WProject.BusinessLibrary.Store.spring" store:Type="Tables" Schema="wproject" Table="spring" />
+          <EntitySet Name="tasks" EntityType="WProject.BusinessLibrary.Store.task" store:Type="Tables" Schema="wproject" Table="task" />
+          <EntitySet Name="task_attachements" EntityType="WProject.BusinessLibrary.Store.task_attachement" store:Type="Tables" Schema="wproject" Table="task_attachement" />
+          <EntitySet Name="task_dependencies" EntityType="WProject.BusinessLibrary.Store.task_dependency" store:Type="Tables" Schema="wproject" Table="task_dependency" />
+          <EntitySet Name="task_histories" EntityType="WProject.BusinessLibrary.Store.task_history" store:Type="Tables" Schema="wproject" Table="task_history" />
+          <EntitySet Name="task_tags" EntityType="WProject.BusinessLibrary.Store.task_tag" store:Type="Tables" Schema="wproject" Table="task_tag" />
+          <EntitySet Name="users" EntityType="WProject.BusinessLibrary.Store.user" store:Type="Tables" Schema="wproject" Table="user" />
+          <EntitySet Name="user_in_groups" EntityType="WProject.BusinessLibrary.Store.user_in_group" store:Type="Tables" Schema="wproject" Table="user_in_group" />
+          <AssociationSet Name="access_object_access_FK_access_id" Association="WProject.BusinessLibrary.Store.access_object_access_FK_access_id">
+            <End Role="access_object" EntitySet="access_objects" />
+            <End Role="access" EntitySet="accesses" />
+          </AssociationSet>
+          <AssociationSet Name="access_object_group_FK_group_id" Association="WProject.BusinessLibrary.Store.access_object_group_FK_group_id">
+            <End Role="group" EntitySet="groups" />
+            <End Role="access" EntitySet="accesses" />
+          </AssociationSet>
+          <AssociationSet Name="access_object_user_FK_access_granted_by" Association="WProject.BusinessLibrary.Store.access_object_user_FK_access_granted_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="access" EntitySet="accesses" />
+          </AssociationSet>
+          <AssociationSet Name="access_object_user_FK_user_id" Association="WProject.BusinessLibrary.Store.access_object_user_FK_user_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="access" EntitySet="accesses" />
+          </AssociationSet>
+          <AssociationSet Name="active_session_user_FK_user_id" Association="WProject.BusinessLibrary.Store.active_session_user_FK_user_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="active_session" EntitySet="active_sessions" />
+          </AssociationSet>
+          <AssociationSet Name="app_setting_user_FK_last_updated_by" Association="WProject.BusinessLibrary.Store.app_setting_user_FK_last_updated_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="app_setting" EntitySet="app_settings" />
+          </AssociationSet>
+          <AssociationSet Name="backlog_category_FK_category_id" Association="WProject.BusinessLibrary.Store.backlog_category_FK_category_id">
+            <End Role="category" EntitySet="categories" />
+            <End Role="backlog" EntitySet="backlogs" />
+          </AssociationSet>
+          <AssociationSet Name="backlog_dict_item_FK_state_id" Association="WProject.BusinessLibrary.Store.backlog_dict_item_FK_state_id">
+            <End Role="dict_item" EntitySet="dict_items" />
+            <End Role="backlog" EntitySet="backlogs" />
+          </AssociationSet>
+          <AssociationSet Name="backlog_dict_item_FK_type_id" Association="WProject.BusinessLibrary.Store.backlog_dict_item_FK_type_id">
+            <End Role="dict_item" EntitySet="dict_items" />
+            <End Role="backlog" EntitySet="backlogs" />
+          </AssociationSet>
+          <AssociationSet Name="backlog_user_FK_assigned_to" Association="WProject.BusinessLibrary.Store.backlog_user_FK_assigned_to">
+            <End Role="user" EntitySet="users" />
+            <End Role="backlog" EntitySet="backlogs" />
+          </AssociationSet>
+          <AssociationSet Name="backlog_user_FK_created_by" Association="WProject.BusinessLibrary.Store.backlog_user_FK_created_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="backlog" EntitySet="backlogs" />
+          </AssociationSet>
+          <AssociationSet Name="category_category_FK_parent_id" Association="WProject.BusinessLibrary.Store.category_category_FK_parent_id">
+            <End Role="category" EntitySet="categories" />
+            <End Role="category1" EntitySet="categories" />
+          </AssociationSet>
+          <AssociationSet Name="category_spring_FK_spring_id" Association="WProject.BusinessLibrary.Store.category_spring_FK_spring_id">
+            <End Role="spring" EntitySet="springs" />
+            <End Role="category" EntitySet="categories" />
+          </AssociationSet>
+          <AssociationSet Name="category_user_FK_created_by" Association="WProject.BusinessLibrary.Store.category_user_FK_created_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="category" EntitySet="categories" />
+          </AssociationSet>
+          <AssociationSet Name="category_user_FK_owner_id" Association="WProject.BusinessLibrary.Store.category_user_FK_owner_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="category" EntitySet="categories" />
+          </AssociationSet>
+          <AssociationSet Name="dict_item _dict_item_FK_parent_id" Association="WProject.BusinessLibrary.Store.dict_item _dict_item_FK_parent_id">
+            <End Role="dict_item" EntitySet="dict_items" />
+            <End Role="dict_item1" EntitySet="dict_items" />
+          </AssociationSet>
+          <AssociationSet Name="file_user_FK_created_by" Association="WProject.BusinessLibrary.Store.file_user_FK_created_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="file" EntitySet="files" />
+          </AssociationSet>
+          <AssociationSet Name="group_user_FK_owner_id" Association="WProject.BusinessLibrary.Store.group_user_FK_owner_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="group" EntitySet="groups" />
+          </AssociationSet>
+          <AssociationSet Name="log_access_object_FK_access_object_id" Association="WProject.BusinessLibrary.Store.log_access_object_FK_access_object_id">
+            <End Role="access_object" EntitySet="access_objects" />
+            <End Role="log" EntitySet="logs" />
+          </AssociationSet>
+          <AssociationSet Name="log_user_FK_user_id" Association="WProject.BusinessLibrary.Store.log_user_FK_user_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="log" EntitySet="logs" />
+          </AssociationSet>
+          <AssociationSet Name="project_user_FK_created_by" Association="WProject.BusinessLibrary.Store.project_user_FK_created_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="project" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="project_user_FK_owner_id" Association="WProject.BusinessLibrary.Store.project_user_FK_owner_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="project" EntitySet="projects" />
+          </AssociationSet>
+          <AssociationSet Name="project_setting_project_FK_project_id" Association="WProject.BusinessLibrary.Store.project_setting_project_FK_project_id">
+            <End Role="project" EntitySet="projects" />
+            <End Role="project_setting" EntitySet="project_settings" />
+          </AssociationSet>
+          <AssociationSet Name="project_setting_user_FK_last_updated_by" Association="WProject.BusinessLibrary.Store.project_setting_user_FK_last_updated_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="project_setting" EntitySet="project_settings" />
+          </AssociationSet>
+          <AssociationSet Name="spring_project_FK_project_id" Association="WProject.BusinessLibrary.Store.spring_project_FK_project_id">
+            <End Role="project" EntitySet="projects" />
+            <End Role="spring" EntitySet="springs" />
+          </AssociationSet>
+          <AssociationSet Name="spring_user_FK_created_by" Association="WProject.BusinessLibrary.Store.spring_user_FK_created_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="spring" EntitySet="springs" />
+          </AssociationSet>
+          <AssociationSet Name="spring_user_FK_owner_id" Association="WProject.BusinessLibrary.Store.spring_user_FK_owner_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="spring" EntitySet="springs" />
+          </AssociationSet>
+          <AssociationSet Name="task_backlog_FK_backlog_id" Association="WProject.BusinessLibrary.Store.task_backlog_FK_backlog_id">
+            <End Role="backlog" EntitySet="backlogs" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_dict_item_FK_stage_id" Association="WProject.BusinessLibrary.Store.task_dict_item_FK_stage_id">
+            <End Role="dict_item" EntitySet="dict_items" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_dict_item_FK_state_id" Association="WProject.BusinessLibrary.Store.task_dict_item_FK_state_id">
+            <End Role="dict_item" EntitySet="dict_items" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_dict_item_FK_type_id" Association="WProject.BusinessLibrary.Store.task_dict_item_FK_type_id">
+            <End Role="dict_item" EntitySet="dict_items" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_user_FK_assigned_to" Association="WProject.BusinessLibrary.Store.task_user_FK_assigned_to">
+            <End Role="user" EntitySet="users" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_user_FK_created_by" Association="WProject.BusinessLibrary.Store.task_user_FK_created_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_attachement_file_FK_file_id" Association="WProject.BusinessLibrary.Store.task_attachement_file_FK_file_id">
+            <End Role="file" EntitySet="files" />
+            <End Role="task_attachement" EntitySet="task_attachements" />
+          </AssociationSet>
+          <AssociationSet Name="task_attachement_task_FK_task_id" Association="WProject.BusinessLibrary.Store.task_attachement_task_FK_task_id">
+            <End Role="task" EntitySet="tasks" />
+            <End Role="task_attachement" EntitySet="task_attachements" />
+          </AssociationSet>
+          <AssociationSet Name="task_attachement_user_FK_attached_by" Association="WProject.BusinessLibrary.Store.task_attachement_user_FK_attached_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="task_attachement" EntitySet="task_attachements" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_dict_item_FK_block_on_stage_id" Association="WProject.BusinessLibrary.Store.task_dependency_dict_item_FK_block_on_stage_id">
+            <End Role="dict_item" EntitySet="dict_items" />
+            <End Role="task_dependency" EntitySet="task_dependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_dict_item_FK_block_on_state_id" Association="WProject.BusinessLibrary.Store.task_dependency_dict_item_FK_block_on_state_id">
+            <End Role="dict_item" EntitySet="dict_items" />
+            <End Role="task_dependency" EntitySet="task_dependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_dict_item_FK_dependent_stage_id" Association="WProject.BusinessLibrary.Store.task_dependency_dict_item_FK_dependent_stage_id">
+            <End Role="dict_item" EntitySet="dict_items" />
+            <End Role="task_dependency" EntitySet="task_dependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_dict_item_FK_dependent_state_id" Association="WProject.BusinessLibrary.Store.task_dependency_dict_item_FK_dependent_state_id">
+            <End Role="dict_item" EntitySet="dict_items" />
+            <End Role="task_dependency" EntitySet="task_dependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_task_FK_task_dependent_id" Association="WProject.BusinessLibrary.Store.task_dependency_task_FK_task_dependent_id">
+            <End Role="task" EntitySet="tasks" />
+            <End Role="task_dependency" EntitySet="task_dependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_task_FK_task_id" Association="WProject.BusinessLibrary.Store.task_dependency_task_FK_task_id">
+            <End Role="task" EntitySet="tasks" />
+            <End Role="task_dependency" EntitySet="task_dependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_users_FK_created_by" Association="WProject.BusinessLibrary.Store.task_dependency_users_FK_created_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="task_dependency" EntitySet="task_dependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_history_task_FK_task_id" Association="WProject.BusinessLibrary.Store.task_history_task_FK_task_id">
+            <End Role="task" EntitySet="tasks" />
+            <End Role="task_history" EntitySet="task_histories" />
+          </AssociationSet>
+          <AssociationSet Name="task_history_user_FK_updated_by" Association="WProject.BusinessLibrary.Store.task_history_user_FK_updated_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="task_history" EntitySet="task_histories" />
+          </AssociationSet>
+          <AssociationSet Name="task_tag_task_FK_task_id" Association="WProject.BusinessLibrary.Store.task_tag_task_FK_task_id">
+            <End Role="task" EntitySet="tasks" />
+            <End Role="task_tag" EntitySet="task_tags" />
+          </AssociationSet>
+          <AssociationSet Name="task_tag_user_FK_created_by" Association="WProject.BusinessLibrary.Store.task_tag_user_FK_created_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="task_tag" EntitySet="task_tags" />
+          </AssociationSet>
+          <AssociationSet Name="user_in_group_user_FK_added_by" Association="WProject.BusinessLibrary.Store.user_in_group_user_FK_added_by">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_in_group" EntitySet="user_in_groups" />
+          </AssociationSet>
+          <AssociationSet Name="user_in_group_user_FK_group_id" Association="WProject.BusinessLibrary.Store.user_in_group_user_FK_group_id">
+            <End Role="group" EntitySet="groups" />
+            <End Role="user_in_group" EntitySet="user_in_groups" />
+          </AssociationSet>
+          <AssociationSet Name="user_in_group_user_FK_user_id" Association="WProject.BusinessLibrary.Store.user_in_group_user_FK_user_id">
+            <End Role="user" EntitySet="users" />
+            <End Role="user_in_group" EntitySet="user_in_groups" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="access">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="group_id" Type="int" />
+          <Property Name="access_id" Type="int" Nullable="false" />
+          <Property Name="read" Type="tinyint" />
+          <Property Name="add" Type="tinyint" />
+          <Property Name="edit" Type="tinyint" />
+          <Property Name="delete" Type="tinyint" />
+          <Property Name="access_granted_at" Type="datetime" />
+          <Property Name="access_granted_by" Type="int" />
+          <Property Name="object_id" Type="int" />
+          <Property Name="comment" Type="text" Collation="utf8_general_ci" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="bool" />
+        </EntityType>
+        <EntityType Name="access_object">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="1024" Collation="utf8_general_ci" />
+          <Property Name="code" Type="varchar" Nullable="false" MaxLength="1024" Collation="utf8_general_ci" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="bool" />
+        </EntityType>
+        <EntityType Name="active_session">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="uid" Type="varchar" MaxLength="512" Collation="utf8_general_ci" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="last_heart_beat" Type="timestamp" />
+          <Property Name="ip" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
+          <Property Name="context_id" Type="varchar" MaxLength="512" Collation="utf8_general_ci" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+        </EntityType>
+        <EntityType Name="app_setting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="key" Type="varchar" Nullable="false" MaxLength="128" Collation="utf8_general_ci" />
+          <Property Name="value" Type="text" Nullable="false" Collation="utf8_general_ci" />
+          <Property Name="last_updated_at" Type="datetime" />
+          <Property Name="last_updated_by" Type="int" />
+          <Property Name="comment" Type="text" Collation="utf8_general_ci" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="bool" />
+        </EntityType>
+        <EntityType Name="backlog">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" Collation="utf8_general_ci" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="assigned_to" Type="int" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="category_id" Type="int" Nullable="false" />
+          <Property Name="priority" Type="int" />
+          <Property Name="period_from" Type="datetime" />
+          <Property Name="period_to" Type="datetime" />
+          <Property Name="remaining_work" Type="int">
+            <Documentation>
+              <Summary>in minutes</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="description" Type="longtext" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" Collation="utf8_general_ci" />
+          <Property Name="description" Type="text" Collation="utf8_general_ci" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="owner_id" Type="int" Nullable="false" />
+          <Property Name="period_from" Type="datetime" />
+          <Property Name="period_to" Type="datetime" />
+          <Property Name="spring_id" Type="int" Nullable="false" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="dict_item">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="512" Collation="utf8_general_ci" />
+          <Property Name="description" Type="text" Collation="utf8_general_ci" />
+          <Property Name="type" Type="varchar" Nullable="false" MaxLength="128" Collation="utf8_general_ci" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="reserved" Type="bool" />
+          <Property Name="code" Type="varchar" MaxLength="64" Collation="utf8_general_ci" />
+          <Property Name="order" Type="int" />
+          <Property Name="color" Type="varchar" MaxLength="16" Collation="utf8_general_ci" />
+          <Property Name="tag" Type="text" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="bool" />
+        </EntityType>
+        <EntityType Name="file">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="1024" Collation="utf8_general_ci" />
+          <Property Name="type" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
+          <Property Name="content" Type="longblob" Nullable="false" />
+          <Property Name="thumbnail" Type="longblob" />
+          <Property Name="size" Type="bigint" />
+          <Property Name="parent_type" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
+          <Property Name="parent_id" Type="int" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+          <Property Name="path" Type="mediumtext" Collation="utf8_general_ci" />
+          <Property Name="url" Type="mediumtext" Collation="utf8_general_ci" />
+          <Property Name="created_at" Type="datetime" />
+          <Property Name="created_by" Type="int" />
+        </EntityType>
+        <EntityType Name="group">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" Collation="utf8_general_ci" />
+          <Property Name="description" Type="text" Collation="utf8_general_ci" />
+          <Property Name="created" Type="datetime" Nullable="false" />
+          <Property Name="owner_id" Type="int" Nullable="false" />
+          <Property Name="deleted" Type="bool" />
+        </EntityType>
+        <EntityType Name="log">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="datetime" Precision="6" />
+          <Property Name="entry_type" Type="tinyint" />
+          <Property Name="ip" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="access_object_id" Type="int" />
+          <Property Name="action" Type="tinyint" />
+          <Property Name="details" Type="text" Collation="utf8_general_ci" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+          <Property Name="important" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="project">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" Collation="utf8_general_ci" />
+          <Property Name="description" Type="text" Collation="utf8_general_ci" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="owner_id" Type="int" Nullable="false" />
+          <Property Name="period_from" Type="datetime" />
+          <Property Name="period_to" Type="datetime" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="project_setting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="project_id" Type="int" Nullable="false" />
+          <Property Name="key" Type="varchar" Nullable="false" MaxLength="128" Collation="utf8_general_ci" />
+          <Property Name="value" Type="text" Nullable="false" Collation="utf8_general_ci" />
+          <Property Name="last_updated_at" Type="datetime" />
+          <Property Name="last_updated_by" Type="int" />
+          <Property Name="comments" Type="text" Collation="utf8_general_ci" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="bool" />
+        </EntityType>
+        <EntityType Name="spring">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" Collation="utf8_general_ci" />
+          <Property Name="description" Type="text" Collation="utf8_general_ci" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="owner_id" Type="int" Nullable="false" />
+          <Property Name="period_from" Type="datetime" />
+          <Property Name="period_to" Type="datetime" />
+          <Property Name="project_id" Type="int" Nullable="false" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="255" Collation="utf8_general_ci" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="assigned_to" Type="int" />
+          <Property Name="state_id" Type="int" Nullable="false" />
+          <Property Name="type_id" Type="int" Nullable="false" />
+          <Property Name="stage_id" Type="int" />
+          <Property Name="backlog_id" Type="int" Nullable="false" />
+          <Property Name="priority" Type="int" />
+          <Property Name="period_from" Type="datetime" />
+          <Property Name="period_to" Type="datetime" />
+          <Property Name="remaining_work" Type="int">
+            <Documentation>
+              <Summary>in minutes</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="description" Type="longtext" Nullable="false" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="task_attachement">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="task_id" Type="int" Nullable="false" />
+          <Property Name="file_id" Type="int" Nullable="false" />
+          <Property Name="attached_at" Type="datetime" Nullable="false" />
+          <Property Name="attached_by" Type="int" Nullable="false" />
+          <Property Name="comments" Type="text" Collation="utf8_general_ci" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="task_dependency">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="task_id" Type="int" Nullable="false" />
+          <Property Name="task_dependent_id" Type="int" Nullable="false" />
+          <Property Name="dependent_state_id" Type="int" />
+          <Property Name="dependent_stage_id" Type="int" />
+          <Property Name="block_on_state_id" Type="int" />
+          <Property Name="block_on_stage_id" Type="int" />
+          <Property Name="created_at" Type="date" Nullable="false" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="comments" Type="text" Collation="utf8_general_ci" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="task_history">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="task_id" Type="int" Nullable="false" />
+          <Property Name="updated_at" Type="datetime" Nullable="false" />
+          <Property Name="updated_by" Type="int" Nullable="false" />
+          <Property Name="field_name" Type="varchar" Nullable="false" MaxLength="255" Collation="utf8_general_ci" />
+          <Property Name="field_old_value" Type="longtext" Collation="utf8_general_ci" />
+          <Property Name="field_new_value" Type="longtext" Nullable="false" Collation="utf8_general_ci" />
+          <Property Name="comments" Type="text" Collation="utf8_general_ci" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="bool" />
+        </EntityType>
+        <EntityType Name="task_tag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="task_id" Type="int" Nullable="false" />
+          <Property Name="text" Type="varchar" Nullable="false" MaxLength="512" Collation="utf8_general_ci" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="created_by" Type="int" Nullable="false" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="128" Collation="utf8_general_ci" />
+          <Property Name="email" Type="varchar" MaxLength="128" Collation="utf8_general_ci" />
+          <Property Name="login" Type="varchar" Nullable="false" MaxLength="128" Collation="utf8_general_ci" />
+          <Property Name="word" Type="varchar" Nullable="false" MaxLength="512" Collation="utf8_general_ci" />
+          <Property Name="expire" Type="datetime" />
+          <Property Name="su" Type="tinyint" />
+          <Property Name="suspended" Type="bool" />
+          <Property Name="deleted" Type="bool" />
+        </EntityType>
+        <EntityType Name="user_in_group">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="user_id" />
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="user_id" Type="int" Nullable="false" />
+          <Property Name="group_id" Type="int" Nullable="false" />
+          <Property Name="added" Type="datetime" Nullable="false" />
+          <Property Name="added_by" Type="int" />
+          <Property Name="comments" Type="text" Collation="utf8_general_ci" />
+          <Property Name="metadata" Type="text" Collation="utf8_general_ci" />
+          <Property Name="deleted" Type="tinyint" />
+        </EntityType>
+        <Association Name="access_object_access_FK_access_id">
+          <End Role="access_object" Type="WProject.BusinessLibrary.Store.access_object" Multiplicity="1" />
+          <End Role="access" Type="WProject.BusinessLibrary.Store.access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="access_object">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="access">
+              <PropertyRef Name="access_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="access_object_group_FK_group_id">
+          <End Role="group" Type="WProject.BusinessLibrary.Store.group" Multiplicity="0..1" />
+          <End Role="access" Type="WProject.BusinessLibrary.Store.access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="access">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="access_object_user_FK_access_granted_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="0..1" />
+          <End Role="access" Type="WProject.BusinessLibrary.Store.access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="access">
+              <PropertyRef Name="access_granted_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="access_object_user_FK_user_id">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="0..1" />
+          <End Role="access" Type="WProject.BusinessLibrary.Store.access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="access">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="active_session_user_FK_user_id">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="active_session" Type="WProject.BusinessLibrary.Store.active_session" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="active_session">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="app_setting_user_FK_last_updated_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="0..1" />
+          <End Role="app_setting" Type="WProject.BusinessLibrary.Store.app_setting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="app_setting">
+              <PropertyRef Name="last_updated_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="backlog_category_FK_category_id">
+          <End Role="category" Type="WProject.BusinessLibrary.Store.category" Multiplicity="1" />
+          <End Role="backlog" Type="WProject.BusinessLibrary.Store.backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="backlog">
+              <PropertyRef Name="category_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="backlog_dict_item_FK_state_id">
+          <End Role="dict_item" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="1" />
+          <End Role="backlog" Type="WProject.BusinessLibrary.Store.backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dict_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="backlog">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="backlog_dict_item_FK_type_id">
+          <End Role="dict_item" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="1" />
+          <End Role="backlog" Type="WProject.BusinessLibrary.Store.backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dict_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="backlog">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="backlog_user_FK_assigned_to">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="0..1" />
+          <End Role="backlog" Type="WProject.BusinessLibrary.Store.backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="backlog">
+              <PropertyRef Name="assigned_to" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="backlog_user_FK_created_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="backlog" Type="WProject.BusinessLibrary.Store.backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="backlog">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_category_FK_parent_id">
+          <End Role="category" Type="WProject.BusinessLibrary.Store.category" Multiplicity="0..1" />
+          <End Role="category1" Type="WProject.BusinessLibrary.Store.category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="category1">
+              <PropertyRef Name="parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_spring_FK_spring_id">
+          <End Role="spring" Type="WProject.BusinessLibrary.Store.spring" Multiplicity="1" />
+          <End Role="category" Type="WProject.BusinessLibrary.Store.category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="spring">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="category">
+              <PropertyRef Name="spring_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_user_FK_created_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="category" Type="WProject.BusinessLibrary.Store.category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="category">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_user_FK_owner_id">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="category" Type="WProject.BusinessLibrary.Store.category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="category">
+              <PropertyRef Name="owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dict_item _dict_item_FK_parent_id">
+          <End Role="dict_item" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="0..1" />
+          <End Role="dict_item1" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dict_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="dict_item1">
+              <PropertyRef Name="parent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="file_user_FK_created_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="0..1" />
+          <End Role="file" Type="WProject.BusinessLibrary.Store.file" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="file">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="group_user_FK_owner_id">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="group" Type="WProject.BusinessLibrary.Store.group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="group">
+              <PropertyRef Name="owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="log_access_object_FK_access_object_id">
+          <End Role="access_object" Type="WProject.BusinessLibrary.Store.access_object" Multiplicity="0..1" />
+          <End Role="log" Type="WProject.BusinessLibrary.Store.log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="access_object">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="log">
+              <PropertyRef Name="access_object_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="log_user_FK_user_id">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="0..1" />
+          <End Role="log" Type="WProject.BusinessLibrary.Store.log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="log">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_user_FK_created_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="project" Type="WProject.BusinessLibrary.Store.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_user_FK_owner_id">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="project" Type="WProject.BusinessLibrary.Store.project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project">
+              <PropertyRef Name="owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_setting_project_FK_project_id">
+          <End Role="project" Type="WProject.BusinessLibrary.Store.project" Multiplicity="1" />
+          <End Role="project_setting" Type="WProject.BusinessLibrary.Store.project_setting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_setting">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_setting_user_FK_last_updated_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="0..1" />
+          <End Role="project_setting" Type="WProject.BusinessLibrary.Store.project_setting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="project_setting">
+              <PropertyRef Name="last_updated_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spring_project_FK_project_id">
+          <End Role="project" Type="WProject.BusinessLibrary.Store.project" Multiplicity="1" />
+          <End Role="spring" Type="WProject.BusinessLibrary.Store.spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="project">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="spring">
+              <PropertyRef Name="project_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spring_user_FK_created_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="spring" Type="WProject.BusinessLibrary.Store.spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="spring">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spring_user_FK_owner_id">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="spring" Type="WProject.BusinessLibrary.Store.spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="spring">
+              <PropertyRef Name="owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_backlog_FK_backlog_id">
+          <End Role="backlog" Type="WProject.BusinessLibrary.Store.backlog" Multiplicity="1" />
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="backlog">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="backlog_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dict_item_FK_stage_id">
+          <End Role="dict_item" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="0..1" />
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dict_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="stage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dict_item_FK_state_id">
+          <End Role="dict_item" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="1" />
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dict_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dict_item_FK_type_id">
+          <End Role="dict_item" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="1" />
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dict_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_user_FK_assigned_to">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="0..1" />
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="assigned_to" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_user_FK_created_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_attachement_file_FK_file_id">
+          <End Role="file" Type="WProject.BusinessLibrary.Store.file" Multiplicity="1" />
+          <End Role="task_attachement" Type="WProject.BusinessLibrary.Store.task_attachement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="file">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_attachement">
+              <PropertyRef Name="file_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_attachement_task_FK_task_id">
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="1" />
+          <End Role="task_attachement" Type="WProject.BusinessLibrary.Store.task_attachement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="task">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_attachement">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_attachement_user_FK_attached_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="task_attachement" Type="WProject.BusinessLibrary.Store.task_attachement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_attachement">
+              <PropertyRef Name="attached_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_dict_item_FK_block_on_stage_id">
+          <End Role="dict_item" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="0..1" />
+          <End Role="task_dependency" Type="WProject.BusinessLibrary.Store.task_dependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dict_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_dependency">
+              <PropertyRef Name="block_on_stage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_dict_item_FK_block_on_state_id">
+          <End Role="dict_item" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="0..1" />
+          <End Role="task_dependency" Type="WProject.BusinessLibrary.Store.task_dependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dict_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_dependency">
+              <PropertyRef Name="block_on_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_dict_item_FK_dependent_stage_id">
+          <End Role="dict_item" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="0..1" />
+          <End Role="task_dependency" Type="WProject.BusinessLibrary.Store.task_dependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dict_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_dependency">
+              <PropertyRef Name="dependent_stage_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_dict_item_FK_dependent_state_id">
+          <End Role="dict_item" Type="WProject.BusinessLibrary.Store.dict_item" Multiplicity="0..1" />
+          <End Role="task_dependency" Type="WProject.BusinessLibrary.Store.task_dependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="dict_item">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_dependency">
+              <PropertyRef Name="dependent_state_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_task_FK_task_dependent_id">
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="1" />
+          <End Role="task_dependency" Type="WProject.BusinessLibrary.Store.task_dependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="task">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_dependency">
+              <PropertyRef Name="task_dependent_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_task_FK_task_id">
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="1" />
+          <End Role="task_dependency" Type="WProject.BusinessLibrary.Store.task_dependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="task">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_dependency">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_users_FK_created_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="task_dependency" Type="WProject.BusinessLibrary.Store.task_dependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_dependency">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_history_task_FK_task_id">
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="1" />
+          <End Role="task_history" Type="WProject.BusinessLibrary.Store.task_history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="task">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_history">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_history_user_FK_updated_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="task_history" Type="WProject.BusinessLibrary.Store.task_history" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_history">
+              <PropertyRef Name="updated_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_tag_task_FK_task_id">
+          <End Role="task" Type="WProject.BusinessLibrary.Store.task" Multiplicity="1" />
+          <End Role="task_tag" Type="WProject.BusinessLibrary.Store.task_tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="task">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_tag">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_tag_user_FK_created_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="task_tag" Type="WProject.BusinessLibrary.Store.task_tag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task_tag">
+              <PropertyRef Name="created_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_in_group_user_FK_added_by">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="0..1" />
+          <End Role="user_in_group" Type="WProject.BusinessLibrary.Store.user_in_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_in_group">
+              <PropertyRef Name="added_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_in_group_user_FK_group_id">
+          <End Role="group" Type="WProject.BusinessLibrary.Store.group" Multiplicity="1" />
+          <End Role="user_in_group" Type="WProject.BusinessLibrary.Store.user_in_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="group">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_in_group">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_in_group_user_FK_user_id">
+          <End Role="user" Type="WProject.BusinessLibrary.Store.user" Multiplicity="1" />
+          <End Role="user_in_group" Type="WProject.BusinessLibrary.Store.user_in_group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="user_in_group">
+              <PropertyRef Name="user_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WProject.BusinessLibrary" Alias="Self" d4p1:ViewGeneration="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:devart="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" annotation:UseStrongSpatialTypes="false" xmlns:d4p1="http://devart.com/schemas/edml/ConceptualSchemaExtensions/1.0" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WModel" annotation:LazyLoadingEnabled="true" ed:Guid="b9a1113f-e09d-4afd-aab5-87ae562f268f">
+          <EntitySet Name="Accesses" EntityType="WProject.BusinessLibrary.Access" />
+          <EntitySet Name="AccessObjects" EntityType="WProject.BusinessLibrary.AccessObject" />
+          <EntitySet Name="ActiveSessions" EntityType="WProject.BusinessLibrary.ActiveSession" />
+          <EntitySet Name="AppSettings" EntityType="WProject.BusinessLibrary.AppSetting" />
+          <EntitySet Name="Backlogs" EntityType="WProject.BusinessLibrary.Backlog" />
+          <EntitySet Name="Categories" EntityType="WProject.BusinessLibrary.Category" />
+          <EntitySet Name="DictItems" EntityType="WProject.BusinessLibrary.DictItem" />
+          <EntitySet Name="Files" EntityType="WProject.BusinessLibrary.File" />
+          <EntitySet Name="Groups" EntityType="WProject.BusinessLibrary.Group" />
+          <EntitySet Name="Logs" EntityType="WProject.BusinessLibrary.Log" />
+          <EntitySet Name="Projects" EntityType="WProject.BusinessLibrary.Project" />
+          <EntitySet Name="ProjectSettings" EntityType="WProject.BusinessLibrary.ProjectSetting" />
+          <EntitySet Name="Springs" EntityType="WProject.BusinessLibrary.Spring" />
+          <EntitySet Name="Tasks" EntityType="WProject.BusinessLibrary.Task" />
+          <EntitySet Name="TaskAttachements" EntityType="WProject.BusinessLibrary.TaskAttachement" />
+          <EntitySet Name="TaskDependencies" EntityType="WProject.BusinessLibrary.TaskDependency" />
+          <EntitySet Name="TaskHistories" EntityType="WProject.BusinessLibrary.TaskHistory" />
+          <EntitySet Name="TaskTags" EntityType="WProject.BusinessLibrary.TaskTag" />
+          <EntitySet Name="Users" EntityType="WProject.BusinessLibrary.User" />
+          <EntitySet Name="UserInGroups" EntityType="WProject.BusinessLibrary.UserInGroup" />
+          <AssociationSet Name="access_object_access_FK_access_idSet" Association="WProject.BusinessLibrary.access_object_access_FK_access_id">
+            <End Role="AccessObject" EntitySet="AccessObjects" />
+            <End Role="Accesses" EntitySet="Accesses" />
+          </AssociationSet>
+          <AssociationSet Name="access_object_group_FK_group_idSet" Association="WProject.BusinessLibrary.access_object_group_FK_group_id">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Accesses" EntitySet="Accesses" />
+          </AssociationSet>
+          <AssociationSet Name="access_object_user_FK_access_granted_bySet" Association="WProject.BusinessLibrary.access_object_user_FK_access_granted_by">
+            <End Role="User_AccessGrantedBy" EntitySet="Users" />
+            <End Role="Accesses_AccessGrantedBy" EntitySet="Accesses" />
+          </AssociationSet>
+          <AssociationSet Name="access_object_user_FK_user_idSet" Association="WProject.BusinessLibrary.access_object_user_FK_user_id">
+            <End Role="User_UserId" EntitySet="Users" />
+            <End Role="Accesses_UserId" EntitySet="Accesses" />
+          </AssociationSet>
+          <AssociationSet Name="active_session_user_FK_user_idSet" Association="WProject.BusinessLibrary.active_session_user_FK_user_id">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ActiveSessions" EntitySet="ActiveSessions" />
+          </AssociationSet>
+          <AssociationSet Name="app_setting_user_FK_last_updated_bySet" Association="WProject.BusinessLibrary.app_setting_user_FK_last_updated_by">
+            <End Role="User" EntitySet="Users" />
+            <End Role="AppSettings" EntitySet="AppSettings" />
+          </AssociationSet>
+          <AssociationSet Name="backlog_category_FK_category_idSet" Association="WProject.BusinessLibrary.backlog_category_FK_category_id">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Backlogs" EntitySet="Backlogs" />
+          </AssociationSet>
+          <AssociationSet Name="backlog_dict_item_FK_state_idSet" Association="WProject.BusinessLibrary.backlog_dict_item_FK_state_id">
+            <End Role="DictItem_StateId" EntitySet="DictItems" />
+            <End Role="Backlogs_StateId" EntitySet="Backlogs" />
+          </AssociationSet>
+          <AssociationSet Name="backlog_dict_item_FK_type_idSet" Association="WProject.BusinessLibrary.backlog_dict_item_FK_type_id">
+            <End Role="DictItem_TypeId" EntitySet="DictItems" />
+            <End Role="Backlogs_TypeId" EntitySet="Backlogs" />
+          </AssociationSet>
+          <AssociationSet Name="backlog_user_FK_assigned_toSet" Association="WProject.BusinessLibrary.backlog_user_FK_assigned_to">
+            <End Role="User_AssignedTo" EntitySet="Users" />
+            <End Role="Backlogs_AssignedTo" EntitySet="Backlogs" />
+          </AssociationSet>
+          <AssociationSet Name="backlog_user_FK_created_bySet" Association="WProject.BusinessLibrary.backlog_user_FK_created_by">
+            <End Role="User_CreatedBy" EntitySet="Users" />
+            <End Role="Backlogs_CreatedBy" EntitySet="Backlogs" />
+          </AssociationSet>
+          <AssociationSet Name="category_category_FK_parent_idSet" Association="WProject.BusinessLibrary.category_category_FK_parent_id">
+            <End Role="Category_ParentId" EntitySet="Categories" />
+            <End Role="Categories_ParentId" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="category_spring_FK_spring_idSet" Association="WProject.BusinessLibrary.category_spring_FK_spring_id">
+            <End Role="Spring" EntitySet="Springs" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="category_user_FK_created_bySet" Association="WProject.BusinessLibrary.category_user_FK_created_by">
+            <End Role="User_CreatedBy" EntitySet="Users" />
+            <End Role="Categories_CreatedBy" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="category_user_FK_owner_idSet" Association="WProject.BusinessLibrary.category_user_FK_owner_id">
+            <End Role="User_OwnerId" EntitySet="Users" />
+            <End Role="Categories_OwnerId" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="dict_item__dict_item_FK_parent_idSet" Association="WProject.BusinessLibrary.dict_item__dict_item_FK_parent_id">
+            <End Role="DictItem_ParentId" EntitySet="DictItems" />
+            <End Role="DictItems_ParentId" EntitySet="DictItems" />
+          </AssociationSet>
+          <AssociationSet Name="file_user_FK_created_bySet" Association="WProject.BusinessLibrary.file_user_FK_created_by">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Files" EntitySet="Files" />
+          </AssociationSet>
+          <AssociationSet Name="group_user_FK_owner_idSet" Association="WProject.BusinessLibrary.group_user_FK_owner_id">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="log_access_object_FK_access_object_idSet" Association="WProject.BusinessLibrary.log_access_object_FK_access_object_id">
+            <End Role="AccessObject" EntitySet="AccessObjects" />
+            <End Role="Logs" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="log_user_FK_user_idSet" Association="WProject.BusinessLibrary.log_user_FK_user_id">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Logs" EntitySet="Logs" />
+          </AssociationSet>
+          <AssociationSet Name="project_user_FK_created_bySet" Association="WProject.BusinessLibrary.project_user_FK_created_by">
+            <End Role="User_CreatedBy" EntitySet="Users" />
+            <End Role="Projects_CreatedBy" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="project_user_FK_owner_idSet" Association="WProject.BusinessLibrary.project_user_FK_owner_id">
+            <End Role="User_OwnerId" EntitySet="Users" />
+            <End Role="Projects_OwnerId" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="project_setting_project_FK_project_idSet" Association="WProject.BusinessLibrary.project_setting_project_FK_project_id">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectSettings" EntitySet="ProjectSettings" />
+          </AssociationSet>
+          <AssociationSet Name="project_setting_user_FK_last_updated_bySet" Association="WProject.BusinessLibrary.project_setting_user_FK_last_updated_by">
+            <End Role="User" EntitySet="Users" />
+            <End Role="ProjectSettings" EntitySet="ProjectSettings" />
+          </AssociationSet>
+          <AssociationSet Name="spring_project_FK_project_idSet" Association="WProject.BusinessLibrary.spring_project_FK_project_id">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Springs" EntitySet="Springs" />
+          </AssociationSet>
+          <AssociationSet Name="spring_user_FK_created_bySet" Association="WProject.BusinessLibrary.spring_user_FK_created_by">
+            <End Role="User_CreatedBy" EntitySet="Users" />
+            <End Role="Springs_CreatedBy" EntitySet="Springs" />
+          </AssociationSet>
+          <AssociationSet Name="spring_user_FK_owner_idSet" Association="WProject.BusinessLibrary.spring_user_FK_owner_id">
+            <End Role="User_OwnerId" EntitySet="Users" />
+            <End Role="Springs_OwnerId" EntitySet="Springs" />
+          </AssociationSet>
+          <AssociationSet Name="task_backlog_FK_backlog_idSet" Association="WProject.BusinessLibrary.task_backlog_FK_backlog_id">
+            <End Role="Backlog" EntitySet="Backlogs" />
+            <End Role="Tasks" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_dict_item_FK_stage_idSet" Association="WProject.BusinessLibrary.task_dict_item_FK_stage_id">
+            <End Role="DictItem_StageId" EntitySet="DictItems" />
+            <End Role="Tasks_StageId" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_dict_item_FK_state_idSet" Association="WProject.BusinessLibrary.task_dict_item_FK_state_id">
+            <End Role="DictItem_StateId" EntitySet="DictItems" />
+            <End Role="Tasks_StateId" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_dict_item_FK_type_idSet" Association="WProject.BusinessLibrary.task_dict_item_FK_type_id">
+            <End Role="DictItem_TypeId" EntitySet="DictItems" />
+            <End Role="Tasks_TypeId" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_user_FK_assigned_toSet" Association="WProject.BusinessLibrary.task_user_FK_assigned_to">
+            <End Role="User_AssignedTo" EntitySet="Users" />
+            <End Role="Tasks_AssignedTo" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_user_FK_created_bySet" Association="WProject.BusinessLibrary.task_user_FK_created_by">
+            <End Role="User_CreatedBy" EntitySet="Users" />
+            <End Role="Tasks_CreatedBy" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="task_attachement_file_FK_file_idSet" Association="WProject.BusinessLibrary.task_attachement_file_FK_file_id">
+            <End Role="File" EntitySet="Files" />
+            <End Role="TaskAttachements" EntitySet="TaskAttachements" />
+          </AssociationSet>
+          <AssociationSet Name="task_attachement_task_FK_task_idSet" Association="WProject.BusinessLibrary.task_attachement_task_FK_task_id">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TaskAttachements" EntitySet="TaskAttachements" />
+          </AssociationSet>
+          <AssociationSet Name="task_attachement_user_FK_attached_bySet" Association="WProject.BusinessLibrary.task_attachement_user_FK_attached_by">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TaskAttachements" EntitySet="TaskAttachements" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_dict_item_FK_block_on_stage_idSet" Association="WProject.BusinessLibrary.task_dependency_dict_item_FK_block_on_stage_id">
+            <End Role="DictItem_BlockOnStageId" EntitySet="DictItems" />
+            <End Role="TaskDependencies_BlockOnStageId" EntitySet="TaskDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_dict_item_FK_block_on_state_idSet" Association="WProject.BusinessLibrary.task_dependency_dict_item_FK_block_on_state_id">
+            <End Role="DictItem_BlockOnStateId" EntitySet="DictItems" />
+            <End Role="TaskDependencies_BlockOnStateId" EntitySet="TaskDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_dict_item_FK_dependent_stage_idSet" Association="WProject.BusinessLibrary.task_dependency_dict_item_FK_dependent_stage_id">
+            <End Role="DictItem_DependentStageId" EntitySet="DictItems" />
+            <End Role="TaskDependencies_DependentStageId" EntitySet="TaskDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_dict_item_FK_dependent_state_idSet" Association="WProject.BusinessLibrary.task_dependency_dict_item_FK_dependent_state_id">
+            <End Role="DictItem_DependentStateId" EntitySet="DictItems" />
+            <End Role="TaskDependencies_DependentStateId" EntitySet="TaskDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_task_FK_task_dependent_idSet" Association="WProject.BusinessLibrary.task_dependency_task_FK_task_dependent_id">
+            <End Role="Task_TaskDependentId" EntitySet="Tasks" />
+            <End Role="TaskDependencies_TaskDependentId" EntitySet="TaskDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_task_FK_task_idSet" Association="WProject.BusinessLibrary.task_dependency_task_FK_task_id">
+            <End Role="Task_TaskId" EntitySet="Tasks" />
+            <End Role="TaskDependencies_TaskId" EntitySet="TaskDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_dependency_users_FK_created_bySet" Association="WProject.BusinessLibrary.task_dependency_users_FK_created_by">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TaskDependencies" EntitySet="TaskDependencies" />
+          </AssociationSet>
+          <AssociationSet Name="task_history_task_FK_task_idSet" Association="WProject.BusinessLibrary.task_history_task_FK_task_id">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TaskHistories" EntitySet="TaskHistories" />
+          </AssociationSet>
+          <AssociationSet Name="task_history_user_FK_updated_bySet" Association="WProject.BusinessLibrary.task_history_user_FK_updated_by">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TaskHistories" EntitySet="TaskHistories" />
+          </AssociationSet>
+          <AssociationSet Name="task_tag_task_FK_task_idSet" Association="WProject.BusinessLibrary.task_tag_task_FK_task_id">
+            <End Role="Task" EntitySet="Tasks" />
+            <End Role="TaskTags" EntitySet="TaskTags" />
+          </AssociationSet>
+          <AssociationSet Name="task_tag_user_FK_created_bySet" Association="WProject.BusinessLibrary.task_tag_user_FK_created_by">
+            <End Role="User" EntitySet="Users" />
+            <End Role="TaskTags" EntitySet="TaskTags" />
+          </AssociationSet>
+          <AssociationSet Name="user_in_group_user_FK_added_bySet" Association="WProject.BusinessLibrary.user_in_group_user_FK_added_by">
+            <End Role="User_AddedBy" EntitySet="Users" />
+            <End Role="UserInGroups_AddedBy" EntitySet="UserInGroups" />
+          </AssociationSet>
+          <AssociationSet Name="user_in_group_user_FK_group_idSet" Association="WProject.BusinessLibrary.user_in_group_user_FK_group_id">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="UserInGroups" EntitySet="UserInGroups" />
+          </AssociationSet>
+          <AssociationSet Name="user_in_group_user_FK_user_idSet" Association="WProject.BusinessLibrary.user_in_group_user_FK_user_id">
+            <End Role="User_UserId" EntitySet="Users" />
+            <End Role="UserInGroups_UserId" EntitySet="UserInGroups" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Access" ed:Guid="0507e7aa-26bb-47bd-a7d3-73037447c088">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="a75a909f-6799-4acc-8eea-2e131a9bcb0c" />
+          <Property Name="UserId" Type="Int32" ed:ValidateRequired="false" ed:Guid="cb524c3b-a39a-493a-b4c4-37e934381fc2" />
+          <Property Name="GroupId" Type="Int32" ed:ValidateRequired="false" ed:Guid="09e08d57-f2c9-4586-b41b-5f1c9a238372" />
+          <Property Name="AccessId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="35a6b048-4db3-4481-a524-882e5ef0b4e0" />
+          <Property Name="Read" Type="SByte" ed:ValidateRequired="false" ed:Guid="2be95f64-25b1-4f8a-978b-7e5c2212ae7c" />
+          <Property Name="Add" Type="SByte" ed:ValidateRequired="false" ed:Guid="c77c05b1-4752-4617-bc1f-348f85c5f0d4" />
+          <Property Name="Edit" Type="SByte" ed:ValidateRequired="false" ed:Guid="4c3f57ca-ba82-409b-b837-63296eb03414" />
+          <Property Name="Delete" Type="SByte" ed:ValidateRequired="false" ed:Guid="46607f96-a9e0-465c-8ca3-59413c78eb08" />
+          <Property Name="AccessGrantedAt" Type="DateTime" ed:ValidateRequired="false" ed:Guid="e18f2899-8fc1-40b5-b559-ed49d6dd3245" />
+          <Property Name="AccessGrantedBy" Type="Int32" ed:ValidateRequired="false" ed:Guid="9eb3a9e2-ee23-4137-9420-c5c8a71cd4e8" />
+          <Property Name="ObjectId" Type="Int32" ed:ValidateRequired="false" ed:Guid="2031c0a6-7cc3-4996-8d16-50ba9b2fba3c" />
+          <Property Name="Comment" Type="String" ed:ValidateRequired="false" ed:Guid="c86ad4c8-ef1d-4d17-b1c1-1997c1db0c29" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="e789eb3a-2448-40e5-b226-e68d6e9768ee" />
+          <Property Name="Deleted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="3b2626a3-d098-4c3c-add5-81e326ec11ed" />
+          <NavigationProperty Name="AccessObject" Relationship="WProject.BusinessLibrary.access_object_access_FK_access_id" FromRole="Accesses" ToRole="AccessObject" ed:Guid="629f1786-e910-497f-b2af-140599f003d5" />
+          <NavigationProperty Name="Group" Relationship="WProject.BusinessLibrary.access_object_group_FK_group_id" FromRole="Accesses" ToRole="Group" ed:Guid="0fabea8c-f7db-491f-9f38-062784212ed3" />
+          <NavigationProperty Name="User_AccessGrantedBy" Relationship="WProject.BusinessLibrary.access_object_user_FK_access_granted_by" FromRole="Accesses_AccessGrantedBy" ToRole="User_AccessGrantedBy" ed:Guid="357045a5-accd-4340-a1de-944bed9950f5" />
+          <NavigationProperty Name="User_UserId" Relationship="WProject.BusinessLibrary.access_object_user_FK_user_id" FromRole="Accesses_UserId" ToRole="User_UserId" ed:Guid="3385a419-4986-42c8-9f6d-917666d657aa" />
+        </EntityType>
+        <EntityType Name="AccessObject" ed:Guid="a0ad679b-5532-46f8-9979-3358f6b77b45">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="8e351a64-2bfb-4efe-9e31-406eda627108" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1024" ed:ValidateMaxLength="1024" ed:ValidateRequired="true" ed:Guid="b346957c-76b4-4c6d-9a41-776c1ac5bf73" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="1024" ed:ValidateMaxLength="1024" ed:ValidateRequired="true" ed:Guid="94684457-694b-4aa5-bd48-0df1138c378f" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="2800ac7f-c1fd-492e-ae90-f3dcf95bd7a2" />
+          <Property Name="Deleted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="abc12b10-a142-4ddc-9c7d-f1b62a473be7" />
+          <NavigationProperty Name="Accesses" Relationship="WProject.BusinessLibrary.access_object_access_FK_access_id" FromRole="AccessObject" ToRole="Accesses" ed:Guid="488fa73d-69b4-46f3-9536-bc431143fb3e" />
+          <NavigationProperty Name="Logs" Relationship="WProject.BusinessLibrary.log_access_object_FK_access_object_id" FromRole="AccessObject" ToRole="Logs" ed:Guid="4c8e422a-9740-4949-bce4-8ed7ee070e2d" />
+        </EntityType>
+        <EntityType Name="ActiveSession" ed:Guid="65cac54c-7746-42a1-92c2-fa4f4a8c219c">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="6cfe8769-c985-463d-b733-5b82e9446b6c" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="aca67aa2-dd94-4ba4-a60c-ae0518f6e206" />
+          <Property Name="Uid" Type="String" MaxLength="512" ed:ValidateMaxLength="512" ed:ValidateRequired="false" ed:Guid="c0feb46b-ef5c-4fd2-b6e0-d99378d6e20a" />
+          <Property Name="UserId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="d8fe127d-bef3-46f7-9c71-59c470522388" />
+          <Property Name="LastHeartBeat" Type="DateTime" ed:ValidateRequired="false" ed:Guid="d065b737-9e76-4fd4-b1f4-4e23ae46d3a5" />
+          <Property Name="Ip" Type="String" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="666447f7-10ba-4117-b681-9d831cdb2384" />
+          <Property Name="ContextId" Type="String" MaxLength="512" ed:ValidateMaxLength="512" ed:ValidateRequired="false" ed:Guid="e5040245-32c4-43e4-a6ad-bec1fcb39f33" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="b59cdd2b-7cb5-4056-ad5d-1e4ee1e5f7c3" />
+          <NavigationProperty Name="User" Relationship="WProject.BusinessLibrary.active_session_user_FK_user_id" FromRole="ActiveSessions" ToRole="User" ed:Guid="b8af282a-a4ab-4e8f-8f63-2dbb3b8f77c6" />
+        </EntityType>
+        <EntityType Name="AppSetting" ed:Guid="2c316879-4139-4a70-a099-deaea778f1b6">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="0757cd98-f4e7-4b70-a70b-e72b49ecef35" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="695a2f6c-a8d1-4cc0-bda1-dde9f9f9b9e5" />
+          <Property Name="Value" Type="String" Nullable="false" ed:ValidateRequired="true" ed:Guid="917e01eb-6fc1-4ce1-8f83-4d26c3574687" />
+          <Property Name="LastUpdatedAt" Type="DateTime" ed:ValidateRequired="false" ed:Guid="d268a241-498c-4268-b215-1b848be6e594" />
+          <Property Name="LastUpdatedBy" Type="Int32" ed:ValidateRequired="false" ed:Guid="b797828f-b68f-4b1f-be6a-c218938919dc" />
+          <Property Name="Comment" Type="String" ed:ValidateRequired="false" ed:Guid="75089929-bb67-4326-bc30-b4c4558a6581" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="d5c38dc5-94dc-4cbf-a940-01d59557484b" />
+          <Property Name="Deleted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="32ff4815-bfe7-43f2-a4fe-75015c8e8b0c" />
+          <NavigationProperty Name="User" Relationship="WProject.BusinessLibrary.app_setting_user_FK_last_updated_by" FromRole="AppSettings" ToRole="User" ed:Guid="01a9cb1a-af6c-4868-9ec2-a5afa8bfa96f" />
+        </EntityType>
+        <EntityType Name="Backlog" ed:Guid="53c1f13e-bacc-4b36-ac93-a2de0680f895">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="8b90da40-0f41-42c5-9b98-8984f618ff38" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="937c22cb-c27c-47e7-9870-4dd0032fa3dd" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="d4b7aaa4-d4bd-4e6a-b2a7-d1c63b26bf00" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="649f96a2-4390-4489-bd3d-31a8feb0a12e" />
+          <Property Name="AssignedTo" Type="Int32" ed:ValidateRequired="false" ed:Guid="8c42499f-68e6-4955-9428-e060b8a3a26d" />
+          <Property Name="StateId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="b633b961-c8c9-4233-b249-00540c23b8ce" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="033c4633-1e97-48f6-b089-4e7e7812002b" />
+          <Property Name="CategoryId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="83fd059e-2eac-4cb1-af65-4d963c1faa8f" />
+          <Property Name="Priority" Type="Int32" ed:ValidateRequired="false" ed:Guid="4003891b-b854-433c-9f02-57e54fd58382" />
+          <Property Name="PeriodFrom" Type="DateTime" ed:ValidateRequired="false" ed:Guid="0423204a-6df6-42bc-8a09-59bac127bf9b" />
+          <Property Name="PeriodTo" Type="DateTime" ed:ValidateRequired="false" ed:Guid="de452786-040b-431f-8c68-a6c53de3f262" />
+          <Property Name="RemainingWork" Type="Int32" ed:ValidateRequired="false" ed:Guid="f6e50ff8-eba4-4829-af79-d7cd774a525e">
+            <Documentation>
+              <Summary>in minutes</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Description" Type="String" ed:ValidateRequired="false" ed:Guid="ec486e2f-ac5c-4fee-853c-d7180d958b40" />
+          <Property Name="Deleted" Type="SByte" ed:ValidateRequired="false" ed:Guid="45578a18-5e72-4169-b191-12fc55d6bb2f" />
+          <NavigationProperty Name="Category" Relationship="WProject.BusinessLibrary.backlog_category_FK_category_id" FromRole="Backlogs" ToRole="Category" ed:Guid="921b0b5d-fa96-48ce-956d-3e5ad4e1e295" />
+          <NavigationProperty Name="DictItem_StateId" Relationship="WProject.BusinessLibrary.backlog_dict_item_FK_state_id" FromRole="Backlogs_StateId" ToRole="DictItem_StateId" ed:Guid="4bda8d45-2acf-4edd-9dc4-bed216ceff37" />
+          <NavigationProperty Name="DictItem_TypeId" Relationship="WProject.BusinessLibrary.backlog_dict_item_FK_type_id" FromRole="Backlogs_TypeId" ToRole="DictItem_TypeId" ed:Guid="4c387bb9-8551-4690-9ec0-4e6df872b743" />
+          <NavigationProperty Name="User_AssignedTo" Relationship="WProject.BusinessLibrary.backlog_user_FK_assigned_to" FromRole="Backlogs_AssignedTo" ToRole="User_AssignedTo" ed:Guid="83181e37-438b-4648-a993-912b085caab3" />
+          <NavigationProperty Name="User_CreatedBy" Relationship="WProject.BusinessLibrary.backlog_user_FK_created_by" FromRole="Backlogs_CreatedBy" ToRole="User_CreatedBy" ed:Guid="048b4b5f-f6a9-49b5-a8fe-710781ce84ab" />
+          <NavigationProperty Name="Tasks" Relationship="WProject.BusinessLibrary.task_backlog_FK_backlog_id" FromRole="Backlog" ToRole="Tasks" ed:Guid="0cc5374b-3322-4425-a851-ea560ce33e82" />
+        </EntityType>
+        <EntityType Name="Category" ed:Guid="ef956c99-8d45-46d3-becf-ad6811eb9d04">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="10096cc6-b21a-43c5-9e7b-153101aff719" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="c1ba9c64-b2fc-4e4c-ae6c-3c9b5622851b" />
+          <Property Name="Description" Type="String" ed:ValidateRequired="false" ed:Guid="9fb1f939-61aa-49a3-97a2-7918a81db352" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="333dcc95-b652-4253-bd42-c3558c6d1ba5" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="dd589d32-bbe1-499b-9692-99af096535fb" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="93c4fa52-0109-40e1-92c3-74c5d115595b" />
+          <Property Name="PeriodFrom" Type="DateTime" ed:ValidateRequired="false" ed:Guid="da060083-d60d-4773-a5aa-88d58956846c" />
+          <Property Name="PeriodTo" Type="DateTime" ed:ValidateRequired="false" ed:Guid="305dcaa7-4572-4e4e-b96c-83c72da4ea1a" />
+          <Property Name="SpringId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="0d183483-2c7f-49ed-b3a8-a37b81ff0d3f" />
+          <Property Name="ParentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="dcfc3652-e07b-4680-a6f9-d4bdf71ebcaa" />
+          <Property Name="Deleted" Type="SByte" ed:ValidateRequired="false" ed:Guid="d180de95-9f47-43d0-a45b-a46abb1ccf91" />
+          <NavigationProperty Name="Backlogs" Relationship="WProject.BusinessLibrary.backlog_category_FK_category_id" FromRole="Category" ToRole="Backlogs" ed:Guid="951521d6-bdb5-443c-b3b3-55e8f91b3c18" />
+          <NavigationProperty Name="Categories_ParentId" Relationship="WProject.BusinessLibrary.category_category_FK_parent_id" FromRole="Category_ParentId" ToRole="Categories_ParentId" ed:Guid="432968a4-472a-4096-8ad1-3f43e4db4574" />
+          <NavigationProperty Name="Category_ParentId" Relationship="WProject.BusinessLibrary.category_category_FK_parent_id" FromRole="Categories_ParentId" ToRole="Category_ParentId" ed:Guid="eac87b94-5692-45ce-b381-86d265d0992c" />
+          <NavigationProperty Name="Spring" Relationship="WProject.BusinessLibrary.category_spring_FK_spring_id" FromRole="Categories" ToRole="Spring" ed:Guid="0afc109b-c8ff-473e-92be-216e9729e3fe" />
+          <NavigationProperty Name="User_CreatedBy" Relationship="WProject.BusinessLibrary.category_user_FK_created_by" FromRole="Categories_CreatedBy" ToRole="User_CreatedBy" ed:Guid="085b0992-b4a6-4fcd-a5ad-54f04931a877" />
+          <NavigationProperty Name="User_OwnerId" Relationship="WProject.BusinessLibrary.category_user_FK_owner_id" FromRole="Categories_OwnerId" ToRole="User_OwnerId" ed:Guid="00c97fa6-8706-4aa0-aef7-c94a0eb4de7f" />
+        </EntityType>
+        <EntityType Name="DictItem" ed:Guid="573ad8d1-2601-4cd8-9484-36f8ba2cfacf">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="f3c5491d-d866-46a9-bc29-cfd3244e23ea" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="512" ed:ValidateMaxLength="512" ed:ValidateRequired="true" ed:Guid="94d8e6dc-3d3a-4464-9f55-63fa206bd4bf" />
+          <Property Name="Description" Type="String" ed:ValidateRequired="false" ed:Guid="cba21b03-e18d-447b-8db4-dbd7004d9494" />
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="bcc7b43f-c7e0-45ca-a91c-87460a5c3c89" />
+          <Property Name="ParentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="a537cb3f-ec5c-409a-bbb2-2fd257cf7ad1" />
+          <Property Name="Reserved" Type="Boolean" ed:ValidateRequired="false" ed:Guid="7ae76c8d-0f1b-4652-9ee4-2e9f0a0b4e4a" />
+          <Property Name="Code" Type="String" MaxLength="64" ed:ValidateMaxLength="64" ed:ValidateRequired="false" ed:Guid="10c4bc03-2e48-4dc9-8f68-55ccd288c91a" />
+          <Property Name="Order" Type="Int32" ed:ValidateRequired="false" ed:Guid="6753ae20-5de2-442d-9056-07089d324ee3" />
+          <Property Name="Color" Type="String" MaxLength="16" ed:ValidateMaxLength="16" ed:ValidateRequired="false" ed:Guid="8493e7a1-5fbe-4026-80d4-05543501569d" />
+          <Property Name="Tag" Type="String" ed:ValidateRequired="false" ed:Guid="68eefe00-7ba2-46d1-b9fa-c91bab439637" />
+          <Property Name="Deleted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="861afdad-aec0-4024-a9b2-968861f291fb" />
+          <NavigationProperty Name="Backlogs_StateId" Relationship="WProject.BusinessLibrary.backlog_dict_item_FK_state_id" FromRole="DictItem_StateId" ToRole="Backlogs_StateId" ed:Guid="91bb3bfd-70da-4f8a-9fa2-c9650fab1010" />
+          <NavigationProperty Name="Backlogs_TypeId" Relationship="WProject.BusinessLibrary.backlog_dict_item_FK_type_id" FromRole="DictItem_TypeId" ToRole="Backlogs_TypeId" ed:Guid="8b94657c-74fe-4404-96c3-6673a2138057" />
+          <NavigationProperty Name="DictItems_ParentId" Relationship="WProject.BusinessLibrary.dict_item__dict_item_FK_parent_id" FromRole="DictItem_ParentId" ToRole="DictItems_ParentId" ed:Guid="8e83b803-0fa3-4670-8085-97a4b98a9e31" />
+          <NavigationProperty Name="DictItem_ParentId" Relationship="WProject.BusinessLibrary.dict_item__dict_item_FK_parent_id" FromRole="DictItems_ParentId" ToRole="DictItem_ParentId" ed:Guid="87ca058b-36a3-4cb3-9495-a8c7b9d2928a" />
+          <NavigationProperty Name="Tasks_StageId" Relationship="WProject.BusinessLibrary.task_dict_item_FK_stage_id" FromRole="DictItem_StageId" ToRole="Tasks_StageId" ed:Guid="ab555f97-8133-4d56-9fda-891e003109b8" />
+          <NavigationProperty Name="Tasks_StateId" Relationship="WProject.BusinessLibrary.task_dict_item_FK_state_id" FromRole="DictItem_StateId" ToRole="Tasks_StateId" ed:Guid="7a9f6ada-5876-44c9-99ec-73e50bbc60a8" />
+          <NavigationProperty Name="Tasks_TypeId" Relationship="WProject.BusinessLibrary.task_dict_item_FK_type_id" FromRole="DictItem_TypeId" ToRole="Tasks_TypeId" ed:Guid="2f9f31ef-58cc-4042-a8d4-3406a3f8d352" />
+          <NavigationProperty Name="TaskDependencies_BlockOnStageId" Relationship="WProject.BusinessLibrary.task_dependency_dict_item_FK_block_on_stage_id" FromRole="DictItem_BlockOnStageId" ToRole="TaskDependencies_BlockOnStageId" ed:Guid="2f414bc2-2c5a-4bf5-92dc-570d806cfcf0" />
+          <NavigationProperty Name="TaskDependencies_BlockOnStateId" Relationship="WProject.BusinessLibrary.task_dependency_dict_item_FK_block_on_state_id" FromRole="DictItem_BlockOnStateId" ToRole="TaskDependencies_BlockOnStateId" ed:Guid="9a48ca2c-0479-4a02-abf7-344d50297640" />
+          <NavigationProperty Name="TaskDependencies_DependentStageId" Relationship="WProject.BusinessLibrary.task_dependency_dict_item_FK_dependent_stage_id" FromRole="DictItem_DependentStageId" ToRole="TaskDependencies_DependentStageId" ed:Guid="62fd067c-b149-4a44-bf54-5308ef62b650" />
+          <NavigationProperty Name="TaskDependencies_DependentStateId" Relationship="WProject.BusinessLibrary.task_dependency_dict_item_FK_dependent_state_id" FromRole="DictItem_DependentStateId" ToRole="TaskDependencies_DependentStateId" ed:Guid="cb973334-163e-4e89-bd80-b2ff64360743" />
+        </EntityType>
+        <EntityType Name="File" ed:Guid="2efebe46-5b09-443a-a7b6-eb462a9b3aea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="3bccca51-d4cc-47d4-969e-51fde2356ddf" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1024" ed:ValidateMaxLength="1024" ed:ValidateRequired="true" ed:Guid="a12ba14c-0cc8-45e8-89e9-18ad54355477" />
+          <Property Name="Type" Type="String" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="1b54a8ac-59b5-435e-9371-6243c3d0fe35" />
+          <Property Name="Content" Type="Binary" Nullable="false" ed:ValidateRequired="true" ed:Guid="97960633-898d-4539-bdae-e2444f6f184d" />
+          <Property Name="Thumbnail" Type="Binary" ed:ValidateRequired="false" ed:Guid="a6b109d3-653a-4716-a5be-490d24ad8e99" />
+          <Property Name="Size" Type="Int64" ed:ValidateRequired="false" ed:Guid="9c6aaac5-6d3f-476a-a311-ebb1ca1db68b" />
+          <Property Name="ParentType" Type="String" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="61a6235a-f3d8-44ab-842e-697f7da77695" />
+          <Property Name="ParentId" Type="Int32" ed:ValidateRequired="false" ed:Guid="3f940141-d042-4004-9548-358d6f9ff596" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="752f3fe2-63a5-40f9-8dc5-f30a385f3643" />
+          <Property Name="Path" Type="String" ed:ValidateRequired="false" ed:Guid="be29eec9-200a-4d54-97b2-967b80efc4a1" />
+          <Property Name="Url" Type="String" ed:ValidateRequired="false" ed:Guid="f2cdbc40-a38c-4725-b8d3-1fcc7085bcdd" />
+          <Property Name="CreatedAt" Type="DateTime" ed:ValidateRequired="false" ed:Guid="672a6af5-0701-4b24-8da2-f733e2dc41e6" />
+          <Property Name="CreatedBy" Type="Int32" ed:ValidateRequired="false" ed:Guid="e59500a4-e7b2-4488-a15d-cefff6966672" />
+          <NavigationProperty Name="User" Relationship="WProject.BusinessLibrary.file_user_FK_created_by" FromRole="Files" ToRole="User" ed:Guid="e35467a3-96be-41df-98eb-7843f82e214d" />
+          <NavigationProperty Name="TaskAttachements" Relationship="WProject.BusinessLibrary.task_attachement_file_FK_file_id" FromRole="File" ToRole="TaskAttachements" ed:Guid="60dc1092-7a63-4699-b8ed-37244962f6c6" />
+        </EntityType>
+        <EntityType Name="Group" ed:Guid="0272ae9f-a158-41ba-8916-6a780cbec7dd">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="42121ae4-9ae1-424a-bf3f-1f1e52abbc63" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="93a7b930-12a3-4c63-af12-7f2a17bb6daf" />
+          <Property Name="Description" Type="String" ed:ValidateRequired="false" ed:Guid="e86e1d66-1b98-4212-b343-579dbf279901" />
+          <Property Name="Created" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="9c6a2d87-beda-4fd2-9fd5-706773fc90d5" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="d3fedd14-176b-4631-884d-92964d538c3b" />
+          <Property Name="Deleted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="4fea6340-b8eb-4070-89f4-fe9a43190023" />
+          <NavigationProperty Name="Accesses" Relationship="WProject.BusinessLibrary.access_object_group_FK_group_id" FromRole="Group" ToRole="Accesses" ed:Guid="ce869555-6add-4777-ac9f-6b9ed47f3111" />
+          <NavigationProperty Name="User" Relationship="WProject.BusinessLibrary.group_user_FK_owner_id" FromRole="Groups" ToRole="User" ed:Guid="d9bc3c69-d18b-45a6-9295-ee1ec228d086" />
+          <NavigationProperty Name="UserInGroups" Relationship="WProject.BusinessLibrary.user_in_group_user_FK_group_id" FromRole="Group" ToRole="UserInGroups" ed:Guid="18cc2490-aee1-48e3-b26a-35c221e5af52" />
+        </EntityType>
+        <EntityType Name="Log" ed:Guid="0ffb4dc1-5fb9-436b-b057-4e06f5d2bfbb">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="e7f808bd-e0be-410b-9350-c6143d34563b" />
+          <Property Name="Date" Type="DateTime" Precision="6" ed:ValidateRequired="false" ed:Guid="4e52e2b0-ebe8-4e51-88a4-34ad17f1a7cb" />
+          <Property Name="EntryType" Type="SByte" ed:ValidateRequired="false" ed:Guid="f382a915-d503-4bc3-a1b7-871b4b1ab801" />
+          <Property Name="Ip" Type="String" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="ff85f580-904d-4ce5-8a28-b640aa1bfdd8" />
+          <Property Name="UserId" Type="Int32" ed:ValidateRequired="false" ed:Guid="8decc58e-6252-43bf-85d5-d4bf3f946acb" />
+          <Property Name="AccessObjectId" Type="Int32" ed:ValidateRequired="false" ed:Guid="b486c5ed-16c9-475e-80f7-1aca2c11e261" />
+          <Property Name="Action" Type="SByte" ed:ValidateRequired="false" ed:Guid="10d03e72-bac9-45c2-b459-9fd878b5c28c" />
+          <Property Name="Details" Type="String" ed:ValidateRequired="false" ed:Guid="bfbdee28-e9d4-4a9e-ac6a-18534b72a71d" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="819f0422-98a8-4306-ab72-8d78e0033141" />
+          <Property Name="Important" Type="SByte" ed:ValidateRequired="false" ed:Guid="02097361-5cd1-44e4-82cb-b1e972913526" />
+          <NavigationProperty Name="AccessObject" Relationship="WProject.BusinessLibrary.log_access_object_FK_access_object_id" FromRole="Logs" ToRole="AccessObject" ed:Guid="95fcd03d-e9de-420b-9da1-9003df9e1f14" />
+          <NavigationProperty Name="User" Relationship="WProject.BusinessLibrary.log_user_FK_user_id" FromRole="Logs" ToRole="User" ed:Guid="6d611714-c360-4b13-bf0a-56646c89009e" />
+        </EntityType>
+        <EntityType Name="Project" ed:Guid="706ffcfc-78b3-4e9e-854c-548815dfca22">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="f621a359-1326-4130-845b-eea5b4d25d64" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="14d12688-1761-44f0-99a1-586d27968ea1" />
+          <Property Name="Description" Type="String" ed:ValidateRequired="false" ed:Guid="eb16a520-6cc8-4ce7-ae47-dd8dea5fe774" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="cb5c8daa-9ba4-4abb-ba6b-100406df12c0" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="0654d1b2-118e-40de-be7f-8c970e730354" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="42525fb0-87c1-46eb-8304-7100d984ae5b" />
+          <Property Name="PeriodFrom" Type="DateTime" ed:ValidateRequired="false" ed:Guid="d754f2af-382a-4fb3-98f0-8ffc10df330f" />
+          <Property Name="PeriodTo" Type="DateTime" ed:ValidateRequired="false" ed:Guid="fe66331d-46d9-4b09-b0ff-7dd180afcaae" />
+          <Property Name="Deleted" Type="SByte" ed:ValidateRequired="false" ed:Guid="5d8cd814-34d5-45c5-b0f0-e5e561265c87" />
+          <NavigationProperty Name="User_CreatedBy" Relationship="WProject.BusinessLibrary.project_user_FK_created_by" FromRole="Projects_CreatedBy" ToRole="User_CreatedBy" ed:Guid="5c3497d8-f9a0-4332-954d-09d824ae6ef2" />
+          <NavigationProperty Name="User_OwnerId" Relationship="WProject.BusinessLibrary.project_user_FK_owner_id" FromRole="Projects_OwnerId" ToRole="User_OwnerId" ed:Guid="1331867c-803e-4cbd-bed8-16fabb2056aa" />
+          <NavigationProperty Name="ProjectSettings" Relationship="WProject.BusinessLibrary.project_setting_project_FK_project_id" FromRole="Project" ToRole="ProjectSettings" ed:Guid="1f3d545e-3fc0-43e9-b8d0-52c53c308f7e" />
+          <NavigationProperty Name="Springs" Relationship="WProject.BusinessLibrary.spring_project_FK_project_id" FromRole="Project" ToRole="Springs" ed:Guid="62545ccb-78ae-43a9-baf4-49d62c0bc1ae" />
+        </EntityType>
+        <EntityType Name="ProjectSetting" ed:Guid="8ff52fb2-9eba-45fe-b95c-c577dd1ac566">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="ae23b112-1691-4ee6-8cbe-10d96022ac37" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="624248b3-e042-4bae-973f-9c19b79d9d91" />
+          <Property Name="Key" Type="String" Nullable="false" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="81ea13ec-82f8-4dca-af4d-a17780225f9f" />
+          <Property Name="Value" Type="String" Nullable="false" ed:ValidateRequired="true" ed:Guid="2202a8bf-c993-4b55-bc10-d170c912b200" />
+          <Property Name="LastUpdatedAt" Type="DateTime" ed:ValidateRequired="false" ed:Guid="caeea9ae-177b-4e21-94af-65b260e682ea" />
+          <Property Name="LastUpdatedBy" Type="Int32" ed:ValidateRequired="false" ed:Guid="d4d075f0-0241-4423-8fc0-028cec903b9b" />
+          <Property Name="Comments" Type="String" ed:ValidateRequired="false" ed:Guid="6b6199c1-b7fe-4fb7-9df1-0aaef35d1466" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="5afb2bfb-afa3-4f3f-b1e1-83a8526842f7" />
+          <Property Name="Deleted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="4a61c885-6529-44f0-8e82-afa4e6937ffb" />
+          <NavigationProperty Name="Project" Relationship="WProject.BusinessLibrary.project_setting_project_FK_project_id" FromRole="ProjectSettings" ToRole="Project" ed:Guid="61d0218f-c387-47b0-936f-4785f2729969" />
+          <NavigationProperty Name="User" Relationship="WProject.BusinessLibrary.project_setting_user_FK_last_updated_by" FromRole="ProjectSettings" ToRole="User" ed:Guid="5eaf0523-f333-4187-a864-702b58cd6689" />
+        </EntityType>
+        <EntityType Name="Spring" ed:Guid="a59e0a78-ab1b-483d-b331-591a4501d923">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="c74eb84b-f9cd-494d-90d2-3bb7e224b0ef" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="73f5347c-a4bb-4ac7-b7ae-28ba27f4fcf0" />
+          <Property Name="Description" Type="String" ed:ValidateRequired="false" ed:Guid="8738ebf7-5a85-4760-ad4d-7ed0e957c4cc" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="7c161c94-f66c-4f2e-9e0b-c49c7191c529" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="f9bd2406-f7bd-40c9-a009-52df303706d3" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="8643ee05-4be0-47d5-8b09-8801df2223de" />
+          <Property Name="PeriodFrom" Type="DateTime" ed:ValidateRequired="false" ed:Guid="e5507a76-cba5-4b5d-ab80-55092b87377d" />
+          <Property Name="PeriodTo" Type="DateTime" ed:ValidateRequired="false" ed:Guid="89f4fe54-a5c8-496f-9d88-5458e3121ecc" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="5c3c2f29-4ea4-4654-ba50-a23c6dc61dad" />
+          <Property Name="Deleted" Type="SByte" ed:ValidateRequired="false" ed:Guid="d6202a1b-4aaf-46c5-ba0c-a3dde1a6bd60" />
+          <NavigationProperty Name="Categories" Relationship="WProject.BusinessLibrary.category_spring_FK_spring_id" FromRole="Spring" ToRole="Categories" ed:Guid="35a3c843-3453-4a0a-88e2-8864d36ddf86" />
+          <NavigationProperty Name="Project" Relationship="WProject.BusinessLibrary.spring_project_FK_project_id" FromRole="Springs" ToRole="Project" ed:Guid="2d3effd7-870b-4e96-afb7-a07809115861" />
+          <NavigationProperty Name="User_CreatedBy" Relationship="WProject.BusinessLibrary.spring_user_FK_created_by" FromRole="Springs_CreatedBy" ToRole="User_CreatedBy" ed:Guid="f0e83683-b955-437a-9ee2-3d22c959f3ed" />
+          <NavigationProperty Name="User_OwnerId" Relationship="WProject.BusinessLibrary.spring_user_FK_owner_id" FromRole="Springs_OwnerId" ToRole="User_OwnerId" ed:Guid="a43c11ed-fa56-4e5e-a4c3-b9e30312f150" />
+        </EntityType>
+        <EntityType Name="Task" ed:Guid="8432b60d-a45d-49c9-8bb8-07f1eb22a73d">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="d2184bb3-54cc-474a-b767-579ed1733e8f" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="211a45cc-e4ac-4ad5-af92-0a380313cbfa" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="4d6da518-de30-4dd9-aeb9-28a2b627ea38" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4b2e4fbf-05e0-4683-b200-934c5b4211b1" />
+          <Property Name="AssignedTo" Type="Int32" ed:ValidateRequired="false" ed:Guid="cd09172b-4b0c-40f8-9f5d-585100c362de" />
+          <Property Name="StateId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="381635d0-ea66-4f3d-a14a-b2db619a5c8a" />
+          <Property Name="TypeId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="6b1de418-560f-4fad-94d0-ad4b8d9c6dd6" />
+          <Property Name="StageId" Type="Int32" ed:ValidateRequired="false" ed:Guid="cab11f46-77f6-48f8-aa23-250da9a97230" />
+          <Property Name="BacklogId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="4385452f-5c06-4a74-9fdf-430d691fd108" />
+          <Property Name="Priority" Type="Int32" ed:ValidateRequired="false" ed:Guid="7ee72f70-2c7f-4b53-8a39-be6a21b754a9" />
+          <Property Name="PeriodFrom" Type="DateTime" ed:ValidateRequired="false" ed:Guid="73e26418-b600-4277-8eb4-54fc887dbccc" />
+          <Property Name="PeriodTo" Type="DateTime" ed:ValidateRequired="false" ed:Guid="025ea9dc-1da0-45d2-a4dd-b2610047ea21" />
+          <Property Name="RemainingWork" Type="Int32" ed:ValidateRequired="false" ed:Guid="3696627a-95e9-40b1-8230-4c21287b158b">
+            <Documentation>
+              <Summary>in minutes</Summary>
+            </Documentation>
+          </Property>
+          <Property Name="Description" Type="String" Nullable="false" ed:ValidateRequired="true" ed:Guid="1db46716-5130-4997-a9b2-9bd797559cef" />
+          <Property Name="Deleted" Type="SByte" ed:ValidateRequired="false" ed:Guid="96c4801c-0d8f-41d9-8027-4fdbf8e79750" />
+          <NavigationProperty Name="Backlog" Relationship="WProject.BusinessLibrary.task_backlog_FK_backlog_id" FromRole="Tasks" ToRole="Backlog" ed:Guid="d56866cc-0d70-438f-94ee-373b33703b8c" />
+          <NavigationProperty Name="DictItem_StageId" Relationship="WProject.BusinessLibrary.task_dict_item_FK_stage_id" FromRole="Tasks_StageId" ToRole="DictItem_StageId" ed:Guid="636546b8-63ce-4e21-b9bc-7a89c54a126f" />
+          <NavigationProperty Name="DictItem_StateId" Relationship="WProject.BusinessLibrary.task_dict_item_FK_state_id" FromRole="Tasks_StateId" ToRole="DictItem_StateId" ed:Guid="bdf4b168-ff4b-4072-9b4f-44e9c1c82ac7" />
+          <NavigationProperty Name="DictItem_TypeId" Relationship="WProject.BusinessLibrary.task_dict_item_FK_type_id" FromRole="Tasks_TypeId" ToRole="DictItem_TypeId" ed:Guid="4e060612-8679-468b-ae9a-e9b0f35793a8" />
+          <NavigationProperty Name="User_AssignedTo" Relationship="WProject.BusinessLibrary.task_user_FK_assigned_to" FromRole="Tasks_AssignedTo" ToRole="User_AssignedTo" ed:Guid="38cad27b-09c6-4ba6-a0da-41953bf3f8e3" />
+          <NavigationProperty Name="User_CreatedBy" Relationship="WProject.BusinessLibrary.task_user_FK_created_by" FromRole="Tasks_CreatedBy" ToRole="User_CreatedBy" ed:Guid="12fbe809-7dd6-4304-a3b9-f16403c6b55a" />
+          <NavigationProperty Name="TaskAttachements" Relationship="WProject.BusinessLibrary.task_attachement_task_FK_task_id" FromRole="Task" ToRole="TaskAttachements" ed:Guid="41bd059a-5072-40ad-8d77-d933f72fcc83" />
+          <NavigationProperty Name="TaskDependencies_TaskDependentId" Relationship="WProject.BusinessLibrary.task_dependency_task_FK_task_dependent_id" FromRole="Task_TaskDependentId" ToRole="TaskDependencies_TaskDependentId" ed:Guid="5b4682c2-0a06-4f20-9e64-59f3ec2e8dc9" />
+          <NavigationProperty Name="TaskDependencies_TaskId" Relationship="WProject.BusinessLibrary.task_dependency_task_FK_task_id" FromRole="Task_TaskId" ToRole="TaskDependencies_TaskId" ed:Guid="6d46f6ea-5c1d-4e50-a2f6-4afe4732ef57" />
+          <NavigationProperty Name="TaskHistories" Relationship="WProject.BusinessLibrary.task_history_task_FK_task_id" FromRole="Task" ToRole="TaskHistories" ed:Guid="1dc40eba-25b7-471d-9689-af7f502bb36e" />
+          <NavigationProperty Name="TaskTags" Relationship="WProject.BusinessLibrary.task_tag_task_FK_task_id" FromRole="Task" ToRole="TaskTags" ed:Guid="91798d7d-a223-4c55-b977-65c9eba2dc0c" />
+        </EntityType>
+        <EntityType Name="TaskAttachement" ed:Guid="825ba2bb-9cb6-41aa-bccc-a0422c7e8d82">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="faf13b80-8c90-44a2-a70c-e3645080ef92" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="8f7bfd50-d9cf-4d91-97eb-49819162dcde" />
+          <Property Name="FileId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="b8076000-7469-4dc8-bed4-7cc0d369b9a1" />
+          <Property Name="AttachedAt" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="3f05caaf-cdd4-4c5d-b7ed-fa9f1e401fc2" />
+          <Property Name="AttachedBy" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="d3bddaf2-7289-4948-9941-5821aedda262" />
+          <Property Name="Comments" Type="String" ed:ValidateRequired="false" ed:Guid="725a539d-5ae7-46dd-b1bd-7fc97db829e7" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="6b096760-9ad0-4c5d-9b4e-cd6992d03358" />
+          <Property Name="Deleted" Type="SByte" ed:ValidateRequired="false" ed:Guid="8451d0bd-2fc9-41c5-986e-db9885753885" />
+          <NavigationProperty Name="File" Relationship="WProject.BusinessLibrary.task_attachement_file_FK_file_id" FromRole="TaskAttachements" ToRole="File" ed:Guid="05964287-4fe6-4c73-80fc-a427a5045511" />
+          <NavigationProperty Name="Task" Relationship="WProject.BusinessLibrary.task_attachement_task_FK_task_id" FromRole="TaskAttachements" ToRole="Task" ed:Guid="f00eb757-9721-4606-b38c-e7e9fc4e4aaf" />
+          <NavigationProperty Name="User" Relationship="WProject.BusinessLibrary.task_attachement_user_FK_attached_by" FromRole="TaskAttachements" ToRole="User" ed:Guid="a6fda720-4d6b-4162-bb03-3b57cf482b8c" />
+        </EntityType>
+        <EntityType Name="TaskDependency" ed:Guid="3333c116-9f9b-4bc2-9982-87d660b7e03b">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="7e303104-077d-4f42-ae5e-f980fcb9db08" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="831992c6-aad4-4f74-962f-4b86fe2d73e6" />
+          <Property Name="TaskDependentId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="c63e2e4e-2113-4daf-8e02-e476b663c921" />
+          <Property Name="DependentStateId" Type="Int32" ed:ValidateRequired="false" ed:Guid="5f733aea-1940-4c26-8f6a-715491ea9317" />
+          <Property Name="DependentStageId" Type="Int32" ed:ValidateRequired="false" ed:Guid="130cc57a-e72b-46df-be87-0fa9e76053b9" />
+          <Property Name="BlockOnStateId" Type="Int32" ed:ValidateRequired="false" ed:Guid="629bca21-a601-4981-ac97-b231c63df44a" />
+          <Property Name="BlockOnStageId" Type="Int32" ed:ValidateRequired="false" ed:Guid="d0c10db8-19f6-40e2-956c-8ba2571c01fe" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="8ea4daa7-962b-4aa9-a52d-6ab9436a1d84" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="bcee4f1f-a4ab-4612-8f4a-875c625a0fd3" />
+          <Property Name="Comments" Type="String" ed:ValidateRequired="false" ed:Guid="2d96a765-9557-4c25-a445-52e7c50fd0fa" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="3c8535b4-d40e-4967-bd2a-294730de60bb" />
+          <Property Name="Deleted" Type="SByte" ed:ValidateRequired="false" ed:Guid="82370e4e-e5a9-4943-8d54-bbd00d357417" />
+          <NavigationProperty Name="DictItem_BlockOnStageId" Relationship="WProject.BusinessLibrary.task_dependency_dict_item_FK_block_on_stage_id" FromRole="TaskDependencies_BlockOnStageId" ToRole="DictItem_BlockOnStageId" ed:Guid="c210022b-eb7f-4478-a6c6-c02ead065e4e" />
+          <NavigationProperty Name="DictItem_BlockOnStateId" Relationship="WProject.BusinessLibrary.task_dependency_dict_item_FK_block_on_state_id" FromRole="TaskDependencies_BlockOnStateId" ToRole="DictItem_BlockOnStateId" ed:Guid="1186762f-0424-4f41-a398-d8c48ebbedae" />
+          <NavigationProperty Name="DictItem_DependentStageId" Relationship="WProject.BusinessLibrary.task_dependency_dict_item_FK_dependent_stage_id" FromRole="TaskDependencies_DependentStageId" ToRole="DictItem_DependentStageId" ed:Guid="cecfaa49-eebb-4dab-9318-a0c353a0731e" />
+          <NavigationProperty Name="DictItem_DependentStateId" Relationship="WProject.BusinessLibrary.task_dependency_dict_item_FK_dependent_state_id" FromRole="TaskDependencies_DependentStateId" ToRole="DictItem_DependentStateId" ed:Guid="4fd34569-c982-40fe-8650-bb935dab597d" />
+          <NavigationProperty Name="Task_TaskDependentId" Relationship="WProject.BusinessLibrary.task_dependency_task_FK_task_dependent_id" FromRole="TaskDependencies_TaskDependentId" ToRole="Task_TaskDependentId" ed:Guid="f7bc41f7-e741-4f72-b5fc-6b77701703f4" />
+          <NavigationProperty Name="Task_TaskId" Relationship="WProject.BusinessLibrary.task_dependency_task_FK_task_id" FromRole="TaskDependencies_TaskId" ToRole="Task_TaskId" ed:Guid="6a1c363e-7004-4889-bbd9-183c5ca54958" />
+          <NavigationProperty Name="User" Relationship="WProject.BusinessLibrary.task_dependency_users_FK_created_by" FromRole="TaskDependencies" ToRole="User" ed:Guid="4bc919cc-7e68-4cf3-a56e-9fb11428aebc" />
+        </EntityType>
+        <EntityType Name="TaskHistory" ed:Guid="ecc3d1df-3783-48d6-b447-ce7c445c0071">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="9aa2a1ac-8b82-4908-9376-7b5f0f8a6ce7" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="b141b1a8-e175-4d66-995d-cc3ca1c07ae6" />
+          <Property Name="UpdatedAt" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="9053a12e-128f-4279-8fdf-6477d92f0046" />
+          <Property Name="UpdatedBy" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="77597058-c2e2-42d5-a10d-8e652ed74bd1" />
+          <Property Name="FieldName" Type="String" Nullable="false" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="ac15be68-3a44-466b-9718-b148fc7eeb5b" />
+          <Property Name="FieldOldValue" Type="String" ed:ValidateRequired="false" ed:Guid="931d7077-fe7e-4e57-9507-08095d4f9d39" />
+          <Property Name="FieldNewValue" Type="String" Nullable="false" ed:ValidateRequired="true" ed:Guid="d6c06a25-b8a7-4fd0-9f80-ca710b0c6092" />
+          <Property Name="Comments" Type="String" ed:ValidateRequired="false" ed:Guid="db326ae5-0036-4215-bb9a-a038a23a62ad" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="22ae6db8-9324-445d-8320-2311983e1f4b" />
+          <Property Name="Deleted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="81703e7c-f4f3-4662-98a0-4887707283d5" />
+          <NavigationProperty Name="Task" Relationship="WProject.BusinessLibrary.task_history_task_FK_task_id" FromRole="TaskHistories" ToRole="Task" ed:Guid="78d9750f-8199-4f16-88dc-6c37618b8888" />
+          <NavigationProperty Name="User" Relationship="WProject.BusinessLibrary.task_history_user_FK_updated_by" FromRole="TaskHistories" ToRole="User" ed:Guid="af1f1d3a-cc5b-4a3e-9ba7-29ec64179bce" />
+        </EntityType>
+        <EntityType Name="TaskTag" ed:Guid="38cf2868-5d4f-4fd7-91b0-3d4321fc4f7e">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="85cf6ac4-3831-4767-88ad-27042fc905b1" />
+          <Property Name="TaskId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="2cbe09f5-f460-4e08-80c5-70c60aac0b8a" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="512" ed:ValidateMaxLength="512" ed:ValidateRequired="true" ed:Guid="2fa7a585-295b-4cf8-9f89-1db4e82af679" />
+          <Property Name="CreatedAt" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="21206874-b4a6-491d-970c-5ed7aa3b1d6b" />
+          <Property Name="CreatedBy" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="fc5842d6-de62-4f94-9ada-6ace7003f69e" />
+          <Property Name="Deleted" Type="SByte" ed:ValidateRequired="false" ed:Guid="8eecda70-1dbc-4d8b-9db7-7589b5ec36f3" />
+          <NavigationProperty Name="Task" Relationship="WProject.BusinessLibrary.task_tag_task_FK_task_id" FromRole="TaskTags" ToRole="Task" ed:Guid="573b6d12-75e7-4470-b4ca-cf02635f74c2" />
+          <NavigationProperty Name="User" Relationship="WProject.BusinessLibrary.task_tag_user_FK_created_by" FromRole="TaskTags" ToRole="User" ed:Guid="03548ac0-c6c0-4439-acd3-3ab258336658" />
+        </EntityType>
+        <EntityType Name="User" ed:Guid="62d96587-c72e-407f-ac8b-82242605235b">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="ac92bca1-4df4-4710-a466-6e729f177e84" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="4bf3a33b-6f11-44fc-957d-f9b79c7e122b" />
+          <Property Name="Email" Type="String" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="false" ed:Guid="b2cff604-f94f-40ef-9237-701d5d52d561" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="128" ed:ValidateMaxLength="128" ed:ValidateRequired="true" ed:Guid="5e2929da-e188-4060-a1f5-b4d60f26a939" />
+          <Property Name="Word" Type="String" Nullable="false" MaxLength="512" ed:ValidateMaxLength="512" ed:ValidateRequired="true" ed:Guid="cd361aa9-498c-41fb-96f5-de06d57d9f24" />
+          <Property Name="Expire" Type="DateTime" ed:ValidateRequired="false" ed:Guid="a09ccfd7-a288-417b-b719-49946930e03d" />
+          <Property Name="Su" Type="SByte" ed:ValidateRequired="false" ed:Guid="f978bfb0-c96a-4ca2-9924-e82d558b1c5c" />
+          <Property Name="Suspended" Type="Boolean" ed:ValidateRequired="false" ed:Guid="2191c68f-d020-4805-babd-5118f5a6f24d" />
+          <Property Name="Deleted" Type="Boolean" ed:ValidateRequired="false" ed:Guid="9b26c2db-a2ff-4e1c-b02d-76d70a695ce3" />
+          <NavigationProperty Name="Accesses_AccessGrantedBy" Relationship="WProject.BusinessLibrary.access_object_user_FK_access_granted_by" FromRole="User_AccessGrantedBy" ToRole="Accesses_AccessGrantedBy" ed:Guid="6c27a2fd-1d70-4de9-aaf1-15d67e62a3e4" />
+          <NavigationProperty Name="Accesses_UserId" Relationship="WProject.BusinessLibrary.access_object_user_FK_user_id" FromRole="User_UserId" ToRole="Accesses_UserId" ed:Guid="ebfadde7-7f7b-4710-a391-3058371d0cc5" />
+          <NavigationProperty Name="ActiveSessions" Relationship="WProject.BusinessLibrary.active_session_user_FK_user_id" FromRole="User" ToRole="ActiveSessions" ed:Guid="3d9e789b-890d-4a2e-8a52-488e3b6cff0d" />
+          <NavigationProperty Name="AppSettings" Relationship="WProject.BusinessLibrary.app_setting_user_FK_last_updated_by" FromRole="User" ToRole="AppSettings" ed:Guid="d3739e70-d13f-45bb-a1b8-137f7700f996" />
+          <NavigationProperty Name="Backlogs_AssignedTo" Relationship="WProject.BusinessLibrary.backlog_user_FK_assigned_to" FromRole="User_AssignedTo" ToRole="Backlogs_AssignedTo" ed:Guid="b8e9874a-b2b1-49e7-a2cf-7045149df2a4" />
+          <NavigationProperty Name="Backlogs_CreatedBy" Relationship="WProject.BusinessLibrary.backlog_user_FK_created_by" FromRole="User_CreatedBy" ToRole="Backlogs_CreatedBy" ed:Guid="ea355157-7835-4e0e-9a88-35c0dcd35fe0" />
+          <NavigationProperty Name="Categories_CreatedBy" Relationship="WProject.BusinessLibrary.category_user_FK_created_by" FromRole="User_CreatedBy" ToRole="Categories_CreatedBy" ed:Guid="d9ea45aa-e9aa-47b0-b73d-a7e1b778b3f2" />
+          <NavigationProperty Name="Categories_OwnerId" Relationship="WProject.BusinessLibrary.category_user_FK_owner_id" FromRole="User_OwnerId" ToRole="Categories_OwnerId" ed:Guid="eaffee5c-3e6a-46eb-be63-b5012d3d5147" />
+          <NavigationProperty Name="Files" Relationship="WProject.BusinessLibrary.file_user_FK_created_by" FromRole="User" ToRole="Files" ed:Guid="5052001b-5d25-4db2-bfe9-9a56b4be46ca" />
+          <NavigationProperty Name="Groups" Relationship="WProject.BusinessLibrary.group_user_FK_owner_id" FromRole="User" ToRole="Groups" ed:Guid="dcc87edb-a4a5-40e0-b70a-029d22924724" />
+          <NavigationProperty Name="Logs" Relationship="WProject.BusinessLibrary.log_user_FK_user_id" FromRole="User" ToRole="Logs" ed:Guid="aeb09db3-817f-49ef-80a3-a0949dfacc01" />
+          <NavigationProperty Name="Projects_CreatedBy" Relationship="WProject.BusinessLibrary.project_user_FK_created_by" FromRole="User_CreatedBy" ToRole="Projects_CreatedBy" ed:Guid="2c93f9c8-f7ec-4f1d-a2a7-d53f5942c7cc" />
+          <NavigationProperty Name="Projects_OwnerId" Relationship="WProject.BusinessLibrary.project_user_FK_owner_id" FromRole="User_OwnerId" ToRole="Projects_OwnerId" ed:Guid="95ef579b-78f2-4707-89f6-00954f457491" />
+          <NavigationProperty Name="ProjectSettings" Relationship="WProject.BusinessLibrary.project_setting_user_FK_last_updated_by" FromRole="User" ToRole="ProjectSettings" ed:Guid="b6ba3c64-10b1-45b0-a6c9-e6cd6c59cc40" />
+          <NavigationProperty Name="Springs_CreatedBy" Relationship="WProject.BusinessLibrary.spring_user_FK_created_by" FromRole="User_CreatedBy" ToRole="Springs_CreatedBy" ed:Guid="22ba7a60-bd0e-47d5-ad80-325724c6c2f4" />
+          <NavigationProperty Name="Springs_OwnerId" Relationship="WProject.BusinessLibrary.spring_user_FK_owner_id" FromRole="User_OwnerId" ToRole="Springs_OwnerId" ed:Guid="a35968c9-e06f-41d5-8c82-4b051e170a6c" />
+          <NavigationProperty Name="Tasks_AssignedTo" Relationship="WProject.BusinessLibrary.task_user_FK_assigned_to" FromRole="User_AssignedTo" ToRole="Tasks_AssignedTo" ed:Guid="c3bac4d6-b6cf-44de-b5d6-691d0eca08ae" />
+          <NavigationProperty Name="Tasks_CreatedBy" Relationship="WProject.BusinessLibrary.task_user_FK_created_by" FromRole="User_CreatedBy" ToRole="Tasks_CreatedBy" ed:Guid="2f25ef5a-92d6-48cc-8592-61eb810c9683" />
+          <NavigationProperty Name="TaskAttachements" Relationship="WProject.BusinessLibrary.task_attachement_user_FK_attached_by" FromRole="User" ToRole="TaskAttachements" ed:Guid="e9ade6df-25f8-41e5-ab7a-131c33bf6b8a" />
+          <NavigationProperty Name="TaskDependencies" Relationship="WProject.BusinessLibrary.task_dependency_users_FK_created_by" FromRole="User" ToRole="TaskDependencies" ed:Guid="b6db8ab0-80e2-43ed-9b22-314b1124629e" />
+          <NavigationProperty Name="TaskHistories" Relationship="WProject.BusinessLibrary.task_history_user_FK_updated_by" FromRole="User" ToRole="TaskHistories" ed:Guid="f85c87b3-eb45-4ff4-9c54-962e1b933ab6" />
+          <NavigationProperty Name="TaskTags" Relationship="WProject.BusinessLibrary.task_tag_user_FK_created_by" FromRole="User" ToRole="TaskTags" ed:Guid="f5314cba-979f-47c2-808c-b2778db195f1" />
+          <NavigationProperty Name="UserInGroups_AddedBy" Relationship="WProject.BusinessLibrary.user_in_group_user_FK_added_by" FromRole="User_AddedBy" ToRole="UserInGroups_AddedBy" ed:Guid="1587202d-57fa-4a69-941b-61039eb78421" />
+          <NavigationProperty Name="UserInGroups_UserId" Relationship="WProject.BusinessLibrary.user_in_group_user_FK_user_id" FromRole="User_UserId" ToRole="UserInGroups_UserId" ed:Guid="f073cb0b-76e2-48d2-8f98-bf9a1ec867d1" />
+        </EntityType>
+        <EntityType Name="UserInGroup" ed:Guid="0ca074bb-1bfb-498e-83e3-d1a3e7b79c1d">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" ed:ValidateRequired="true" ed:Guid="b283a627-ea5d-405d-b12d-f6a85a749313" />
+          <Property Name="UserId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="1073f0a2-425d-44ae-a126-de4f390a8ec6" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" ed:ValidateRequired="true" ed:Guid="fdc1a8d7-a26a-4ea2-b7b3-29c219da880b" />
+          <Property Name="Added" Type="DateTime" Nullable="false" ed:ValidateRequired="true" ed:Guid="99a0ae38-91eb-4b85-9a08-cc7e1e25d5ec" />
+          <Property Name="AddedBy" Type="Int32" ed:ValidateRequired="false" ed:Guid="96b5cf50-6e01-4537-8038-ae6d160ce845" />
+          <Property Name="Comments" Type="String" ed:ValidateRequired="false" ed:Guid="e6b415e9-dc6e-4232-8ff3-5d53d0d9d94a" />
+          <Property Name="Metadata" Type="String" ed:ValidateRequired="false" ed:Guid="7c43746a-8200-40b2-a2d3-8d12a28666d8" />
+          <Property Name="Deleted" Type="SByte" ed:ValidateRequired="false" ed:Guid="a0b6ae56-a1ca-4bd9-9e1d-2ccf631b6f91" />
+          <NavigationProperty Name="User_AddedBy" Relationship="WProject.BusinessLibrary.user_in_group_user_FK_added_by" FromRole="UserInGroups_AddedBy" ToRole="User_AddedBy" ed:Guid="3ee9cd48-7c41-4383-9ec6-f47939f69aa4" />
+          <NavigationProperty Name="Group" Relationship="WProject.BusinessLibrary.user_in_group_user_FK_group_id" FromRole="UserInGroups" ToRole="Group" ed:Guid="09f92fd1-7bcb-4004-b2c3-de9951df11e7" />
+          <NavigationProperty Name="User_UserId" Relationship="WProject.BusinessLibrary.user_in_group_user_FK_user_id" FromRole="UserInGroups_UserId" ToRole="User_UserId" ed:Guid="66d77e56-f895-41b8-9575-49dde7cb0113" />
+        </EntityType>
+        <Association Name="access_object_access_FK_access_id" ed:Guid="d8bc6698-2864-4de2-9aab-d1411ea7c7cc">
+          <End Role="AccessObject" Type="WProject.BusinessLibrary.AccessObject" Multiplicity="1" />
+          <End Role="Accesses" Type="WProject.BusinessLibrary.Access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccessObject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accesses">
+              <PropertyRef Name="AccessId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="access_object_group_FK_group_id" ed:Guid="737dcb00-fb22-49ac-b9f0-a213927fc88e">
+          <End Role="Group" Type="WProject.BusinessLibrary.Group" Multiplicity="0..1" />
+          <End Role="Accesses" Type="WProject.BusinessLibrary.Access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accesses">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="access_object_user_FK_access_granted_by" ed:Guid="6d73d9a2-b2ac-4c0d-b3e8-1e76fa6829ba">
+          <End Role="User_AccessGrantedBy" Type="WProject.BusinessLibrary.User" Multiplicity="0..1" />
+          <End Role="Accesses_AccessGrantedBy" Type="WProject.BusinessLibrary.Access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_AccessGrantedBy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accesses_AccessGrantedBy">
+              <PropertyRef Name="AccessGrantedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="access_object_user_FK_user_id" ed:Guid="2baa55d9-a50d-4446-ab55-c47ec264b849">
+          <End Role="User_UserId" Type="WProject.BusinessLibrary.User" Multiplicity="0..1" />
+          <End Role="Accesses_UserId" Type="WProject.BusinessLibrary.Access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_UserId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Accesses_UserId">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="active_session_user_FK_user_id" ed:Guid="349b04ad-9c02-433f-be74-718f03d1e824">
+          <End Role="User" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="ActiveSessions" Type="WProject.BusinessLibrary.ActiveSession" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ActiveSessions">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="app_setting_user_FK_last_updated_by" ed:Guid="73ca2c5f-bf21-498b-8904-ec5d438e1dba">
+          <End Role="User" Type="WProject.BusinessLibrary.User" Multiplicity="0..1" />
+          <End Role="AppSettings" Type="WProject.BusinessLibrary.AppSetting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AppSettings">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="backlog_category_FK_category_id" ed:Guid="7f30b1f3-d995-42e2-8412-5be8fdebff95">
+          <End Role="Category" Type="WProject.BusinessLibrary.Category" Multiplicity="1" />
+          <End Role="Backlogs" Type="WProject.BusinessLibrary.Backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Backlogs">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="backlog_dict_item_FK_state_id" ed:Guid="7a485204-401a-4806-b6bb-659989b969c8">
+          <End Role="DictItem_StateId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="1" />
+          <End Role="Backlogs_StateId" Type="WProject.BusinessLibrary.Backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DictItem_StateId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Backlogs_StateId">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="backlog_dict_item_FK_type_id" ed:Guid="4eb8556f-07d2-4eff-ace5-7ba7866436a1">
+          <End Role="DictItem_TypeId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="1" />
+          <End Role="Backlogs_TypeId" Type="WProject.BusinessLibrary.Backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DictItem_TypeId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Backlogs_TypeId">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="backlog_user_FK_assigned_to" ed:Guid="9869be3b-7927-4ee7-a596-fade8ffa8d63">
+          <End Role="User_AssignedTo" Type="WProject.BusinessLibrary.User" Multiplicity="0..1" />
+          <End Role="Backlogs_AssignedTo" Type="WProject.BusinessLibrary.Backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_AssignedTo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Backlogs_AssignedTo">
+              <PropertyRef Name="AssignedTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="backlog_user_FK_created_by" ed:Guid="8cec8e58-eb33-46ee-adc3-c4b3d67c7775">
+          <End Role="User_CreatedBy" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="Backlogs_CreatedBy" Type="WProject.BusinessLibrary.Backlog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_CreatedBy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Backlogs_CreatedBy">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_category_FK_parent_id" ed:Guid="ad547e8c-e8a5-474c-9d29-964cf3dd72b6">
+          <End Role="Category_ParentId" Type="WProject.BusinessLibrary.Category" Multiplicity="0..1" />
+          <End Role="Categories_ParentId" Type="WProject.BusinessLibrary.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category_ParentId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categories_ParentId">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_spring_FK_spring_id" ed:Guid="352d594c-e2e5-479a-8f9a-88411eedad38">
+          <End Role="Spring" Type="WProject.BusinessLibrary.Spring" Multiplicity="1" />
+          <End Role="Categories" Type="WProject.BusinessLibrary.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Spring">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categories">
+              <PropertyRef Name="SpringId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_user_FK_created_by" ed:Guid="5716a2d8-32ee-44e0-87c0-76b6cd381f3c">
+          <End Role="User_CreatedBy" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="Categories_CreatedBy" Type="WProject.BusinessLibrary.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_CreatedBy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categories_CreatedBy">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="category_user_FK_owner_id" ed:Guid="7a4581dc-bedc-4646-be28-573d8c4eb8eb">
+          <End Role="User_OwnerId" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="Categories_OwnerId" Type="WProject.BusinessLibrary.Category" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_OwnerId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Categories_OwnerId">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="dict_item__dict_item_FK_parent_id" ed:Guid="4b54ac1a-5d6a-4845-8084-4aa3bf10b691">
+          <End Role="DictItem_ParentId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="0..1" />
+          <End Role="DictItems_ParentId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DictItem_ParentId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DictItems_ParentId">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="file_user_FK_created_by" ed:Guid="ebedce12-78d9-4693-b0d3-158db0aba569">
+          <End Role="User" Type="WProject.BusinessLibrary.User" Multiplicity="0..1" />
+          <End Role="Files" Type="WProject.BusinessLibrary.File" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Files">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="group_user_FK_owner_id" ed:Guid="6336d4f8-bae8-4614-95a6-fbb3cf70d5ee">
+          <End Role="User" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="Groups" Type="WProject.BusinessLibrary.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="log_access_object_FK_access_object_id" ed:Guid="4a434d00-35d1-4e7b-8fc2-f46901397a84">
+          <End Role="AccessObject" Type="WProject.BusinessLibrary.AccessObject" Multiplicity="0..1" />
+          <End Role="Logs" Type="WProject.BusinessLibrary.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccessObject">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Logs">
+              <PropertyRef Name="AccessObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="log_user_FK_user_id" ed:Guid="f233ebda-9122-4269-b59e-0f9544389a39">
+          <End Role="User" Type="WProject.BusinessLibrary.User" Multiplicity="0..1" />
+          <End Role="Logs" Type="WProject.BusinessLibrary.Log" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Logs">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_user_FK_created_by" ed:Guid="610497d3-6cfa-47b3-a0cd-bc2607bca8be">
+          <End Role="User_CreatedBy" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="Projects_CreatedBy" Type="WProject.BusinessLibrary.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_CreatedBy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Projects_CreatedBy">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_user_FK_owner_id" ed:Guid="5594edc6-8da5-40fa-81ab-f72ee97b3fdb">
+          <End Role="User_OwnerId" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="Projects_OwnerId" Type="WProject.BusinessLibrary.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_OwnerId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Projects_OwnerId">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_setting_project_FK_project_id" ed:Guid="3634501b-1a93-44d5-b4a3-47958d3bb2a5">
+          <End Role="Project" Type="WProject.BusinessLibrary.Project" Multiplicity="1" />
+          <End Role="ProjectSettings" Type="WProject.BusinessLibrary.ProjectSetting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectSettings">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="project_setting_user_FK_last_updated_by" ed:Guid="b2457f02-e385-418b-bb5a-2ef8fc2ad375">
+          <End Role="User" Type="WProject.BusinessLibrary.User" Multiplicity="0..1" />
+          <End Role="ProjectSettings" Type="WProject.BusinessLibrary.ProjectSetting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectSettings">
+              <PropertyRef Name="LastUpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spring_project_FK_project_id" ed:Guid="68610beb-d921-4d63-879d-4bb878e0edf8">
+          <End Role="Project" Type="WProject.BusinessLibrary.Project" Multiplicity="1" />
+          <End Role="Springs" Type="WProject.BusinessLibrary.Spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Springs">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spring_user_FK_created_by" ed:Guid="80909899-4ea5-4cc0-a1e9-d7999dbbfbf9">
+          <End Role="User_CreatedBy" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="Springs_CreatedBy" Type="WProject.BusinessLibrary.Spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_CreatedBy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Springs_CreatedBy">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="spring_user_FK_owner_id" ed:Guid="5b0a69fc-cc6d-48e2-a4d9-2e1bbebcba3e">
+          <End Role="User_OwnerId" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="Springs_OwnerId" Type="WProject.BusinessLibrary.Spring" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_OwnerId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Springs_OwnerId">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_backlog_FK_backlog_id" ed:Guid="19e1f8e9-50b7-45bc-829a-4d24b851f461">
+          <End Role="Backlog" Type="WProject.BusinessLibrary.Backlog" Multiplicity="1" />
+          <End Role="Tasks" Type="WProject.BusinessLibrary.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Backlog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks">
+              <PropertyRef Name="BacklogId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dict_item_FK_stage_id" ed:Guid="6782a980-21bd-41b4-b1f7-8eb8fbf12af6">
+          <End Role="DictItem_StageId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="0..1" />
+          <End Role="Tasks_StageId" Type="WProject.BusinessLibrary.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DictItem_StageId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks_StageId">
+              <PropertyRef Name="StageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dict_item_FK_state_id" ed:Guid="6a635a0e-2102-4036-84e7-e5e3e1480322">
+          <End Role="DictItem_StateId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="1" />
+          <End Role="Tasks_StateId" Type="WProject.BusinessLibrary.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DictItem_StateId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks_StateId">
+              <PropertyRef Name="StateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dict_item_FK_type_id" ed:Guid="ee45045f-596c-4676-8b30-832017e0f690">
+          <End Role="DictItem_TypeId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="1" />
+          <End Role="Tasks_TypeId" Type="WProject.BusinessLibrary.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DictItem_TypeId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks_TypeId">
+              <PropertyRef Name="TypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_user_FK_assigned_to" ed:Guid="4fee0337-e390-4ecc-882e-d722d2033738">
+          <End Role="User_AssignedTo" Type="WProject.BusinessLibrary.User" Multiplicity="0..1" />
+          <End Role="Tasks_AssignedTo" Type="WProject.BusinessLibrary.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_AssignedTo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks_AssignedTo">
+              <PropertyRef Name="AssignedTo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_user_FK_created_by" ed:Guid="8e59e90e-c54d-4ef3-ab8f-1a2aac94debe">
+          <End Role="User_CreatedBy" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="Tasks_CreatedBy" Type="WProject.BusinessLibrary.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_CreatedBy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Tasks_CreatedBy">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_attachement_file_FK_file_id" ed:Guid="a7fc8898-1bdb-41d6-8a70-add7ea9877c2">
+          <End Role="File" Type="WProject.BusinessLibrary.File" Multiplicity="1" />
+          <End Role="TaskAttachements" Type="WProject.BusinessLibrary.TaskAttachement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskAttachements">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_attachement_task_FK_task_id" ed:Guid="dc7d88e4-a9f2-4927-8f5f-1facc25552d6">
+          <End Role="Task" Type="WProject.BusinessLibrary.Task" Multiplicity="1" />
+          <End Role="TaskAttachements" Type="WProject.BusinessLibrary.TaskAttachement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskAttachements">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_attachement_user_FK_attached_by" ed:Guid="ea512a4b-59d7-4cd1-8302-12ceff016b9e">
+          <End Role="User" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="TaskAttachements" Type="WProject.BusinessLibrary.TaskAttachement" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskAttachements">
+              <PropertyRef Name="AttachedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_dict_item_FK_block_on_stage_id" ed:Guid="babb2468-1277-4dc0-8ba5-3dc61f675afe">
+          <End Role="DictItem_BlockOnStageId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="0..1" />
+          <End Role="TaskDependencies_BlockOnStageId" Type="WProject.BusinessLibrary.TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DictItem_BlockOnStageId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependencies_BlockOnStageId">
+              <PropertyRef Name="BlockOnStageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_dict_item_FK_block_on_state_id" ed:Guid="433b3cab-8019-4f0d-a3a8-7c74498a11d7">
+          <End Role="DictItem_BlockOnStateId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="0..1" />
+          <End Role="TaskDependencies_BlockOnStateId" Type="WProject.BusinessLibrary.TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DictItem_BlockOnStateId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependencies_BlockOnStateId">
+              <PropertyRef Name="BlockOnStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_dict_item_FK_dependent_stage_id" ed:Guid="42a5c421-54c3-4e24-93b1-f316d740e4dc">
+          <End Role="DictItem_DependentStageId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="0..1" />
+          <End Role="TaskDependencies_DependentStageId" Type="WProject.BusinessLibrary.TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DictItem_DependentStageId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependencies_DependentStageId">
+              <PropertyRef Name="DependentStageId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_dict_item_FK_dependent_state_id" ed:Guid="df75352d-decf-4119-a6c3-7365d27952c2">
+          <End Role="DictItem_DependentStateId" Type="WProject.BusinessLibrary.DictItem" Multiplicity="0..1" />
+          <End Role="TaskDependencies_DependentStateId" Type="WProject.BusinessLibrary.TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DictItem_DependentStateId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependencies_DependentStateId">
+              <PropertyRef Name="DependentStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_task_FK_task_dependent_id" ed:Guid="de99997b-a289-476e-bd4f-d5742b009b4a">
+          <End Role="Task_TaskDependentId" Type="WProject.BusinessLibrary.Task" Multiplicity="1" />
+          <End Role="TaskDependencies_TaskDependentId" Type="WProject.BusinessLibrary.TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task_TaskDependentId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependencies_TaskDependentId">
+              <PropertyRef Name="TaskDependentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_task_FK_task_id" ed:Guid="5a6afd7b-da02-46be-9c10-588337e2053a">
+          <End Role="Task_TaskId" Type="WProject.BusinessLibrary.Task" Multiplicity="1" />
+          <End Role="TaskDependencies_TaskId" Type="WProject.BusinessLibrary.TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task_TaskId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependencies_TaskId">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_dependency_users_FK_created_by" ed:Guid="c649b42b-9b9d-4044-8ec0-a989b86ee60b">
+          <End Role="User" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="TaskDependencies" Type="WProject.BusinessLibrary.TaskDependency" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskDependencies">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_history_task_FK_task_id" ed:Guid="48d92c04-29dd-438c-9564-1b96e8d1feed">
+          <End Role="Task" Type="WProject.BusinessLibrary.Task" Multiplicity="1" />
+          <End Role="TaskHistories" Type="WProject.BusinessLibrary.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskHistories">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_history_user_FK_updated_by" ed:Guid="5d3e9cfb-39b2-42f9-bf64-90dfabd5dd75">
+          <End Role="User" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="TaskHistories" Type="WProject.BusinessLibrary.TaskHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskHistories">
+              <PropertyRef Name="UpdatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_tag_task_FK_task_id" ed:Guid="768e04ea-8f56-46f9-bee8-4e5608a86a95">
+          <End Role="Task" Type="WProject.BusinessLibrary.Task" Multiplicity="1" />
+          <End Role="TaskTags" Type="WProject.BusinessLibrary.TaskTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Task">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskTags">
+              <PropertyRef Name="TaskId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="task_tag_user_FK_created_by" ed:Guid="02672fce-e0b4-4fba-ba33-e1e9da416088">
+          <End Role="User" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="TaskTags" Type="WProject.BusinessLibrary.TaskTag" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TaskTags">
+              <PropertyRef Name="CreatedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_in_group_user_FK_added_by" ed:Guid="81ef6f7c-8250-454f-9e12-670c35cbb1b9">
+          <End Role="User_AddedBy" Type="WProject.BusinessLibrary.User" Multiplicity="0..1" />
+          <End Role="UserInGroups_AddedBy" Type="WProject.BusinessLibrary.UserInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_AddedBy">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInGroups_AddedBy">
+              <PropertyRef Name="AddedBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_in_group_user_FK_group_id" ed:Guid="dd723ea8-3d92-401c-aff7-0095773d4746">
+          <End Role="Group" Type="WProject.BusinessLibrary.Group" Multiplicity="1" />
+          <End Role="UserInGroups" Type="WProject.BusinessLibrary.UserInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInGroups">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="user_in_group_user_FK_user_id" ed:Guid="7695a976-7e0c-4928-a6fb-18b84adb60b4">
+          <End Role="User_UserId" Type="WProject.BusinessLibrary.User" Multiplicity="1" />
+          <End Role="UserInGroups_UserId" Type="WProject.BusinessLibrary.UserInGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_UserId">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserInGroups_UserId">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- MSL content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WModelStoreContainer" CdmEntityContainer="WModel">
+          <EntitySetMapping Name="Accesses">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.Access">
+              <MappingFragment StoreEntitySet="accesses">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="UserId" ColumnName="user_id" />
+                <ScalarProperty Name="GroupId" ColumnName="group_id" />
+                <ScalarProperty Name="AccessId" ColumnName="access_id" />
+                <ScalarProperty Name="Read" ColumnName="read" />
+                <ScalarProperty Name="Add" ColumnName="add" />
+                <ScalarProperty Name="Edit" ColumnName="edit" />
+                <ScalarProperty Name="Delete" ColumnName="delete" />
+                <ScalarProperty Name="AccessGrantedAt" ColumnName="access_granted_at" />
+                <ScalarProperty Name="AccessGrantedBy" ColumnName="access_granted_by" />
+                <ScalarProperty Name="ObjectId" ColumnName="object_id" />
+                <ScalarProperty Name="Comment" ColumnName="comment" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccessObjects">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.AccessObject">
+              <MappingFragment StoreEntitySet="access_objects">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Code" ColumnName="code" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActiveSessions">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.ActiveSession">
+              <MappingFragment StoreEntitySet="active_sessions">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="CreatedAt" ColumnName="created_at" />
+                <ScalarProperty Name="Uid" ColumnName="uid" />
+                <ScalarProperty Name="UserId" ColumnName="user_id" />
+                <ScalarProperty Name="LastHeartBeat" ColumnName="last_heart_beat" />
+                <ScalarProperty Name="Ip" ColumnName="ip" />
+                <ScalarProperty Name="ContextId" ColumnName="context_id" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AppSettings">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.AppSetting">
+              <MappingFragment StoreEntitySet="app_settings">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Key" ColumnName="key" />
+                <ScalarProperty Name="Value" ColumnName="value" />
+                <ScalarProperty Name="LastUpdatedAt" ColumnName="last_updated_at" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="last_updated_by" />
+                <ScalarProperty Name="Comment" ColumnName="comment" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Backlogs">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.Backlog">
+              <MappingFragment StoreEntitySet="backlogs">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="CreatedAt" ColumnName="created_at" />
+                <ScalarProperty Name="CreatedBy" ColumnName="created_by" />
+                <ScalarProperty Name="AssignedTo" ColumnName="assigned_to" />
+                <ScalarProperty Name="StateId" ColumnName="state_id" />
+                <ScalarProperty Name="TypeId" ColumnName="type_id" />
+                <ScalarProperty Name="CategoryId" ColumnName="category_id" />
+                <ScalarProperty Name="Priority" ColumnName="priority" />
+                <ScalarProperty Name="PeriodFrom" ColumnName="period_from" />
+                <ScalarProperty Name="PeriodTo" ColumnName="period_to" />
+                <ScalarProperty Name="RemainingWork" ColumnName="remaining_work" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.Category">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="CreatedAt" ColumnName="created_at" />
+                <ScalarProperty Name="CreatedBy" ColumnName="created_by" />
+                <ScalarProperty Name="OwnerId" ColumnName="owner_id" />
+                <ScalarProperty Name="PeriodFrom" ColumnName="period_from" />
+                <ScalarProperty Name="PeriodTo" ColumnName="period_to" />
+                <ScalarProperty Name="SpringId" ColumnName="spring_id" />
+                <ScalarProperty Name="ParentId" ColumnName="parent_id" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DictItems">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.DictItem">
+              <MappingFragment StoreEntitySet="dict_items">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="Type" ColumnName="type" />
+                <ScalarProperty Name="ParentId" ColumnName="parent_id" />
+                <ScalarProperty Name="Reserved" ColumnName="reserved" />
+                <ScalarProperty Name="Code" ColumnName="code" />
+                <ScalarProperty Name="Order" ColumnName="order" />
+                <ScalarProperty Name="Color" ColumnName="color" />
+                <ScalarProperty Name="Tag" ColumnName="tag" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.File">
+              <MappingFragment StoreEntitySet="files">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Type" ColumnName="type" />
+                <ScalarProperty Name="Content" ColumnName="content" />
+                <ScalarProperty Name="Thumbnail" ColumnName="thumbnail" />
+                <ScalarProperty Name="Size" ColumnName="size" />
+                <ScalarProperty Name="ParentType" ColumnName="parent_type" />
+                <ScalarProperty Name="ParentId" ColumnName="parent_id" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+                <ScalarProperty Name="Path" ColumnName="path" />
+                <ScalarProperty Name="Url" ColumnName="url" />
+                <ScalarProperty Name="CreatedAt" ColumnName="created_at" />
+                <ScalarProperty Name="CreatedBy" ColumnName="created_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.Group">
+              <MappingFragment StoreEntitySet="groups">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="Created" ColumnName="created" />
+                <ScalarProperty Name="OwnerId" ColumnName="owner_id" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logs">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.Log">
+              <MappingFragment StoreEntitySet="logs">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Date" ColumnName="date" />
+                <ScalarProperty Name="EntryType" ColumnName="entry_type" />
+                <ScalarProperty Name="Ip" ColumnName="ip" />
+                <ScalarProperty Name="UserId" ColumnName="user_id" />
+                <ScalarProperty Name="AccessObjectId" ColumnName="access_object_id" />
+                <ScalarProperty Name="Action" ColumnName="action" />
+                <ScalarProperty Name="Details" ColumnName="details" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+                <ScalarProperty Name="Important" ColumnName="important" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.Project">
+              <MappingFragment StoreEntitySet="projects">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="CreatedAt" ColumnName="created_at" />
+                <ScalarProperty Name="CreatedBy" ColumnName="created_by" />
+                <ScalarProperty Name="OwnerId" ColumnName="owner_id" />
+                <ScalarProperty Name="PeriodFrom" ColumnName="period_from" />
+                <ScalarProperty Name="PeriodTo" ColumnName="period_to" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectSettings">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.ProjectSetting">
+              <MappingFragment StoreEntitySet="project_settings">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="ProjectId" ColumnName="project_id" />
+                <ScalarProperty Name="Key" ColumnName="key" />
+                <ScalarProperty Name="Value" ColumnName="value" />
+                <ScalarProperty Name="LastUpdatedAt" ColumnName="last_updated_at" />
+                <ScalarProperty Name="LastUpdatedBy" ColumnName="last_updated_by" />
+                <ScalarProperty Name="Comments" ColumnName="comments" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Springs">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.Spring">
+              <MappingFragment StoreEntitySet="springs">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="CreatedAt" ColumnName="created_at" />
+                <ScalarProperty Name="CreatedBy" ColumnName="created_by" />
+                <ScalarProperty Name="OwnerId" ColumnName="owner_id" />
+                <ScalarProperty Name="PeriodFrom" ColumnName="period_from" />
+                <ScalarProperty Name="PeriodTo" ColumnName="period_to" />
+                <ScalarProperty Name="ProjectId" ColumnName="project_id" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.Task">
+              <MappingFragment StoreEntitySet="tasks">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="CreatedAt" ColumnName="created_at" />
+                <ScalarProperty Name="CreatedBy" ColumnName="created_by" />
+                <ScalarProperty Name="AssignedTo" ColumnName="assigned_to" />
+                <ScalarProperty Name="StateId" ColumnName="state_id" />
+                <ScalarProperty Name="TypeId" ColumnName="type_id" />
+                <ScalarProperty Name="StageId" ColumnName="stage_id" />
+                <ScalarProperty Name="BacklogId" ColumnName="backlog_id" />
+                <ScalarProperty Name="Priority" ColumnName="priority" />
+                <ScalarProperty Name="PeriodFrom" ColumnName="period_from" />
+                <ScalarProperty Name="PeriodTo" ColumnName="period_to" />
+                <ScalarProperty Name="RemainingWork" ColumnName="remaining_work" />
+                <ScalarProperty Name="Description" ColumnName="description" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskAttachements">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.TaskAttachement">
+              <MappingFragment StoreEntitySet="task_attachements">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="TaskId" ColumnName="task_id" />
+                <ScalarProperty Name="FileId" ColumnName="file_id" />
+                <ScalarProperty Name="AttachedAt" ColumnName="attached_at" />
+                <ScalarProperty Name="AttachedBy" ColumnName="attached_by" />
+                <ScalarProperty Name="Comments" ColumnName="comments" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskDependencies">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.TaskDependency">
+              <MappingFragment StoreEntitySet="task_dependencies">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="TaskId" ColumnName="task_id" />
+                <ScalarProperty Name="TaskDependentId" ColumnName="task_dependent_id" />
+                <ScalarProperty Name="DependentStateId" ColumnName="dependent_state_id" />
+                <ScalarProperty Name="DependentStageId" ColumnName="dependent_stage_id" />
+                <ScalarProperty Name="BlockOnStateId" ColumnName="block_on_state_id" />
+                <ScalarProperty Name="BlockOnStageId" ColumnName="block_on_stage_id" />
+                <ScalarProperty Name="CreatedAt" ColumnName="created_at" />
+                <ScalarProperty Name="CreatedBy" ColumnName="created_by" />
+                <ScalarProperty Name="Comments" ColumnName="comments" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskHistories">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.TaskHistory">
+              <MappingFragment StoreEntitySet="task_histories">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="TaskId" ColumnName="task_id" />
+                <ScalarProperty Name="UpdatedAt" ColumnName="updated_at" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="updated_by" />
+                <ScalarProperty Name="FieldName" ColumnName="field_name" />
+                <ScalarProperty Name="FieldOldValue" ColumnName="field_old_value" />
+                <ScalarProperty Name="FieldNewValue" ColumnName="field_new_value" />
+                <ScalarProperty Name="Comments" ColumnName="comments" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskTags">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.TaskTag">
+              <MappingFragment StoreEntitySet="task_tags">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="TaskId" ColumnName="task_id" />
+                <ScalarProperty Name="Text" ColumnName="text" />
+                <ScalarProperty Name="CreatedAt" ColumnName="created_at" />
+                <ScalarProperty Name="CreatedBy" ColumnName="created_by" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.User">
+              <MappingFragment StoreEntitySet="users">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="name" />
+                <ScalarProperty Name="Email" ColumnName="email" />
+                <ScalarProperty Name="Login" ColumnName="login" />
+                <ScalarProperty Name="Word" ColumnName="word" />
+                <ScalarProperty Name="Expire" ColumnName="expire" />
+                <ScalarProperty Name="Su" ColumnName="su" />
+                <ScalarProperty Name="Suspended" ColumnName="suspended" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserInGroups">
+            <EntityTypeMapping TypeName="WProject.BusinessLibrary.UserInGroup">
+              <MappingFragment StoreEntitySet="user_in_groups">
+                <ScalarProperty Name="Id" ColumnName="id" />
+                <ScalarProperty Name="UserId" ColumnName="user_id" />
+                <ScalarProperty Name="GroupId" ColumnName="group_id" />
+                <ScalarProperty Name="Added" ColumnName="added" />
+                <ScalarProperty Name="AddedBy" ColumnName="added_by" />
+                <ScalarProperty Name="Comments" ColumnName="comments" />
+                <ScalarProperty Name="Metadata" ColumnName="metadata" />
+                <ScalarProperty Name="Deleted" ColumnName="deleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <edmx:Diagrams>
+      <Diagram Name="Main" />
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
