@@ -54,15 +54,8 @@
     <Reference Include="System.Web.Services" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="..\..\Dumps\wproject.sql">
-      <Link>Others\Dumps\wproject.sql</Link>
-    </Content>
-    <Content Include="..\..\Dumps\wproject_data.sql">
-      <Link>Others\Dumps\wproject_data.sql</Link>
-    </Content>
-    <Content Include="..\..\Paterns.txt">
-      <Link>Others\Paterns.txt</Link>
-    </Content>
+    <Content Include="Dumps\wproject.sql" />
+    <Content Include="Dumps\wproject_data.sql" />
     <Content Include="Global.asax" />
     <Content Include="home.aspx" />
     <Content Include="index.html" />
@@ -78,6 +71,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Paterns.txt" />
     <Content Include="Resources\Icons\add_l.png" />
     <Content Include="Resources\Icons\add_m.png" />
     <Content Include="Resources\Icons\add_s.png" />
