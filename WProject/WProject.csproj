@@ -81,6 +81,9 @@
     <Content Include="Resources\Icons\arrow_down_l.png" />
     <Content Include="Resources\Icons\arrow_down_m.png" />
     <Content Include="Resources\Icons\arrow_down_s.png" />
+    <Content Include="Resources\Icons\arrow_left_l.png" />
+    <Content Include="Resources\Icons\arrow_left_m.png" />
+    <Content Include="Resources\Icons\arrow_left_s.png" />
     <Content Include="Resources\Icons\attach_l.png" />
     <Content Include="Resources\Icons\attach_m.png" />
     <Content Include="Resources\Icons\attach_s.png" />
