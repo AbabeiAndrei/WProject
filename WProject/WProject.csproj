@@ -265,6 +265,7 @@
     <Content Include="Resources\Icons\warning_l.png" />
     <Content Include="Resources\Icons\warning_m.png" />
     <Content Include="Resources\Icons\warning_s.png" />
+    <Content Include="Resources\Images\LoginBlurBk.png" />
     <Content Include="Resources\Logo.png" />
     <Content Include="Web.config" />
   </ItemGroup>
