@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WProject.BusinessLibrary;
 
 namespace WProject.DestopTests
 {
@@ -15,6 +16,11 @@ namespace WProject.DestopTests
         public Form1()
         {
             InitializeComponent();
+
+            using (WModel mctx = new WModel())
+            {
+                var s = mctx.Users;
+            }
         }
     }
 }

@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WpDb.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -51,6 +51,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Web.config" />
     <None Include="WpDb.Diagram1.view">
       <DependentUpon>WpDb.edml</DependentUpon>
     </None>

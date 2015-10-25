@@ -1,4 +1,5 @@
 ﻿var loginClicked = false;
+var onPasswordLost = false;
 var ExecuteLogin;
 var functionSetRotationCircleDash = function (start) {
     loginClicked = start;
@@ -44,5 +45,20 @@ $(document).ready(function () {
         functionSetRotationCircleDash(true);
 
         ExecuteLogin();
+    });
+    $("#passwordLostLabel").click(function() {
+        if (!onPasswordLost) {
+            $("#passwordLostLabel").text("Login");
+            $("div.loginForm").css({ "height": "60%" });
+            $("#lblPass").next().slideUp(function () { });
+            $("#lblPass").slideUp(function () { });
+        } else {
+            $("#passwordLostLabel").text("Password lost ");
+            $("div.loginForm").css({ "height": "80%" });
+            $("#lblPass").next().slideDown(function () { });
+            $("#lblPass").slideDown(function () { });
+        }
+
+        onPasswordLost = !onPasswordLost;
     });
 })

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <EntityDeveloper Version="5.8.705.0">
-  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" AppConnectionStringName="WprojectEntitiesConnectionString" ConnectionStringInAppConfig="True" RegenareteConnectionStringInAppConfig="True" TargetFramework="Net45" DetectTPTInheritance="False" EntityFrameworkVersion="Version5" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
+  <ModelSettings xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" AppConnectionStringName="WprojectEntitiesConnectionString" ConnectionStringInAppConfig="False" TargetFramework="Net45" DetectTPTInheritance="False" EntityFrameworkVersion="Version5" IncludeForeignKeysInModel="true" DetectFunctionBasedColumnDefault="false">
     <Connection ConnectionString="persistsecurityinfo=True;server=localhost;user id=wproject;password=wProject.112;database=wproject" Provider="MySql.Data.MySqlClient" />
     <Generation />
     <DatabaseFirstNamingRules>

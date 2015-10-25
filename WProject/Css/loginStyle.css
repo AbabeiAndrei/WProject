@@ -61,6 +61,11 @@
     -webkit-box-shadow: 0 0 20px #575757;
     -ms-box-shadow: 0 0 20px #575757;
     box-shadow: 0 0 20px #575757;
+
+    -webkit-transition:width 200ms ease-in-out, height 200ms ease-in-out;
+    -moz-transition:width 200ms ease-in-out, height 200ms ease-in-out;
+    -o-transition:width 200ms ease-in-out, height 200ms ease-in-out;
+    transition:width 200ms ease-in-out, height 200ms ease-in-out;
 }
 
 .loginForm > img

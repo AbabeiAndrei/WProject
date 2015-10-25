@@ -13,11 +13,19 @@
     <script src="Scripts/utilScripts.js"></script>
     <script>
         ExecuteLogin = function () {
-            var mjd = '{email: "' + $('#<%=txtEmail.ClientID%>')[0].value + '",' +
-                      'pass:"' + $('#<%=txtPass.ClientID%>')[0].value + '"}';
+            var mjd;
+            var methdToCall;
+            if (onPasswordLost) {
+                mjd = '{email: "' + $('#<%=txtEmail.ClientID%>')[0].value + '"}';
+                methdToCall = "PasswordLost";
+            } else {
+                mjd = '{email: "' + $('#<%=txtEmail.ClientID%>')[0].value + '",' +
+                    'pass:"' + $('#<%=txtPass.ClientID%>')[0].value + '"}';
+                methdToCall = "ExecuteLogin";
+            }
             $.ajax({
                 type: "POST",
-                url: "Login.aspx/ExecuteLogin",
+                url: "Login.aspx/" + methdToCall,
                 data: mjd,
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -26,6 +34,8 @@
                     if (!majaxmres.Success)
                         showNotificationBar(majaxmres.Error, defaultTimeOutNotificationBar);
                     functionSetRotationCircleDash(false);
+                    if(majaxmres.Success)
+                        document.forms[0].submit();
                 },
                 failure: function (response) {
 
@@ -48,7 +58,7 @@
             <img src="Resources/Logo.png" alt="WProject"/>
             <h2>Email</h2>
             <asp:TextBox ID="txtEmail" runat="server" Width="90%" CssClass="txtBoxes"></asp:TextBox>
-            <h2>Password</h2>
+            <h2 id="lblPass">Password</h2>
             <asp:TextBox ID="txtPass" runat="server" TextMode="Password" Width="90%" CssClass="txtBoxes"></asp:TextBox>
             <div class="login cursorHand" id="loginContainerButton">
                 <img src="Resources/Icons/circle.png" id="circleLogin" class="loginLoginControlTransparent" alt="Login"/>

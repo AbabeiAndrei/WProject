@@ -9,16 +9,18 @@ namespace WProject.Library.Helpers.Utils.Db
 {
     public static class DatabaseFactory
     {
-        public static WPModel NewDbWpContext => new WPModel();
+        public static WModel NewDbWpContext => new WModel();
 
         public static User Login(string email, string pass)
         {
-            using (WPModel mctx = NewDbWpContext)
+            using (WModel mctx = NewDbWpContext)
                 return Login(email, pass, mctx);
         }
 
-        public static User Login(string email, string pass, WPModel context)
+        public static User Login(string email, string pass, WModel context)
         {
+            pass = GenericLibrary.Helpers.Crypto.Hash.Md5(pass);
+
             var mu = context.Users.FirstOrDefault(u => u.Email == email &&
                                                        u.Word == pass);
 

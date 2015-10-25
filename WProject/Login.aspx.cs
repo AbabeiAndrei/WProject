@@ -15,14 +15,29 @@ namespace WProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Page.IsPostBack)
+            {
+                User mu = null;
+                try
+                {
+                    mu = DatabaseFactory.Login(txtEmail.Text, txtPass.Text);
+                }
+                catch
+                {
+                    
+                }
+                if(mu == null)
+                    return;
 
+                Page.Session.Add("user_id", mu.Id);
+                Server.Transfer("Dashboard.aspx", true);
+            }
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
-
         [System.Web.Services.WebMethod]
         public static string ExecuteLogin(string email, string pass)
         {
@@ -37,6 +52,29 @@ namespace WProject
             catch (Exception mex)
             {
                 return JsonConvert.SerializeObject(new AjaxLoginReponse
+                {
+                    Error = mex.Message,
+                    Success = false
+                });
+            }
+        }
+
+        [System.Web.Services.WebMethod]
+        public static string PasswordLost(string email)
+        {
+            try
+            {
+                if(Library.Helpers.Utils.Users.RecoverPassword(email))
+                    return JsonConvert.SerializeObject(new AjaxRecoverPasswordReponse
+                    {
+                        Success = true,
+                        Message = "A link was sent to " + email + "\nFollow the instruction from mail."
+                    });
+                throw new Exception("Email not found, please try again!");
+            }
+            catch (Exception mex)
+            {
+                return JsonConvert.SerializeObject(new AjaxRecoverPasswordReponse
                 {
                     Error = mex.Message,
                     Success = false
