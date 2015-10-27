@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <title>WProjects</title>
+    <title>WProjects - Login</title>
     <link rel="stylesheet" type="text/css" href="Css/mainStyle.css">
     <link rel="stylesheet" type="text/css" href="Css/loginStyle.css">
     <link rel="stylesheet" type="text/css" href="Css/animationStyle.css">
@@ -57,9 +57,9 @@
             <div class="titleBar"></div>
             <img src="Resources/Logo.png" alt="WProject"/>
             <h2>Email</h2>
-            <asp:TextBox ID="txtEmail" runat="server" Width="90%" CssClass="txtBoxes"></asp:TextBox>
+            <asp:TextBox ID="txtEmail" runat="server" Width="94%" CssClass="txtBoxes" BorderColor="#575757" BorderStyle="Solid" BorderWidth="1px"></asp:TextBox>
             <h2 id="lblPass">Password</h2>
-            <asp:TextBox ID="txtPass" runat="server" TextMode="Password" Width="90%" CssClass="txtBoxes"></asp:TextBox>
+            <asp:TextBox ID="txtPass" runat="server" TextMode="Password" Width="94%" CssClass="txtBoxes" BorderColor="#575757" BorderStyle="Solid" BorderWidth="1px"></asp:TextBox>
             <div class="login cursorHand" id="loginContainerButton">
                 <img src="Resources/Icons/circle.png" id="circleLogin" class="loginLoginControlTransparent" alt="Login"/>
                 <img src="Resources/Icons/arrow_left_l.png" id="arrowLogin" class="loginLoginControlTransparent" alt="Login"/>

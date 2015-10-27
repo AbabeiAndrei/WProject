@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Caching;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
@@ -15,6 +16,9 @@ namespace WProject
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            var muc = Cache.Get(GenericLibrary.Constants.CacheConstants.USER_CACHE);
+            if (muc != null)
+                Server.Transfer("Dashboard.aspx");
             if (Page.IsPostBack)
             {
                 User mu = null;
@@ -29,8 +33,8 @@ namespace WProject
                 if(mu == null)
                     return;
 
-                Page.Session.Add("user_id", mu.Id);
-                Server.Transfer("Dashboard.aspx", true);
+                Cache.Insert(GenericLibrary.Constants.CacheConstants.USER_CACHE, mu.Id);
+                Server.Transfer("Dashboard.aspx");
             }
         }
 

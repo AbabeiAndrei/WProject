@@ -41,13 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Constants.cs" />
+    <Compile Include="Constants\BussinessLibraryConstants.cs" />
+    <Compile Include="Constants\CacheConstants.cs" />
+    <Compile Include="Constants\WpErrors.cs" />
+    <Compile Include="Exceptions\WpException.cs" />
     <Compile Include="Exceptions\ConvertImageException.cs" />
     <Compile Include="Exceptions\DataBaseContextExceptio.cs" />
     <Compile Include="Helpers\Crypto\Hash.cs" />
     <Compile Include="Helpers\Drawing\ImageHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
