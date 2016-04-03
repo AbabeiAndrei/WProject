@@ -55,7 +55,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
         public ctrlDashBoardBacklogItemControl()
         {
-            InitializeComponent();//aa
+            InitializeComponent();
 
             ddUsers.DisplayMember = user => user.Name;
             ddUsers.ValueMember = user => user.Id;
