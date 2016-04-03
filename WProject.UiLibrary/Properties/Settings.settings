@@ -1,0 +1,118 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WProject.UiLibrary.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="StylePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Resources\wpDefaultStyle.json</Value>
+    </Setting>
+    <Setting Name="LoaderHtmlPart1" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">&lt;html&gt;
+	&lt;head&gt;
+		&lt;style&gt;
+			#preloader_1{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin-left: 23px;
+			}
+			#preloader_1 span{
+				display:block;
+				bottom:0px;
+				width: 9px;
+				height: 5px;
+				background:#9b59b6;
+				position:absolute;
+				animation: preloader_1 1.5s  infinite ease-in-out;
+			}
+			 
+			#preloader_1 span:nth-child(2){
+			left:11px;
+			animation-delay: .2s;
+			 
+			}
+			#preloader_1 span:nth-child(3){
+			left:22px;
+			animation-delay: .4s;
+			}
+			#preloader_1 span:nth-child(4){
+			left:33px;
+			animation-delay: .6s;
+			}
+			#preloader_1 span:nth-child(5){
+			left:44px;
+			animation-delay: .8s;
+			}
+			@keyframes preloader_1 {
+				0% {height:5px;transform:translateY(0px);background:#9b59b6;}
+				25% {height:30px;transform:translateY(15px);background:#3498db;}
+				50% {height:5px;transform:translateY(0px);background:#9b59b6;}
+				100% {height:5px;transform:translateY(0px);background:#9b59b6;}
+			}
+			.loader-overlay {
+				-ms-opacity: 0.9;
+				background: #444;
+				display: block;
+				height: 100%;
+				left: 0;
+				opacity: 0.9;
+				position: fixed;
+				top: 0;
+				vertical-align: middle;
+				width: 100%;
+				z-index: 100000;
+				padding-left: 20px;
+				padding-top: 20px;
+			}
+
+			.loader-content {
+				margin-left: auto;
+				margin-top: auto;
+				width: 50%;
+			}
+
+			.loader-center {
+				-moz-transform: translate(-50%, -50%);
+				-ms-transform: translate(-50%, -50%);
+				-o-transform: translate(-50%, -50%);
+				-webkit-transform: translate(-50%, -50%);   
+				left: 50%;
+				display: block;
+				position: fixed;
+				top: 50%;
+				transform: translate(-50%, -55%);
+			}
+
+			.loader-text {
+				font-family: "Segoe UI Light";
+				font-size: 20px;
+				color: white;
+				height: 50%;
+				margin-top: 20px;
+				padding-left: 0px;
+				margin-left: 55px;
+			}
+		&lt;/style&gt;
+	&lt;/head&gt;
+	&lt;body&gt;
+		&lt;div id="loadingOverlay" class="loader-overlay"&gt;
+			&lt;div class="loader-content loader-center"&gt;
+				&lt;div class="loader-center"&gt;
+				&lt;div id="preloader_1"&gt;
+					&lt;span&gt;&lt;/span&gt;
+					&lt;span&gt;&lt;/span&gt;
+					&lt;span&gt;&lt;/span&gt;
+					&lt;span&gt;&lt;/span&gt;
+					&lt;span&gt;&lt;/span&gt;
+				&lt;/div&gt;
+				&lt;/div&gt;
+				&lt;div class="loader-center loader-text"&gt;</Value>
+    </Setting>
+    <Setting Name="LoaderHtmlPart2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">&lt;/div&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;body&gt;
+&lt;/html&gt;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

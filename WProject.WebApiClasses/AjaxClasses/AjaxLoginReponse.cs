@@ -10,5 +10,12 @@ namespace WProject.WebApiClasses.AjaxClasses
     {
         public bool Success { get; set; }
         public string Error { get; set; }
+        public int TimeError { get; set; }
+
+        public AjaxLoginReponse()
+        {
+            //Default time out for error message
+            TimeError = 3000;
+        }
     }
 }

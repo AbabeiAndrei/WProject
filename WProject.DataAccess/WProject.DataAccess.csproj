@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B78D52BF-DBD0-4F95-8596-DEE5B3712C73}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WProject.DataAccess</RootNamespace>
+    <AssemblyName>WProject.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.OpenAccess, Version=2015.1.225.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2015.1.225.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Access.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="AccessObject.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="ActiveSession.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="AppSetting.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="Backlog.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="Category.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="DictItem.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Backlog.cs" />
+    <Compile Include="Entities\Category.cs" />
+    <Compile Include="Entities\DictItem.cs" />
+    <Compile Include="Entities\File.cs" />
+    <Compile Include="Entities\IGenericEntity.cs" />
+    <Compile Include="Entities\Project.cs" />
+    <Compile Include="Entities\Spring.cs" />
+    <Compile Include="Entities\Task.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="File.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="Group.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="Log.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="Project.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectMember.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectSetting.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Spring.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="Task.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="TaskAttachement.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="TaskDependency.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="TaskHistory.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="TaskTag.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="User.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="UserInGroup.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="wpContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="wpContext.rlinq.diagram">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </None>
+    <OpenAccessDeploy Include="wpContext.rlinq">
+      <Generator>MetaModelCodeGenerator</Generator>
+      <LastGenOutput>wpContext.cs</LastGenOutput>
+    </OpenAccessDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WProject.GenericLibrary\WProject.GenericLibrary.csproj">
+      <Project>{4b4c5d2c-7237-4b86-aed0-7927c926689f}</Project>
+      <Name>WProject.GenericLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WProject.WebApiClasses\WProject.WebApiClasses.csproj">
+      <Project>{393b81bc-61f8-4278-9221-b2054d447331}</Project>
+      <Name>WProject.WebApiClasses</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Import Condition="Exists('$(MSBuildExtensionsPath)\OpenAccess.targets')" Project="$(MSBuildExtensionsPath)\OpenAccess.targets" />
+</Project>

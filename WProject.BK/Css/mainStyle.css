@@ -1,0 +1,58 @@
+﻿@font-face{
+    font-family: "Segoe Ui Semilight";
+    src: url('../Resources/Fonts/segoeuisl.ttf'),
+    url('../Resources/Fonts/segoeuisl.ttf'); /* IE */
+}
+
+.titleBar 
+{
+    background-color: #9c27b0;
+    width: 100%;
+    height: 8px;
+    clear: both;
+}
+
+.topInnerShadow
+{
+    -webkit-box-shadow: inset -5px 4px 9px rgba(50, 50, 50, 0.75);
+    -ms-box-shadow: inset -5px 4px 9px rgba(50, 50, 50, 0.75);
+    box-shadow: inset -5px 4px 9px rgba(50, 50, 50, 0.75);
+}
+
+.topInnerLightShadow
+{
+    -webkit-box-shadow: inset 0 4px 5px rgba(35, 50, 50, 0.75);
+    -ms-box-shadow: inset 0 4px 5px rgba(35, 50, 50, 0.75);
+    box-shadow: inset 0 4px 5px rgba(35, 50, 50, 0.75);
+}
+
+.rotateNineteenDegree
+{
+    padding-bottom: 2px;
+    -webkit-transform: rotate(90.0deg);
+    -moz-transform: rotate(90.0deg);
+    -ms-transform: rotate(90.0deg);
+    -o-transform: rotate(90.0deg);
+    transform: rotate(90.0deg);
+}
+
+.centerInDiv
+{
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	
+	margin: auto;
+}
+
+.cursorHand
+{
+    cursor: default
+}
+
+.cursorHand:hover
+{
+    cursor: pointer
+}

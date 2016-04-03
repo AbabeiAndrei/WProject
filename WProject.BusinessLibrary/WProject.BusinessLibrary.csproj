@@ -40,28 +40,21 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="Telerik.OpenAccess, Version=2015.1.225.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2015.1.225.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\WProject.TestLibrary\WProject.DataAccess\bin\Release\Telerik.OpenAccess.35.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="WProject.DataAccess">
+      <HintPath>..\WProject.TestLibrary\WProject.DataAccess\bin\Release\WProject.DataAccess.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WpDb.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>WpDb.edml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Web.config" />
-    <None Include="WpDb.Diagram1.view">
-      <DependentUpon>WpDb.edml</DependentUpon>
-    </None>
-    <DevartEntityDeploy Include="WpDb.edml">
-      <Generator>DevartEfGenerator</Generator>
-      <LastGenOutput>WpDb.Designer.cs</LastGenOutput>
-    </DevartEntityDeploy>
-    <None Include="WpDb.edps">
-      <DependentUpon>WpDb.edml</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WProject.GenericLibrary\WProject.GenericLibrary.csproj">

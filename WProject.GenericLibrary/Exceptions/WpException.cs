@@ -10,6 +10,7 @@ namespace WProject.GenericLibrary.Exceptions
     public class WpException : Exception
     {
         public int ErrorCode { get; protected set; }
+        public string Metadata { get; set; }
 
         public WpException()
         {

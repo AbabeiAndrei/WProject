@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WProject.DataAccess;
 
 namespace WProject.BusinessLibrary
 {
-    public partial class User
+    public static class User
     {
-        public static User GetById(int uid, WModel context)
+        public static User GetById(int uid, wpContext context)
         {
-            return context.Users.FirstOrDefault(u => u.Id == uid);
+            return null;// context.Users.FirstOrDefault(u => u.Id == uid);
         }
+
+        public File Get
     }
 }

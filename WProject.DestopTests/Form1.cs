@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using WProject.BusinessLibrary;
+using WProject.DataAccess;
 
 namespace WProject.DestopTests
 {
@@ -17,10 +17,8 @@ namespace WProject.DestopTests
         {
             InitializeComponent();
 
-            using (WModel mctx = new WModel())
-            {
-                var s = mctx.Users;
-            }
+            var ml = Enumerable.Range(0, 50).Select(i => new Tuple<int, string>(i, "Item " + i)).ToList();
+            
         }
     }
 }

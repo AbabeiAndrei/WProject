@@ -1,0 +1,16 @@
+Colors :
+Blue 		: 2196f3 (Primary Color)
+Soft Blue 	: 90caf9
+Purple 		: 9c27b0 (Title)
+DarkPurple 	: 7b1fa2
+Teal 		: 009688 (Link)
+Red 		: ef5350
+Indigo		: 3f51b5
+Green 		: 4caf50
+LightGreen	: 8bc34a
+Yellow		: ffeb3b
+Amber		: ffc107
+Gray		: 575757 (Disable)
+
+Font : 
+Segoe UI

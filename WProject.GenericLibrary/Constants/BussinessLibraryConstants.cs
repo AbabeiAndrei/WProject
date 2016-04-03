@@ -11,6 +11,7 @@ namespace WProject.GenericLibrary.Constants
         TaskType,
         TaskState,
         TaskActivity,
+        BacklogState,
         Unknow
     }
 
@@ -38,7 +39,9 @@ namespace WProject.GenericLibrary.Constants
             {
                 {DictItemType.TaskType, "TSK_TYPE" },
                 {DictItemType.TaskState, "TSK_STATE" },
-                {DictItemType.TaskActivity, "TSK_ACTIVITY" }
+                {DictItemType.TaskActivity, "TSK_ACTIVITY" },
+                {DictItemType.BacklogState, "BCK_STATE" },
+                {DictItemType.Unknow, "NONE" }
             };
 
             AccessObjectCodes = new Dictionary<AccessObjectType, string>
@@ -52,6 +55,11 @@ namespace WProject.GenericLibrary.Constants
                 {AccessObjectType.AccessBacklog, "WProject.Access.Backlog" },
                 {AccessObjectType.AccessTask, "WProject.Access.Project.Task" }
             };
+        }
+
+        public static class Defaults
+        {
+            public static string Avatar { get; } = "Resources/Images/dummy_avatar.jpg";
         }
     }
 }

@@ -30,8 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,11 +47,35 @@
   <ItemGroup>
     <Compile Include="AjaxClasses\AjaxLoginReponse.cs" />
     <Compile Include="AjaxClasses\AjaxRecoverPasswordReponse.cs" />
+    <Compile Include="Classes\Backlog.cs" />
+    <Compile Include="Classes\Category.cs" />
+    <Compile Include="Classes\DictItem.cs" />
+    <Compile Include="Classes\File.cs" />
+    <Compile Include="Classes\Notification.cs" />
+    <Compile Include="Classes\Project.cs" />
+    <Compile Include="Classes\Spring.cs" />
+    <Compile Include="Classes\Task.cs" />
+    <Compile Include="Classes\User.cs" />
+    <Compile Include="Data\SimpleCache.cs" />
+    <Compile Include="Interfaces\ITableNameble.cs" />
+    <Compile Include="MessanginCenter\Classes.cs" />
+    <Compile Include="MessanginCenter\MessagingAddress.cs" />
+    <Compile Include="MessanginCenter\MessagingCenterErrors.cs" />
+    <Compile Include="MessanginCenter\MessagingCenterPackage.cs" />
+    <Compile Include="MessanginCenter\MessagingCenterResponse.cs" />
+    <Compile Include="MessanginCenter\WPClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Classes\" />
+    <ProjectReference Include="..\WProject.GenericLibrary\WProject.GenericLibrary.csproj">
+      <Project>{4B4C5D2C-7237-4B86-AED0-7927C926689F}</Project>
+      <Name>WProject.GenericLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
