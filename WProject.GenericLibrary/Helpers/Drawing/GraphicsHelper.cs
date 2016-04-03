@@ -11,6 +11,12 @@ namespace WProject.GenericLibrary.Helpers.Drawing
 {
     public static class GraphicsHelper
     {
+        /// <summary>
+        /// Set custom opacity to a color
+        /// </summary>
+        /// <param name="color">Source color</param>
+        /// <param name="opacity">Opacity in 0~255 range</param>
+        /// <returns></returns>
         public static Color SetOpacity(this Color color, int opacity)
         {
             return Color.FromArgb(opacity, color);

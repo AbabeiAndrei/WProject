@@ -33,10 +33,10 @@ namespace WProject.WebApiClasses.Data
         public static IList GetAll(string tableName)
         {
             if (string.IsNullOrEmpty(tableName))
-                return new List<object>();
+                return new List<TableNameble>();
 
             if (!_items.ContainsKey(tableName))
-                return new List<object>();
+                return new List<TableNameble>();
 
             return _items[tableName] ?? new List<object>();
         }

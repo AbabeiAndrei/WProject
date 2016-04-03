@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading.Tasks;
@@ -16,6 +17,12 @@ namespace WProject.Helpers
 {
     public static class UIHelper
     {
+        public const int BACKLOG_COLOR_BAR_WIDTH = 6;
+        public const int TASK_COLOR_BAR_WIDTH = 6;
+        public const string ApplicationName = "WProject";
+
+        public static List<int> OpenedBackLogs { get; }
+
         private static WpLoaderControl _loaderControl;
 
         public static ctrlHeader HeaderControl { get; set; }
@@ -25,6 +32,11 @@ namespace WProject.Helpers
         public static ctrlStatusBar StatusBar { get; set; }
 
         public static frmMain MainForm { get; set; }
+
+        static UIHelper()
+        {
+            OpenedBackLogs = new List<int>();
+        }
 
         public static void RunOnUiThread(Action action)
         {

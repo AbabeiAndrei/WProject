@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\EventArgs.cs" />
     <Compile Include="Controls\Base\WpBaseUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

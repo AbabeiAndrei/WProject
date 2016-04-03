@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using WProject.GenericLibrary.Helpers.Extensions;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.GenericLibrary.WinApi;
+using WProject.UiLibrary.Classes;
 using WProject.UiLibrary.Designer;
 using WProject.UiLibrary.Designer.Convertors;
 using WProject.UiLibrary.Helpers;
@@ -208,7 +209,7 @@ namespace WProject.UiLibrary.Controls
 
         #region Events
 
-        public event EventHandler SelectedItemChanged;
+        public event SelectedItemChangeHandler SelectedItemChanged;
 
         #endregion
         
@@ -313,7 +314,7 @@ namespace WProject.UiLibrary.Controls
                         e.Graphics.DrawImage(mimage, 
                                              new RectangleF(CurrentStyle.Padding.Left,
                                                             CurrentStyle.Padding.Top - 4,
-                                                            Width - CurrentStyle.Padding.Right,
+                                                            Height - CurrentStyle.Padding.Right,
                                                             Height - CurrentStyle.Padding.Bottom));
                 }
 
@@ -381,7 +382,7 @@ namespace WProject.UiLibrary.Controls
 
             if (ParentForm != null)
             {
-                ParentForm.Deactivate += (sender, args) => CloseItemsContainer();
+                ParentForm.Deactivate += OnParentFormDezactivate;
                 
                 User32.SetParent(frmItemsContainer.Handle, ParentForm.Handle);
             }
@@ -406,7 +407,7 @@ namespace WProject.UiLibrary.Controls
         {
             var mlbl = new WpLabel
             {
-                Style = ItemStyle,
+                Style = ItemStyle.Clone(),
                 StyleType = StyleType.Normal,
                 Text = DisplayMember?.Invoke(item) ?? item?.ToString() ?? string.Empty,
                 Tag = ValueMember?.Invoke(item) ?? item,
@@ -416,7 +417,7 @@ namespace WProject.UiLibrary.Controls
             if (ShowImage && ImageMember != null)
             {
 
-                var mimg = ImageMember(item);/*
+                var mimg = ImageMember(item);
                 if(mlbl.Style != null)
                 {
                     if(mlbl.Style.NormalStyle != null)
@@ -427,8 +428,9 @@ namespace WProject.UiLibrary.Controls
                         mlbl.Style.HoverStyle.Padding = mlbl.Style.HoverStyle.Padding.SetPadding(Height, Direction.Left);
                     if (mlbl.Style.SelectedStyle != null)
                         mlbl.Style.SelectedStyle.Padding = mlbl.Style.SelectedStyle.Padding.SetPadding(Height, Direction.Left);
-                }*/
-                if(mimg != null)
+                    mlbl.ApplyStyle();
+                }
+                if (mimg != null)
                     mlbl.Paint += (sender, args) => args.Graphics.DrawImage(mimg, new RectangleF(0, 0, Height, Height));
             }
 
@@ -437,15 +439,20 @@ namespace WProject.UiLibrary.Controls
 
         private void SelectItem(int index)
         {
+            var moldIndex = _selectedIndex;
             _selectedIndex = index;
             Refresh();
             CloseItemsContainer();
 
-            SelectedItemChanged?.Invoke(this, EventArgs.Empty);
+            SelectedItemChanged?.Invoke(this, new SelectedItemChangeHandlerArgs
+            {
+                OldSelectedIndex = moldIndex,
+                NewSelectedIndex = index
+            });
         }
 
         #endregion
-
+        
         #region Public methods
 
         public void CloseItemsContainer()
@@ -459,12 +466,12 @@ namespace WProject.UiLibrary.Controls
 
         public void OpenItemsContainer()
         {
-            if (frmItemsContainer == null || frmItemsContainer.IsDisposed)
+            if (frmItemsContainer == null || frmItemsContainer.IsDisposed || frmItemsContainer.ParentForm == null)
                 CreateItems();
 
             if (frmItemsContainer == null)
                 return;
-            frmItemsContainer.Location = Location;
+            frmItemsContainer.Location = ParentForm?.PointToClient(Parent.PointToScreen(Location)) ?? Point.Empty;
 
             foreach (WpLabel mlabel in frmItemsContainer.Controls.OfType<WpLabel>().OrderBy(l => l.TabIndex))
                 frmItemsContainer.Controls.SetChildIndex(mlabel, Math.Max(frmItemsContainer.Controls.Count - 1 - mlabel.TabIndex, 0));
@@ -495,5 +502,17 @@ namespace WProject.UiLibrary.Controls
         }
 
         #endregion
+
+        #region Events
+
+        private void OnParentFormDezactivate(object sender, EventArgs e)
+        {
+            CloseItemsContainer();
+        }
+
+        #endregion
+
     }
+
+    public delegate void SelectedItemChangeHandler(object sender, SelectedItemChangeHandlerArgs args);
 }

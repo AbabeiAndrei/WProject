@@ -215,6 +215,9 @@
     <EmbeddedResource Include="Controls\MainPageControls\DashboardControls\ctrlDashBoardSprings.resx">
       <DependentUpon>ctrlDashBoardSprings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\DashboardControls\ctrlDashBoardTaskItem.resx">
+      <DependentUpon>ctrlDashBoardTaskItem.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainPageControls\DashboardControls\ctrlDashBoardTasks.resx">
       <DependentUpon>ctrlDashBoardTasks.cs</DependentUpon>
     </EmbeddedResource>

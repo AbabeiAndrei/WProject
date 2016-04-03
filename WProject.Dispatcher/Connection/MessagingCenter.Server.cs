@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
 using WProject.DataAccess;
+using WProject.GenericLibrary.Constants;
 using WProject.GenericLibrary.Exceptions;
 using WProject.GenericLibrary.Helpers.Extensions;
 using WProject.Library.Helpers.Log;
 using WProject.Library.Helpers.Utils.Db;
+using WProject.WebApiClasses.Interfaces;
 using WProject.WebApiClasses.MessanginCenter;
 
 namespace WProject.Dispatcher.Connection
@@ -269,13 +271,129 @@ namespace WProject.Dispatcher.Connection
                 {
                     IDictionary<string, List<object>> mdata = new Dictionary<string, List<object>>();
 
-                    mdata.Add(WebApiClasses.Classes.User.TableName, mctx.Users.Select(u => (object)User.ToWebApi(u, mctx)).ToList());
-                    mdata.Add(WebApiClasses.Classes.DictItem.TableName, mctx.DictItems.Select(d => (object)DictItem.ToWebApi(d)).ToList());
+                    mdata.Add(WebApiClasses.Classes.User.TableName, new List<object>(mctx.Users.Select(u => User.ToWebApi(u, mctx))));
+                    mdata.Add(WebApiClasses.Classes.DictItem.TableName, new List<object>(mctx.DictItems.Select(d => DictItem.ToWebApi(d))));
 
                     mres.Content = JsonConvert.SerializeObject(new SimpleCacheResponse
                     {
                         Data = mdata
                     });
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
+
+        public MessagingCenterResponse ChangeTaskState(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                if (string.IsNullOrEmpty(package.Content))
+                    throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
+
+                var mreq = JsonConvert.DeserializeObject<RegisterTaskStateRequest>(package.Content);
+
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+                    var mtask = mctx.Tasks.FirstOrDefault(t => t.Id == mreq.TaskId);
+
+                    if(mtask == null)
+                        throw new WpException(MessagingCenterErrors.ERROR_REGISTER_TASK_STATE_TASK_NOT_FOUND, $"Task {mreq.TaskId} not found.");
+
+                    var mstate = mctx.DictItems.FirstOrDefault(di => di.Type == Constants.DictItemCodes[DictItemType.TaskState] &&
+                                                                     di.Code == mreq.NewStateCode);
+
+                    if(mstate == null)
+                        throw new WpException(MessagingCenterErrors.ERROR_REGISTER_TASK_STATE_STATE_NOT_FOUND, $"State {mreq.NewStateCode} not found.");
+
+                    mtask.StateId = mstate.Id;
+
+                    try
+                    {
+                        mctx.SaveChanges();
+                    }
+                    catch (Exception mex)
+                    {
+                        throw new WpException(MessagingCenterErrors.ERROR_REGISTER_TASK_STATE_SAVE_CONTEXT, "Cannot save new state for task", mex);
+                    }
+
+                    mres.Content = JsonConvert.SerializeObject(new RegisterTaskStateResponse());
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
+
+        public MessagingCenterResponse ChangeBacklogState(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                if (string.IsNullOrEmpty(package.Content))
+                    throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
+
+                var mreq = JsonConvert.DeserializeObject<RegisterBacklogStateRequest>(package.Content);
+
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+                    var mbacklog = mctx.Backlogs.FirstOrDefault(t => t.Id == mreq.BacklogId);
+
+                    if (mbacklog == null)
+                        throw new WpException(MessagingCenterErrors.ERROR_REGISTER_BACKLOG_STATE_BACKLOG_NOT_FOUND, $"Backlog {mreq.BacklogId} not found.");
+
+                    var mstate = mctx.DictItems.FirstOrDefault(di => di.Type == Constants.DictItemCodes[DictItemType.BacklogState] &&
+                                                                     di.Code == mreq.NewStateCode);
+
+                    if (mstate == null)
+                        throw new WpException(MessagingCenterErrors.ERROR_REGISTER_BACKLOG_STATE_STATE_NOT_FOUND, $"State {mreq.NewStateCode} not found.");
+
+                    mbacklog.StateId = mstate.Id;
+
+                    try
+                    {
+                        mctx.SaveChanges();
+                    }
+                    catch (Exception mex)
+                    {
+                        throw new WpException(MessagingCenterErrors.ERROR_REGISTER_BACKLOG_STATE_SAVE_CONTEXT, "Cannot save new state for backlog", mex);
+                    }
+
+                    mres.Content = JsonConvert.SerializeObject(new RegisterBacklogStateResponse());
                 }
             }
             catch (WpException mex)

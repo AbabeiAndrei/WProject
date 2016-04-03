@@ -6,12 +6,15 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using WProject.Connection;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.GenericLibrary.WinApi;
 using WProject.Helpers;
+using WProject.WebApiClasses.Classes;
 using WProject.WebApiClasses.Data;
 using WProject.WebApiClasses.MessanginCenter;
+using Task = System.Threading.Tasks.Task;
 
 namespace WProject
 {
@@ -49,6 +52,7 @@ namespace WProject
 
                 await Connection.Connection.InitConnection();
                 Connection.Connection.InitStuff();
+                await LoadSimpleCache();
                 return true;
             }
             catch (Exception mex)
@@ -60,33 +64,50 @@ namespace WProject
 
         public static async Task LoadSimpleCache()
         {
-            Logger.Log("Load simple cache");
-
-            var mres = await WebCallFactory.ExecuteMethod("GetSimleCache", null);
-
-            if(mres.ErrorCode > 0)
+            try
             {
-                Logger.Log(mres.Error);
-                return;
-            }
+                Logger.Log("Load simple cache");
 
-            if (string.IsNullOrEmpty(mres.Content))
+                var mres = await WebCallFactory.ExecuteMethod("GetSimleCache", null);
+
+                if(mres.ErrorCode > 0)
+                {
+                    Logger.Log(mres.Error);
+                    return;
+                }
+
+                if (string.IsNullOrEmpty(mres.Content))
+                {
+                    Logger.Log("Simple cache looks like to be empty");
+                    return;
+                }
+
+                var mresData = JsonConvert.DeserializeObject<SimpleCacheResponse>(mres.Content);
+
+                if (mresData != null)
+                {
+                    if(mresData.Data.ContainsKey(User.TableName))
+                        SimpleCache.SetData(User.TableName, mresData.Data[User.TableName]
+                                                                    .Cast<JObject>()
+                                                                    .Select(j => j.ToObject<User>())
+                                                                    .ToList());
+
+                    if (mresData.Data.ContainsKey(DictItem.TableName))
+                        SimpleCache.SetData(DictItem.TableName, mresData.Data[DictItem.TableName]
+                                                                        .Cast<JObject>()
+                                                                        .Select(j => j.ToObject<DictItem>())
+                                                                        .ToList());
+
+
+                    Logger.Log(mresData.Data?.Count + " elements loaded in simple cache");
+                }
+                else
+                    Logger.Log("Response from simple GetSimleCache is null");
+            }
+            catch (Exception mex)
             {
-                Logger.Log("Simple cache looks like to be empty");
-                return;
+                Logger.Log(mex);
             }
-
-            var mresData = JsonConvert.DeserializeObject<SimpleCacheResponse>(mres.Content);
-
-            if (mresData != null)
-            {
-                foreach (var mdata in mresData.Data)
-                    SimpleCache.SetData(mdata.Key, mdata.Value);
-
-                Logger.Log(mresData.Data?.Count + " elements loaded in simple cache");
-            }
-            else
-                Logger.Log("Response from simple GetSimleCache is null");
         }
     }
 }

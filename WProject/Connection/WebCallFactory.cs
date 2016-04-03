@@ -145,6 +145,56 @@ namespace WProject.Connection
             }
         }
 
+        public static async Task<RegisterTaskStateResponse> ChangeTaskState(int taskId, string newState)
+        {
+            return await ExecuteMethod<RegisterTaskStateResponse>("ChangeTaskState", new RegisterTaskStateRequest
+            {
+                TaskId = taskId,
+                NewStateCode = newState
+            });
+        }
+
+        public static async Task<RegisterBacklogStateResponse> ChangeBacklogState(int backlogId, string newState)
+        {
+            return await ExecuteMethod<RegisterBacklogStateResponse>("ChangeBacklogState", new RegisterBacklogStateRequest
+            {
+                BacklogId = backlogId,
+                NewStateCode = newState
+            });
+        }
+
+        public static async Task<T> ExecuteMethod<T>(string method, object content, bool continueThrow = false, bool checkForEmpty = true)
+            where T : IMessangingCenterResponse, new()
+        {
+            try
+            {
+                var mres = await ExecuteMethod(method, content);
+
+                if (mres == null)
+                    throw new Exception($"[{method}]Response is empty");
+
+                if (mres.ErrorCode != MessagingCenterErrors.NO_ERROR)
+                    throw new WpException(mres.ErrorCode, mres.Error, mres.Exception);
+
+                if (checkForEmpty && string.IsNullOrEmpty(mres.Content))
+                        throw new Exception($"[{method}]Content is empty");
+
+                return JsonConvert.DeserializeObject<T>(mres.Content);
+            }
+            catch (Exception mex)
+            {
+                if (continueThrow)
+                    throw;
+
+                Logger.Log(mex);
+                return new T
+                {
+                    Error = true,
+                    Exception = mex
+                };
+            }
+        }
+
         /*
         ＜￣｀ヽ、　　　　　　　／ ￣ ＞
 　        ゝ、　　＼　／⌒ヽ,ノ 　  /´

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WProject.Classes;
 using WProject.Connection;
+using WProject.GenericLibrary.Constants;
 using WProject.GenericLibrary.Helpers.Drawing;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
@@ -66,6 +67,7 @@ namespace WProject.Controls
 
             ddProjects = new WpDropDown<Project>
             {
+                Name = UIHelper.ApplicationName,
                 Style = WpThemeReader.GetUiStyle(WpThemeConstants.WPSTYLE_DROPDOWN_LIST),
                 ItemStyle = WpThemeReader.GetUiStyle(WpThemeConstants.WPSTYLE_DROPDOWN_LIST_ITEM),
                 DisplayMember = p => p?.Name,

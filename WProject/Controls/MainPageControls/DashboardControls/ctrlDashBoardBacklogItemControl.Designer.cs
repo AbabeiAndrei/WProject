@@ -56,6 +56,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             this.lblName.Name = "lblName";
             this.lblName.Selected = false;
             this.lblName.Size = new System.Drawing.Size(275, 101);
+            this.lblName.Font = new System.Drawing.Font("Segoe UI Light", 15f);
             this.lblName.Style = null;
             this.lblName.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.lblName.TabIndex = 0;

@@ -69,33 +69,48 @@
             // 
             // flwDone
             // 
+            this.flwDone.AllowDrop = true;
             this.flwDone.BackColor = System.Drawing.Color.Transparent;
             this.flwDone.Dock = System.Windows.Forms.DockStyle.Right;
             this.flwDone.Location = new System.Drawing.Point(824, 0);
             this.flwDone.Name = "flwDone";
             this.flwDone.Size = new System.Drawing.Size(200, 60);
             this.flwDone.TabIndex = 2;
+            this.flwDone.Tag = "2";
             this.flwDone.Visible = false;
+            this.flwDone.DragDrop += new System.Windows.Forms.DragEventHandler(this.flwDragEfect_Drop);
+            this.flwDone.DragEnter += new System.Windows.Forms.DragEventHandler(this.flwDragEfect_Enter);
+            this.flwDone.DragLeave += new System.EventHandler(this.flwDragEfect_Leave);
             // 
             // flwInProgress
             // 
+            this.flwInProgress.AllowDrop = true;
             this.flwInProgress.BackColor = System.Drawing.Color.Transparent;
             this.flwInProgress.Dock = System.Windows.Forms.DockStyle.Right;
             this.flwInProgress.Location = new System.Drawing.Point(624, 0);
             this.flwInProgress.Name = "flwInProgress";
             this.flwInProgress.Size = new System.Drawing.Size(200, 60);
             this.flwInProgress.TabIndex = 1;
+            this.flwInProgress.Tag = "1";
             this.flwInProgress.Visible = false;
+            this.flwInProgress.DragDrop += new System.Windows.Forms.DragEventHandler(this.flwDragEfect_Drop);
+            this.flwInProgress.DragEnter += new System.Windows.Forms.DragEventHandler(this.flwDragEfect_Enter);
+            this.flwInProgress.DragLeave += new System.EventHandler(this.flwDragEfect_Leave);
             // 
             // flwToDo
             // 
+            this.flwToDo.AllowDrop = true;
             this.flwToDo.BackColor = System.Drawing.Color.Transparent;
             this.flwToDo.Dock = System.Windows.Forms.DockStyle.Right;
             this.flwToDo.Location = new System.Drawing.Point(424, 0);
             this.flwToDo.Name = "flwToDo";
             this.flwToDo.Size = new System.Drawing.Size(200, 60);
             this.flwToDo.TabIndex = 0;
+            this.flwToDo.Tag = "0";
             this.flwToDo.Visible = false;
+            this.flwToDo.DragDrop += new System.Windows.Forms.DragEventHandler(this.flwDragEfect_Drop);
+            this.flwToDo.DragEnter += new System.Windows.Forms.DragEventHandler(this.flwDragEfect_Enter);
+            this.flwToDo.DragLeave += new System.EventHandler(this.flwDragEfect_Leave);
             // 
             // ctrlDashBoardBacklogItem
             // 

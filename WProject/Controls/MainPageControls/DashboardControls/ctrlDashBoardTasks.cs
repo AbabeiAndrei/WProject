@@ -13,68 +13,20 @@ using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
 using WProject.UiLibrary;
 using WProject.WebApiClasses.Classes;
+using Task = System.Threading.Tasks.Task;
 
 namespace WProject.Controls.MainPageControls.DashboardControls
 {
     public partial class ctrlDashBoardTasks : WpUserControl
     {
+        #region Constructors
+
         public ctrlDashBoardTasks()
         {
             InitializeComponent();
         }
 
-        public async System.Threading.Tasks.Task LoadTasks(Spring spring, Category category)
-        {
-            Logger.Log("Show backLogs for " + (category != null 
-                                                   ? $"category {category.Name}"
-                                                   : $"spring {spring?.Name}"));
-            
-            try
-            {
-                UIHelper.ShowLoader("Get backlogs");
-
-                pnlBackLogs.SuspendLayout();
-
-                ClearControls();
-
-                var mres = await WebCallFactory.GetAllBackLogs(spring?.Id, category?.Id);
-
-                if (mres.Error)
-                    throw mres.Exception;
-
-                pnlBackLogs.Controls.AddRange(mres.Backlogs.Select(CreateBackLogControl).Cast<Control>().ToArray());
-               
-                UIHelper.HideLoader();
-            }
-            catch (Exception mex)
-            {
-                UIHelper.HideLoader();
-                UIHelper.ShowError(mex);
-            }
-            finally
-            {
-                pnlBackLogs.ResumeLayout();
-            }
-        }
-
-        private void ClearControls()
-        {
-            foreach (Control mcontrol in pnlBackLogs.Controls.Cast<Control>().Where(mcontrol => !mcontrol.Disposing))
-                mcontrol.Dispose();
-
-            pnlBackLogs.Controls.Clear();
-        }
-
-        private ctrlDashBoardBacklogItem CreateBackLogControl(Backlog backLog)
-        {
-            return new ctrlDashBoardBacklogItem(backLog)
-            {
-                Size = new Size(lblDone.Right - pbAdd.Left, 56),
-                Dock = DockStyle.Top,
-                Margin = new Padding(0, 4, 0, 2),
-                Columns = DashBoardColumnsCollectionSize.Create(lblToDo.Width, lblInProgress.Width, lblDone.Width, Width - ctrlDashBoardBacklogItem.DefaultSize.Width)
-            };
-        }
+        #endregion
 
         #region Overrides of Control
 
@@ -102,5 +54,89 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         }
 
         #endregion
+
+        #region Public methods
+
+        public async Task LoadTasks(Spring spring, Category category)
+        {
+            Logger.Log("Show backLogs for " + (category != null
+                                                   ? $"category {category.Name}"
+                                                   : $"spring {spring?.Name}"));
+
+            try
+            {
+                UIHelper.ShowLoader("Get backlogs");
+
+                pnlBackLogs.SuspendLayout();
+
+                ClearControls();
+
+                var mres = await WebCallFactory.GetAllBackLogs(spring?.Id, category?.Id);
+
+                if (mres.Error)
+                    throw mres.Exception;
+
+                pnlBackLogs.Controls.AddRange(mres.Backlogs.Select(CreateBackLogControl).Cast<Control>().ToArray());
+
+                UIHelper.HideLoader();
+            }
+            catch (Exception mex)
+            {
+                UIHelper.HideLoader();
+                UIHelper.ShowError(mex);
+            }
+            finally
+            {
+                pnlBackLogs.ResumeLayout();
+            }
+        }
+
+        #endregion
+
+        #region Private methods
+
+        private void ClearControls()
+        {
+            foreach (Control mcontrol in pnlBackLogs.Controls.Cast<Control>().Where(mcontrol => !mcontrol.Disposing))
+                mcontrol.Dispose();
+
+            pnlBackLogs.Controls.Clear();
+        }
+
+        private ctrlDashBoardBacklogItem CreateBackLogControl(Backlog backLog)
+        {
+            var mctrlbtem = new ctrlDashBoardBacklogItem(backLog)
+            {
+                Size = new Size(lblDone.Right - pbAdd.Left, 56),
+                Dock = DockStyle.Top,
+                Margin = new Padding(0, 4, 0, 2),
+                Columns = DashBoardColumnsCollectionSize.Create(lblToDo.Width,
+                                                                lblInProgress.Width,
+                                                                lblDone.Width,
+                                                                Width - ctrlDashBoardBacklogItem.DefaultSize.Width)
+            };
+
+            if(UIHelper.OpenedBackLogs.Contains(backLog.Id))
+                mctrlbtem.Expand();
+
+            mctrlbtem.OnCollaptionChange += (sender, args) =>
+            {
+                Logger.Log("UIHelper.OpenedBackLogs updated");
+                var mc = sender as ctrlDashBoardBacklogItem;
+
+                if (mc == null)
+                    return;
+
+                if (args.Collapsed)
+                    UIHelper.OpenedBackLogs.RemoveAll(i => i == mc.BackLog?.Id);
+                else if (mc.BackLog != null)
+                    UIHelper.OpenedBackLogs.Add(mc.BackLog.Id);
+            };
+
+            return mctrlbtem;
+        }
+
+        #endregion
+
     }
 }

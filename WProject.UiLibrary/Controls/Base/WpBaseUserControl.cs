@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using WProject.GenericLibrary.Helpers;
 using WProject.GenericLibrary.WinApi;
+using WProject.UiLibrary.Classes;
 
 namespace WProject.UiLibrary.Controls.Base
 {
@@ -21,6 +22,12 @@ namespace WProject.UiLibrary.Controls.Base
 
         #endregion
 
+        #region Properties
+
+        //public virtual bool Dragable { get; set; }
+
+        #endregion
+        
         #region Constructors
 
         protected WpBaseUserControl()

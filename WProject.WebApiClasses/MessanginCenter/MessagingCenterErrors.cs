@@ -23,5 +23,13 @@ namespace WProject.WebApiClasses.MessanginCenter
         public const int ERROR_USER_OR_PASS_WRONG = 8;
         public const int ERROR_USER_IS_EXPIRED = 9;
         public const int ERROR_USER_IS_SUSPENDED = 10;
+
+        public const int ERROR_REGISTER_TASK_STATE_TASK_NOT_FOUND = 11;
+        public const int ERROR_REGISTER_TASK_STATE_STATE_NOT_FOUND = 12;
+        public const int ERROR_REGISTER_TASK_STATE_SAVE_CONTEXT = 13;
+
+        public const int ERROR_REGISTER_BACKLOG_STATE_BACKLOG_NOT_FOUND = 14;
+        public const int ERROR_REGISTER_BACKLOG_STATE_STATE_NOT_FOUND = 15;
+        public const int ERROR_REGISTER_BACKLOG_STATE_SAVE_CONTEXT = 16;
     }
 }

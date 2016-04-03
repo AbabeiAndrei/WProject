@@ -4,12 +4,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WProject.WebApiClasses.Classes;
+using WProject.WebApiClasses.Interfaces;
 
 namespace WProject.WebApiClasses.MessanginCenter
 {
-    public class SimpleCacheResponse
+    public class GenericResponse : IMessangingCenterResponse
     {
-        public IDictionary<string, List<object>> Data { get; set; } 
+        public object Date { get; set; }
+
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
+
+    public class SimpleCacheResponse : IMessangingCenterResponse
+    {
+        public IDictionary<string, List<object>> Data { get; set; }
+
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
     }
 
     public class GetAllProjectsRequest
@@ -28,13 +48,16 @@ namespace WProject.WebApiClasses.MessanginCenter
         }
     }
 
-    public class GetAllProjectsResponse
+    public class GetAllProjectsResponse : IMessangingCenterResponse
     {
         public IEnumerable<Project> Projects { get; set; }
 
-        public Exception Exception { get; set; }
+        #region Implementation of IMessangingCenterResponse
 
+        public Exception Exception { get; set; }
         public bool Error { get; set; }
+
+        #endregion
 
         public GetAllProjectsResponse()
         {
@@ -49,13 +72,16 @@ namespace WProject.WebApiClasses.MessanginCenter
         public string Pass { get; set; }
     }
 
-    public class ExecuteLoginResonse
+    public class ExecuteLoginResonse : IMessangingCenterResponse
     {
         public User User { get; set; }
 
-        public Exception Exception { get; set; }
+        #region Implementation of IMessangingCenterResponse
 
+        public Exception Exception { get; set; }
         public bool Error { get; set; }
+
+        #endregion
     }
 
     public class GetSpringsRequest
@@ -76,13 +102,16 @@ namespace WProject.WebApiClasses.MessanginCenter
         }
     }
 
-    public class GetSpringsResponse
+    public class GetSpringsResponse : IMessangingCenterResponse
     {
         public IEnumerable<Spring> Springs { get; set; }
 
-        public Exception Exception { get; set; }
+        #region Implementation of IMessangingCenterResponse
 
+        public Exception Exception { get; set; }
         public bool Error { get; set; }
+
+        #endregion
     }
 
     public class GetAllBackLogsRequest
@@ -92,13 +121,48 @@ namespace WProject.WebApiClasses.MessanginCenter
         public int? CategoryId { get; set; }
     }
 
-    public class GetAllBackLogsResonse
+    public class GetAllBackLogsResonse : IMessangingCenterResponse
     {
         public IEnumerable<Backlog> Backlogs { get; set; }
+        
+        #region Implementation of IMessangingCenterResponse
 
         public Exception Exception { get; set; }
-
         public bool Error { get; set; }
+
+        #endregion
     }
-    
+
+    public class RegisterTaskStateRequest 
+    {
+        public int TaskId { get; set; }
+        public string NewStateCode { get; set; }
+    }
+
+    public class RegisterTaskStateResponse : IMessangingCenterResponse
+    {
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
+
+    public class RegisterBacklogStateRequest
+    { 
+        public int BacklogId { get; set; }
+        public string NewStateCode { get; set; }
+    }
+
+    public class RegisterBacklogStateResponse : IMessangingCenterResponse
+    {
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
+
 }
