@@ -1,0 +1,184 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
+using WProject.GenericLibrary.Exceptions;
+using WProject.GenericLibrary.Helpers.Log;
+using WProject.WebApiClasses.MessanginCenter;
+
+namespace WProject.Connection
+{
+    public static class WebCallFactory
+    {
+        public static async Task<MessagingCenterResponse> TestMethod()
+        {
+            return await ExecuteMethod("TestResponse", 1);
+        }
+
+        public static async Task<GetAllProjectsResponse> GetAllProjects(int userId)
+        {
+            try
+            {
+                var mres = await ExecuteMethod("GetAllProjects", new GetAllProjectsRequest
+                {
+                    OnlyActive = true,
+                    UserId = userId
+                });
+
+                if(mres == null)
+                    throw new Exception("[GetAllProjects]Response is empty");
+
+                if(mres.ErrorCode != MessagingCenterErrors.NO_ERROR)
+                    throw new WpException(mres.ErrorCode, mres.Error, mres.Exception);
+
+                if(string.IsNullOrEmpty(mres.Content))
+                    throw new Exception("[GetAllProjects]Content is empty");
+
+                return JsonConvert.DeserializeObject<GetAllProjectsResponse>(mres.Content);
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+                return new GetAllProjectsResponse
+                {
+                    Error = true,
+                    Exception = mex
+                };
+            }
+        }
+
+        public static async Task<ExecuteLoginResonse> ExecuteLogin(string user, string pass)
+        {
+            try
+            {
+                var mres = await ExecuteMethod("ExecuteLogin", new ExecuteLoginRequest
+                {
+                    Name = user,
+                    Pass = pass
+                });
+
+                if (mres == null)
+                    throw new Exception("[ExecuteLogin]Response is empty");
+
+                if (mres.ErrorCode != MessagingCenterErrors.NO_ERROR)
+                    throw new WpException(mres.ErrorCode, mres.Error, mres.Exception);
+
+                if (string.IsNullOrEmpty(mres.Content))
+                    throw new Exception("[ExecuteLogin]Content is empty");
+
+                return JsonConvert.DeserializeObject<ExecuteLoginResonse>(mres.Content);
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+                return new ExecuteLoginResonse
+                {
+                    Error = true,
+                    Exception = mex
+                };
+            }
+        }
+
+        public static async Task<GetSpringsResponse> GetSprings(int projectid, int userId)
+        {
+            try
+            {
+                var mres = await ExecuteMethod("GetSprings", new GetSpringsRequest
+                {
+                    ProjectId = projectid,
+                    UserId = userId
+                });
+
+                if (mres == null)
+                    throw new Exception("[GetSprings]Response is empty");
+
+                if (mres.ErrorCode != MessagingCenterErrors.NO_ERROR)
+                    throw new WpException(mres.ErrorCode, mres.Error, mres.Exception);
+
+                if (string.IsNullOrEmpty(mres.Content))
+                    throw new Exception("[GetSprings]Content is empty");
+
+                return JsonConvert.DeserializeObject<GetSpringsResponse>(mres.Content);
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+                return new GetSpringsResponse
+                {
+                    Error = true,
+                    Exception = mex
+                };
+            }
+        }
+
+        public static async Task<GetAllBackLogsResonse> GetAllBackLogs(int? sprindId, int? categoryId)
+        {
+            try
+            {
+                var mres = await ExecuteMethod("GetAllBackLogs", new GetAllBackLogsRequest
+                {
+                    SpringId = sprindId,
+                    CategoryId = categoryId
+                });
+
+                if (mres == null)
+                    throw new Exception("[GetAllBackLogs]Response is empty");
+
+                if (mres.ErrorCode != MessagingCenterErrors.NO_ERROR)
+                    throw new WpException(mres.ErrorCode, mres.Error, mres.Exception);
+
+                if (string.IsNullOrEmpty(mres.Content))
+                    throw new Exception("[GetAllBackLogs]Content is empty");
+
+                return JsonConvert.DeserializeObject<GetAllBackLogsResonse>(mres.Content);
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+                return new GetAllBackLogsResonse
+                {
+                    Error = true,
+                    Exception = mex
+                };
+            }
+        }
+
+        /*
+        ＜￣｀ヽ、　　　　　　　／ ￣ ＞
+　        ゝ、　　＼　／⌒ヽ,ノ 　  /´
+　　　        ゝ （ ( ͡◉ ͜> ͡◉) ／
+　　 　　        >　 　 　,ノ
+　　　　　        ∠_,,,/´       The messanger
+        */
+        public static async Task<MessagingCenterResponse> ExecuteMethod(string method, object content)
+        {
+            try
+            {
+                if (!Connection.ConnectionIsAlive)
+                    throw new Exception("Connection is not allive");
+
+
+                MessagingCenterPackage mpackage = new MessagingCenterPackage
+                {
+                    FromAddress = Connection.FromAddress,
+                    Method = method
+                };
+
+                if (content != null)
+                    mpackage.Content = JsonConvert.SerializeObject(content);
+                else
+                    mpackage.Content = string.Empty;
+
+                Connection.NetworkTransferInProgress = true;
+                MessagingCenterResponse mresult = await Connection.Hub.Invoke<MessagingCenterResponse>("CallServiceMethod", mpackage);
+                return mresult;
+            }
+            finally
+            {
+                Connection.NetworkTransferInProgress = false;
+            }
+        }
+    }
+}

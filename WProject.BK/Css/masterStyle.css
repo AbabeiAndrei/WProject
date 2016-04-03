@@ -1,0 +1,56 @@
+﻿body
+{
+    padding: 0;
+    margin: 0;
+}
+
+.titleBarLogo
+{
+    padding-top: 5px;
+    width: 42px;
+    height: 32px;
+    float: left;
+    -ms-background-size: cover;
+    background-size: cover;
+}
+
+.rightSideTitleBar
+{
+    float: right;
+}
+
+.titleUserAvatar
+{
+    width: 40px;
+    height: 40px;
+}
+
+.navigationBar
+{
+    background-color: #2196f3;
+    width: auto;
+    height: 32px;
+    clear: both;
+    padding-left: 10px;
+    border-bottom: 1px black solid;
+}
+
+.navigationBar > a
+{
+    text-decoration: none;
+    font-family: "Segoe UI";
+    font-size: 20px;
+    color: white;
+    font-weight: 200;
+    padding-top: 2px;
+    padding-left: 6px;
+    display:inline-block;
+}
+
+.navigationBar > a.navigationBarItemActive
+{
+    font-weight: 500;
+    color: #ffeb3b;
+    padding-right: 4px;
+    border-bottom: 3px solid #ffeb3b;
+}

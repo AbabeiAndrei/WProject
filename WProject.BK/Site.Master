@@ -1,0 +1,40 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="WProject.Site" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>WProject</title>
+    <link rel="stylesheet" type="text/css" href="Css/mainStyle.css">
+    <link rel="stylesheet" type="text/css" href="Css/masterStyle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <asp:ContentPlaceHolder ID="headPlaceHolder" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="titleBar titleBarShadow" style="height: 40px">
+            <a href="Site.Master">
+                <img src="Resources/Icons/incomplete_icon.png" alt="WProject" class="titleBarLogo"/>
+            </a>
+            <div class="rightSideTitleBar">
+                <!--<img runnat="server" src="Resources/Images/dummy_avatar.jpg" id="userAvatar" alt="WProject" class="titleBarLogo"/>-->
+                <asp:Image ID="userAvatar" runat="server" CssClass="titleBarLogo" ImageUrl="Resources/Images/dummy_avatar.jpg"/>
+            </div>
+        </div>
+        <div class="navigationBar topInnerShadow">
+            <a href="Dashboard.aspx" class="navigationBarItemActive">Dashboard</a>
+            <a href="#">Timeline</a>
+            <a href="#">Queries</a>
+            <a href="#">Views</a>
+            <a href="#">Chats</a>
+            <a href="#">Admin</a>
+            <a href="#">Help</a>
+        </div>
+        <asp:ContentPlaceHolder ID="contentPlaceHolder" runat="server">
+        
+        </asp:ContentPlaceHolder>
+    </form>
+
+</body>
+</html>
