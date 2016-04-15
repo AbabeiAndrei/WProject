@@ -17,18 +17,10 @@ namespace WProject.DesktopTests
         {
             InitializeComponent();
 
-            wpTextThread1.Messages = new List<ChatMessage>
+            wpTextThread1.Messages = Enumerable.Range(0, 100).Select(i => new ChatMessage
             {
-                new ChatMessage
-                {
-                    Send = true,
-                    Message = "Hellooo"
-                },
-                new ChatMessage
-                {
-                    Message = "Hellodoo"
-                },
-            };
+                Message = i.ToString()
+            }).ToList();
         }
     }
 }

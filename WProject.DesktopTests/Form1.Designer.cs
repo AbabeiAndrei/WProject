@@ -33,9 +33,14 @@
             // 
             // wpTextThread1
             // 
+            this.wpTextThread1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.wpTextThread1.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.wpTextThread1.Location = new System.Drawing.Point(169, 49);
             this.wpTextThread1.Name = "wpTextThread1";
+            this.wpTextThread1.ReciveMessageColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.wpTextThread1.ReciveMessageForeColor = System.Drawing.Color.Empty;
+            this.wpTextThread1.SendMessageColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.wpTextThread1.SendMessageForeColor = System.Drawing.Color.Empty;
             this.wpTextThread1.Size = new System.Drawing.Size(363, 347);
             this.wpTextThread1.TabIndex = 0;
             // 

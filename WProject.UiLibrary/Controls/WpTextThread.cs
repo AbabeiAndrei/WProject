@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WProject.GenericLibrary.WinApi;
 using WProject.UiLibrary.Classes;
 using WProject.UiLibrary.Theme;
 
@@ -19,7 +20,7 @@ namespace WProject.UiLibrary.Controls
     {
         #region Fields
 
-        private const int HORIZONTAL_MESSAGE_PADDING = 12;
+        private const int HORIZONTAL_MESSAGE_PADDING = 26;
         private const int START_MESSAGE_PADDING = 4;
         private const int ARROW_SIZE = 16;
 
@@ -31,6 +32,7 @@ namespace WProject.UiLibrary.Controls
         private Color _reciveMessageColor;
         private Color _sendMessageForeColor;
         private Color _reciveMessageForeColor;
+        private int _paddingBetweenMessages;
 
         #endregion
 
@@ -56,6 +58,7 @@ namespace WProject.UiLibrary.Controls
                 _chatMessages = new ObservableCollection<ChatMessage>(value);
 
                 _chatMessages.CollectionChanged += ChatMessagesOnCollectionChanged;
+                RecalculateMessagesHeight();
             }
         }
 
@@ -75,16 +78,16 @@ namespace WProject.UiLibrary.Controls
             }
         }
 
-        [DefaultValue(4)]
+        [DefaultValue(2)]
         public int PaddingBetweenMessages
         {
             get
             {
-                return _messagesLimit;
+                return _paddingBetweenMessages;
             }
             set
             {
-                _messagesLimit = value;
+                _paddingBetweenMessages = value;
 
                 RecalculateMessagesHeight();
                 Refresh();
@@ -171,6 +174,7 @@ namespace WProject.UiLibrary.Controls
             InitChatMessages();
 
             _smallInfoFont = new Font("Segoe UI", 7f);
+            _paddingBetweenMessages = 2;
 
             btnSend.Parent = null;
 
@@ -229,7 +233,7 @@ namespace WProject.UiLibrary.Controls
             }
             int mlastx = START_MESSAGE_PADDING;
 
-            foreach (ChatMessage msg in Messages.Take(MessagesLimit).Reverse())
+            foreach (ChatMessage msg in Messages.Take(MessagesLimit))
                 DrawChatMessage(msg, e.Graphics, ref mlastx);
         }
 
@@ -271,8 +275,8 @@ namespace WProject.UiLibrary.Controls
             using (var mgfx = pnlThread.CreateGraphics())
                 pnlThread.Height = Messages.Take(MessagesLimit)
                                            .Select(m => CalculateMessageHeight(m, mgfx) + PaddingBetweenMessages)
-                                           .DefaultIfEmpty(16)
-                                           .Sum();
+                                           .DefaultIfEmpty(10)
+                                           .Sum() + 6;
 
             _messagesHaveChanges = true;
         }
@@ -286,7 +290,7 @@ namespace WProject.UiLibrary.Controls
                                                          START_MESSAGE_PADDING*3,
                                                          int.MaxValue));
 
-            return (int)mmsgHeight.Height + 16;
+            return (int)mmsgHeight.Height + 2;
         }
 
         private void DrawChatMessage(ChatMessage msg, Graphics gfx, ref int lastx)
@@ -300,32 +304,11 @@ namespace WProject.UiLibrary.Controls
 
             Brush mbkbrush = new SolidBrush(msg.Send ? SendMessageColor : ReciveMessageColor);
 
-            Point[] mpoints;
+            Rectangle mrect = new Rectangle(mleft, lastx + 2, mwidth, (int) ms.Height);
 
-            if(msg.Send)
-                mpoints = new[]
-                {
-                    new Point(mleft, lastx), 
-                    new Point(mwidth, lastx), 
-                    new Point(mwidth, mheight + ARROW_SIZE), 
-                    new Point(mwidth - ARROW_SIZE, mheight), 
-                    new Point(mleft, mheight), 
-                    new Point(mleft, lastx)
-                };
-            else
-                mpoints = new[]
-                {
-                    new Point(mleft, lastx),
-                    new Point(mwidth, lastx),
-                    new Point(mwidth, mheight),
-                    new Point(mleft + ARROW_SIZE, mheight),
-                    new Point(mleft, mheight + ARROW_SIZE),
-                    new Point(mleft, lastx)
-                };
-
-
-            gfx.FillPolygon(mbkbrush, mpoints);
-            lastx += START_MESSAGE_PADDING + (int)ms.Height;
+            gfx.FillRectangle(mbkbrush, mrect);
+            gfx.DrawString(msg.Message, Font, Brushes.Black, mrect);
+            lastx += START_MESSAGE_PADDING + (int)ms.Height + PaddingBetweenMessages;
         }
 
         #endregion

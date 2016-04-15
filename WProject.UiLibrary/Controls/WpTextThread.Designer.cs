@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.pnlMain = new WProject.UiLibrary.Controls.WpPanel();
-            this.btnSend = new WProject.UiLibrary.Controls.WpButton();
             this.pnlThread = new WProject.UiLibrary.Controls.WpPanel();
             this.pnlBottom = new WProject.UiLibrary.Controls.WpPanel();
+            this.btnSend = new WProject.UiLibrary.Controls.WpButton();
             this.txtMessage = new WProject.UiLibrary.Controls.WpTextBox();
             this.pnlMain.SuspendLayout();
             this.pnlBottom.SuspendLayout();
@@ -52,28 +52,15 @@
             this.pnlMain.Size = new System.Drawing.Size(363, 307);
             this.pnlMain.TabIndex = 2;
             // 
-            // btnSend
-            // 
-            this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSend.FlatAppearance.BorderSize = 0;
-            this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSend.Image = global::WProject.UiLibrary.Properties.Resources.send_s;
-            this.btnSend.Location = new System.Drawing.Point(310, 0);
-            this.btnSend.Name = "btnSend";
-            this.btnSend.Selected = false;
-            this.btnSend.Size = new System.Drawing.Size(49, 37);
-            this.btnSend.TabIndex = 1;
-            this.btnSend.UseVisualStyleBackColor = true;
-            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
-            // 
             // pnlThread
             // 
+            this.pnlThread.AutoScroll = true;
             this.pnlThread.BackColor = System.Drawing.Color.Transparent;
             this.pnlThread.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pnlThread.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlThread.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlThread.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pnlThread.ForeColor = System.Drawing.Color.Black;
-            this.pnlThread.Location = new System.Drawing.Point(0, 297);
+            this.pnlThread.Location = new System.Drawing.Point(0, 0);
             this.pnlThread.Name = "pnlThread";
             this.pnlThread.OwnStyle = false;
             this.pnlThread.Size = new System.Drawing.Size(363, 10);
@@ -95,13 +82,29 @@
             this.pnlBottom.Size = new System.Drawing.Size(363, 40);
             this.pnlBottom.TabIndex = 1;
             // 
+            // btnSend
+            // 
+            this.btnSend.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSend.FlatAppearance.BorderSize = 0;
+            this.btnSend.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSend.Image = global::WProject.UiLibrary.Properties.Resources.send_s;
+            this.btnSend.Location = new System.Drawing.Point(310, 0);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Selected = false;
+            this.btnSend.Size = new System.Drawing.Size(49, 37);
+            this.btnSend.TabIndex = 1;
+            this.btnSend.UseVisualStyleBackColor = true;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
+            // 
             // txtMessage
             // 
             this.txtMessage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtMessage.LeftButton = null;
             this.txtMessage.Location = new System.Drawing.Point(3, 3);
             this.txtMessage.Name = "txtMessage";
+            this.txtMessage.ShowClear = false;
             this.txtMessage.Size = new System.Drawing.Size(356, 34);
             this.txtMessage.TabIndex = 0;
             // 
