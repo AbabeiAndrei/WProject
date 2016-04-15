@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WProject.DestopTests.Properties
+namespace WProject.DesktopTests.Properties
 {
 
 

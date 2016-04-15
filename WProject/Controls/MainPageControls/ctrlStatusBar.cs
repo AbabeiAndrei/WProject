@@ -5,6 +5,7 @@ using WProject.GenericLibrary.Helpers.Drawing;
 using WProject.Properties;
 
 using WProject.UiLibrary;
+using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Theme;
 
 namespace WProject.Controls.MainPageControls

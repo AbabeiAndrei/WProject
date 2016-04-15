@@ -11,6 +11,7 @@ using WProject.Controls.MainPageControls;
 using WProject.Helpers;
 using WProject.Interfaces;
 using WProject.UiLibrary;
+using WProject.UiLibrary.Controls;
 
 namespace WProject.Controls
 {

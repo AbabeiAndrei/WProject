@@ -14,3 +14,8 @@ Gray		: 575757 (Disable)
 
 Font : 
 Segoe UI
+
+Icon size:
+S - 24px
+M - 48px
+L - 72px

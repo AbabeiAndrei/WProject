@@ -19,7 +19,9 @@ namespace WProject.UiLibrary.Style
 
         #region Properties
 
-        [Category("Style")]
+        [ReadOnly(true)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual UiStyle Style
         {
             get
@@ -35,7 +37,9 @@ namespace WProject.UiLibrary.Style
             }
         }
 
+        [ReadOnly(true)]
         [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual StyleType StyleType
         {
             get
@@ -51,6 +55,9 @@ namespace WProject.UiLibrary.Style
             }
         }
 
+        [ReadOnly(true)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public virtual Style CurrentStyle => GetStyleFromType(StyleType);
 
         #endregion

@@ -13,6 +13,7 @@ using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
 using WProject.Properties;
 using WProject.UiLibrary;
+using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Theme;
 using ConnectionState = WProject.Connection.ConnectionState;
 

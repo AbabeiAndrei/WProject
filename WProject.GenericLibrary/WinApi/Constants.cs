@@ -12,6 +12,7 @@
         public const uint SWP_NOACTIVATE = 0x0010;
         public const int WS_EX_NOACTIVATE = 0x08000000;
         public const int WS_EX_TOOLWINDOW = 0x00000080;
+        public const int EM_SETMARGINS = 0xD3;
 
         public const string EXPLORER_THEME_NAME = "Explorer";
     }

@@ -9,7 +9,9 @@ using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using WProject.GenericLibrary.Exceptions;
+using WProject.GenericLibrary.Helpers.Extensions;
 using WProject.GenericLibrary.Helpers.Log;
 
 namespace WProject.GenericLibrary.Helpers.Drawing
@@ -131,6 +133,12 @@ namespace WProject.GenericLibrary.Helpers.Drawing
                     }
                 }
             }
+            catch (WebException mex)
+            {
+                _cacheImages.Add(url, null);
+                Logger.Log(mex);
+                return null;
+            }
             catch (Exception mex)
             {
                 Logger.Log(mex);
@@ -174,6 +182,30 @@ namespace WProject.GenericLibrary.Helpers.Drawing
             Logger.Log(msta.ToString());
 
             return image;
+        }
+
+        public static Image ResizeImage(Image image, Size newSize, bool keepRatio = false)
+        {
+            return keepRatio 
+                        ? ResizeImageRatio(image, newSize) 
+                        : new Bitmap(image, newSize);
+        }
+
+        private static Image ResizeImageRatio(Image image, Size newSize)
+        {
+            int boxWidth = newSize.Width.IsZero(1);
+            int boxHeight = newSize.Height.IsZero(1);
+
+            double dbl = image.Width / (double)image.Height;
+
+            //set height of image to boxHeight and check if resulting width is less than boxWidth, 
+            //else set width of image to boxWidth and calculate new height
+
+            Bitmap resizedImage = (int)(boxHeight * dbl) <= boxWidth 
+                                      ? new Bitmap(image, (int)(boxHeight * dbl), boxHeight) 
+                                      : new Bitmap(image, boxWidth, (int)(boxWidth / dbl));
+
+            return resizedImage;
         }
     }
 }

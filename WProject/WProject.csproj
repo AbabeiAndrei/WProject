@@ -64,6 +64,12 @@
     <Compile Include="Controls\ctrlLoginControl.Designer.cs">
       <DependentUpon>ctrlLoginControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ctrlTaskEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlTaskEditor.Designer.cs">
+      <DependentUpon>ctrlTaskEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MainPageControls\ctrlAdmin.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -197,6 +203,9 @@
     <EmbeddedResource Include="Controls\ctrlNotificationWindow.resx">
       <DependentUpon>ctrlNotificationWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlTaskEditor.resx">
+      <DependentUpon>ctrlTaskEditor.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainPageControls\ctrlDashBoard.resx">
       <DependentUpon>ctrlDashBoard.cs</DependentUpon>
     </EmbeddedResource>
@@ -226,19 +235,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -263,604 +272,628 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Logo.png" />
+    <None Include="Resources\Icons\Logo.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Logo2.png" />
+    <None Include="Resources\Icons\Logo2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\LoginBlurBk.png" />
+    <None Include="Resources\Icons\LoginBlurBk.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\add_l.png" />
+    <None Include="Resources\Icons\add_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\add_m.png" />
+    <None Include="Resources\Icons\add_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\add_s.png" />
+    <None Include="Resources\Icons\add_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\archive_l.png" />
+    <None Include="Resources\Icons\archive_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\archive_m.png" />
+    <None Include="Resources\Icons\archive_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\archive_s.png" />
+    <None Include="Resources\Icons\archive_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_down_l.png" />
+    <None Include="Resources\Icons\arrow_down_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_down_m.png" />
+    <None Include="Resources\Icons\arrow_down_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_down_s.png" />
+    <None Include="Resources\Icons\arrow_down_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_left_l.png" />
+    <None Include="Resources\Icons\arrow_left_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_left_m.png" />
+    <None Include="Resources\Icons\arrow_left_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\arrow_left_s.png" />
+    <None Include="Resources\Icons\arrow_left_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\attach_l.png" />
+    <None Include="Resources\Icons\attach_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\attach_m.png" />
+    <None Include="Resources\Icons\attach_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\attach_s.png" />
+    <None Include="Resources\Icons\attach_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_l.png" />
+    <None Include="Resources\Icons\back_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_m.png" />
+    <None Include="Resources\Icons\back_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\back_s.png" />
+    <None Include="Resources\Icons\back_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bell_l.png" />
+    <None Include="Resources\Icons\bell_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bell_m.png" />
+    <None Include="Resources\Icons\bell_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\bell_s.png" />
+    <None Include="Resources\Icons\bell_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\block_l.png" />
+    <None Include="Resources\Icons\block_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\block_m.png" />
+    <None Include="Resources\Icons\block_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\block_s.png" />
+    <None Include="Resources\Icons\block_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\chat_l.png" />
+    <None Include="Resources\Icons\chat_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\chat_m.png" />
+    <None Include="Resources\Icons\chat_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\chat_s.png" />
+    <None Include="Resources\Icons\chat_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\circle.png" />
+    <None Include="Resources\Icons\circle.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\circle_dash.png" />
+    <None Include="Resources\Icons\circle_dash.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\close_l.png" />
+    <None Include="Resources\Icons\close_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\close_m.png" />
+    <None Include="Resources\Icons\close_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\close_s.png" />
+    <None Include="Resources\Icons\close_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\code_l.png" />
+    <None Include="Resources\Icons\code_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\code_m.png" />
+    <None Include="Resources\Icons\code_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\code_s.png" />
+    <None Include="Resources\Icons\code_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\collapse_l.png" />
+    <None Include="Resources\Icons\collapse_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\collapse_m.png" />
+    <None Include="Resources\Icons\collapse_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\collapse_s.png" />
+    <None Include="Resources\Icons\collapse_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\delete_l.png" />
+    <None Include="Resources\Icons\delete_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\delete_m.png" />
+    <None Include="Resources\Icons\delete_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\delete_s.png" />
+    <None Include="Resources\Icons\delete_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\done_all_l.png" />
+    <None Include="Resources\Icons\done_all_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\done_all_m.png" />
+    <None Include="Resources\Icons\done_all_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\done_all_s.png" />
+    <None Include="Resources\Icons\done_all_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\done_l.png" />
+    <None Include="Resources\Icons\done_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\done_m.png" />
+    <None Include="Resources\Icons\done_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\done_s.png" />
+    <None Include="Resources\Icons\done_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\download_l.png" />
+    <None Include="Resources\Icons\download_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\download_m.png" />
+    <None Include="Resources\Icons\download_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\download_s.png" />
+    <None Include="Resources\Icons\download_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\email_l.png" />
+    <None Include="Resources\Icons\email_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\email_m.png" />
+    <None Include="Resources\Icons\email_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\email_s.png" />
+    <None Include="Resources\Icons\email_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\event_l.png" />
+    <None Include="Resources\Icons\event_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\event_m.png" />
+    <None Include="Resources\Icons\event_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\event_s.png" />
+    <None Include="Resources\Icons\event_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\expand_l.png" />
+    <None Include="Resources\Icons\expand_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\expand_m.png" />
+    <None Include="Resources\Icons\expand_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\expand_s.png" />
+    <None Include="Resources\Icons\expand_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\face_l.png" />
+    <None Include="Resources\Icons\face_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\face_m.png" />
+    <None Include="Resources\Icons\face_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\face_s.png" />
+    <None Include="Resources\Icons\face_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\file_code_l.png" />
+    <None Include="Resources\Icons\file_code_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\file_code_m.png" />
+    <None Include="Resources\Icons\file_code_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\file_code_s.png" />
+    <None Include="Resources\Icons\file_code_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\filtre_l.png" />
+    <None Include="Resources\Icons\filtre_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\filtre_m.png" />
+    <None Include="Resources\Icons\filtre_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\filtre_s.png" />
+    <None Include="Resources\Icons\filtre_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\flag_l.png" />
+    <None Include="Resources\Icons\flag_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\flag_m.png" />
+    <None Include="Resources\Icons\flag_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\flag_s.png" />
+    <None Include="Resources\Icons\flag_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fullscreen_exit_l.png" />
+    <None Include="Resources\Icons\fullscreen_exit_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fullscreen_exit_m.png" />
+    <None Include="Resources\Icons\fullscreen_exit_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fullscreen_exit_s.png" />
+    <None Include="Resources\Icons\fullscreen_exit_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fullscreen_l.png" />
+    <None Include="Resources\Icons\fullscreen_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fullscreen_m.png" />
+    <None Include="Resources\Icons\fullscreen_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fullscreen_s.png" />
+    <None Include="Resources\Icons\fullscreen_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\group_add_l.png" />
+    <None Include="Resources\Icons\group_add_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\group_add_m.png" />
+    <None Include="Resources\Icons\group_add_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\group_add_s.png" />
+    <None Include="Resources\Icons\group_add_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\group_l.png" />
+    <None Include="Resources\Icons\group_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\group_m.png" />
+    <None Include="Resources\Icons\group_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\group_s.png" />
+    <None Include="Resources\Icons\group_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\help_l.png" />
+    <None Include="Resources\Icons\help_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\help_m.png" />
+    <None Include="Resources\Icons\help_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\help_s.png" />
+    <None Include="Resources\Icons\help_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\home_l.png" />
+    <None Include="Resources\Icons\home_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\home_m.png" />
+    <None Include="Resources\Icons\home_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\home_s.png" />
+    <None Include="Resources\Icons\home_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\in_group_l.png" />
+    <None Include="Resources\Icons\in_group_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\in_group_m.png" />
+    <None Include="Resources\Icons\in_group_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\in_group_s.png" />
+    <None Include="Resources\Icons\in_group_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\info_l.png" />
+    <None Include="Resources\Icons\info_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\info_m.png" />
+    <None Include="Resources\Icons\info_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\info_s.png" />
+    <None Include="Resources\Icons\info_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\link_l.png" />
+    <None Include="Resources\Icons\link_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\link_m.png" />
+    <None Include="Resources\Icons\link_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\link_s.png" />
+    <None Include="Resources\Icons\link_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\list_l.png" />
+    <None Include="Resources\Icons\list_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\list_m.png" />
+    <None Include="Resources\Icons\list_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\list_s.png" />
+    <None Include="Resources\Icons\list_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\lock_l.png" />
+    <None Include="Resources\Icons\lock_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\lock_m.png" />
+    <None Include="Resources\Icons\lock_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\lock_s.png" />
+    <None Include="Resources\Icons\lock_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\logout_l.png" />
+    <None Include="Resources\Icons\logout_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\logout_m.png" />
+    <None Include="Resources\Icons\logout_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\logout_s.png" />
+    <None Include="Resources\Icons\logout_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\menu_l.png" />
+    <None Include="Resources\Icons\menu_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\menu_m.png" />
+    <None Include="Resources\Icons\menu_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\menu_s.png" />
+    <None Include="Resources\Icons\menu_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\note_add_l.png" />
+    <None Include="Resources\Icons\note_add_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\note_add_m.png" />
+    <None Include="Resources\Icons\note_add_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\note_add_s.png" />
+    <None Include="Resources\Icons\note_add_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\note_l.png" />
+    <None Include="Resources\Icons\note_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\note_m.png" />
+    <None Include="Resources\Icons\note_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\note_s.png" />
+    <None Include="Resources\Icons\note_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\person_add_l.png" />
+    <None Include="Resources\Icons\person_add_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\person_add_m.png" />
+    <None Include="Resources\Icons\person_add_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\person_add_s.png" />
+    <None Include="Resources\Icons\person_add_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\person_l.png" />
+    <None Include="Resources\Icons\person_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\person_m.png" />
+    <None Include="Resources\Icons\person_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\person_s.png" />
+    <None Include="Resources\Icons\person_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pin_l.png" />
+    <None Include="Resources\Icons\pin_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pin_m.png" />
+    <None Include="Resources\Icons\pin_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pin_off_l.png" />
+    <None Include="Resources\Icons\pin_off_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pin_off_m.png" />
+    <None Include="Resources\Icons\pin_off_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pin_off_s.png" />
+    <None Include="Resources\Icons\pin_off_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\pin_s.png" />
+    <None Include="Resources\Icons\pin_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\poll_l.png" />
+    <None Include="Resources\Icons\poll_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\poll_m.png" />
+    <None Include="Resources\Icons\poll_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\poll_s.png" />
+    <None Include="Resources\Icons\poll_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\print_l.png" />
+    <None Include="Resources\Icons\print_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\print_m.png" />
+    <None Include="Resources\Icons\print_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\print_s.png" />
+    <None Include="Resources\Icons\print_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\public_l.png" />
+    <None Include="Resources\Icons\public_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\public_m.png" />
+    <None Include="Resources\Icons\public_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\public_s.png" />
+    <None Include="Resources\Icons\public_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\query_l.png" />
+    <None Include="Resources\Icons\query_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\query_m.png" />
+    <None Include="Resources\Icons\query_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\query_s.png" />
+    <None Include="Resources\Icons\query_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\refresh_l.png" />
+    <None Include="Resources\Icons\refresh_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\refresh_m.png" />
+    <None Include="Resources\Icons\refresh_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\refresh_s.png" />
+    <None Include="Resources\Icons\refresh_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\remove_l.png" />
+    <None Include="Resources\Icons\remove_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\remove_m.png" />
+    <None Include="Resources\Icons\remove_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\remove_s.png" />
+    <None Include="Resources\Icons\remove_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\resize_we.png" />
+    <None Include="Resources\Icons\resize_we.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\save_l.png" />
+    <None Include="Resources\Icons\save_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\save_m.png" />
+    <None Include="Resources\Icons\save_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\save_s.png" />
+    <None Include="Resources\Icons\save_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\search_l.png" />
+    <None Include="Resources\Icons\search_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\search_m.png" />
+    <None Include="Resources\Icons\search_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\search_s.png" />
+    <None Include="Resources\Icons\search_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\send_l.png" />
+    <None Include="Resources\Icons\send_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\send_m.png" />
+    <None Include="Resources\Icons\send_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\send_s.png" />
+    <None Include="Resources\Icons\send_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\settings_l.png" />
+    <None Include="Resources\Icons\settings_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\settings_m.png" />
+    <None Include="Resources\Icons\settings_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\settings_s.png" />
+    <None Include="Resources\Icons\settings_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\share_l.png" />
+    <None Include="Resources\Icons\share_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\share_m.png" />
+    <None Include="Resources\Icons\share_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\share_s.png" />
+    <None Include="Resources\Icons\share_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sort_l.png" />
+    <None Include="Resources\Icons\sort_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sort_m.png" />
+    <None Include="Resources\Icons\sort_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sort_s.png" />
+    <None Include="Resources\Icons\sort_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\stop_l.png" />
+    <None Include="Resources\Icons\stop_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\stop_m.png" />
+    <None Include="Resources\Icons\stop_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\stop_s.png" />
+    <None Include="Resources\Icons\stop_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\timeline_l.png" />
+    <None Include="Resources\Icons\timeline_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\timeline_m.png" />
+    <None Include="Resources\Icons\timeline_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\timeline_s.png" />
+    <None Include="Resources\Icons\timeline_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tree_l.png" />
+    <None Include="Resources\Icons\tree_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tree_m.png" />
+    <None Include="Resources\Icons\tree_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tree_s.png" />
+    <None Include="Resources\Icons\tree_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\unlock_l.png" />
+    <None Include="Resources\Icons\unlock_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\unlock_m.png" />
+    <None Include="Resources\Icons\unlock_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\unlock_s.png" />
+    <None Include="Resources\Icons\unlock_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\up_l.png" />
+    <None Include="Resources\Icons\up_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\up_m.png" />
+    <None Include="Resources\Icons\up_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\up_s.png" />
+    <None Include="Resources\Icons\up_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\upload_l.png" />
+    <None Include="Resources\Icons\upload_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\upload_m.png" />
+    <None Include="Resources\Icons\upload_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\upload_s.png" />
+    <None Include="Resources\Icons\upload_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\volume_mute_l.png" />
+    <None Include="Resources\Icons\volume_mute_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\volume_mute_m.png" />
+    <None Include="Resources\Icons\volume_mute_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\volume_mute_s.png" />
+    <None Include="Resources\Icons\volume_mute_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\volume_off_l.png" />
+    <None Include="Resources\Icons\volume_off_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\volume_off_m.png" />
+    <None Include="Resources\Icons\volume_off_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\volume_off_s.png" />
+    <None Include="Resources\Icons\volume_off_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\volume_on_l.png" />
+    <None Include="Resources\Icons\volume_on_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\volume_on_m.png" />
+    <None Include="Resources\Icons\volume_on_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\volume_on_s.png" />
+    <None Include="Resources\Icons\volume_on_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\warning_l.png" />
+    <None Include="Resources\Icons\warning_l.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\warning_m.png" />
+    <None Include="Resources\Icons\warning_m.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\warning_s.png" />
+    <None Include="Resources\Icons\warning_s.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\dummy_avatar.png" />
+    <None Include="Resources\Icons\dummy_avatar.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Paterns.txt" />
+    <None Include="Resources\Icons\x_s.png" />
+    <None Include="Resources\Icons\x_m.png" />
+    <None Include="Resources\Icons\x_l.png" />
+    <None Include="Resources\Icons\save_outline_l.png" />
+    <None Include="Resources\Icons\save_outline_m.png" />
+    <None Include="Resources\Icons\save_outline_s.png" />
+    <None Include="Resources\Icons\heart_empty_l.png" />
+    <None Include="Resources\Icons\heart_empty_m.png" />
+    <None Include="Resources\Icons\heart_empty_s.png" />
+    <None Include="Resources\Icons\heart_l.png" />
+    <None Include="Resources\Icons\heart_m.png" />
+    <None Include="Resources\Icons\heart_s.png" />
+    <None Include="Resources\Icons\fullscreen_arrow_s.png" />
+    <None Include="Resources\Icons\fullscreen_arrow_l.png" />
+    <None Include="Resources\Icons\fullscreen_arrow_m.png" />
+    <None Include="Resources\Icons\order_list_l.png" />
+    <None Include="Resources\Icons\order_list_m.png" />
+    <None Include="Resources\Icons\order_list_s.png" />
+    <None Include="Resources\Icons\image-l.png" />
+    <None Include="Resources\Icons\image-m.png" />
+    <None Include="Resources\Icons\image-s.png" />
+    <Content Include="Resources\Icons\undo_l.png" />
+    <Content Include="Resources\Icons\undo_m.png" />
+    <Content Include="Resources\Icons\undo_s.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

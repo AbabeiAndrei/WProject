@@ -14,6 +14,7 @@ using WProject.GenericLibrary.Helpers.Drawing;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.Properties;
 using WProject.UiLibrary;
+using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Theme;
 using WProject.WebApiClasses.Classes;
 using Task = WProject.WebApiClasses.Classes.Task;
@@ -94,7 +95,8 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
             ctrlDashBoardBacklogItemControl = new ctrlDashBoardBacklogItemControl
             {
-                Location = new Point(pbColapse.Right + 2, pbColapse.Top),
+                Location = new Point(pbColapse.Right + 6, pbColapse.Top),
+                Size = new Size(380, 160),
                 Visible = false
             };
 

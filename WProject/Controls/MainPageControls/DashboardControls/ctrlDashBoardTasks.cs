@@ -12,6 +12,7 @@ using WProject.Connection;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
 using WProject.UiLibrary;
+using WProject.UiLibrary.Controls;
 using WProject.WebApiClasses.Classes;
 using Task = System.Threading.Tasks.Task;
 

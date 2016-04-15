@@ -16,6 +16,7 @@ using WProject.GenericLibrary.WinApi;
 using WProject.Helpers;
 using WProject.Properties;
 using WProject.UiLibrary;
+using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Theme;
 using WProject.WebApiClasses.Classes;
 

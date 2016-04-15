@@ -1,4 +1,4 @@
-﻿namespace WProject.UiLibrary
+﻿namespace WProject.UiLibrary.Controls
 {
     partial class WpUserControl
     {

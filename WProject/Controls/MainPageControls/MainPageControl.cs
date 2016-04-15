@@ -12,6 +12,7 @@ using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
 using WProject.Interfaces;
 using WProject.UiLibrary;
+using WProject.UiLibrary.Controls;
 using WProject.WebApiClasses.Classes;
 
 namespace WProject.Controls.MainPageControls

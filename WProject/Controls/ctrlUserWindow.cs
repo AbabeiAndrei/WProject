@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WProject.UiLibrary;
+using WProject.UiLibrary.Controls;
 
 namespace WProject.Controls
 {

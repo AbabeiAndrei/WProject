@@ -93,11 +93,11 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             uiStyle1.NormalStyle = style2;
             uiStyle1.SelectedStyle = null;
             this.ddUsers.ItemStyle = uiStyle1;
-            this.ddUsers.Location = new System.Drawing.Point(6, 104);
+            this.ddUsers.Location = new System.Drawing.Point(6, 80);
             this.ddUsers.Name = "ddUsers";
             this.ddUsers.SelectedIndex = 0;
             this.ddUsers.ShowImage = true;
-            this.ddUsers.Size = new System.Drawing.Size(170, 27);
+            this.ddUsers.Size = new System.Drawing.Size(70, 27);
             this.ddUsers.SortMember = null;
             uiStyle2.ClickStyle = null;
             uiStyle2.HoverStyle = null;
@@ -147,11 +147,11 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             uiStyle3.NormalStyle = style5;
             uiStyle3.SelectedStyle = null;
             this.ddStates.ItemStyle = uiStyle3;
-            this.ddStates.Location = new System.Drawing.Point(182, 104);
+            this.ddStates.Location = new System.Drawing.Point(77, 80);
             this.ddStates.Name = "ddStates";
             this.ddStates.SelectedIndex = 0;
             this.ddStates.ShowImage = false;
-            this.ddStates.Size = new System.Drawing.Size(90, 27);
+            this.ddStates.Size = new System.Drawing.Size(120, 27);
             this.ddStates.SortMember = null;
             uiStyle4.ClickStyle = null;
             uiStyle4.HoverStyle = null;

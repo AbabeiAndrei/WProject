@@ -10,6 +10,7 @@ using WProject.Classes;
 using WProject.GenericLibrary.Helpers.Extensions;
 using WProject.Helpers;
 using WProject.UiLibrary;
+using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Helpers;
 using WProject.UiLibrary.Style;
 using WProject.UiLibrary.Theme;
@@ -59,7 +60,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         
         static ctrlDashBoardTaskItem()
         {
-            DefaultSize = new Size(180, 100);
+            DefaultSize = new Size(200, 120);
         }
 
         #endregion

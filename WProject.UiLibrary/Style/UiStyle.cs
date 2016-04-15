@@ -18,6 +18,7 @@ namespace WProject.UiLibrary.Style
         None
     }
 
+    [Serializable]
     [TypeConverter(typeof(UiStyleEditorTypeConverter))]
     public class UiStyle : INotifyPropertyChanged
     {
@@ -33,8 +34,11 @@ namespace WProject.UiLibrary.Style
         #region Properties
         private bool IsDefault { get; set; }
 
-        [Category("Style")]
-        [TypeConverter(typeof (ExpandableObjectConverter))]
+        //[Category("Style")]
+        //[TypeConverter(typeof (ExpandableObjectConverter))]
+        [ReadOnly(true)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Style NormalStyle
         {
             get
@@ -50,8 +54,11 @@ namespace WProject.UiLibrary.Style
             }
         }
 
-        [Category("Style")]
-        [TypeConverter(typeof (ExpandableObjectConverter))]
+        //[Category("Style")]
+        //[TypeConverter(typeof (ExpandableObjectConverter))]
+        [ReadOnly(true)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Style HoverStyle
         {
             get
@@ -67,8 +74,11 @@ namespace WProject.UiLibrary.Style
             }
         }
 
-        [Category("Style")]
-        [TypeConverter(typeof (ExpandableObjectConverter))]
+        //[Category("Style")]
+        //[TypeConverter(typeof (ExpandableObjectConverter))]
+        [ReadOnly(true)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Style ClickStyle
         {
             get
@@ -84,8 +94,11 @@ namespace WProject.UiLibrary.Style
             }
         }
 
-        [Category("Style")]
-        [TypeConverter(typeof (ExpandableObjectConverter))]
+        //[Category("Style")]
+        //[TypeConverter(typeof (ExpandableObjectConverter))]
+        [ReadOnly(true)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public Style SelectedStyle
         {
             get
@@ -173,6 +186,7 @@ namespace WProject.UiLibrary.Style
         #endregion
     }
 
+    [Serializable]
     [TypeConverter(typeof(UiStyleEditorTypeConverter))]
     [Editor(typeof(StyleEditor), typeof(UITypeEditor))]
     public class Style : INotifyPropertyChanged

@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Drawing;
 using System.Windows.Forms;
 using WProject.GenericLibrary.Helpers;
@@ -52,6 +53,18 @@ namespace WProject.UiLibrary.Controls.Base
             }
 
             base.OnLoad(e);
+        }
+
+        #endregion
+
+        #region Overrides of Control
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+
+            if (DesignMode)
+                ControlPaint.DrawBorder(e.Graphics, ClientRectangle, Color.Gray, ButtonBorderStyle.Dashed);
         }
 
         #endregion

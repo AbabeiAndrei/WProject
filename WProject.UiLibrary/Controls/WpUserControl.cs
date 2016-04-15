@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
-using WProject.GenericLibrary.Helpers.Log;
 using WProject.UiLibrary.Style;
 using WProject.UiLibrary.Theme;
 
-namespace WProject.UiLibrary
+namespace WProject.UiLibrary.Controls
 {
     [Flags]
     public enum ValidateGuiMode : uint

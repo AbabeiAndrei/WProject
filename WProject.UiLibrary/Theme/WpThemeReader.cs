@@ -109,7 +109,7 @@ namespace WProject.UiLibrary.Theme
                     {
                         NormalStyle = new Style.Style
                         {
-                            Font = new Font(WpThemeFonts.SEGOE_UI, 14f),
+                            Font = new Font(WpThemeFonts.SEGOE_UI, 12f),
                             BackColor = Color.Transparent,
                             ForeColor = Color.Black
                         },

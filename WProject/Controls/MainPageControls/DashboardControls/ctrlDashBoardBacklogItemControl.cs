@@ -17,6 +17,7 @@ using WProject.Properties;
 using WProject.UiLibrary;
 using WProject.UiLibrary.Annotations;
 using WProject.UiLibrary.Classes;
+using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Helpers;
 using WProject.UiLibrary.Style;
 using WProject.UiLibrary.Theme;
@@ -91,7 +92,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         {
             BacklogColorBarBrushYellow = new SolidBrush(WpThemeColors.Orange);
             BacklogColorBarBrushGray = new SolidBrush(WpThemeColors.Gray);
-            DefaultSize = new Size(220, 140);
+            DefaultSize = new Size(220, 160);
         }
 
         #endregion
