@@ -27,7 +27,7 @@ namespace WProject.UiLibrary.Controls
         private ObservableCollection<ChatMessage> _chatMessages;
         private int _messagesLimit;
         private Font _smallInfoFont;
-        private bool _messagesHaveChanges;
+        private bool _messagesHaveChanges;//
         private Color _sendMessageColor;
         private Color _reciveMessageColor;
         private Color _sendMessageForeColor;
