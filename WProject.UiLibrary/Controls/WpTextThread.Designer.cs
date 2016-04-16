@@ -114,8 +114,7 @@
             // 
             // WpTextThread
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlBottom);
             this.Font = new System.Drawing.Font("Segoe UI", 14F);

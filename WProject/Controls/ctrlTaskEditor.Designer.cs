@@ -56,9 +56,11 @@
             this.txtDetails = new WProject.UiLibrary.Controls.WpTextEditor();
             this.lblDetails = new WProject.UiLibrary.Controls.WpLabel();
             this.pnlComents = new WProject.UiLibrary.Controls.WpPanel();
+            this.ttComents = new WProject.UiLibrary.Controls.WpTextThread();
             this.wpPanel1 = new WProject.UiLibrary.Controls.WpPanel();
             this.tpDetails = new System.Windows.Forms.TabPage();
             this.tpDiscusion = new System.Windows.Forms.TabPage();
+            this.ttDiscution = new WProject.UiLibrary.Controls.WpTextThread();
             this.tpHistory = new System.Windows.Forms.TabPage();
             this.tpLinks = new System.Windows.Forms.TabPage();
             this.tpConstraints = new System.Windows.Forms.TabPage();
@@ -71,6 +73,8 @@
             this.tcMain.SuspendLayout();
             this.tpGeneral.SuspendLayout();
             this.pnlDetails.SuspendLayout();
+            this.pnlComents.SuspendLayout();
+            this.tpDiscusion.SuspendLayout();
             this.SuspendLayout();
             // 
             // tpAttachements
@@ -184,7 +188,7 @@
             this.ddUser.Location = new System.Drawing.Point(182, 48);
             this.ddUser.Name = "ddUser";
             this.ddUser.SelectedIndex = 0;
-            this.ddUser.ShowImage = false;
+            this.ddUser.ShowImage = true;
             this.ddUser.Size = new System.Drawing.Size(153, 22);
             this.ddUser.SortMember = null;
             this.ddUser.TabIndex = 5;
@@ -464,6 +468,7 @@
             // pnlComents
             // 
             this.pnlComents.BackColor = System.Drawing.Color.Transparent;
+            this.pnlComents.Controls.Add(this.ttComents);
             this.pnlComents.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlComents.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlComents.DoubleBuffered = true;
@@ -474,6 +479,23 @@
             this.pnlComents.OwnStyle = false;
             this.pnlComents.Size = new System.Drawing.Size(326, 282);
             this.pnlComents.TabIndex = 2;
+            // 
+            // ttComents
+            // 
+            this.ttComents.BackColor = System.Drawing.Color.White;
+            this.ttComents.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ttComents.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttComents.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ttComents.ForeColor = System.Drawing.Color.Black;
+            this.ttComents.Location = new System.Drawing.Point(0, 0);
+            this.ttComents.Name = "ttComents";
+            this.ttComents.OwnStyle = true;
+            this.ttComents.ReciveMessageColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.ttComents.ReciveMessageForeColor = System.Drawing.Color.Empty;
+            this.ttComents.SendMessageColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.ttComents.SendMessageForeColor = System.Drawing.Color.Empty;
+            this.ttComents.Size = new System.Drawing.Size(326, 282);
+            this.ttComents.TabIndex = 0;
             // 
             // wpPanel1
             // 
@@ -500,12 +522,30 @@
             // 
             // tpDiscusion
             // 
+            this.tpDiscusion.Controls.Add(this.ttDiscution);
             this.tpDiscusion.Location = new System.Drawing.Point(4, 30);
             this.tpDiscusion.Name = "tpDiscusion";
             this.tpDiscusion.Size = new System.Drawing.Size(791, 288);
             this.tpDiscusion.TabIndex = 2;
             this.tpDiscusion.Text = "Discusion";
             this.tpDiscusion.UseVisualStyleBackColor = true;
+            // 
+            // ttDiscution
+            // 
+            this.ttDiscution.BackColor = System.Drawing.Color.Transparent;
+            this.ttDiscution.Cursor = System.Windows.Forms.Cursors.Default;
+            this.ttDiscution.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ttDiscution.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.ttDiscution.ForeColor = System.Drawing.Color.Black;
+            this.ttDiscution.Location = new System.Drawing.Point(0, 0);
+            this.ttDiscution.Name = "ttDiscution";
+            this.ttDiscution.OwnStyle = false;
+            this.ttDiscution.ReciveMessageColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
+            this.ttDiscution.ReciveMessageForeColor = System.Drawing.Color.Empty;
+            this.ttDiscution.SendMessageColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
+            this.ttDiscution.SendMessageForeColor = System.Drawing.Color.Empty;
+            this.ttDiscution.Size = new System.Drawing.Size(791, 288);
+            this.ttDiscution.TabIndex = 1;
             // 
             // tpHistory
             // 
@@ -562,6 +602,8 @@
             this.tpGeneral.ResumeLayout(false);
             this.pnlDetails.ResumeLayout(false);
             this.pnlDetails.PerformLayout();
+            this.pnlComents.ResumeLayout(false);
+            this.tpDiscusion.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -601,5 +643,7 @@
         private UiLibrary.Controls.WpButton btnPrint;
         private UiLibrary.Controls.WpTextEditor txtDetails;
         private UiLibrary.Controls.WpLabel lblDetails;
+        private UiLibrary.Controls.WpTextThread ttComents;
+        private UiLibrary.Controls.WpTextThread ttDiscution;
     }
 }
