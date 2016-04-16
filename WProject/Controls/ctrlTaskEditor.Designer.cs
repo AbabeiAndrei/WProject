@@ -29,29 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.TabPage tpAttachements;
-            WProject.UiLibrary.Style.UiStyle uiStyle6 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style8 = new WProject.UiLibrary.Style.Style();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrlTaskEditor));
-            WProject.UiLibrary.Style.UiStyle uiStyle1 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style1 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.Style style2 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle2 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style3 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle3 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style4 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.Style style5 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle4 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style6 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle5 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style7 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle7 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style9 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle8 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style10 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle9 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style11 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle10 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style12 = new WProject.UiLibrary.Style.Style();
             this.pnlTop = new WProject.UiLibrary.Controls.WpPanel();
             this.btnFullScreen = new WProject.UiLibrary.Controls.WpButton();
             this.txtLeft = new WProject.UiLibrary.Controls.WpTextBox();
@@ -76,6 +54,7 @@
             this.tpGeneral = new System.Windows.Forms.TabPage();
             this.pnlDetails = new WProject.UiLibrary.Controls.WpPanel();
             this.txtDetails = new WProject.UiLibrary.Controls.WpTextEditor();
+            this.lblDetails = new WProject.UiLibrary.Controls.WpLabel();
             this.pnlComents = new WProject.UiLibrary.Controls.WpPanel();
             this.wpPanel1 = new WProject.UiLibrary.Controls.WpPanel();
             this.tpDetails = new System.Windows.Forms.TabPage();
@@ -84,7 +63,6 @@
             this.tpLinks = new System.Windows.Forms.TabPage();
             this.tpConstraints = new System.Windows.Forms.TabPage();
             this.tpSettings = new System.Windows.Forms.TabPage();
-            this.lblDetails = new WProject.UiLibrary.Controls.WpLabel();
             tpAttachements = new System.Windows.Forms.TabPage();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPriority)).BeginInit();
@@ -97,9 +75,9 @@
             // 
             // tpAttachements
             // 
-            tpAttachements.Location = new System.Drawing.Point(4, 29);
+            tpAttachements.Location = new System.Drawing.Point(4, 30);
             tpAttachements.Name = "tpAttachements";
-            tpAttachements.Size = new System.Drawing.Size(791, 289);
+            tpAttachements.Size = new System.Drawing.Size(791, 288);
             tpAttachements.TabIndex = 4;
             tpAttachements.Text = "Attachements";
             tpAttachements.UseVisualStyleBackColor = true;
@@ -120,41 +98,13 @@
             this.pnlTop.Controls.Add(this.pnlLeftDock);
             this.pnlTop.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTop.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.pnlTop.DoubleBuffered = true;
+            this.pnlTop.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pnlTop.ForeColor = System.Drawing.Color.Black;
-            // 
-            // pnlTop.InnerPanel
-            // 
-            this.pnlTop.InnerPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlTop.InnerPanel.Location = new System.Drawing.Point(0, 0);
-            this.pnlTop.InnerPanel.Name = "InnerPanel";
-            this.pnlTop.InnerPanel.Size = new System.Drawing.Size(200, 100);
-            this.pnlTop.InnerPanel.TabIndex = 0;
-            // 
-            // pnlTop.InnerTableLayout
-            // 
-            this.pnlTop.InnerTableLayout.Location = new System.Drawing.Point(0, 0);
-            this.pnlTop.InnerTableLayout.Name = "InnerTableLayout";
-            this.pnlTop.InnerTableLayout.Size = new System.Drawing.Size(200, 100);
-            this.pnlTop.InnerTableLayout.TabIndex = 0;
             this.pnlTop.Location = new System.Drawing.Point(0, 0);
             this.pnlTop.Name = "pnlTop";
             this.pnlTop.OwnStyle = false;
             this.pnlTop.Size = new System.Drawing.Size(799, 87);
-            uiStyle6.ClickStyle = null;
-            uiStyle6.HoverStyle = null;
-            style8.BackColor = System.Drawing.Color.Transparent;
-            style8.BorderColor = null;
-            style8.BorderWidth = null;
-            style8.Cursor = System.Windows.Forms.Cursors.Default;
-            style8.Font = new System.Drawing.Font("Segoe UI", 14F);
-            style8.ForeColor = System.Drawing.Color.Black;
-            style8.Margin = new System.Windows.Forms.Padding(3);
-            style8.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle6.NormalStyle = style8;
-            uiStyle6.SelectedStyle = null;
-            this.pnlTop.Style = uiStyle6;
-            this.pnlTop.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.pnlTop.TabIndex = 0;
             // 
             // btnFullScreen
@@ -175,9 +125,11 @@
             // 
             this.txtLeft.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtLeft.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLeft.LeftButton = null;
             this.txtLeft.Location = new System.Drawing.Point(712, 44);
             this.txtLeft.Name = "txtLeft";
-            this.txtLeft.Size = new System.Drawing.Size(84, 34);
+            this.txtLeft.ShowClear = false;
+            this.txtLeft.Size = new System.Drawing.Size(84, 29);
             this.txtLeft.TabIndex = 9;
             // 
             // nudPriority
@@ -186,7 +138,7 @@
             this.nudPriority.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudPriority.Location = new System.Drawing.Point(495, 44);
             this.nudPriority.Name = "nudPriority";
-            this.nudPriority.Size = new System.Drawing.Size(74, 34);
+            this.nudPriority.Size = new System.Drawing.Size(74, 29);
             this.nudPriority.TabIndex = 8;
             this.nudPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -198,7 +150,7 @@
             this.lblLeft.Location = new System.Drawing.Point(575, 47);
             this.lblLeft.Name = "lblLeft";
             this.lblLeft.Selected = false;
-            this.lblLeft.Size = new System.Drawing.Size(131, 28);
+            this.lblLeft.Size = new System.Drawing.Size(104, 21);
             this.lblLeft.Style = null;
             this.lblLeft.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.lblLeft.TabIndex = 7;
@@ -212,7 +164,7 @@
             this.lblPriority.Location = new System.Drawing.Point(413, 47);
             this.lblPriority.Name = "lblPriority";
             this.lblPriority.Selected = false;
-            this.lblPriority.Size = new System.Drawing.Size(76, 28);
+            this.lblPriority.Size = new System.Drawing.Size(61, 21);
             this.lblPriority.Style = null;
             this.lblPriority.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.lblPriority.TabIndex = 6;
@@ -228,47 +180,13 @@
             this.ddUser.ForeColor = System.Drawing.Color.Black;
             this.ddUser.ImageMember = null;
             this.ddUser.Items = ((System.Collections.Generic.IList<string>)(resources.GetObject("ddUser.Items")));
-            uiStyle1.ClickStyle = null;
-            style1.BackColor = System.Drawing.Color.LightGray;
-            style1.BorderColor = null;
-            style1.BorderWidth = null;
-            style1.Cursor = System.Windows.Forms.Cursors.Default;
-            style1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style1.ForeColor = System.Drawing.Color.Black;
-            style1.Margin = new System.Windows.Forms.Padding(3);
-            style1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle1.HoverStyle = style1;
-            style2.BackColor = System.Drawing.Color.White;
-            style2.BorderColor = null;
-            style2.BorderWidth = null;
-            style2.Cursor = System.Windows.Forms.Cursors.Default;
-            style2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style2.ForeColor = System.Drawing.Color.Black;
-            style2.Margin = new System.Windows.Forms.Padding(3);
-            style2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle1.NormalStyle = style2;
-            uiStyle1.SelectedStyle = null;
-            this.ddUser.ItemStyle = uiStyle1;
+            this.ddUser.ItemStyle = null;
             this.ddUser.Location = new System.Drawing.Point(182, 48);
             this.ddUser.Name = "ddUser";
             this.ddUser.SelectedIndex = 0;
             this.ddUser.ShowImage = false;
-            this.ddUser.Size = new System.Drawing.Size(153, 27);
+            this.ddUser.Size = new System.Drawing.Size(153, 22);
             this.ddUser.SortMember = null;
-            uiStyle2.ClickStyle = null;
-            uiStyle2.HoverStyle = null;
-            style3.BackColor = System.Drawing.Color.White;
-            style3.BorderColor = null;
-            style3.BorderWidth = null;
-            style3.Cursor = System.Windows.Forms.Cursors.Default;
-            style3.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style3.ForeColor = System.Drawing.Color.Black;
-            style3.Margin = new System.Windows.Forms.Padding(3);
-            style3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle2.NormalStyle = style3;
-            uiStyle2.SelectedStyle = null;
-            this.ddUser.Style = uiStyle2;
-            this.ddUser.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.ddUser.TabIndex = 5;
             this.ddUser.ValueMember = null;
             // 
@@ -282,47 +200,13 @@
             this.ddState.ForeColor = System.Drawing.Color.Black;
             this.ddState.ImageMember = null;
             this.ddState.Items = ((System.Collections.Generic.IList<string>)(resources.GetObject("ddState.Items")));
-            uiStyle3.ClickStyle = null;
-            style4.BackColor = System.Drawing.Color.LightGray;
-            style4.BorderColor = null;
-            style4.BorderWidth = null;
-            style4.Cursor = System.Windows.Forms.Cursors.Default;
-            style4.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style4.ForeColor = System.Drawing.Color.Black;
-            style4.Margin = new System.Windows.Forms.Padding(3);
-            style4.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle3.HoverStyle = style4;
-            style5.BackColor = System.Drawing.Color.White;
-            style5.BorderColor = null;
-            style5.BorderWidth = null;
-            style5.Cursor = System.Windows.Forms.Cursors.Default;
-            style5.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style5.ForeColor = System.Drawing.Color.Black;
-            style5.Margin = new System.Windows.Forms.Padding(3);
-            style5.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle3.NormalStyle = style5;
-            uiStyle3.SelectedStyle = null;
-            this.ddState.ItemStyle = uiStyle3;
+            this.ddState.ItemStyle = null;
             this.ddState.Location = new System.Drawing.Point(26, 48);
             this.ddState.Name = "ddState";
             this.ddState.SelectedIndex = 0;
             this.ddState.ShowImage = false;
-            this.ddState.Size = new System.Drawing.Size(153, 27);
+            this.ddState.Size = new System.Drawing.Size(153, 22);
             this.ddState.SortMember = null;
-            uiStyle4.ClickStyle = null;
-            uiStyle4.HoverStyle = null;
-            style6.BackColor = System.Drawing.Color.White;
-            style6.BorderColor = null;
-            style6.BorderWidth = null;
-            style6.Cursor = System.Windows.Forms.Cursors.Default;
-            style6.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style6.ForeColor = System.Drawing.Color.Black;
-            style6.Margin = new System.Windows.Forms.Padding(3);
-            style6.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle4.NormalStyle = style6;
-            uiStyle4.SelectedStyle = null;
-            this.ddState.Style = uiStyle4;
-            this.ddState.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.ddState.TabIndex = 4;
             this.ddState.ValueMember = null;
             // 
@@ -347,9 +231,11 @@
             this.txtName.BackColor = System.Drawing.Color.White;
             this.txtName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.LeftButton = null;
             this.txtName.Location = new System.Drawing.Point(159, 4);
             this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(559, 34);
+            this.txtName.ShowClear = false;
+            this.txtName.Size = new System.Drawing.Size(559, 29);
             this.txtName.TabIndex = 2;
             // 
             // lblTask
@@ -359,7 +245,7 @@
             this.lblTask.Location = new System.Drawing.Point(21, 7);
             this.lblTask.Name = "lblTask";
             this.lblTask.Selected = false;
-            this.lblTask.Size = new System.Drawing.Size(74, 28);
+            this.lblTask.Size = new System.Drawing.Size(59, 21);
             this.lblTask.Style = null;
             this.lblTask.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.lblTask.TabIndex = 1;
@@ -370,40 +256,13 @@
             this.pnlLeftDock.BackColor = System.Drawing.Color.Transparent;
             this.pnlLeftDock.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlLeftDock.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeftDock.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.pnlLeftDock.DoubleBuffered = true;
+            this.pnlLeftDock.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pnlLeftDock.ForeColor = System.Drawing.Color.Black;
-            // 
-            // pnlLeftDock.InnerPanel
-            // 
-            this.pnlLeftDock.InnerPanel.Location = new System.Drawing.Point(0, 0);
-            this.pnlLeftDock.InnerPanel.Name = "InnerPanel";
-            this.pnlLeftDock.InnerPanel.Size = new System.Drawing.Size(200, 100);
-            this.pnlLeftDock.InnerPanel.TabIndex = 0;
-            // 
-            // pnlLeftDock.InnerTableLayout
-            // 
-            this.pnlLeftDock.InnerTableLayout.Location = new System.Drawing.Point(0, 0);
-            this.pnlLeftDock.InnerTableLayout.Name = "InnerTableLayout";
-            this.pnlLeftDock.InnerTableLayout.Size = new System.Drawing.Size(200, 100);
-            this.pnlLeftDock.InnerTableLayout.TabIndex = 0;
             this.pnlLeftDock.Location = new System.Drawing.Point(0, 0);
             this.pnlLeftDock.Name = "pnlLeftDock";
             this.pnlLeftDock.OwnStyle = false;
             this.pnlLeftDock.Size = new System.Drawing.Size(15, 87);
-            uiStyle5.ClickStyle = null;
-            uiStyle5.HoverStyle = null;
-            style7.BackColor = System.Drawing.Color.Transparent;
-            style7.BorderColor = null;
-            style7.BorderWidth = null;
-            style7.Cursor = System.Windows.Forms.Cursors.Default;
-            style7.Font = new System.Drawing.Font("Segoe UI", 14F);
-            style7.ForeColor = System.Drawing.Color.Black;
-            style7.Margin = new System.Windows.Forms.Padding(3);
-            style7.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle5.NormalStyle = style7;
-            uiStyle5.SelectedStyle = null;
-            this.pnlLeftDock.Style = uiStyle5;
-            this.pnlLeftDock.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.pnlLeftDock.TabIndex = 0;
             // 
             // pnlBotom
@@ -412,40 +271,13 @@
             this.pnlBotom.Controls.Add(this.flwActions);
             this.pnlBotom.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlBotom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBotom.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.pnlBotom.DoubleBuffered = true;
+            this.pnlBotom.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pnlBotom.ForeColor = System.Drawing.Color.Black;
-            // 
-            // pnlBotom.InnerPanel
-            // 
-            this.pnlBotom.InnerPanel.Location = new System.Drawing.Point(0, 0);
-            this.pnlBotom.InnerPanel.Name = "InnerPanel";
-            this.pnlBotom.InnerPanel.Size = new System.Drawing.Size(200, 100);
-            this.pnlBotom.InnerPanel.TabIndex = 0;
-            // 
-            // pnlBotom.InnerTableLayout
-            // 
-            this.pnlBotom.InnerTableLayout.Location = new System.Drawing.Point(0, 0);
-            this.pnlBotom.InnerTableLayout.Name = "InnerTableLayout";
-            this.pnlBotom.InnerTableLayout.Size = new System.Drawing.Size(200, 100);
-            this.pnlBotom.InnerTableLayout.TabIndex = 0;
             this.pnlBotom.Location = new System.Drawing.Point(0, 409);
             this.pnlBotom.Name = "pnlBotom";
             this.pnlBotom.OwnStyle = false;
             this.pnlBotom.Size = new System.Drawing.Size(799, 38);
-            uiStyle7.ClickStyle = null;
-            uiStyle7.HoverStyle = null;
-            style9.BackColor = System.Drawing.Color.Transparent;
-            style9.BorderColor = null;
-            style9.BorderWidth = null;
-            style9.Cursor = System.Windows.Forms.Cursors.Default;
-            style9.Font = new System.Drawing.Font("Segoe UI", 14F);
-            style9.ForeColor = System.Drawing.Color.Black;
-            style9.Margin = new System.Windows.Forms.Padding(3);
-            style9.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle7.NormalStyle = style9;
-            uiStyle7.SelectedStyle = null;
-            this.pnlBotom.Style = uiStyle7;
-            this.pnlBotom.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.pnlBotom.TabIndex = 1;
             // 
             // flwActions
@@ -566,7 +398,7 @@
             this.tcMain.Controls.Add(this.tpConstraints);
             this.tcMain.Controls.Add(this.tpSettings);
             this.tcMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tcMain.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tcMain.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tcMain.Location = new System.Drawing.Point(0, 87);
             this.tcMain.Name = "tcMain";
             this.tcMain.SelectedIndex = 0;
@@ -578,10 +410,10 @@
             this.tpGeneral.Controls.Add(this.pnlDetails);
             this.tpGeneral.Controls.Add(this.pnlComents);
             this.tpGeneral.Controls.Add(this.wpPanel1);
-            this.tpGeneral.Location = new System.Drawing.Point(4, 29);
+            this.tpGeneral.Location = new System.Drawing.Point(4, 30);
             this.tpGeneral.Name = "tpGeneral";
             this.tpGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGeneral.Size = new System.Drawing.Size(791, 289);
+            this.tpGeneral.Size = new System.Drawing.Size(791, 288);
             this.tpGeneral.TabIndex = 0;
             this.tpGeneral.Text = "General";
             this.tpGeneral.UseVisualStyleBackColor = true;
@@ -593,185 +425,27 @@
             this.pnlDetails.Controls.Add(this.lblDetails);
             this.pnlDetails.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlDetails.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.pnlDetails.DoubleBuffered = true;
+            this.pnlDetails.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pnlDetails.ForeColor = System.Drawing.Color.Black;
-            // 
-            // pnlDetails.InnerPanel
-            // 
-            this.pnlDetails.InnerPanel.Location = new System.Drawing.Point(0, 0);
-            this.pnlDetails.InnerPanel.Name = "InnerPanel";
-            this.pnlDetails.InnerPanel.Size = new System.Drawing.Size(200, 100);
-            this.pnlDetails.InnerPanel.TabIndex = 0;
-            // 
-            // pnlDetails.InnerTableLayout
-            // 
-            this.pnlDetails.InnerTableLayout.Location = new System.Drawing.Point(0, 0);
-            this.pnlDetails.InnerTableLayout.Name = "InnerTableLayout";
-            this.pnlDetails.InnerTableLayout.Size = new System.Drawing.Size(200, 100);
-            this.pnlDetails.InnerTableLayout.TabIndex = 0;
             this.pnlDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlDetails.Name = "pnlDetails";
             this.pnlDetails.OwnStyle = false;
-            this.pnlDetails.Size = new System.Drawing.Size(459, 283);
-            uiStyle8.ClickStyle = null;
-            uiStyle8.HoverStyle = null;
-            style10.BackColor = System.Drawing.Color.Transparent;
-            style10.BorderColor = null;
-            style10.BorderWidth = null;
-            style10.Cursor = System.Windows.Forms.Cursors.Default;
-            style10.Font = new System.Drawing.Font("Segoe UI", 14F);
-            style10.ForeColor = System.Drawing.Color.Black;
-            style10.Margin = new System.Windows.Forms.Padding(3);
-            style10.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle8.NormalStyle = style10;
-            uiStyle8.SelectedStyle = null;
-            this.pnlDetails.Style = uiStyle8;
-            this.pnlDetails.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
+            this.pnlDetails.Size = new System.Drawing.Size(459, 282);
             this.pnlDetails.TabIndex = 1;
             // 
             // txtDetails
             // 
+            this.txtDetails.AllowImageBiggerThanClient = false;
+            this.txtDetails.BackColor = System.Drawing.Color.Transparent;
+            this.txtDetails.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtDetails.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtDetails.Location = new System.Drawing.Point(0, 28);
+            this.txtDetails.ForeColor = System.Drawing.Color.Black;
+            this.txtDetails.Location = new System.Drawing.Point(0, 21);
             this.txtDetails.Name = "txtDetails";
-            this.txtDetails.Size = new System.Drawing.Size(459, 255);
+            this.txtDetails.OwnStyle = false;
+            this.txtDetails.Size = new System.Drawing.Size(459, 261);
             this.txtDetails.TabIndex = 0;
-            // 
-            // pnlComents
-            // 
-            this.pnlComents.BackColor = System.Drawing.Color.Transparent;
-            this.pnlComents.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pnlComents.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlComents.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.pnlComents.ForeColor = System.Drawing.Color.Black;
-            // 
-            // pnlComents.InnerPanel
-            // 
-            this.pnlComents.InnerPanel.Location = new System.Drawing.Point(0, 0);
-            this.pnlComents.InnerPanel.Name = "InnerPanel";
-            this.pnlComents.InnerPanel.Size = new System.Drawing.Size(200, 100);
-            this.pnlComents.InnerPanel.TabIndex = 0;
-            // 
-            // pnlComents.InnerTableLayout
-            // 
-            this.pnlComents.InnerTableLayout.Location = new System.Drawing.Point(0, 0);
-            this.pnlComents.InnerTableLayout.Name = "InnerTableLayout";
-            this.pnlComents.InnerTableLayout.Size = new System.Drawing.Size(200, 100);
-            this.pnlComents.InnerTableLayout.TabIndex = 0;
-            this.pnlComents.Location = new System.Drawing.Point(462, 3);
-            this.pnlComents.Name = "pnlComents";
-            this.pnlComents.OwnStyle = false;
-            this.pnlComents.Size = new System.Drawing.Size(326, 283);
-            uiStyle9.ClickStyle = null;
-            uiStyle9.HoverStyle = null;
-            style11.BackColor = System.Drawing.Color.Transparent;
-            style11.BorderColor = null;
-            style11.BorderWidth = null;
-            style11.Cursor = System.Windows.Forms.Cursors.Default;
-            style11.Font = new System.Drawing.Font("Segoe UI", 14F);
-            style11.ForeColor = System.Drawing.Color.Black;
-            style11.Margin = new System.Windows.Forms.Padding(3);
-            style11.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle9.NormalStyle = style11;
-            uiStyle9.SelectedStyle = null;
-            this.pnlComents.Style = uiStyle9;
-            this.pnlComents.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
-            this.pnlComents.TabIndex = 2;
-            // 
-            // wpPanel1
-            // 
-            this.wpPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.wpPanel1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.wpPanel1.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.wpPanel1.ForeColor = System.Drawing.Color.Black;
-            // 
-            // wpPanel1.InnerPanel
-            // 
-            this.wpPanel1.InnerPanel.Location = new System.Drawing.Point(0, 0);
-            this.wpPanel1.InnerPanel.Name = "InnerPanel";
-            this.wpPanel1.InnerPanel.Size = new System.Drawing.Size(200, 100);
-            this.wpPanel1.InnerPanel.TabIndex = 0;
-            // 
-            // wpPanel1.InnerTableLayout
-            // 
-            this.wpPanel1.InnerTableLayout.Location = new System.Drawing.Point(0, 0);
-            this.wpPanel1.InnerTableLayout.Name = "InnerTableLayout";
-            this.wpPanel1.InnerTableLayout.Size = new System.Drawing.Size(200, 100);
-            this.wpPanel1.InnerTableLayout.TabIndex = 0;
-            this.wpPanel1.Location = new System.Drawing.Point(-23, -135);
-            this.wpPanel1.Name = "wpPanel1";
-            this.wpPanel1.OwnStyle = false;
-            this.wpPanel1.Size = new System.Drawing.Size(150, 150);
-            uiStyle10.ClickStyle = null;
-            uiStyle10.HoverStyle = null;
-            style12.BackColor = System.Drawing.Color.Transparent;
-            style12.BorderColor = null;
-            style12.BorderWidth = null;
-            style12.Cursor = System.Windows.Forms.Cursors.Default;
-            style12.Font = new System.Drawing.Font("Segoe UI", 14F);
-            style12.ForeColor = System.Drawing.Color.Black;
-            style12.Margin = new System.Windows.Forms.Padding(3);
-            style12.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle10.NormalStyle = style12;
-            uiStyle10.SelectedStyle = null;
-            this.wpPanel1.Style = uiStyle10;
-            this.wpPanel1.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
-            this.wpPanel1.TabIndex = 0;
-            // 
-            // tpDetails
-            // 
-            this.tpDetails.Location = new System.Drawing.Point(4, 29);
-            this.tpDetails.Name = "tpDetails";
-            this.tpDetails.Padding = new System.Windows.Forms.Padding(3);
-            this.tpDetails.Size = new System.Drawing.Size(791, 289);
-            this.tpDetails.TabIndex = 1;
-            this.tpDetails.Text = "Details";
-            this.tpDetails.UseVisualStyleBackColor = true;
-            // 
-            // tpDiscusion
-            // 
-            this.tpDiscusion.Location = new System.Drawing.Point(4, 29);
-            this.tpDiscusion.Name = "tpDiscusion";
-            this.tpDiscusion.Size = new System.Drawing.Size(791, 289);
-            this.tpDiscusion.TabIndex = 2;
-            this.tpDiscusion.Text = "Discusion";
-            this.tpDiscusion.UseVisualStyleBackColor = true;
-            // 
-            // tpHistory
-            // 
-            this.tpHistory.Location = new System.Drawing.Point(4, 29);
-            this.tpHistory.Name = "tpHistory";
-            this.tpHistory.Size = new System.Drawing.Size(791, 289);
-            this.tpHistory.TabIndex = 3;
-            this.tpHistory.Text = "History";
-            this.tpHistory.UseVisualStyleBackColor = true;
-            // 
-            // tpLinks
-            // 
-            this.tpLinks.Location = new System.Drawing.Point(4, 29);
-            this.tpLinks.Name = "tpLinks";
-            this.tpLinks.Size = new System.Drawing.Size(791, 289);
-            this.tpLinks.TabIndex = 5;
-            this.tpLinks.Text = "Links";
-            this.tpLinks.UseVisualStyleBackColor = true;
-            // 
-            // tpConstraints
-            // 
-            this.tpConstraints.Location = new System.Drawing.Point(4, 29);
-            this.tpConstraints.Name = "tpConstraints";
-            this.tpConstraints.Size = new System.Drawing.Size(791, 289);
-            this.tpConstraints.TabIndex = 6;
-            this.tpConstraints.Text = "Constraints";
-            this.tpConstraints.UseVisualStyleBackColor = true;
-            // 
-            // tpSettings
-            // 
-            this.tpSettings.Location = new System.Drawing.Point(4, 29);
-            this.tpSettings.Name = "tpSettings";
-            this.tpSettings.Size = new System.Drawing.Size(791, 289);
-            this.tpSettings.TabIndex = 7;
-            this.tpSettings.Text = "Settings";
-            this.tpSettings.UseVisualStyleBackColor = true;
             // 
             // lblDetails
             // 
@@ -781,11 +455,93 @@
             this.lblDetails.Location = new System.Drawing.Point(0, 0);
             this.lblDetails.Name = "lblDetails";
             this.lblDetails.Selected = false;
-            this.lblDetails.Size = new System.Drawing.Size(71, 28);
+            this.lblDetails.Size = new System.Drawing.Size(57, 21);
             this.lblDetails.Style = null;
             this.lblDetails.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.lblDetails.TabIndex = 1;
             this.lblDetails.Text = "Details";
+            // 
+            // pnlComents
+            // 
+            this.pnlComents.BackColor = System.Drawing.Color.Transparent;
+            this.pnlComents.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlComents.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlComents.DoubleBuffered = true;
+            this.pnlComents.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.pnlComents.ForeColor = System.Drawing.Color.Black;
+            this.pnlComents.Location = new System.Drawing.Point(462, 3);
+            this.pnlComents.Name = "pnlComents";
+            this.pnlComents.OwnStyle = false;
+            this.pnlComents.Size = new System.Drawing.Size(326, 282);
+            this.pnlComents.TabIndex = 2;
+            // 
+            // wpPanel1
+            // 
+            this.wpPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.wpPanel1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.wpPanel1.DoubleBuffered = true;
+            this.wpPanel1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.wpPanel1.ForeColor = System.Drawing.Color.Black;
+            this.wpPanel1.Location = new System.Drawing.Point(-23, -135);
+            this.wpPanel1.Name = "wpPanel1";
+            this.wpPanel1.OwnStyle = false;
+            this.wpPanel1.Size = new System.Drawing.Size(150, 150);
+            this.wpPanel1.TabIndex = 0;
+            // 
+            // tpDetails
+            // 
+            this.tpDetails.Location = new System.Drawing.Point(4, 30);
+            this.tpDetails.Name = "tpDetails";
+            this.tpDetails.Padding = new System.Windows.Forms.Padding(3);
+            this.tpDetails.Size = new System.Drawing.Size(791, 288);
+            this.tpDetails.TabIndex = 1;
+            this.tpDetails.Text = "Details";
+            this.tpDetails.UseVisualStyleBackColor = true;
+            // 
+            // tpDiscusion
+            // 
+            this.tpDiscusion.Location = new System.Drawing.Point(4, 30);
+            this.tpDiscusion.Name = "tpDiscusion";
+            this.tpDiscusion.Size = new System.Drawing.Size(791, 288);
+            this.tpDiscusion.TabIndex = 2;
+            this.tpDiscusion.Text = "Discusion";
+            this.tpDiscusion.UseVisualStyleBackColor = true;
+            // 
+            // tpHistory
+            // 
+            this.tpHistory.Location = new System.Drawing.Point(4, 30);
+            this.tpHistory.Name = "tpHistory";
+            this.tpHistory.Size = new System.Drawing.Size(791, 288);
+            this.tpHistory.TabIndex = 3;
+            this.tpHistory.Text = "History";
+            this.tpHistory.UseVisualStyleBackColor = true;
+            // 
+            // tpLinks
+            // 
+            this.tpLinks.Location = new System.Drawing.Point(4, 30);
+            this.tpLinks.Name = "tpLinks";
+            this.tpLinks.Size = new System.Drawing.Size(791, 288);
+            this.tpLinks.TabIndex = 5;
+            this.tpLinks.Text = "Links";
+            this.tpLinks.UseVisualStyleBackColor = true;
+            // 
+            // tpConstraints
+            // 
+            this.tpConstraints.Location = new System.Drawing.Point(4, 30);
+            this.tpConstraints.Name = "tpConstraints";
+            this.tpConstraints.Size = new System.Drawing.Size(791, 288);
+            this.tpConstraints.TabIndex = 6;
+            this.tpConstraints.Text = "Constraints";
+            this.tpConstraints.UseVisualStyleBackColor = true;
+            // 
+            // tpSettings
+            // 
+            this.tpSettings.Location = new System.Drawing.Point(4, 30);
+            this.tpSettings.Name = "tpSettings";
+            this.tpSettings.Size = new System.Drawing.Size(791, 288);
+            this.tpSettings.TabIndex = 7;
+            this.tpSettings.Text = "Settings";
+            this.tpSettings.UseVisualStyleBackColor = true;
             // 
             // ctrlTaskEditor
             // 

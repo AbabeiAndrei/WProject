@@ -19,7 +19,7 @@ namespace WProject.UiLibrary.Style
     }
 
     [Serializable]
-    [TypeConverter(typeof(UiStyleEditorTypeConverter))]
+    //[TypeConverter(typeof(UiStyleEditorTypeConverter))]
     public class UiStyle : INotifyPropertyChanged
     {
         #region Fields

@@ -76,7 +76,8 @@ namespace WProject.UiLibrary.Controls
             }
             set
             {
-                rtbText.Font = value;
+                if (rtbText != null)
+                    rtbText.Font = value;
             }
         }
 

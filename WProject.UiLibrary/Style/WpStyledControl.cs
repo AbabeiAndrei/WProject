@@ -62,12 +62,12 @@ namespace WProject.UiLibrary.Style
 
         #endregion
 
-            #region Contstructors
+        #region Contstructors
 
         protected WpStyledControl()
         {
             _styleType = StyleType.Normal;
-            // ReSharper disable once SuspiciousTypeConversion.Global
+            
             ISelectableControl msc = this as ISelectableControl;
             if (msc != null)
                 msc.SelectedChanged +=
@@ -136,11 +136,16 @@ namespace WProject.UiLibrary.Style
         {
             if(style == null)
                 return;
-            Font = style.Font;
+
+            if (style.Font != null)
+                Font = style.Font;
+
             ForeColor = style.ForeColor;
             BackColor = style.BackColor;
+
             Padding = style.Padding;
             Margin = style.Margin;
+
             if (style.BorderColor.HasValue)
             {
                 float mfpenWidth = style.BorderWidth.GetValueOrDefault(1f);

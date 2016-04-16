@@ -28,13 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.pnlMain = new WProject.UiLibrary.Controls.WpPanel();
             this.pnlThread = new WProject.UiLibrary.Controls.WpPanel();
             this.pnlBottom = new WProject.UiLibrary.Controls.WpPanel();
             this.btnSend = new WProject.UiLibrary.Controls.WpButton();
             this.txtMessage = new WProject.UiLibrary.Controls.WpTextBox();
-            this.tpInfo = new System.Windows.Forms.ToolTip(this.components);
             this.pnlMain.SuspendLayout();
             this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
@@ -107,10 +105,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtMessage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtMessage.LeftButton = null;
-            this.txtMessage.Location = new System.Drawing.Point(3, 3);
+            this.txtMessage.Location = new System.Drawing.Point(3, 5);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.ShowClear = false;
-            this.txtMessage.Size = new System.Drawing.Size(304, 29);
+            this.txtMessage.Size = new System.Drawing.Size(356, 29);
             this.txtMessage.TabIndex = 0;
             this.txtMessage.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMessage_KeyUp);
             // 
@@ -137,6 +135,5 @@
         private WpButton btnSend;
         private WpPanel pnlMain;
         private WpPanel pnlThread;
-        private System.Windows.Forms.ToolTip tpInfo;
     }
 }
