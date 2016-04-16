@@ -7,7 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WProject.GenericLibrary.Helpers;
 using WProject.UiLibrary.Classes;
+using WProject.UiLibrary.Controls;
 
 namespace WProject.DesktopTests
 {
@@ -19,8 +21,23 @@ namespace WProject.DesktopTests
 
             wpTextThread1.Messages = Enumerable.Range(0, 100).Select(i => new ChatMessage
             {
-                Message = i.ToString()
+                Message = Utils.RandomString(),
+                Send = Utils.RandomBool()
             }).ToList();
+
+            wpTextThread1.OnSend += (sender, args) =>
+            {
+                var ms = sender as WpTextThread;
+
+                if (ms == null)
+                    return;
+
+                ms.Messages.Add(new ChatMessage
+                {
+                    Message = ms.Text,
+                    Send = true
+                });
+            };
         }
     }
 }

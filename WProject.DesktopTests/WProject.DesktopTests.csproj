@@ -80,6 +80,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WProject.GenericLibrary\WProject.GenericLibrary.csproj">
+      <Project>{4B4C5D2C-7237-4B86-AED0-7927C926689F}</Project>
+      <Name>WProject.GenericLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WProject.UiLibrary\WProject.UiLibrary.csproj">
       <Project>{054d7419-4bb2-45c0-8e51-2d15f613d37a}</Project>
       <Name>WProject.UiLibrary</Name>

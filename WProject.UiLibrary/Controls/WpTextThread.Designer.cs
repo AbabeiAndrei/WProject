@@ -105,12 +105,13 @@
             this.txtMessage.Location = new System.Drawing.Point(3, 3);
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.ShowClear = false;
-            this.txtMessage.Size = new System.Drawing.Size(356, 34);
+            this.txtMessage.Size = new System.Drawing.Size(304, 29);
             this.txtMessage.TabIndex = 0;
+            this.txtMessage.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtMessage_KeyUp);
             // 
             // WpTextThread
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlBottom);

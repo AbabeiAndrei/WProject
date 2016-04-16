@@ -16,7 +16,7 @@ using WProject.UiLibrary.Theme;
 
 namespace WProject.UiLibrary.Controls
 {
-    public partial class WpTextThread : UserControl
+    public partial class WpTextThread : WpUserControl
     {
         #region Fields
 
@@ -59,6 +59,9 @@ namespace WProject.UiLibrary.Controls
 
                 _chatMessages.CollectionChanged += ChatMessagesOnCollectionChanged;
                 RecalculateMessagesHeight();
+                Refresh();
+
+                pnlMain.ScrollToBottom();
             }
         }
 
@@ -208,8 +211,32 @@ namespace WProject.UiLibrary.Controls
 
         private void ChatMessagesOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
-            RecalculateMessagesHeight();
-            pnlThread.Refresh();
+            if(e.Action == NotifyCollectionChangedAction.Add && _chatMessages.Count >= MessagesLimit)
+            {
+                _chatMessages.CollectionChanged -= ChatMessagesOnCollectionChanged;
+                _chatMessages.RemoveAt(0);
+                _chatMessages.CollectionChanged += ChatMessagesOnCollectionChanged;
+            }
+
+            try
+            {
+                pnlThread.SuspendLayout();
+                pnlBottom.SuspendLayout();
+                SuspendLayout();
+
+                RecalculateMessagesHeight();
+                pnlThread.Refresh();
+
+                pnlMain.ScrollToBottom();
+            }
+            finally
+            {
+                ResumeLayout();
+                pnlBottom.ResumeLayout();
+                pnlThread.ResumeLayout();
+            }
+
+            _messagesHaveChanges = true;
         }
 
         private void pnlThread_Paint(object sender, PaintEventArgs e)
@@ -235,6 +262,19 @@ namespace WProject.UiLibrary.Controls
 
             foreach (ChatMessage msg in Messages.Take(MessagesLimit))
                 DrawChatMessage(msg, e.Graphics, ref mlastx);
+
+            if (pnlThread.Height != mlastx)
+                pnlThread.Height = mlastx;
+        }
+
+        private void txtMessage_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode != Keys.Enter)
+                return;
+
+            btnSend.PerformClick();
+            e.Handled = true;
+            e.SuppressKeyPress = true;
         }
 
         #endregion
@@ -251,6 +291,17 @@ namespace WProject.UiLibrary.Controls
             {
                 base.OnSizeChanged(e);
             }
+        }
+
+        #endregion
+
+        #region Overrides of WpUserControl
+
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+
+            ScrollToBottom();
         }
 
         #endregion
@@ -276,7 +327,7 @@ namespace WProject.UiLibrary.Controls
                 pnlThread.Height = Messages.Take(MessagesLimit)
                                            .Select(m => CalculateMessageHeight(m, mgfx) + PaddingBetweenMessages)
                                            .DefaultIfEmpty(10)
-                                           .Sum() + 6;
+                                           .Sum() + START_MESSAGE_PADDING;
 
             _messagesHaveChanges = true;
         }
@@ -290,7 +341,7 @@ namespace WProject.UiLibrary.Controls
                                                          START_MESSAGE_PADDING*3,
                                                          int.MaxValue));
 
-            return (int)mmsgHeight.Height + 2;
+            return (int)mmsgHeight.Height ;
         }
 
         private void DrawChatMessage(ChatMessage msg, Graphics gfx, ref int lastx)
@@ -318,6 +369,11 @@ namespace WProject.UiLibrary.Controls
         public virtual void ClearText()
         {
             txtMessage.Clear();
+        }
+
+        public virtual void ScrollToBottom()
+        {
+            pnlMain.ScrollToBottom();
         }
 
         #endregion
