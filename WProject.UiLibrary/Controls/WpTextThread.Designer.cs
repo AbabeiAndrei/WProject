@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnlMain = new WProject.UiLibrary.Controls.WpPanel();
             this.pnlThread = new WProject.UiLibrary.Controls.WpPanel();
             this.pnlBottom = new WProject.UiLibrary.Controls.WpPanel();
             this.btnSend = new WProject.UiLibrary.Controls.WpButton();
             this.txtMessage = new WProject.UiLibrary.Controls.WpTextBox();
+            this.tpInfo = new System.Windows.Forms.ToolTip(this.components);
             this.pnlMain.SuspendLayout();
             this.pnlBottom.SuspendLayout();
             this.SuspendLayout();
@@ -44,6 +46,7 @@
             this.pnlMain.Controls.Add(this.pnlThread);
             this.pnlMain.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMain.DoubleBuffered = true;
             this.pnlMain.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pnlMain.ForeColor = System.Drawing.Color.Black;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
@@ -58,6 +61,7 @@
             this.pnlThread.BackColor = System.Drawing.Color.Transparent;
             this.pnlThread.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlThread.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlThread.DoubleBuffered = true;
             this.pnlThread.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pnlThread.ForeColor = System.Drawing.Color.Black;
             this.pnlThread.Location = new System.Drawing.Point(0, 0);
@@ -74,6 +78,7 @@
             this.pnlBottom.Controls.Add(this.txtMessage);
             this.pnlBottom.Cursor = System.Windows.Forms.Cursors.Default;
             this.pnlBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottom.DoubleBuffered = true;
             this.pnlBottom.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pnlBottom.ForeColor = System.Drawing.Color.Black;
             this.pnlBottom.Location = new System.Drawing.Point(0, 307);
@@ -132,5 +137,6 @@
         private WpButton btnSend;
         private WpPanel pnlMain;
         private WpPanel pnlThread;
+        private System.Windows.Forms.ToolTip tpInfo;
     }
 }

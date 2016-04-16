@@ -21,6 +21,13 @@ namespace WProject.GenericLibrary.Helpers
         All = Alphanumeric | Symbols
     }
 
+    public enum RandomDateRange
+    {
+        OnlyPositive,
+        OnlyNegative,
+        Both
+    }
+
     public static class Utils
     {
         private static Random _randField;
@@ -110,6 +117,13 @@ namespace WProject.GenericLibrary.Helpers
         public static string RandomString(int length, string characters)
         {
             return new string(characters.Select(c => characters[_randField.Next(characters.Length)]).Take(length).ToArray());
+        }
+
+        public static DateTime RandomDateTime(RandomDateRange range = RandomDateRange.Both, DateTime? min = null, DateTime? max = null)
+        {
+            DateTime start = min ?? new DateTime(1995, 1, 1);
+            int mrange = (DateTime.Today - start).Days;
+            return start.AddDays(_randField.Next(mrange));
         }
     }
 }

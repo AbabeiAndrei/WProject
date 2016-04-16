@@ -18,6 +18,18 @@ namespace WProject.UiLibrary.Controls
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public TableLayoutPanel InnerTableLayout { get; set; }
 
+        public new bool DoubleBuffered
+        {
+            get
+            {
+                return base.DoubleBuffered;
+            }
+            set
+            {
+                base.DoubleBuffered = value;
+            }
+        }
+
         public WpPanel()
         {
             InnerPanel = new Panel();

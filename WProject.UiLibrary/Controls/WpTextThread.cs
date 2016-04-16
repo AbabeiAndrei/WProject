@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Data;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace WProject.UiLibrary.Controls
 
         private const int HORIZONTAL_MESSAGE_PADDING = 26;
         private const int START_MESSAGE_PADDING = 4;
-        private const int ARROW_SIZE = 16;
+        private const int INFO_LINE_HEIGHT = 16;
 
         private ObservableCollection<ChatMessage> _chatMessages;
         private int _messagesLimit;
@@ -33,6 +34,8 @@ namespace WProject.UiLibrary.Controls
         private Color _sendMessageForeColor;
         private Color _reciveMessageForeColor;
         private int _paddingBetweenMessages;
+
+        private IDictionary<Rectangle, string> _toolTips;
 
         #endregion
 
@@ -186,6 +189,8 @@ namespace WProject.UiLibrary.Controls
             SendMessageColor = WpThemeColors.Blue;
             ReciveMessageColor = WpThemeColors.Teal;
             MessagesLimit = 100;
+
+            _toolTips = new Dictionary<Rectangle, string>();
         }
 
         public WpTextThread(IEnumerable<ChatMessage> messages)
@@ -242,6 +247,7 @@ namespace WProject.UiLibrary.Controls
         private void pnlThread_Paint(object sender, PaintEventArgs e)
         {
             _messagesHaveChanges = false;
+            _toolTips = new Dictionary<Rectangle, string>();
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
             if (Messages == null || Messages.Count == 0)
@@ -341,7 +347,7 @@ namespace WProject.UiLibrary.Controls
                                                          START_MESSAGE_PADDING*3,
                                                          int.MaxValue));
 
-            return (int)mmsgHeight.Height ;
+            return (int)mmsgHeight.Height + INFO_LINE_HEIGHT;
         }
 
         private void DrawChatMessage(ChatMessage msg, Graphics gfx, ref int lastx)
@@ -350,16 +356,31 @@ namespace WProject.UiLibrary.Controls
             int mwidth = pnlThread.Width - HORIZONTAL_MESSAGE_PADDING - START_MESSAGE_PADDING*2;
 
             var ms = gfx.MeasureString(msg.Message, Font, new Size(mwidth - START_MESSAGE_PADDING*2, int.MaxValue));
-
-            int mheight = (int)ms.Height + lastx;
-
+            
             Brush mbkbrush = new SolidBrush(msg.Send ? SendMessageColor : ReciveMessageColor);
 
-            Rectangle mrect = new Rectangle(mleft, lastx + 2, mwidth, (int) ms.Height);
+            Rectangle mrect = new Rectangle(mleft, lastx + 2, mwidth, (int) ms.Height + INFO_LINE_HEIGHT);
+            Rectangle mrectText = new Rectangle(mleft, lastx + 2, mwidth, (int) ms.Height);
 
             gfx.FillRectangle(mbkbrush, mrect);
-            gfx.DrawString(msg.Message, Font, Brushes.Black, mrect);
-            lastx += START_MESSAGE_PADDING + (int)ms.Height + PaddingBetweenMessages;
+            gfx.DrawString(msg.Message, Font, Brushes.Black, mrectText);
+
+            if(!msg.Send)
+                gfx.DrawString(msg.SendBy, _smallInfoFont, Brushes.Black, mleft, mrectText.Bottom + 1);
+
+            var msend = msg.GetWhenSend();
+
+            var mssend = gfx.MeasureString(msend, _smallInfoFont);
+
+            gfx.DrawString(msend, _smallInfoFont, Brushes.Black, mrect.Right - mssend.Width - 2, mrectText.Bottom + 1);
+
+            _toolTips.Add(new Rectangle(mrect.Right - (int)mssend.Width - 2, 
+                                        mrectText.Bottom + 1,
+                                        (int) mssend.Width,
+                                        (int) mssend.Height),
+                           msg.DateTime.ToString(CultureInfo.DefaultThreadCurrentCulture));
+
+            lastx += START_MESSAGE_PADDING + (int)ms.Height + INFO_LINE_HEIGHT + PaddingBetweenMessages;
         }
 
         #endregion

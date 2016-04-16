@@ -19,10 +19,21 @@ namespace WProject.DesktopTests
         {
             InitializeComponent();
 
+            string[] _users = 
+            {
+                "Alex",
+                "Ionut",
+                "Mircea",
+                "Foo",
+                "Bar"
+            };
+
             wpTextThread1.Messages = Enumerable.Range(0, 100).Select(i => new ChatMessage
             {
                 Message = Utils.RandomString(),
-                Send = Utils.RandomBool()
+                Send = Utils.RandomBool(),
+                SendBy = _users[Utils.RandomInt(0, _users.Length - 1)],
+                DateTime = Utils.RandomDateTime()
             }).ToList();
 
             wpTextThread1.OnSend += (sender, args) =>
