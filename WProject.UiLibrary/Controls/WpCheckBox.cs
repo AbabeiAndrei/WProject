@@ -45,9 +45,25 @@ namespace WProject.UiLibrary.Controls
 
         [Category("Action")]
         public event EventHandler OnCheckChanged;
+        
+        [ReadOnly(true)]
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        [Description("Not used in checkBox")]
+        private new bool Selected
+        {
+            get
+            {
+                return base.Selected;
+            }
+            set
+            {
+                base.Selected = value;
+            }
+        }
 
         #endregion
-        
+
         #region Overrides of Control
 
         protected override void OnCreateControl()
