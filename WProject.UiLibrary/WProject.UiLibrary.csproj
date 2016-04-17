@@ -54,6 +54,18 @@
     <Compile Include="Controls\Base\WpBaseUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\SpecificControls\InnerControls\WpFileItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SpecificControls\InnerControls\WpFileItem.Designer.cs">
+      <DependentUpon>WpFileItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SpecificControls\WpFileLoader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\SpecificControls\WpFileLoader.Designer.cs">
+      <DependentUpon>WpFileLoader.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\WpButton.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -75,10 +87,10 @@
     <Compile Include="Controls\WpTextEditor.Designer.cs">
       <DependentUpon>WpTextEditor.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\WpTextThread.cs">
+    <Compile Include="Controls\SpecificControls\WpTextThread.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\WpTextThread.Designer.cs">
+    <Compile Include="Controls\SpecificControls\WpTextThread.Designer.cs">
       <DependentUpon>WpTextThread.cs</DependentUpon>
     </Compile>
     <Compile Include="Designer\Convertors\CsvConverter.cs" />
@@ -137,6 +149,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\SpecificControls\InnerControls\WpFileItem.resx">
+      <DependentUpon>WpFileItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\SpecificControls\WpFileLoader.resx">
+      <DependentUpon>WpFileLoader.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\WpDropDown.resx">
       <DependentUpon>WpDropDown.cs</DependentUpon>
     </EmbeddedResource>
@@ -146,7 +164,7 @@
     <EmbeddedResource Include="Controls\WpTextEditor.resx">
       <DependentUpon>WpTextEditor.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\WpTextThread.resx">
+    <EmbeddedResource Include="Controls\SpecificControls\WpTextThread.resx">
       <DependentUpon>WpTextThread.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -203,6 +221,69 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\send_m.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download_m.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_m.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_m.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x_m.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\x_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_m.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upload_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upload_m.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\upload_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\done_all_l.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\done_all_m.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\done_all_s.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions />
