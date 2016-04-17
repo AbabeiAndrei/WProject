@@ -61,6 +61,16 @@ namespace WProject.UiLibrary.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] blank_check_box {
+            get {
+                object obj = ResourceManager.GetObject("blank_check_box", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap blank_check_box_l {
@@ -87,6 +97,16 @@ namespace WProject.UiLibrary.Properties {
             get {
                 object obj = ResourceManager.GetObject("blank_check_box_s", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] check_box {
+            get {
+                object obj = ResourceManager.GetObject("check_box", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
