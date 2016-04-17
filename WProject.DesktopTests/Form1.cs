@@ -18,37 +18,11 @@ namespace WProject.DesktopTests
         public Form1()
         {
             InitializeComponent();
+        }
 
-            string[] _users = 
-            {
-                "Alex",
-                "Ionut",
-                "Mircea",
-                "Foo",
-                "Bar"
-            };
+        private void wpCheckBox1_OnCheckChanged(object sender, EventArgs e)
+        {
 
-            wpTextThread1.Messages = Enumerable.Range(0, 100).Select(i => new ChatMessage
-            {
-                Message = Utils.RandomString(),
-                Send = Utils.RandomBool(),
-                SendBy = _users[Utils.RandomInt(0, _users.Length - 1)],
-                DateTime = Utils.RandomDateTime()
-            }).ToList();
-
-            wpTextThread1.OnSend += (sender, args) =>
-            {
-                var ms = sender as WpTextThread;
-
-                if (ms == null)
-                    return;
-
-                ms.Messages.Add(new ChatMessage
-                {
-                    Message = ms.Text,
-                    Send = true
-                });
-            };
         }
     }
 }

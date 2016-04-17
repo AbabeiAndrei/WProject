@@ -28,37 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.wpTextThread1 = new WProject.UiLibrary.Controls.WpTextThread();
+            this.wpCheckBox1 = new WProject.UiLibrary.Controls.WpCheckBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
-            // wpTextThread1
+            // wpCheckBox1
             // 
-            this.wpTextThread1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.wpTextThread1.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.wpTextThread1.Location = new System.Drawing.Point(169, 49);
-            this.wpTextThread1.Name = "wpTextThread1";
-            this.wpTextThread1.ReciveMessageColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
-            this.wpTextThread1.ReciveMessageForeColor = System.Drawing.Color.Empty;
-            this.wpTextThread1.SendMessageColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
-            this.wpTextThread1.SendMessageForeColor = System.Drawing.Color.Empty;
-            this.wpTextThread1.Size = new System.Drawing.Size(363, 347);
-            this.wpTextThread1.TabIndex = 0;
+            this.wpCheckBox1.AutoSize = true;
+            this.wpCheckBox1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.wpCheckBox1.Location = new System.Drawing.Point(135, 130);
+            this.wpCheckBox1.Name = "wpCheckBox1";
+            this.wpCheckBox1.Padding = new System.Windows.Forms.Padding(58, 0, 0, 0);
+            this.wpCheckBox1.Selected = false;
+            this.wpCheckBox1.Size = new System.Drawing.Size(327, 54);
+            this.wpCheckBox1.Style = null;
+            this.wpCheckBox1.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
+            this.wpCheckBox1.TabIndex = 0;
+            this.wpCheckBox1.Text = "wpCheckBox1";
+            this.wpCheckBox1.OnCheckChanged += new System.EventHandler(this.wpCheckBox1_OnCheckChanged);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(410, 62);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(98, 21);
+            this.checkBox1.TabIndex = 1;
+            this.checkBox1.Text = "checkBox1";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 465);
-            this.Controls.Add(this.wpTextThread1);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.wpCheckBox1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private UiLibrary.Controls.WpTextThread wpTextThread1;
+        private UiLibrary.Controls.WpCheckBox wpCheckBox1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 
