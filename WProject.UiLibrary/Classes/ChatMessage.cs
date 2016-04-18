@@ -17,6 +17,7 @@ namespace WProject.UiLibrary.Classes
         public string SendBy { get; set; }
         public string Message { get; set; }
         public bool Send { get; set; }
+        public bool Empty { get; set; }
 
         public ChatMessage()
         {

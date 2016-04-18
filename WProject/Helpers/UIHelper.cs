@@ -15,6 +15,12 @@ using WProject.UiLibrary.Controls;
 
 namespace WProject.Helpers
 {
+    public enum ShowInFormControlSize
+    {
+        MainFormSize,
+        ControlSize    
+    }
+
     public static class UIHelper
     {
         public const int BACKLOG_COLOR_BAR_WIDTH = 6;
@@ -120,6 +126,43 @@ namespace WProject.Helpers
         {
             if (_loaderControl != null && _loaderControl.Visible)
                 _loaderControl.Visible = false;
+        }
+
+        public static void ShowTaskEditor(WebApiClasses.Classes.Task task,
+                                          Action<WebApiClasses.Classes.Task> onSave,
+                                          Action onClose = null,
+                                          Action onFollow = null,
+                                          Form parentForm = null)
+        {
+            var mc = new ctrlTaskEditor(task);
+
+            mc.OnClose = () =>
+            {
+                onClose?.Invoke();
+
+                mc.ParentForm?.Close();
+            };
+
+            ShowControlInForm(mc, ShowInFormControlSize.ControlSize, parentForm);
+        }
+
+        public static void ShowControlInForm(Control control, ShowInFormControlSize size, Form parentForm = null)
+        {
+            var mform = new ChildForm
+            {
+                Padding = new Padding(2)
+            };
+
+            if (size == ShowInFormControlSize.MainFormSize)
+                mform.Size = Program.MainForm.Size;
+            else
+                mform.Size = control.Size + new Size(4, 4);
+
+            control.Dock = DockStyle.Fill;
+
+            mform.Controls.Add(control);
+
+            mform.ShowDialog(parentForm);
         }
 
         public static async Task PerformLogout()

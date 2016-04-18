@@ -60,6 +60,14 @@ namespace WProject.WebApiClasses.Classes
 
         public Backlog Backlog { get; set; }
 
+        public IEnumerable<TaskComment> Comments { get; set; }
+
+        public IEnumerable<TaskComment> Discusion { get; set; }
+
+        public IEnumerable<TaskAttachemt> Attachments { get; set; }
+
         public new static string TableName => TABLE_NAME;
+
+        public string FullName => $"Task {Id} {Name}";
     }
 }

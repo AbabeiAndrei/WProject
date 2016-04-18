@@ -118,6 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="clipboard_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clipboard_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="filtre_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\filtre_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -138,6 +141,9 @@
   </data>
   <data name="upload_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\upload_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="filtre_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\filtre_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="back_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\back_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -175,9 +181,6 @@
   <data name="group_add_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\group_add_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="tree_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\tree_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="logout_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\logout_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -189,6 +192,9 @@
   </data>
   <data name="public_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\public_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="link_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\link_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="poll_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\poll_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -319,8 +325,8 @@
   <data name="up_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\up_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="add_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\add_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="image-l" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\image-l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="group_add_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\group_add_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -442,6 +448,9 @@
   <data name="archive_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\archive_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="file_code_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\file_code_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="file_code_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\file_code_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -472,6 +481,9 @@
   <data name="unlock_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\unlock_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="image-m" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\image-m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="stop_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\stop_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -499,6 +511,9 @@
   <data name="order_list_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\order_list_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="volume_on_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\volume_on_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="remove_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\remove_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -514,8 +529,8 @@
   <data name="sort_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\sort_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="send_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\send_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="query_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\query_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="pin_off_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\pin_off_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -535,8 +550,8 @@
   <data name="done_all_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\done_all_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="link_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\link_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="add_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\add_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="volume_on_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\volume_on_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -580,6 +595,9 @@
   <data name="delete_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\delete_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="image-s" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\image-s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="upload_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\upload_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -592,8 +610,8 @@
   <data name="settings_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\settings_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="file_code_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\file_code_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="send_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\send_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="note_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\note_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -658,9 +676,6 @@
   <data name="share_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\share_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="expand_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\expand_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="poll_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\poll_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -681,9 +696,6 @@
   </data>
   <data name="volume_off_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\volume_off_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="query_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\query_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="info_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\info_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -712,8 +724,8 @@
   <data name="print_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\print_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="volume_on_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\volume_on_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="expand_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\expand_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="timeline_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\timeline_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -727,8 +739,8 @@
   <data name="lock_s" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\lock_s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="filtre_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\filtre_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="tree_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Icons\tree_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="save_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\save_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -778,13 +790,13 @@
   <data name="query_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Icons\query_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="image-l" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\image-l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="clipboard_l" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clipboard_l.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="image-m" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\image-m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="clipboard_m" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clipboard_m.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="image-s" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Icons\image-s.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="clipboard_s1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clipboard_s1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

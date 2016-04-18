@@ -13,6 +13,11 @@ namespace WProject.GenericLibrary.Helpers.Extensions
             return predicate(obj) ? onTrue : onFalse;
         }
 
+        public static G If<T, G>(this T obj, Predicate<T> predicate, Func<T, G> onTrue, Func<T, G> onFalse)
+        {
+            return predicate(obj) ? onTrue(obj) : onFalse(obj);
+        }
+
         public static T IsZero<T>(this T obj, T onTrue) where T : struct, IEquatable<T>
         {
             return obj.Equals(default(T)) ? onTrue : obj;

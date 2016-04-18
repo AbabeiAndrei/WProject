@@ -58,6 +58,12 @@
     <Compile Include="Classes\WPSuite.cs" />
     <Compile Include="Connection\Connection.cs" />
     <Compile Include="Connection\WebCallFactory.cs" />
+    <Compile Include="Controls\ChildForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ChildForm.Designer.cs">
+      <DependentUpon>ChildForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ctrlLoginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -178,6 +184,7 @@
     <Compile Include="Controls\MainPageControls\MainPageControl.Designer.cs">
       <DependentUpon>MainPageControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Convertors.cs" />
     <Compile Include="Helpers\UIEnums.cs" />
     <Compile Include="Helpers\UIHelper.cs" />
     <Compile Include="frmMain.cs">
@@ -191,6 +198,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Classes\StatusBarVisbility.cs" />
+    <EmbeddedResource Include="Controls\ChildForm.resx">
+      <DependentUpon>ChildForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlHeader.resx">
       <DependentUpon>ctrlHeader.cs</DependentUpon>
     </EmbeddedResource>
@@ -891,6 +901,10 @@
     <None Include="Resources\Icons\image-l.png" />
     <None Include="Resources\Icons\image-m.png" />
     <None Include="Resources\Icons\image-s.png" />
+    <None Include="Resources\clipboard_s.png" />
+    <None Include="Resources\clipboard_l.png" />
+    <None Include="Resources\clipboard_m.png" />
+    <None Include="Resources\clipboard_s1.png" />
     <Content Include="Resources\Icons\undo_l.png" />
     <Content Include="Resources\Icons\undo_m.png" />
     <Content Include="Resources\Icons\undo_s.png" />

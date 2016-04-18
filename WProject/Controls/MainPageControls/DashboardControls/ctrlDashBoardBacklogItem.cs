@@ -12,6 +12,7 @@ using WProject.Connection;
 using WProject.GenericLibrary.Helpers;
 using WProject.GenericLibrary.Helpers.Drawing;
 using WProject.GenericLibrary.Helpers.Log;
+using WProject.Helpers;
 using WProject.Properties;
 using WProject.UiLibrary;
 using WProject.UiLibrary.Controls;
@@ -359,6 +360,14 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             {
                 Size = ctrlDashBoardTaskItem.DefaultSize,
                 AllowDrop = true
+            };
+
+            mtsk.MouseUp += (sender, args) =>
+            {
+                var mte = sender as ctrlDashBoardTaskItem;
+
+                if (mte != null)
+                    UIHelper.ShowTaskEditor(mte.Task, task1 => {});
             };
 
             mtsk.MouseDown += ctrlTaskItem_MouseDown;

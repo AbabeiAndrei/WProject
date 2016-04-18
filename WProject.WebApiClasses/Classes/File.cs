@@ -18,6 +18,8 @@ namespace WProject.WebApiClasses.Classes
 
         public string Name { get; set; }
 
+        public string Extension { get; set; }
+
         public string Type { get; set; }
 
         public byte[] Content { get; set; }
@@ -53,6 +55,13 @@ namespace WProject.WebApiClasses.Classes
 
             return !string.IsNullOrEmpty(Url)
                         ? ImageHelper.DownloadImage(Url)
+                        : null;
+        }
+
+        public Image GetThumbnail()
+        {
+            return Thumbmail != null 
+                        ? ImageHelper.Convert(Thumbmail) 
                         : null;
         }
 

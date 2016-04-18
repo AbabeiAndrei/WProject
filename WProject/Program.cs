@@ -10,6 +10,8 @@ namespace WProject
     {
         public const int TIMEOUT_HUB_CONNECTION = 20000;
 
+        public static Form MainForm { get; set; }
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -18,8 +20,8 @@ namespace WProject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
-            Application.Run(new frmMain());
+            MainForm = new frmMain();
+            Application.Run(MainForm);
         }
     }
 }

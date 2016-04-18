@@ -55,6 +55,8 @@
     <Compile Include="Classes\Project.cs" />
     <Compile Include="Classes\Spring.cs" />
     <Compile Include="Classes\Task.cs" />
+    <Compile Include="Classes\TaskAttachemt.cs" />
+    <Compile Include="Classes\TaskComment.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Data\SimpleCache.cs" />
     <Compile Include="Interfaces\ITableNameble.cs" />

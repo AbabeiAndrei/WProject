@@ -30,7 +30,9 @@
         {
             System.Windows.Forms.TabPage tpAttachements;
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrlTaskEditor));
+            this.flAttachments = new WProject.UiLibrary.Controls.SpecificControls.WpFileLoader();
             this.pnlTop = new WProject.UiLibrary.Controls.WpPanel();
+            this.btnCopy = new WProject.UiLibrary.Controls.WpButton();
             this.btnFullScreen = new WProject.UiLibrary.Controls.WpButton();
             this.txtLeft = new WProject.UiLibrary.Controls.WpTextBox();
             this.nudPriority = new System.Windows.Forms.NumericUpDown();
@@ -65,7 +67,9 @@
             this.tpLinks = new System.Windows.Forms.TabPage();
             this.tpConstraints = new System.Windows.Forms.TabPage();
             this.tpSettings = new System.Windows.Forms.TabPage();
+            this.wpButtonCopy = new WProject.UiLibrary.Controls.WpButton();
             tpAttachements = new System.Windows.Forms.TabPage();
+            tpAttachements.SuspendLayout();
             this.pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPriority)).BeginInit();
             this.pnlBotom.SuspendLayout();
@@ -79,16 +83,31 @@
             // 
             // tpAttachements
             // 
-            tpAttachements.Location = new System.Drawing.Point(4, 30);
+            tpAttachements.Controls.Add(this.flAttachments);
+            tpAttachements.Location = new System.Drawing.Point(4, 37);
             tpAttachements.Name = "tpAttachements";
-            tpAttachements.Size = new System.Drawing.Size(791, 288);
+            tpAttachements.Size = new System.Drawing.Size(791, 281);
             tpAttachements.TabIndex = 4;
             tpAttachements.Text = "Attachements";
             tpAttachements.UseVisualStyleBackColor = true;
             // 
+            // flAttachments
+            // 
+            this.flAttachments.BackColor = System.Drawing.Color.Transparent;
+            this.flAttachments.Cursor = System.Windows.Forms.Cursors.Default;
+            this.flAttachments.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flAttachments.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.flAttachments.ForeColor = System.Drawing.Color.Black;
+            this.flAttachments.Location = new System.Drawing.Point(0, 0);
+            this.flAttachments.Name = "flAttachments";
+            this.flAttachments.OwnStyle = false;
+            this.flAttachments.Size = new System.Drawing.Size(791, 281);
+            this.flAttachments.TabIndex = 0;
+            // 
             // pnlTop
             // 
             this.pnlTop.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTop.Controls.Add(this.btnCopy);
             this.pnlTop.Controls.Add(this.btnFullScreen);
             this.pnlTop.Controls.Add(this.txtLeft);
             this.pnlTop.Controls.Add(this.nudPriority);
@@ -111,6 +130,19 @@
             this.pnlTop.Size = new System.Drawing.Size(799, 87);
             this.pnlTop.TabIndex = 0;
             // 
+            // btnCopy
+            // 
+            this.btnCopy.FlatAppearance.BorderSize = 0;
+            this.btnCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCopy.Image = global::WProject.Properties.Resources.clipboard_s;
+            this.btnCopy.Location = new System.Drawing.Point(667, 4);
+            this.btnCopy.Name = "btnCopy";
+            this.btnCopy.Selected = false;
+            this.btnCopy.Size = new System.Drawing.Size(47, 34);
+            this.btnCopy.TabIndex = 11;
+            this.btnCopy.UseVisualStyleBackColor = true;
+            this.btnCopy.Click += new System.EventHandler(this.wpButtonCopy_Click);
+            // 
             // btnFullScreen
             // 
             this.btnFullScreen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -124,6 +156,7 @@
             this.btnFullScreen.Size = new System.Drawing.Size(32, 34);
             this.btnFullScreen.TabIndex = 10;
             this.btnFullScreen.UseVisualStyleBackColor = true;
+            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
             // 
             // txtLeft
             // 
@@ -133,7 +166,7 @@
             this.txtLeft.Location = new System.Drawing.Point(712, 44);
             this.txtLeft.Name = "txtLeft";
             this.txtLeft.ShowClear = false;
-            this.txtLeft.Size = new System.Drawing.Size(84, 29);
+            this.txtLeft.Size = new System.Drawing.Size(84, 34);
             this.txtLeft.TabIndex = 9;
             // 
             // nudPriority
@@ -142,7 +175,7 @@
             this.nudPriority.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudPriority.Location = new System.Drawing.Point(495, 44);
             this.nudPriority.Name = "nudPriority";
-            this.nudPriority.Size = new System.Drawing.Size(74, 29);
+            this.nudPriority.Size = new System.Drawing.Size(74, 34);
             this.nudPriority.TabIndex = 8;
             this.nudPriority.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -154,7 +187,7 @@
             this.lblLeft.Location = new System.Drawing.Point(575, 47);
             this.lblLeft.Name = "lblLeft";
             this.lblLeft.Selected = false;
-            this.lblLeft.Size = new System.Drawing.Size(104, 21);
+            this.lblLeft.Size = new System.Drawing.Size(131, 28);
             this.lblLeft.Style = null;
             this.lblLeft.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.lblLeft.TabIndex = 7;
@@ -168,7 +201,7 @@
             this.lblPriority.Location = new System.Drawing.Point(413, 47);
             this.lblPriority.Name = "lblPriority";
             this.lblPriority.Selected = false;
-            this.lblPriority.Size = new System.Drawing.Size(61, 21);
+            this.lblPriority.Size = new System.Drawing.Size(76, 28);
             this.lblPriority.Style = null;
             this.lblPriority.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.lblPriority.TabIndex = 6;
@@ -189,7 +222,7 @@
             this.ddUser.Name = "ddUser";
             this.ddUser.SelectedIndex = 0;
             this.ddUser.ShowImage = true;
-            this.ddUser.Size = new System.Drawing.Size(153, 22);
+            this.ddUser.Size = new System.Drawing.Size(176, 27);
             this.ddUser.SortMember = null;
             this.ddUser.TabIndex = 5;
             this.ddUser.ValueMember = null;
@@ -209,7 +242,7 @@
             this.ddState.Name = "ddState";
             this.ddState.SelectedIndex = 0;
             this.ddState.ShowImage = false;
-            this.ddState.Size = new System.Drawing.Size(153, 22);
+            this.ddState.Size = new System.Drawing.Size(153, 27);
             this.ddState.SortMember = null;
             this.ddState.TabIndex = 4;
             this.ddState.ValueMember = null;
@@ -227,6 +260,7 @@
             this.btnClose.Size = new System.Drawing.Size(32, 34);
             this.btnClose.TabIndex = 3;
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // txtName
             // 
@@ -239,7 +273,7 @@
             this.txtName.Location = new System.Drawing.Point(159, 4);
             this.txtName.Name = "txtName";
             this.txtName.ShowClear = false;
-            this.txtName.Size = new System.Drawing.Size(559, 29);
+            this.txtName.Size = new System.Drawing.Size(559, 34);
             this.txtName.TabIndex = 2;
             // 
             // lblTask
@@ -249,7 +283,7 @@
             this.lblTask.Location = new System.Drawing.Point(21, 7);
             this.lblTask.Name = "lblTask";
             this.lblTask.Selected = false;
-            this.lblTask.Size = new System.Drawing.Size(59, 21);
+            this.lblTask.Size = new System.Drawing.Size(74, 28);
             this.lblTask.Style = null;
             this.lblTask.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.lblTask.TabIndex = 1;
@@ -301,7 +335,7 @@
             // 
             // btnPrint
             // 
-            this.btnPrint.BackColor = System.Drawing.Color.Gray;
+            this.btnPrint.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.btnPrint.FlatAppearance.BorderSize = 0;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -313,10 +347,11 @@
             this.btnPrint.TabIndex = 5;
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrint.UseVisualStyleBackColor = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnFollow
             // 
-            this.btnFollow.BackColor = System.Drawing.Color.Gray;
+            this.btnFollow.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.btnFollow.FlatAppearance.BorderSize = 0;
             this.btnFollow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFollow.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -328,10 +363,11 @@
             this.btnFollow.TabIndex = 4;
             this.btnFollow.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnFollow.UseVisualStyleBackColor = false;
+            this.btnFollow.Click += new System.EventHandler(this.btnFollow_Click);
             // 
             // btnRefresh
             // 
-            this.btnRefresh.BackColor = System.Drawing.Color.Gray;
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.btnRefresh.FlatAppearance.BorderSize = 0;
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -343,10 +379,11 @@
             this.btnRefresh.TabIndex = 3;
             this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // btnUndo
             // 
-            this.btnUndo.BackColor = System.Drawing.Color.Gray;
+            this.btnUndo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.btnUndo.FlatAppearance.BorderSize = 0;
             this.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUndo.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -358,10 +395,11 @@
             this.btnUndo.TabIndex = 2;
             this.btnUndo.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUndo.UseVisualStyleBackColor = false;
+            this.btnUndo.Click += new System.EventHandler(this.btnUndo_Click);
             // 
             // btnSaveAndClose
             // 
-            this.btnSaveAndClose.BackColor = System.Drawing.Color.Gray;
+            this.btnSaveAndClose.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.btnSaveAndClose.FlatAppearance.BorderSize = 0;
             this.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveAndClose.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -373,10 +411,11 @@
             this.btnSaveAndClose.TabIndex = 0;
             this.btnSaveAndClose.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSaveAndClose.UseVisualStyleBackColor = false;
+            this.btnSaveAndClose.Click += new System.EventHandler(this.btnSaveAndClose_Click);
             // 
             // btnSave
             // 
-            this.btnSave.BackColor = System.Drawing.Color.Gray;
+            this.btnSave.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.btnSave.FlatAppearance.BorderSize = 0;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -390,6 +429,7 @@
             this.btnSave.Text = "Save";
             this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // tcMain
             // 
@@ -414,10 +454,10 @@
             this.tpGeneral.Controls.Add(this.pnlDetails);
             this.tpGeneral.Controls.Add(this.pnlComents);
             this.tpGeneral.Controls.Add(this.wpPanel1);
-            this.tpGeneral.Location = new System.Drawing.Point(4, 30);
+            this.tpGeneral.Location = new System.Drawing.Point(4, 37);
             this.tpGeneral.Name = "tpGeneral";
             this.tpGeneral.Padding = new System.Windows.Forms.Padding(3);
-            this.tpGeneral.Size = new System.Drawing.Size(791, 288);
+            this.tpGeneral.Size = new System.Drawing.Size(791, 281);
             this.tpGeneral.TabIndex = 0;
             this.tpGeneral.Text = "General";
             this.tpGeneral.UseVisualStyleBackColor = true;
@@ -435,7 +475,7 @@
             this.pnlDetails.Location = new System.Drawing.Point(3, 3);
             this.pnlDetails.Name = "pnlDetails";
             this.pnlDetails.OwnStyle = false;
-            this.pnlDetails.Size = new System.Drawing.Size(459, 282);
+            this.pnlDetails.Size = new System.Drawing.Size(459, 275);
             this.pnlDetails.TabIndex = 1;
             // 
             // txtDetails
@@ -445,10 +485,10 @@
             this.txtDetails.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtDetails.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtDetails.ForeColor = System.Drawing.Color.Black;
-            this.txtDetails.Location = new System.Drawing.Point(0, 21);
+            this.txtDetails.Location = new System.Drawing.Point(0, 28);
             this.txtDetails.Name = "txtDetails";
             this.txtDetails.OwnStyle = false;
-            this.txtDetails.Size = new System.Drawing.Size(459, 261);
+            this.txtDetails.Size = new System.Drawing.Size(459, 247);
             this.txtDetails.TabIndex = 0;
             // 
             // lblDetails
@@ -459,7 +499,7 @@
             this.lblDetails.Location = new System.Drawing.Point(0, 0);
             this.lblDetails.Name = "lblDetails";
             this.lblDetails.Selected = false;
-            this.lblDetails.Size = new System.Drawing.Size(57, 21);
+            this.lblDetails.Size = new System.Drawing.Size(71, 28);
             this.lblDetails.Style = null;
             this.lblDetails.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.lblDetails.TabIndex = 1;
@@ -477,7 +517,7 @@
             this.pnlComents.Location = new System.Drawing.Point(462, 3);
             this.pnlComents.Name = "pnlComents";
             this.pnlComents.OwnStyle = false;
-            this.pnlComents.Size = new System.Drawing.Size(326, 282);
+            this.pnlComents.Size = new System.Drawing.Size(326, 275);
             this.pnlComents.TabIndex = 2;
             // 
             // ttComents
@@ -494,7 +534,7 @@
             this.ttComents.ReciveMessageForeColor = System.Drawing.Color.Empty;
             this.ttComents.SendMessageColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.ttComents.SendMessageForeColor = System.Drawing.Color.Empty;
-            this.ttComents.Size = new System.Drawing.Size(326, 282);
+            this.ttComents.Size = new System.Drawing.Size(326, 275);
             this.ttComents.TabIndex = 0;
             // 
             // wpPanel1
@@ -512,10 +552,10 @@
             // 
             // tpDetails
             // 
-            this.tpDetails.Location = new System.Drawing.Point(4, 30);
+            this.tpDetails.Location = new System.Drawing.Point(4, 37);
             this.tpDetails.Name = "tpDetails";
             this.tpDetails.Padding = new System.Windows.Forms.Padding(3);
-            this.tpDetails.Size = new System.Drawing.Size(791, 288);
+            this.tpDetails.Size = new System.Drawing.Size(791, 281);
             this.tpDetails.TabIndex = 1;
             this.tpDetails.Text = "Details";
             this.tpDetails.UseVisualStyleBackColor = true;
@@ -523,9 +563,9 @@
             // tpDiscusion
             // 
             this.tpDiscusion.Controls.Add(this.ttDiscution);
-            this.tpDiscusion.Location = new System.Drawing.Point(4, 30);
+            this.tpDiscusion.Location = new System.Drawing.Point(4, 37);
             this.tpDiscusion.Name = "tpDiscusion";
-            this.tpDiscusion.Size = new System.Drawing.Size(791, 288);
+            this.tpDiscusion.Size = new System.Drawing.Size(791, 281);
             this.tpDiscusion.TabIndex = 2;
             this.tpDiscusion.Text = "Discusion";
             this.tpDiscusion.UseVisualStyleBackColor = true;
@@ -544,48 +584,62 @@
             this.ttDiscution.ReciveMessageForeColor = System.Drawing.Color.Empty;
             this.ttDiscution.SendMessageColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(150)))), ((int)(((byte)(243)))));
             this.ttDiscution.SendMessageForeColor = System.Drawing.Color.Empty;
-            this.ttDiscution.Size = new System.Drawing.Size(791, 288);
+            this.ttDiscution.Size = new System.Drawing.Size(791, 281);
             this.ttDiscution.TabIndex = 1;
             // 
             // tpHistory
             // 
-            this.tpHistory.Location = new System.Drawing.Point(4, 30);
+            this.tpHistory.Location = new System.Drawing.Point(4, 37);
             this.tpHistory.Name = "tpHistory";
-            this.tpHistory.Size = new System.Drawing.Size(791, 288);
+            this.tpHistory.Size = new System.Drawing.Size(791, 281);
             this.tpHistory.TabIndex = 3;
             this.tpHistory.Text = "History";
             this.tpHistory.UseVisualStyleBackColor = true;
             // 
             // tpLinks
             // 
-            this.tpLinks.Location = new System.Drawing.Point(4, 30);
+            this.tpLinks.Location = new System.Drawing.Point(4, 37);
             this.tpLinks.Name = "tpLinks";
-            this.tpLinks.Size = new System.Drawing.Size(791, 288);
+            this.tpLinks.Size = new System.Drawing.Size(791, 281);
             this.tpLinks.TabIndex = 5;
             this.tpLinks.Text = "Links";
             this.tpLinks.UseVisualStyleBackColor = true;
             // 
             // tpConstraints
             // 
-            this.tpConstraints.Location = new System.Drawing.Point(4, 30);
+            this.tpConstraints.Location = new System.Drawing.Point(4, 37);
             this.tpConstraints.Name = "tpConstraints";
-            this.tpConstraints.Size = new System.Drawing.Size(791, 288);
+            this.tpConstraints.Size = new System.Drawing.Size(791, 281);
             this.tpConstraints.TabIndex = 6;
             this.tpConstraints.Text = "Constraints";
             this.tpConstraints.UseVisualStyleBackColor = true;
             // 
             // tpSettings
             // 
-            this.tpSettings.Location = new System.Drawing.Point(4, 30);
+            this.tpSettings.Location = new System.Drawing.Point(4, 37);
             this.tpSettings.Name = "tpSettings";
-            this.tpSettings.Size = new System.Drawing.Size(791, 288);
+            this.tpSettings.Size = new System.Drawing.Size(791, 281);
             this.tpSettings.TabIndex = 7;
             this.tpSettings.Text = "Settings";
             this.tpSettings.UseVisualStyleBackColor = true;
             // 
+            // wpButtonCopy
+            // 
+            this.wpButtonCopy.Cursor = System.Windows.Forms.Cursors.Default;
+            this.wpButtonCopy.FlatAppearance.BorderSize = 0;
+            this.wpButtonCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.wpButtonCopy.Image = global::WProject.Properties.Resources.clipboard_s;
+            this.wpButtonCopy.Location = new System.Drawing.Point(525, -1);
+            this.wpButtonCopy.Name = "wpButtonCopy";
+            this.wpButtonCopy.Selected = false;
+            this.wpButtonCopy.Size = new System.Drawing.Size(34, 34);
+            this.wpButtonCopy.TabIndex = 0;
+            this.wpButtonCopy.UseVisualStyleBackColor = true;
+            this.wpButtonCopy.Click += new System.EventHandler(this.wpButtonCopy_Click);
+            // 
             // ctrlTaskEditor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tcMain);
@@ -593,6 +647,7 @@
             this.Controls.Add(this.pnlTop);
             this.Name = "ctrlTaskEditor";
             this.Size = new System.Drawing.Size(799, 447);
+            tpAttachements.ResumeLayout(false);
             this.pnlTop.ResumeLayout(false);
             this.pnlTop.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudPriority)).EndInit();
@@ -645,5 +700,8 @@
         private UiLibrary.Controls.WpLabel lblDetails;
         private UiLibrary.Controls.WpTextThread ttComents;
         private UiLibrary.Controls.WpTextThread ttDiscution;
+        private UiLibrary.Controls.SpecificControls.WpFileLoader flAttachments;
+        private UiLibrary.Controls.WpButton wpButtonCopy;
+        private UiLibrary.Controls.WpButton btnCopy;
     }
 }
