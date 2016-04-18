@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             this.pnlActions = new WProject.UiLibrary.Controls.WpPanel();
-            this.lblCount = new WProject.UiLibrary.Controls.WpLabel();
             this.btnSelectAll = new WProject.UiLibrary.Controls.WpButton();
             this.btnDeleteAll = new WProject.UiLibrary.Controls.WpButton();
             this.btnSaveAll = new WProject.UiLibrary.Controls.WpButton();
+            this.lblCount = new WProject.UiLibrary.Controls.WpLabel();
             this.btnUpload = new WProject.UiLibrary.Controls.WpButton();
             this.pnlFiles = new WProject.UiLibrary.Controls.WpPanel();
+            this.fdUpload = new System.Windows.Forms.OpenFileDialog();
             this.pnlActions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,23 +52,11 @@
             this.pnlActions.DoubleBuffered = true;
             this.pnlActions.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pnlActions.ForeColor = System.Drawing.Color.Black;
-            this.pnlActions.Location = new System.Drawing.Point(0, 213);
+            this.pnlActions.Location = new System.Drawing.Point(0, 408);
             this.pnlActions.Name = "pnlActions";
             this.pnlActions.OwnStyle = false;
-            this.pnlActions.Size = new System.Drawing.Size(451, 42);
+            this.pnlActions.Size = new System.Drawing.Size(800, 42);
             this.pnlActions.TabIndex = 0;
-            // 
-            // lblCount
-            // 
-            this.lblCount.AutoSize = true;
-            this.lblCount.Location = new System.Drawing.Point(3, 11);
-            this.lblCount.Name = "lblCount";
-            this.lblCount.Selected = false;
-            this.lblCount.Size = new System.Drawing.Size(109, 21);
-            this.lblCount.Style = null;
-            this.lblCount.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
-            this.lblCount.TabIndex = 1;
-            this.lblCount.Text = "6 files (2.2Mb)";
             // 
             // btnSelectAll
             // 
@@ -76,12 +65,13 @@
             this.btnSelectAll.FlatAppearance.BorderSize = 0;
             this.btnSelectAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectAll.Image = global::WProject.UiLibrary.Properties.Resources.done_all_s;
-            this.btnSelectAll.Location = new System.Drawing.Point(140, 3);
+            this.btnSelectAll.Location = new System.Drawing.Point(489, 3);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Selected = false;
             this.btnSelectAll.Size = new System.Drawing.Size(36, 36);
             this.btnSelectAll.TabIndex = 7;
             this.btnSelectAll.UseVisualStyleBackColor = false;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
             // 
             // btnDeleteAll
             // 
@@ -90,12 +80,13 @@
             this.btnDeleteAll.FlatAppearance.BorderSize = 0;
             this.btnDeleteAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDeleteAll.Image = global::WProject.UiLibrary.Properties.Resources.close_s;
-            this.btnDeleteAll.Location = new System.Drawing.Point(180, 3);
+            this.btnDeleteAll.Location = new System.Drawing.Point(529, 3);
             this.btnDeleteAll.Name = "btnDeleteAll";
             this.btnDeleteAll.Selected = false;
             this.btnDeleteAll.Size = new System.Drawing.Size(36, 36);
             this.btnDeleteAll.TabIndex = 6;
             this.btnDeleteAll.UseVisualStyleBackColor = false;
+            this.btnDeleteAll.Click += new System.EventHandler(this.btnDeleteAll_Click);
             // 
             // btnSaveAll
             // 
@@ -105,7 +96,7 @@
             this.btnSaveAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveAll.Image = global::WProject.UiLibrary.Properties.Resources.download_s;
             this.btnSaveAll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSaveAll.Location = new System.Drawing.Point(222, 3);
+            this.btnSaveAll.Location = new System.Drawing.Point(571, 3);
             this.btnSaveAll.Name = "btnSaveAll";
             this.btnSaveAll.Selected = false;
             this.btnSaveAll.Size = new System.Drawing.Size(113, 36);
@@ -113,6 +104,20 @@
             this.btnSaveAll.Text = "Save all";
             this.btnSaveAll.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSaveAll.UseVisualStyleBackColor = false;
+            this.btnSaveAll.Click += new System.EventHandler(this.btnSaveAll_Click);
+            // 
+            // lblCount
+            // 
+            this.lblCount.AutoSize = true;
+            this.lblCount.Location = new System.Drawing.Point(3, 7);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Selected = false;
+            this.lblCount.Size = new System.Drawing.Size(107, 28);
+            this.lblCount.Style = null;
+            this.lblCount.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
+            this.lblCount.TabIndex = 1;
+            this.lblCount.Text = "0 files (0 b)";
+            this.lblCount.VisibleChanged += new System.EventHandler(this.lblCount_VisibleChanged);
             // 
             // btnUpload
             // 
@@ -122,7 +127,7 @@
             this.btnUpload.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpload.Image = global::WProject.UiLibrary.Properties.Resources.upload_s;
             this.btnUpload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpload.Location = new System.Drawing.Point(341, 3);
+            this.btnUpload.Location = new System.Drawing.Point(690, 3);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Selected = false;
             this.btnUpload.Size = new System.Drawing.Size(107, 36);
@@ -130,6 +135,7 @@
             this.btnUpload.Text = "Upload";
             this.btnUpload.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnUpload.UseVisualStyleBackColor = false;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
             // 
             // pnlFiles
             // 
@@ -143,17 +149,20 @@
             this.pnlFiles.Location = new System.Drawing.Point(0, 0);
             this.pnlFiles.Name = "pnlFiles";
             this.pnlFiles.OwnStyle = false;
-            this.pnlFiles.Size = new System.Drawing.Size(451, 213);
+            this.pnlFiles.Size = new System.Drawing.Size(800, 408);
             this.pnlFiles.TabIndex = 1;
+            // 
+            // fdUpload
+            // 
+            this.fdUpload.FileOk += new System.ComponentModel.CancelEventHandler(this.fdUpload_FileOk);
             // 
             // WpFileLoader
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.Controls.Add(this.pnlFiles);
             this.Controls.Add(this.pnlActions);
             this.Name = "WpFileLoader";
-            this.Size = new System.Drawing.Size(451, 255);
+            this.Size = new System.Drawing.Size(800, 450);
             this.pnlActions.ResumeLayout(false);
             this.pnlActions.PerformLayout();
             this.ResumeLayout(false);
@@ -169,5 +178,6 @@
         private WpButton btnDeleteAll;
         private WpButton btnSelectAll;
         private WpPanel pnlFiles;
+        private System.Windows.Forms.OpenFileDialog fdUpload;
     }
 }

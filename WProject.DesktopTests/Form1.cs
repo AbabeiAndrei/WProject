@@ -24,5 +24,10 @@ namespace WProject.DesktopTests
         {
 
         }
+
+        private void wpFileLoader1_OnFileUploaded(object sender, FileItemEventArgs args)
+        {
+
+        }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WProject.GenericLibrary.Helpers.Extensions;
 
 namespace WProject.GenericLibrary.Helpers
 {
@@ -31,6 +33,8 @@ namespace WProject.GenericLibrary.Helpers
     public static class Utils
     {
         private static Random _randField;
+
+        private static readonly string[] SizeSuffixes = { "b", "kb", "mb", "gb", "tb", "pb", "eb", "zb", "yb" };
 
         private const string LOWERCASE_CHARACTERS = "abcdefghijklmnopqrstuvwxyz";
         private const string UPPERCASE_CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -124,6 +128,22 @@ namespace WProject.GenericLibrary.Helpers
             DateTime start = min ?? new DateTime(1995, 1, 1);
             int mrange = (DateTime.Today - start).Days;
             return start.AddDays(_randField.Next(mrange));
+        }
+
+        public static string FormatToSize(long value, bool upperSufixes = false, string format = "N2", CultureInfo culture = null)
+        {
+            if (value < 0)
+                return "-" + FormatToSize(value * -1, upperSufixes);
+
+            if (value == 0)
+                return "0.0 " + (upperSufixes ? SizeSuffixes[0].ToUpper() : SizeSuffixes[0]); 
+
+            int mag = (int)Math.Log(value, 1024);
+            decimal adjustedSize = (decimal)value / (1L << (mag * 10));
+
+            string ms = upperSufixes ? SizeSuffixes[mag].ToUpper() : SizeSuffixes[mag];
+
+            return $"{adjustedSize.ToString(format, culture ?? CultureInfo.DefaultThreadCurrentCulture)} {ms}";
         }
     }
 }

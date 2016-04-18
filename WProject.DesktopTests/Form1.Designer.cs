@@ -28,53 +28,40 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.wpCheckBox1 = new WProject.UiLibrary.Controls.WpCheckBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.wpFileLoader1 = new WProject.UiLibrary.Controls.SpecificControls.WpFileLoader();
             this.SuspendLayout();
             // 
-            // wpCheckBox1
+            // wpFileLoader1
             // 
-            this.wpCheckBox1.AutoSize = true;
-            this.wpCheckBox1.Font = new System.Drawing.Font("Segoe UI", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.wpCheckBox1.Location = new System.Drawing.Point(113, 129);
-            this.wpCheckBox1.Name = "wpCheckBox1";
-            this.wpCheckBox1.Padding = new System.Windows.Forms.Padding(58, 0, 0, 0);
-            this.wpCheckBox1.Selected = false;
-            this.wpCheckBox1.Size = new System.Drawing.Size(327, 54);
-            this.wpCheckBox1.Style = null;
-            this.wpCheckBox1.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
-            this.wpCheckBox1.TabIndex = 0;
-            this.wpCheckBox1.Text = "wpCheckBox1";
-            this.wpCheckBox1.OnCheckChanged += new System.EventHandler(this.wpCheckBox1_OnCheckChanged);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(410, 62);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(98, 21);
-            this.checkBox1.TabIndex = 1;
-            this.checkBox1.Text = "checkBox1";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.wpFileLoader1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.wpFileLoader1.BackColor = System.Drawing.Color.Transparent;
+            this.wpFileLoader1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.wpFileLoader1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.wpFileLoader1.ForeColor = System.Drawing.Color.Black;
+            this.wpFileLoader1.Location = new System.Drawing.Point(42, 12);
+            this.wpFileLoader1.Name = "wpFileLoader1";
+            this.wpFileLoader1.OwnStyle = false;
+            this.wpFileLoader1.Size = new System.Drawing.Size(593, 391);
+            this.wpFileLoader1.TabIndex = 0;
+            this.wpFileLoader1.OnFileUploaded += new WProject.UiLibrary.Controls.SpecificControls.FileItemEventHandler(this.wpFileLoader1_OnFileUploaded);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 465);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.wpCheckBox1);
+            this.Controls.Add(this.wpFileLoader1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private UiLibrary.Controls.WpCheckBox wpCheckBox1;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private UiLibrary.Controls.SpecificControls.WpFileLoader wpFileLoader1;
     }
 }
 
