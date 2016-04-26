@@ -168,10 +168,10 @@ namespace WProject.GenericLibrary.WinApi
 
     public enum ScrollBarDirection
     {
-        SB_HORZ = 0,
-        SB_VERT = 1,
-        SB_CTL = 2,
-        SB_BOTH = 3
+        SB_HORZ = 0x0,
+        SB_VERT = 0x1,
+        SB_CTL = 0x2,
+        SB_BOTH = 0x3
     }
 
 

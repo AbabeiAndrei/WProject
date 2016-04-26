@@ -34,6 +34,11 @@ namespace WProject.Dispatcher.Connection
 
         #region Constructors
 
+        public MessagingCenter()
+        {
+            Module.CenterConnection = this;
+        }
+
         static MessagingCenter()
         {
             WpClients = new List<WPClient>();

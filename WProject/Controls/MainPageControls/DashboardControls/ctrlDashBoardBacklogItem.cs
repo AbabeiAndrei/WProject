@@ -366,8 +366,8 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             {
                 var mte = sender as ctrlDashBoardTaskItem;
 
-                if (mte != null)
-                    UIHelper.ShowTaskEditor(mte.Task, task1 => {});
+                if (mte?.Task != null)
+                    UIHelper.ShowTaskEditor(mte.Task.Id, task1 => {}, parentForm:ParentForm);
             };
 
             mtsk.MouseDown += ctrlTaskItem_MouseDown;

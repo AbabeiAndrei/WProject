@@ -64,4 +64,9 @@ namespace WProject.UiLibrary.Classes
             };
         }
     }
+
+    public class FullScreenEventArgs
+    {
+        public bool Handled { get; set; }
+    }
 }

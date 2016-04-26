@@ -12,6 +12,7 @@ using WProject.GenericLibrary.Helpers.Log;
 using WProject.GenericLibrary.WinApi;
 using WProject.UiLibrary.Annotations;
 using WProject.UiLibrary.Controls;
+using WProject.UiLibrary.Theme;
 
 namespace WProject.Helpers
 {
@@ -128,13 +129,13 @@ namespace WProject.Helpers
                 _loaderControl.Visible = false;
         }
 
-        public static void ShowTaskEditor(WebApiClasses.Classes.Task task,
+        public static void ShowTaskEditor(int taskId,
                                           Action<WebApiClasses.Classes.Task> onSave,
                                           Action onClose = null,
                                           Action onFollow = null,
                                           Form parentForm = null)
         {
-            var mc = new ctrlTaskEditor(task);
+            var mc = new ctrlTaskEditor(taskId);
 
             mc.OnClose = () =>
             {
@@ -143,26 +144,48 @@ namespace WProject.Helpers
                 mc.ParentForm?.Close();
             };
 
-            ShowControlInForm(mc, ShowInFormControlSize.ControlSize, parentForm);
+            mc.Style = null;
+            ShowControlInForm(mc, ShowInFormControlSize.ControlSize, parentForm:parentForm);
         }
 
-        public static void ShowControlInForm(Control control, ShowInFormControlSize size, Form parentForm = null)
+        public static void ShowControlInForm(Control control, ShowInFormControlSize size, Color? borderColor = null, Form parentForm = null)
         {
-            var mform = new ChildForm
+            var mform = new ChildForm(borderColor ?? WpThemeColors.Purple)
             {
-                Padding = new Padding(2)
+                FormBorderStyle = FormBorderStyle.None,
+                StartPosition = FormStartPosition.CenterParent
             };
 
             if (size == ShowInFormControlSize.MainFormSize)
                 mform.Size = Program.MainForm.Size;
             else
-                mform.Size = control.Size + new Size(4, 4);
-
-            control.Dock = DockStyle.Fill;
+                mform.Size = control.Size + new Size((int)mform.BorderWidth * 2, (int)mform.BorderWidth + mform.TitleHeight);
+            
+            control.Location = new Point((int) mform.BorderWidth, mform.TitleHeight);
+            control.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
 
             mform.Controls.Add(control);
+            mform.Paint += ChildFormPaint;
 
-            mform.ShowDialog(parentForm);
+            if (parentForm != null)
+            {
+                //User32.SetParent(mform.Handle, parentForm.Handle);
+                mform.ShowDialog(parentForm);
+            }
+            else
+                mform.ShowDialog();
+
+        }
+
+        private static void ChildFormPaint(object sender, PaintEventArgs e)
+        {
+            var mchildForm = sender as ChildForm;
+            if (mchildForm == null || !mchildForm.DrawBorder)
+                return;
+
+            e.Graphics.FillRectangle(mchildForm.BorderBrush, new Rectangle(0, 0, mchildForm.Width, mchildForm.TitleHeight));
+            e.Graphics.DrawRectangle(mchildForm.BorderPen, mchildForm.DrawBorderRect);
+        
         }
 
         public static async Task PerformLogout()

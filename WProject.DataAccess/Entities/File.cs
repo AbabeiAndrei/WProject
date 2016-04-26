@@ -11,12 +11,12 @@ namespace WProject.DataAccess
         public const string PARENT_TYPE_USER_AVATAR = "USER";
         public const string TYPE_USER_AVATAR = "USER_AVATAR";
 
-        public WebApiClasses.Classes.File ToWebApi()
+        public WebApiClasses.Classes.File ToWebApi(bool includeContent = true)
         {
-            return ToWebApi(this);
+            return ToWebApi(this, includeContent);
         }
 
-        public static WebApiClasses.Classes.File ToWebApi(File file)
+        public static WebApiClasses.Classes.File ToWebApi(File file, bool includeContent = true)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace WProject.DataAccess
                     Id = file.Id,
                     Name = file.Name,
                     Type = file.Type,
-                    Content = file.Content,
+                    Content = includeContent ? file.Content : null,
                     Thumbmail = file.Thumbnail,
                     Size = file.Size,
                     ParentType = file.ParentType,

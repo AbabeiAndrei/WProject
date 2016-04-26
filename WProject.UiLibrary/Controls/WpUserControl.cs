@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using WProject.UiLibrary.Style;
@@ -20,7 +22,10 @@ namespace WProject.UiLibrary.Controls
     {
         #region Fields
 
-        readonly IList<GuiValidator> _validateControls;
+        private readonly IList<GuiValidator> _validateControls;
+        private Size _restoreSize;
+        private Point _restoreLocation;
+        private bool _fullScreen;
 
         #endregion
 
@@ -28,6 +33,27 @@ namespace WProject.UiLibrary.Controls
 
         public virtual string StyleKey => WpThemeConstants.WPSTYLE_DEFAULT_USER_CONTROL;
         public bool OwnStyle { get; set; }
+
+        [Browsable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public virtual bool FullScreen
+        {
+            get
+            {
+                return _fullScreen;
+            }
+            set
+            {
+                if (!FullScreen)
+                    SetControlFullScreen();
+                else
+                    RestoreControlSize();
+
+                _fullScreen = value;
+
+                ParentForm?.Refresh();
+            }
+        }
 
         #endregion
 
@@ -51,6 +77,45 @@ namespace WProject.UiLibrary.Controls
         }
 
         #endregion
+
+        #region Protected methods
+
+        protected virtual void SetControlFullScreen()
+        {
+            if (FullScreen || ParentForm == null)
+                return;
+
+            _restoreSize = ParentForm.Size;
+            _restoreLocation = ParentForm.Location;
+
+            ParentForm.Location = Point.Empty;
+            var mi = ParentForm?.ParentForm?.Size ?? ParentForm?.MdiParent?.Size ?? ParentForm?.Parent?.Size;
+
+            if (mi != null)
+                ParentForm.Size = mi.Value;
+            else
+            {
+                var mrect = Screen.FromControl(this).WorkingArea;
+                ParentForm.Size = mrect.Size;
+                ParentForm.Location = mrect.Location;
+            }
+
+        }
+
+        protected virtual void RestoreControlSize()
+        {
+            if(!FullScreen || ParentForm == null || _restoreSize.IsEmpty)
+                return;
+
+            ParentForm.Location = _restoreLocation;
+            ParentForm.Size = _restoreSize;
+
+            _restoreSize = Size.Empty;
+            _restoreLocation = Point.Empty;
+        }
+
+        #endregion
+
 
         #region Public methods
 

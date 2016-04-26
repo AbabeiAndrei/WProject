@@ -50,6 +50,7 @@
     <Compile Include="Constants\BussinessLibraryConstants.cs" />
     <Compile Include="Constants\CacheConstants.cs" />
     <Compile Include="Constants\GeneralConstants.cs" />
+    <Compile Include="Constants\WMConstants.cs" />
     <Compile Include="Constants\WpErrors.cs" />
     <Compile Include="Exceptions\WpException.cs" />
     <Compile Include="Exceptions\ConvertImageException.cs" />

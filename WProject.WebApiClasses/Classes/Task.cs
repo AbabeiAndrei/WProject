@@ -64,7 +64,7 @@ namespace WProject.WebApiClasses.Classes
 
         public IEnumerable<TaskComment> Discusion { get; set; }
 
-        public IEnumerable<TaskAttachemt> Attachments { get; set; }
+        public IEnumerable<TaskAttachement> Attachments { get; set; }
 
         public new static string TableName => TABLE_NAME;
 

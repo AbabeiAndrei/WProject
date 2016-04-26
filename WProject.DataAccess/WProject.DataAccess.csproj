@@ -73,6 +73,9 @@
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Spring.cs" />
     <Compile Include="Entities\Task.cs" />
+    <Compile Include="Entities\TaskAttachement.cs" />
+    <Compile Include="Entities\TaskComment.cs" />
+    <Compile Include="Entities\TaskDiscusion.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="File.generated.cs">
       <DependentUpon>wpContext.rlinq</DependentUpon>
@@ -102,7 +105,13 @@
     <Compile Include="TaskAttachement.generated.cs">
       <DependentUpon>wpContext.rlinq</DependentUpon>
     </Compile>
+    <Compile Include="TaskComment.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
     <Compile Include="TaskDependency.generated.cs">
+      <DependentUpon>wpContext.rlinq</DependentUpon>
+    </Compile>
+    <Compile Include="TaskDiscution.generated.cs">
       <DependentUpon>wpContext.rlinq</DependentUpon>
     </Compile>
     <Compile Include="TaskHistory.generated.cs">

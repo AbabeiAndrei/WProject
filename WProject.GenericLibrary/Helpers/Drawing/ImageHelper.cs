@@ -18,6 +18,8 @@ namespace WProject.GenericLibrary.Helpers.Drawing
 {
     public static partial class ImageHelper
     {
+        public const int DEFAULT_TIMEOUT_DOWNLOAD_IMAGE = 4000;
+
         private static IDictionary<string, Image> _cacheImages;
 
         static ImageHelper()

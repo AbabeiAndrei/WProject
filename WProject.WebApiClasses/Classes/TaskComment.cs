@@ -21,10 +21,20 @@ namespace WProject.WebApiClasses.Classes
 
         public int UserId { get; set; }
 
+        public string CustomName { get; set; }
+
+        public string Metadata { get; set; }
+
+        public int? FileId { get; set; }
+
         public User CreatedBy { get; set; }
 
         public DateTime CreatedAt { get; set; }
 
         public string Text { get; set; }
+
+        public File File { get; set; }
+
+        public bool Deleted { get; set; }
     }
 }

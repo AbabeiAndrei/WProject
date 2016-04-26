@@ -219,6 +219,22 @@ namespace WProject.DataAccess
 			}
 		}
 		
+		public IQueryable<TaskDiscution> TaskDiscutions 
+		{
+			get
+			{
+				return this.GetAll<TaskDiscution>();
+			}
+		}
+		
+		public IQueryable<TaskComment> TaskComments 
+		{
+			get
+			{
+				return this.GetAll<TaskComment>();
+			}
+		}
+		
 		public static BackendConfiguration GetBackendConfiguration()
 		{
 			BackendConfiguration backend = new BackendConfiguration();
@@ -321,6 +337,14 @@ namespace WProject.DataAccess
 			get;
 		}
 		IQueryable<ProjectMember> ProjectMembers
+		{
+			get;
+		}
+		IQueryable<TaskDiscution> TaskDiscutions
+		{
+			get;
+		}
+		IQueryable<TaskComment> TaskComments
 		{
 			get;
 		}

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using WProject.GenericLibrary.Exceptions;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.WebApiClasses.MessanginCenter;
+using Task = WProject.WebApiClasses.Classes.Task;
 
 namespace WProject.Connection
 {
@@ -163,6 +164,14 @@ namespace WProject.Connection
             });
         }
 
+        public static async Task<GetTaskResponse> GetTask(int taskId)
+        {
+            return await ExecuteMethod<GetTaskResponse>("GetTask", new GetTaskRequest
+            {
+                TaskId = taskId
+            });
+        }
+
         public static async Task<T> ExecuteMethod<T>(string method, object content, bool continueThrow = false, bool checkForEmpty = true)
             where T : IMessangingCenterResponse, new()
         {
@@ -230,5 +239,6 @@ namespace WProject.Connection
                 Connection.NetworkTransferInProgress = false;
             }
         }
+
     }
 }

@@ -109,6 +109,7 @@
       <HintPath>..\packages\Microsoft.AspNet.Cors.5.0.0\lib\net45\System.Web.Cors.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
     <Reference Include="Telerik.OpenAccess, Version=2015.1.225.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
     <Reference Include="Telerik.OpenAccess.35.Extensions, Version=2015.1.225.1, Culture=neutral, PublicKeyToken=7ce17eeaf1d59342, processorArchitecture=MSIL" />
@@ -126,6 +127,13 @@
     </Compile>
     <Compile Include="Pages\Clients.aspx.designer.cs">
       <DependentUpon>Clients.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\InteropSerivce.aspx.cs">
+      <DependentUpon>InteropSerivce.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\InteropSerivce.aspx.designer.cs">
+      <DependentUpon>InteropSerivce.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -145,6 +153,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Clients.aspx" />
+    <Content Include="Pages\InteropSerivce.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

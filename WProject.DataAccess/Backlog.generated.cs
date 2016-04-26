@@ -320,6 +320,46 @@ namespace WProject.DataAccess
 			}
 		}
 		
+		private string _tags;
+		[Column("tags", OpenAccessType = OpenAccessType.UnicodeStringInfiniteLength, IsNullable = true, Length = 0, Scale = 0, SqlType = "longtext")]
+		[Storage("_tags")]
+		public virtual string Tags
+		{
+			get
+			{
+				return this._tags;
+			}
+			set
+			{
+				if(this._tags != value)
+				{
+					this.OnPropertyChanging("Tags");
+					this._tags = value;
+					this.OnPropertyChanged("Tags");
+				}
+			}
+		}
+		
+		private string _metadata;
+		[Column("metadata", OpenAccessType = OpenAccessType.UnicodeStringInfiniteLength, IsNullable = true, Length = 0, Scale = 0, SqlType = "longtext")]
+		[Storage("_metadata")]
+		public virtual string Metadata
+		{
+			get
+			{
+				return this._metadata;
+			}
+			set
+			{
+				if(this._metadata != value)
+				{
+					this.OnPropertyChanging("Metadata");
+					this._metadata = value;
+					this.OnPropertyChanged("Metadata");
+				}
+			}
+		}
+		
 		private Category _category;
 		[ForeignKeyAssociation(ConstraintName = "backlog_category_FK_category_id", SharedFields = "CategoryId", TargetFields = "Id")]
 		[Storage("_category")]

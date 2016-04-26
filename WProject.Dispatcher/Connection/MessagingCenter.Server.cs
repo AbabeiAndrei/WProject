@@ -415,5 +415,51 @@ namespace WProject.Dispatcher.Connection
 
             return mres;
         }
+
+        public MessagingCenterResponse GetTask(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                if (string.IsNullOrEmpty(package.Content))
+                    throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
+
+                var mreq = JsonConvert.DeserializeObject<GetTaskRequest>(package.Content);
+
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+                    var mtask = mctx.Tasks.FirstOrDefault(t => t.Id == mreq.TaskId);
+
+                    if (mtask == null)
+                        throw new WpException(MessagingCenterErrors.ERROR_GET_TASK_NOT_FOUND, $"Task {mreq.TaskId} not found.");
+
+                    var mtres = new GetTaskResponse
+                    {
+                        Task = mtask.ToWebApiExtended(mctx)
+                    };
+
+                    mres.Content = JsonConvert.SerializeObject(mtres);
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
     }
 }

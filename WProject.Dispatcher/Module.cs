@@ -7,6 +7,7 @@ using Microsoft.AspNet.SignalR.Hubs;
 using Microsoft.Owin.Hosting;
 using Microsoft.Owin.Cors;
 using Owin;
+using WProject.Dispatcher.Connection;
 using WProject.Dispatcher.Properties;
 using WProject.GenericLibrary.WinApi;
 using WProject.Library.Helpers.Log;
@@ -16,6 +17,7 @@ namespace WProject.Dispatcher
     public static class Module
     {
         public static IDisposable Connection;
+        public static MessagingCenter CenterConnection { get; set; }
 
         public static void InitConnection()
         {

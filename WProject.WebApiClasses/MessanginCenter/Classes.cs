@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WProject.WebApiClasses.Classes;
 using WProject.WebApiClasses.Interfaces;
+using Task = WProject.WebApiClasses.Classes.Task;
 
 namespace WProject.WebApiClasses.MessanginCenter
 {
@@ -157,6 +158,23 @@ namespace WProject.WebApiClasses.MessanginCenter
 
     public class RegisterBacklogStateResponse : IMessangingCenterResponse
     {
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
+
+    public class GetTaskRequest
+    {
+        public int TaskId { get; set; }
+    }
+
+    public class GetTaskResponse :IMessangingCenterResponse
+    {
+        public Task Task { get; set; }
+
         #region Implementation of IMessangingCenterResponse
 
         public Exception Exception { get; set; }

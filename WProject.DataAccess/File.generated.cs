@@ -295,6 +295,48 @@ namespace WProject.DataAccess
 			}
 		}
 		
+		private string _extension;
+		[Column("extension", OpenAccessType = OpenAccessType.UnicodeStringVariableLength, Length = 256, Scale = 0, SqlType = "nvarchar")]
+		[Storage("_extension")]
+		[System.ComponentModel.DataAnnotations.StringLength(256)]
+		[System.ComponentModel.DataAnnotations.Required()]
+		public virtual string Extension
+		{
+			get
+			{
+				return this._extension;
+			}
+			set
+			{
+				if(this._extension != value)
+				{
+					this.OnPropertyChanging("Extension");
+					this._extension = value;
+					this.OnPropertyChanged("Extension");
+				}
+			}
+		}
+		
+		private short? _deleted;
+		[Column("deleted", OpenAccessType = OpenAccessType.Byte, IsNullable = true, Length = 0, Scale = 0, SqlType = "tinyint")]
+		[Storage("_deleted")]
+		public virtual short? Deleted
+		{
+			get
+			{
+				return this._deleted;
+			}
+			set
+			{
+				if(this._deleted != value)
+				{
+					this.OnPropertyChanging("Deleted");
+					this._deleted = value;
+					this.OnPropertyChanged("Deleted");
+				}
+			}
+		}
+		
 		private User _user;
 		[ForeignKeyAssociation(ConstraintName = "file_user_FK_created_by", SharedFields = "CreatedBy", TargetFields = "Id")]
 		[Storage("_user")]
@@ -323,6 +365,28 @@ namespace WProject.DataAccess
 			get
 			{
 				return this._taskAttachements;
+			}
+		}
+		
+		private IList<TaskComment> _taskComments = new List<TaskComment>();
+		[Collection(InverseProperty = "File")]
+		[Storage("_taskComments")]
+		public virtual IList<TaskComment> TaskComments
+		{
+			get
+			{
+				return this._taskComments;
+			}
+		}
+		
+		private IList<TaskDiscution> _taskDiscutions = new List<TaskDiscution>();
+		[Collection(InverseProperty = "File")]
+		[Storage("_taskDiscutions")]
+		public virtual IList<TaskDiscution> TaskDiscutions
+		{
+			get
+			{
+				return this._taskDiscutions;
 			}
 		}
 		

@@ -175,6 +175,12 @@
         <orm:field name="_projectMembers1" property="ProjectMembers1" behavior="readwrite" uniqueId="9377c0a2-4cb3-45dc-86df-edd9e24bb0f4" type="WProject.DataAccess.ProjectMember">
           <orm:collection element-class="WProject.DataAccess.ProjectMember" inverse-field="_user1" order-by="" uniqueId="87a3bdf2-f657-453e-a87d-06f862bb03ef" />
         </orm:field>
+        <orm:field name="_taskDiscutions" property="TaskDiscutions" behavior="readwrite" uniqueId="96a7f9d4-98c8-433f-b0e0-8c071d940a62" type="WProject.DataAccess.TaskDiscution">
+          <orm:collection element-class="WProject.DataAccess.TaskDiscution" inverse-field="_user" order-by="" uniqueId="ec27f375-302e-419a-96ba-a29ad433506c" />
+        </orm:field>
+        <orm:field name="_taskComments" property="TaskComments" behavior="readwrite" uniqueId="a170126d-a24f-49b8-92d4-6010211709c2" type="WProject.DataAccess.TaskComment">
+          <orm:collection element-class="WProject.DataAccess.TaskComment" inverse-field="_user" order-by="" uniqueId="5bf40ea7-28c4-42a3-b20c-7aa5c5a36f70" />
+        </orm:field>
       </orm:class>
       <orm:class name="TaskTag" uniqueId="ffebdbe0-9ae9-4e0a-a87f-21ef7a80f43c">
         <orm:table name="task_tag" />
@@ -364,7 +370,7 @@
         </orm:identity>
         <orm:concurrency strategy="changed" />
         <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="35db756b-11c0-44b8-8378-41887616ac74" type="System.Int32">
-          <orm:column name="id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" />
+          <orm:column name="id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         </orm:field>
         <orm:field name="_taskId" property="TaskId" behavior="readwrite" uniqueId="108fed10-9a1d-4ea9-9b55-c010f409cdfe" type="System.Int32">
           <orm:column name="task_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
@@ -455,10 +461,13 @@
           <orm:column name="remaining_work" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
         <orm:field name="_description" property="Description" behavior="readwrite" uniqueId="1ae93a8c-9136-4744-b58e-ca6b319a2e58" type="System.String">
-          <orm:column name="description" sql-type="longtext" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+          <orm:column name="description" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         </orm:field>
         <orm:field name="_deleted" property="Deleted" behavior="readwrite" uniqueId="e450c4db-2c21-4586-b209-a6e957729c79" type="System.Nullable`1[[System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
+        </orm:field>
+        <orm:field name="_metadata" property="Metadata" behavior="readwrite" uniqueId="ccd89dc1-be31-40b1-b506-8e4fc35f58ed" type="System.String">
+          <orm:column name="metadata" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         </orm:field>
         <orm:field name="_backlog" property="Backlog" behavior="readwrite" uniqueId="9a25bed6-73aa-4373-aef7-58904024865e" type="WProject.DataAccess.Backlog">
           <orm:reference uniqueId="4cc92da5-f991-460c-9aaf-332d2ebc97f2" association-name="TaskHasBacklog">
@@ -511,6 +520,12 @@
         <orm:field name="_taskAttachements" property="TaskAttachements" behavior="readwrite" uniqueId="3ece0ed6-3c1d-4dd1-b6ff-a2400df78a72" type="WProject.DataAccess.TaskAttachement">
           <orm:collection element-class="WProject.DataAccess.TaskAttachement" inverse-field="_task" order-by="" uniqueId="fb4c77b4-9085-4a5c-afb7-8c358fef4a9c" />
         </orm:field>
+        <orm:field name="_taskDiscutions" property="TaskDiscutions" behavior="readwrite" uniqueId="b117a047-ef85-4208-85e7-07c937930a2c" type="WProject.DataAccess.TaskDiscution">
+          <orm:collection element-class="WProject.DataAccess.TaskDiscution" inverse-field="_task" order-by="" uniqueId="889c038d-97e0-4e38-b17f-6ce404fbbf09" />
+        </orm:field>
+        <orm:field name="_taskComments" property="TaskComments" behavior="readwrite" uniqueId="6f4e7a7d-fd7d-42ab-bb99-f723376c1668" type="WProject.DataAccess.TaskComment">
+          <orm:collection element-class="WProject.DataAccess.TaskComment" inverse-field="_task" order-by="" uniqueId="167a022b-5459-479b-bcca-15817e3cca5a" />
+        </orm:field>
       </orm:class>
       <orm:class name="Spring" uniqueId="1408ebd2-90d1-46d8-8153-6a02eb23dd97">
         <orm:table name="spring" />
@@ -531,7 +546,7 @@
           <orm:column name="description" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         </orm:field>
         <orm:field name="_createdAt" property="CreatedAt" behavior="readwrite" uniqueId="bbf45d3d-fac5-488e-a03f-1f7c3073f799" type="System.DateTime">
-          <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+          <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_createdById" property="CreatedById" behavior="readwrite" uniqueId="0c8a85d6-5d5b-4255-ae0e-8af081331b8d" type="System.Int32">
           <orm:column name="created_by" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
@@ -825,6 +840,12 @@
         <orm:field name="_createdBy" property="CreatedBy" behavior="readwrite" uniqueId="dae979ec-4e01-4995-955b-23875b98359f" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="created_by" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
+        <orm:field name="_extension" property="Extension" behavior="readwrite" uniqueId="cf06bf0e-0715-4a58-aebb-c3cf7040f48d" type="System.String">
+          <orm:column name="extension" sql-type="nvarchar" nullable="false" length="256" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
+        <orm:field name="_deleted" property="Deleted" behavior="readwrite" uniqueId="6d962d82-08b5-4af9-9ae4-1c5d820bb89f" type="System.Nullable`1[[System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
+        </orm:field>
         <orm:field name="_user" property="User" behavior="readwrite" uniqueId="6e1d6953-6920-4941-bf50-f67800d1e016" type="WProject.DataAccess.User">
           <orm:reference uniqueId="724b4f30-4638-4729-9b8f-bc7d1cabf388" association-name="FileHasUser">
             <orm:sharedfield name="_createdBy" target-class="WProject.DataAccess.User" target-field="_id" />
@@ -833,6 +854,12 @@
         </orm:field>
         <orm:field name="_taskAttachements" property="TaskAttachements" behavior="readwrite" uniqueId="305801fd-21af-4317-ad08-5f3b1d301d36" type="WProject.DataAccess.TaskAttachement">
           <orm:collection element-class="WProject.DataAccess.TaskAttachement" inverse-field="_file" order-by="" uniqueId="e12424cf-7255-46a3-908a-c719eca0c383" />
+        </orm:field>
+        <orm:field name="_taskComments" property="TaskComments" behavior="readwrite" uniqueId="0a318c96-103e-40ba-b050-14c3b229e12a" type="WProject.DataAccess.TaskComment">
+          <orm:collection element-class="WProject.DataAccess.TaskComment" inverse-field="_file" order-by="" uniqueId="e17665e1-6aa9-4beb-a687-205c4d8da791" />
+        </orm:field>
+        <orm:field name="_taskDiscutions" property="TaskDiscutions" behavior="readwrite" uniqueId="ef6b96bf-b724-419d-9822-4f2a1a432cf5" type="WProject.DataAccess.TaskDiscution">
+          <orm:collection element-class="WProject.DataAccess.TaskDiscution" inverse-field="_file" order-by="" uniqueId="18f8493b-8d2e-4770-8660-d53a156bab79" />
         </orm:field>
       </orm:class>
       <orm:class name="DictItem" uniqueId="095c8e1f-8ea8-4bf9-bbc1-f0fb3121a19a">
@@ -933,7 +960,7 @@
           <orm:column name="description" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         </orm:field>
         <orm:field name="_createdAt" property="CreatedAt" behavior="readwrite" uniqueId="49e5fb9e-40d1-4ece-8219-2c02a95587b7" type="System.DateTime">
-          <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+          <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         </orm:field>
         <orm:field name="_createdById" property="CreatedById" behavior="readwrite" uniqueId="f9880bfc-6538-4a85-92ea-43bdd3c9c444" type="System.Int32">
           <orm:column name="created_by" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
@@ -1042,6 +1069,12 @@
         </orm:field>
         <orm:field name="_deleted" property="Deleted" behavior="readwrite" uniqueId="a79636d0-9693-460a-8ebf-5e8fe5fa180c" type="System.Nullable`1[[System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
+        </orm:field>
+        <orm:field name="_tags" property="Tags" behavior="readwrite" uniqueId="ed389e16-4d51-486a-970f-88e1089bf688" type="System.String">
+          <orm:column name="tags" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_metadata" property="Metadata" behavior="readwrite" uniqueId="4009b8cd-9ab6-4ef5-b06b-689f225325e9" type="System.String">
+          <orm:column name="metadata" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         </orm:field>
         <orm:field name="_category" property="Category" behavior="readwrite" uniqueId="4854e4fd-d645-4ab4-81ab-8033e64fb5f3" type="WProject.DataAccess.Category">
           <orm:reference uniqueId="b93625d9-3334-423b-86f2-a9e506f7614d" association-name="BacklogHasCategory">
@@ -1326,6 +1359,110 @@
           </orm:columnMapping>
         </orm:index>
       </orm:class>
+      <orm:class name="TaskDiscution" uniqueId="1daf33e7-84e9-4bf8-a950-79a2845b2b03">
+        <orm:table name="task_discution" />
+        <orm:identity>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="10ad69bd-91f7-4c4f-92e6-78e9332a7d3b" type="System.Int32">
+          <orm:column name="id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_taskId" property="TaskId" behavior="readwrite" uniqueId="e4b201a3-0c81-44d2-b155-a54267fd5416" type="System.Int32">
+          <orm:column name="task_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_userId" property="UserId" behavior="readwrite" uniqueId="60244c67-6b24-446c-aeb1-3a761c6d8d21" type="System.Int32">
+          <orm:column name="user_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_createdAt" property="CreatedAt" behavior="readwrite" uniqueId="286ff3e9-91d1-423a-93eb-244cf97ddb08" type="System.DateTime">
+          <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_text" property="Text" behavior="readwrite" uniqueId="846445db-a31b-480a-b144-9fb0d8725740" type="System.String">
+          <orm:column name="text" sql-type="text" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_deleted" property="Deleted" behavior="readwrite" uniqueId="e2eda468-4a0f-4e66-bd84-afac4ee2be28" type="System.Nullable`1[[System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
+        </orm:field>
+        <orm:field name="_metadata" property="Metadata" behavior="readwrite" uniqueId="dcb6ad64-9c2c-4f07-a1ae-c47b07bc6d65" type="System.String">
+          <orm:column name="metadata" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_fileId" property="FileId" behavior="readwrite" uniqueId="4b7d15e1-5022-4206-80aa-3b04900290b0" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="file_id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_customName" property="CustomName" behavior="readwrite" uniqueId="a2dd866b-30cf-488c-a554-c5c9c869a76f" type="System.String">
+          <orm:column name="custom_name" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_task" property="Task" behavior="readwrite" uniqueId="add8a32d-3712-4289-8f88-cb5e3f42c55c" type="WProject.DataAccess.Task">
+          <orm:reference uniqueId="889c038d-97e0-4e38-b17f-6ce404fbbf09" association-name="TaskDiscutionHasTask">
+            <orm:sharedfield name="_taskId" target-class="WProject.DataAccess.Task" target-field="_id" />
+            <orm:constraint name="task_discution_task_id_FK_task" delete-action="dbdefaultrule" destination-table="task" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_user" property="User" behavior="readwrite" uniqueId="43c21b8e-cf4b-47f5-826b-d72b577f0a51" type="WProject.DataAccess.User">
+          <orm:reference uniqueId="ec27f375-302e-419a-96ba-a29ad433506c" association-name="TaskDiscutionHasUser">
+            <orm:sharedfield name="_userId" target-class="WProject.DataAccess.User" target-field="_id" />
+            <orm:constraint name="task_dicution_user_id_FK_user" delete-action="dbdefaultrule" destination-table="user" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_file" property="File" behavior="readwrite" uniqueId="9a46e2f3-117a-48cc-a71c-e8f490e32597" type="WProject.DataAccess.File">
+          <orm:reference uniqueId="18f8493b-8d2e-4770-8660-d53a156bab79" association-name="TaskDiscutionHasFile">
+            <orm:sharedfield name="_fileId" target-class="WProject.DataAccess.File" target-field="_id" />
+            <orm:constraint name="task_discution_file_id_FK_file" delete-action="dbdefaultrule" destination-table="file" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
+      <orm:class name="TaskComment" uniqueId="9e0fdc7b-ddda-4590-a631-f631d3c37157">
+        <orm:table name="task_comment" />
+        <orm:identity>
+          <orm:single-field field-name="_id" />
+        </orm:identity>
+        <orm:concurrency strategy="changed" />
+        <orm:field name="_id" property="Id" behavior="readwrite" uniqueId="c6930c46-c509-4482-ace7-631b0e72950c" type="System.Int32">
+          <orm:column name="id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_taskId" property="TaskId" behavior="readwrite" uniqueId="e8aab15d-dd03-4118-b7af-3dfda5e998be" type="System.Int32">
+          <orm:column name="task_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_userId" property="UserId" behavior="readwrite" uniqueId="1a267c97-78e5-4833-9252-17970afaf145" type="System.Int32">
+          <orm:column name="user_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_createdAt" property="CreatedAt" behavior="readwrite" uniqueId="0f4cf2ab-1582-487f-ab9c-118f203c1af5" type="System.DateTime">
+          <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
+        </orm:field>
+        <orm:field name="_text" property="Text" behavior="readwrite" uniqueId="c5bb395d-1088-4332-b521-d7e2bc4ad49e" type="System.String">
+          <orm:column name="text" sql-type="text" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_deleted" property="Deleted" behavior="readwrite" uniqueId="33a01da0-417c-48a3-9950-f308bf7dfd89" type="System.Nullable`1[[System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
+        </orm:field>
+        <orm:field name="_metadata" property="Metadata" behavior="readwrite" uniqueId="fda56020-9fba-4cac-82e0-661e3f24e831" type="System.String">
+          <orm:column name="metadata" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_fileId" property="FileId" behavior="readwrite" uniqueId="10eb9da1-2f2f-499c-bb3b-5f54f41337c0" type="System.Nullable`1[[System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="file_id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:field>
+        <orm:field name="_customName" property="CustomName" behavior="readwrite" uniqueId="f9802853-0a77-4092-9ef1-13161fdf7f5c" type="System.String">
+          <orm:column name="custom_name" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        </orm:field>
+        <orm:field name="_user" property="User" behavior="readwrite" uniqueId="3d73694b-182b-464f-a515-f9427053ac16" type="WProject.DataAccess.User">
+          <orm:reference uniqueId="5bf40ea7-28c4-42a3-b20c-7aa5c5a36f70" association-name="TaskCommentHasUser">
+            <orm:sharedfield name="_userId" target-class="WProject.DataAccess.User" target-field="_id" />
+            <orm:constraint name="task_comment_user_id_FK_user" delete-action="dbdefaultrule" destination-table="user" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_task" property="Task" behavior="readwrite" uniqueId="c6db9b7c-53b6-4b02-a016-e291e39700a5" type="WProject.DataAccess.Task">
+          <orm:reference uniqueId="167a022b-5459-479b-bcca-15817e3cca5a" association-name="TaskCommentHasTask">
+            <orm:sharedfield name="_taskId" target-class="WProject.DataAccess.Task" target-field="_id" />
+            <orm:constraint name="task_comment_task_id_FK_task" delete-action="dbdefaultrule" destination-table="task" />
+          </orm:reference>
+        </orm:field>
+        <orm:field name="_file" property="File" behavior="readwrite" uniqueId="24ffb5a4-5bd6-4960-b3d7-1c133e780860" type="WProject.DataAccess.File">
+          <orm:reference uniqueId="e17665e1-6aa9-4beb-a687-205c4d8da791" association-name="TaskCommentHasFile">
+            <orm:sharedfield name="_fileId" target-class="WProject.DataAccess.File" target-field="_id" />
+            <orm:constraint name="task_comment_file_id_FK_file" delete-action="dbdefaultrule" destination-table="file" />
+          </orm:reference>
+        </orm:field>
+      </orm:class>
     </orm:namespace>
     <orm:schema schema="">
       <orm:table name="user_in_group">
@@ -1427,7 +1564,7 @@
         </orm:constraint>
       </orm:table>
       <orm:table name="task_attachement">
-        <orm:column name="id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" ado-type="Int32" />
+        <orm:column name="id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         <orm:column name="task_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         <orm:column name="file_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         <orm:column name="attached_at" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
@@ -1459,8 +1596,9 @@
         <orm:column name="period_from" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
         <orm:column name="period_to" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
         <orm:column name="remaining_work" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
-        <orm:column name="description" sql-type="longtext" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="description" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
+        <orm:column name="metadata" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         <orm:constraint name="task_backlog_FK_backlog_id" delete-action="dbdefaultrule" destination-table="backlog">
           <orm:column name="backlog_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1484,7 +1622,7 @@
         <orm:column name="id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         <orm:column name="name" sql-type="nvarchar" nullable="false" length="255" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="description" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
-        <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="created_by" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         <orm:column name="owner_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         <orm:column name="period_from" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
@@ -1586,6 +1724,8 @@
         <orm:column name="url" sql-type="mediumtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         <orm:column name="created_at" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
         <orm:column name="created_by" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="extension" sql-type="nvarchar" nullable="false" length="256" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
         <orm:constraint name="file_user_FK_created_by" delete-action="dbdefaultrule" destination-table="user">
           <orm:column name="created_by" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1610,7 +1750,7 @@
         <orm:column name="id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
         <orm:column name="name" sql-type="nvarchar" nullable="false" length="255" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="description" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
-        <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" ado-type="DateTime" />
+        <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
         <orm:column name="created_by" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         <orm:column name="owner_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         <orm:column name="period_from" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
@@ -1651,6 +1791,8 @@
         <orm:column name="remaining_work" sql-type="integer unsigned" nullable="true" length="0" scale="0" ado-type="Int32" />
         <orm:column name="description" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
+        <orm:column name="tags" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="metadata" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         <orm:constraint name="backlog_category_FK_category_id" delete-action="dbdefaultrule" destination-table="category">
           <orm:column name="category_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -1759,6 +1901,46 @@
         </orm:constraint>
         <orm:constraint name="project_member_assigned" delete-action="dbdefaultrule" destination-table="user">
           <orm:column name="assigned_by" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="task_discution">
+        <orm:column name="id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="task_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="user_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
+        <orm:column name="text" sql-type="text" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
+        <orm:column name="metadata" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="file_id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="custom_name" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:constraint name="task_discution_task_id_FK_task" delete-action="dbdefaultrule" destination-table="task">
+          <orm:column name="task_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="task_dicution_user_id_FK_user" delete-action="dbdefaultrule" destination-table="user">
+          <orm:column name="user_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="task_discution_file_id_FK_file" delete-action="dbdefaultrule" destination-table="file">
+          <orm:column name="file_id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+      </orm:table>
+      <orm:table name="task_comment">
+        <orm:column name="id" sql-type="integer" nullable="false" length="0" scale="0" primary-key="true" backend-calculated="true" ado-type="Int32" />
+        <orm:column name="task_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="user_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="created_at" sql-type="datetime" nullable="false" length="0" scale="0" has-default-value="true" ado-type="DateTime" />
+        <orm:column name="text" sql-type="text" nullable="false" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
+        <orm:column name="metadata" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="file_id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
+        <orm:column name="custom_name" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:constraint name="task_comment_user_id_FK_user" delete-action="dbdefaultrule" destination-table="user">
+          <orm:column name="user_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="task_comment_task_id_FK_task" delete-action="dbdefaultrule" destination-table="task">
+          <orm:column name="task_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
+        </orm:constraint>
+        <orm:constraint name="task_comment_file_id_FK_file" delete-action="dbdefaultrule" destination-table="file">
+          <orm:column name="file_id" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
       </orm:table>
     </orm:schema>
@@ -1958,6 +2140,12 @@
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="bb6923cc-8744-4e52-8430-cfaf621eb23a">
           <NavigationalProperty Id="9377c0a2-4cb3-45dc-86df-edd9e24bb0f4" name="ProjectMembers1" type="IList&lt;ProjectMember&gt;" label="ProjectMembers1 : IList&lt;ProjectMember&gt;" nullable="true" kind="Persistent" fieldName="_projectMembers1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="e0b0bb87-d5f2-4738-9c57-ae585eb390ea">
+          <NavigationalProperty Id="96a7f9d4-98c8-433f-b0e0-8c071d940a62" name="TaskDiscutions" type="IList&lt;TaskDiscution&gt;" label="TaskDiscutions : IList&lt;TaskDiscution&gt;" nullable="true" kind="Persistent" fieldName="_taskDiscutions" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="ec884369-f862-4552-bbd4-9e2a184f0763">
+          <NavigationalProperty Id="a170126d-a24f-49b8-92d4-6010211709c2" name="TaskComments" type="IList&lt;TaskComment&gt;" label="TaskComments : IList&lt;TaskComment&gt;" nullable="true" kind="Persistent" fieldName="_taskComments" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -2261,6 +2449,7 @@
       <Property Id="7645aa5b-c59a-484b-926a-23de4ae72221" name="StageId" type="Int32" label="StageId : Int32" nullable="true" kind="Persistent" fieldName="_stageId" />
       <Property Id="cfa822fd-d5b8-410e-8358-888e229e2ecf" name="StateId" type="Int32" label="StateId : Int32" kind="Persistent" fieldName="_stateId" />
       <Property Id="b146b285-68fd-4a77-8069-4a6d29249993" name="TypeId" type="Int32" label="TypeId : Int32" kind="Persistent" fieldName="_typeId" />
+      <Property Id="ccd89dc1-be31-40b1-b506-8e4fc35f58ed" name="Metadata" label="Metadata : String" kind="Persistent" fieldName="_metadata" />
       <AssociationTargets>
         <Association Id="4cc92da5-f991-460c-9aaf-332d2ebc97f2" SourceMultiplicity="One" name="TaskHasBacklog">
           <DomainClassMoniker name="/wpContext/Backlog" />
@@ -2374,6 +2563,12 @@
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="01cb6f12-fc88-4bad-8a07-2f31875d31a7">
           <NavigationalProperty Id="1a18f111-564e-410d-a385-562ace28c572" name="CreatedBy" type="User" label="CreatedBy : User" nullable="true" kind="Persistent" fieldName="_user1" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="c4f9d7ea-15ee-4f63-a8db-b162af534718">
+          <NavigationalProperty Id="b117a047-ef85-4208-85e7-07c937930a2c" name="TaskDiscutions" type="IList&lt;TaskDiscution&gt;" label="TaskDiscutions : IList&lt;TaskDiscution&gt;" nullable="true" kind="Persistent" fieldName="_taskDiscutions" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="52789a8b-2118-4e05-b458-9e2426e72eb4">
+          <NavigationalProperty Id="6f4e7a7d-fd7d-42ab-bb99-f723376c1668" name="TaskComments" type="IList&lt;TaskComment&gt;" label="TaskComments : IList&lt;TaskComment&gt;" nullable="true" kind="Persistent" fieldName="_taskComments" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -2643,6 +2838,8 @@
       <Property Id="bf72dd48-84c8-4f8a-a929-7f84a13cf07a" name="Thumbnail" type="Byte[]" label="Thumbnail : Byte[]" kind="Persistent" fieldName="_thumbnail" />
       <Property Id="cabc594b-1570-418a-96ee-7099ac296321" name="Type" label="Type : String" kind="Persistent" fieldName="_type" />
       <Property Id="5ed56089-5fb5-4f8b-8a17-cd7899ff8076" name="Url" label="Url : String" kind="Persistent" fieldName="_url" />
+      <Property Id="cf06bf0e-0715-4a58-aebb-c3cf7040f48d" name="Extension" label="Extension : String" kind="Persistent" fieldName="_extension" />
+      <Property Id="6d962d82-08b5-4af9-9ae4-1c5d820bb89f" name="Deleted" type="Int16" label="Deleted : Int16" nullable="true" kind="Persistent" fieldName="_deleted" />
       <AssociationTargets>
         <Association Id="724b4f30-4638-4729-9b8f-bc7d1cabf388" SourceMultiplicity="ZeroOne" name="FileHasUser">
           <DomainClassMoniker name="/wpContext/User" />
@@ -2664,6 +2861,12 @@
         </classHasNavigationalProperties>
         <classHasNavigationalProperties Id="08a2d052-d16e-4582-89b0-6710686d3208">
           <NavigationalProperty Id="6e1d6953-6920-4941-bf50-f67800d1e016" name="User" type="User" label="User : User" nullable="true" kind="Persistent" fieldName="_user" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="72209cad-77b5-4c37-a8c3-03ab070df6af">
+          <NavigationalProperty Id="0a318c96-103e-40ba-b050-14c3b229e12a" name="TaskComments" type="IList&lt;TaskComment&gt;" label="TaskComments : IList&lt;TaskComment&gt;" nullable="true" kind="Persistent" fieldName="_taskComments" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="6126d3e2-288c-48aa-9000-cb1f40e58a04">
+          <NavigationalProperty Id="ef6b96bf-b724-419d-9822-4f2a1a432cf5" name="TaskDiscutions" type="IList&lt;TaskDiscution&gt;" label="TaskDiscutions : IList&lt;TaskDiscution&gt;" nullable="true" kind="Persistent" fieldName="_taskDiscutions" isDependent="false" isManaged="false" />
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
@@ -2832,6 +3035,8 @@
       <Property Id="8833e0b9-5644-44d5-86bc-48b0d1a4ce55" name="RemainingWork" type="UInt32" label="RemainingWork : UInt32" nullable="true" kind="Persistent" fieldName="_remainingWork" />
       <Property Id="0e4528b3-fcd4-4287-94f6-883e9bfc3863" name="StateId" type="Int32" label="StateId : Int32" kind="Persistent" fieldName="_stateId" />
       <Property Id="29472c76-32ff-440a-862c-f57a430b7f8d" name="TypeId" type="Int32" label="TypeId : Int32" kind="Persistent" fieldName="_typeId" />
+      <Property Id="ed389e16-4d51-486a-970f-88e1089bf688" name="Tags" label="Tags : String" kind="Persistent" fieldName="_tags" />
+      <Property Id="4009b8cd-9ab6-4ef5-b06b-689f225325e9" name="Metadata" label="Metadata : String" kind="Persistent" fieldName="_metadata" />
       <AssociationTargets>
         <Association Id="b93625d9-3334-423b-86f2-a9e506f7614d" SourceMultiplicity="One" name="BacklogHasCategory">
           <DomainClassMoniker name="/wpContext/Category" />
@@ -3142,6 +3347,132 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
+    <DomainClass Id="1daf33e7-84e9-4bf8-a950-79a2845b2b03" name="TaskDiscution" namespace="WProject.DataAccess" showPropertiesCompartment="true" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="10ad69bd-91f7-4c4f-92e6-78e9332a7d3b" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="286ff3e9-91d1-423a-93eb-244cf97ddb08" name="CreatedAt" type="DateTime" label="CreatedAt : DateTime" kind="Persistent" fieldName="_createdAt" />
+      <Property Id="e2eda468-4a0f-4e66-bd84-afac4ee2be28" name="Deleted" type="Int16" label="Deleted : Int16" nullable="true" kind="Persistent" fieldName="_deleted" />
+      <Property Id="e4b201a3-0c81-44d2-b155-a54267fd5416" name="TaskId" type="Int32" label="TaskId : Int32" kind="Persistent" fieldName="_taskId" />
+      <Property Id="846445db-a31b-480a-b144-9fb0d8725740" name="Text" label="Text : String" kind="Persistent" fieldName="_text" />
+      <Property Id="60244c67-6b24-446c-aeb1-3a761c6d8d21" name="UserId" type="Int32" label="UserId : Int32" kind="Persistent" fieldName="_userId" />
+      <Property Id="dcb6ad64-9c2c-4f07-a1ae-c47b07bc6d65" name="Metadata" label="Metadata : String" kind="Persistent" fieldName="_metadata" />
+      <Property Id="4b7d15e1-5022-4206-80aa-3b04900290b0" name="FileId" type="Int32" label="FileId : Int32" nullable="true" kind="Persistent" fieldName="_fileId" />
+      <Property Id="a2dd866b-30cf-488c-a554-c5c9c869a76f" name="CustomName" label="CustomName : String" kind="Persistent" fieldName="_customName" />
+      <AssociationTargets>
+        <Association Id="889c038d-97e0-4e38-b17f-6ce404fbbf09" SourceMultiplicity="One" name="TaskDiscutionHasTask">
+          <DomainClassMoniker name="/wpContext/Task" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="8a872aea-c22f-49a8-af29-0c56205d96b1">
+              <NavigationalPropertyMoniker name="/wpContext/Task/TaskDiscutions" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="be379d09-bb31-4e32-8f48-c716103d4202">
+              <NavigationalPropertyMoniker name="/wpContext/TaskDiscution/Task" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="ec27f375-302e-419a-96ba-a29ad433506c" SourceMultiplicity="One" name="TaskDiscutionHasUser">
+          <DomainClassMoniker name="/wpContext/User" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="3eebbde7-44fe-412a-8ec4-1f667dd4ddb6">
+              <NavigationalPropertyMoniker name="/wpContext/User/TaskDiscutions" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="15b08364-894c-49ef-8a08-0fe32af55433">
+              <NavigationalPropertyMoniker name="/wpContext/TaskDiscution/User" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="18f8493b-8d2e-4770-8660-d53a156bab79" SourceMultiplicity="One" name="TaskDiscutionHasFile">
+          <DomainClassMoniker name="/wpContext/File" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="ab9f9a81-cf38-418c-b126-819dee72c2ca">
+              <NavigationalPropertyMoniker name="/wpContext/File/TaskDiscutions" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="12ab73ca-ed8f-4e7e-ae15-fd0892bf0158">
+              <NavigationalPropertyMoniker name="/wpContext/TaskDiscution/File" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="6df92c07-5f03-4c4e-999d-7e945adf5c3a">
+          <NavigationalProperty Id="add8a32d-3712-4289-8f88-cb5e3f42c55c" name="Task" type="Task" label="Task : Task" nullable="true" kind="Persistent" fieldName="_task" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="0ec3c176-c623-4b46-bd5c-311fbc51f678">
+          <NavigationalProperty Id="43c21b8e-cf4b-47f5-826b-d72b577f0a51" name="User" type="User" label="User : User" nullable="true" kind="Persistent" fieldName="_user" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="3a32303b-86a5-46be-b734-a70cc0cd87f9">
+          <NavigationalProperty Id="9a46e2f3-117a-48cc-a71c-e8f490e32597" name="File" type="File" label="File : File" nullable="true" kind="Persistent" fieldName="_file" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
+    <DomainClass Id="9e0fdc7b-ddda-4590-a631-f631d3c37157" name="TaskComment" namespace="WProject.DataAccess" showPropertiesCompartment="true" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+      <Property Id="c6930c46-c509-4482-ace7-631b0e72950c" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
+      <Property Id="0f4cf2ab-1582-487f-ab9c-118f203c1af5" name="CreatedAt" type="DateTime" label="CreatedAt : DateTime" kind="Persistent" fieldName="_createdAt" />
+      <Property Id="33a01da0-417c-48a3-9950-f308bf7dfd89" name="Deleted" type="Int16" label="Deleted : Int16" nullable="true" kind="Persistent" fieldName="_deleted" />
+      <Property Id="e8aab15d-dd03-4118-b7af-3dfda5e998be" name="TaskId" type="Int32" label="TaskId : Int32" kind="Persistent" fieldName="_taskId" />
+      <Property Id="c5bb395d-1088-4332-b521-d7e2bc4ad49e" name="Text" label="Text : String" kind="Persistent" fieldName="_text" />
+      <Property Id="1a267c97-78e5-4833-9252-17970afaf145" name="UserId" type="Int32" label="UserId : Int32" kind="Persistent" fieldName="_userId" />
+      <Property Id="fda56020-9fba-4cac-82e0-661e3f24e831" name="Metadata" label="Metadata : String" kind="Persistent" fieldName="_metadata" />
+      <Property Id="10eb9da1-2f2f-499c-bb3b-5f54f41337c0" name="FileId" type="Int32" label="FileId : Int32" nullable="true" kind="Persistent" fieldName="_fileId" />
+      <Property Id="f9802853-0a77-4092-9ef1-13161fdf7f5c" name="CustomName" label="CustomName : String" kind="Persistent" fieldName="_customName" />
+      <AssociationTargets>
+        <Association Id="5bf40ea7-28c4-42a3-b20c-7aa5c5a36f70" SourceMultiplicity="One" name="TaskCommentHasUser">
+          <DomainClassMoniker name="/wpContext/User" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="fa5f5947-3f01-4c8b-9003-1ae1019466a6">
+              <NavigationalPropertyMoniker name="/wpContext/User/TaskComments" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="0c78f787-9210-4859-b538-19a4c70d64a0">
+              <NavigationalPropertyMoniker name="/wpContext/TaskComment/User" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="167a022b-5459-479b-bcca-15817e3cca5a" SourceMultiplicity="One" name="TaskCommentHasTask">
+          <DomainClassMoniker name="/wpContext/Task" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="c03a631f-eefc-4361-8451-469e9a162134">
+              <NavigationalPropertyMoniker name="/wpContext/Task/TaskComments" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="7fff8886-c3ef-4af5-b6fb-fabe228c2ee4">
+              <NavigationalPropertyMoniker name="/wpContext/TaskComment/Task" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+        <Association Id="e17665e1-6aa9-4beb-a687-205c4d8da791" SourceMultiplicity="One" name="TaskCommentHasFile">
+          <DomainClassMoniker name="/wpContext/File" />
+          <targetNavigationalProperty>
+            <associationDefinesTargetProperty Id="1e3ffa97-6037-4dbc-aecc-7b3669799ace">
+              <NavigationalPropertyMoniker name="/wpContext/File/TaskComments" />
+            </associationDefinesTargetProperty>
+          </targetNavigationalProperty>
+          <sourceNavigationalProperty>
+            <associationDefinesSourceProperty Id="1a692049-b027-45e2-861a-1fb53e0da814">
+              <NavigationalPropertyMoniker name="/wpContext/TaskComment/File" />
+            </associationDefinesSourceProperty>
+          </sourceNavigationalProperty>
+        </Association>
+      </AssociationTargets>
+      <navigationalProperties>
+        <classHasNavigationalProperties Id="c1c14930-31a0-41e6-840a-92495bc0d69d">
+          <NavigationalProperty Id="3d73694b-182b-464f-a515-f9427053ac16" name="User" type="User" label="User : User" nullable="true" kind="Persistent" fieldName="_user" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="a620da55-4558-4282-9a05-5e98f149e39b">
+          <NavigationalProperty Id="c6db9b7c-53b6-4b02-a016-e291e39700a5" name="Task" type="Task" label="Task : Task" nullable="true" kind="Persistent" fieldName="_task" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+        <classHasNavigationalProperties Id="c16d3acb-60ae-44ce-8054-59d4a990f367">
+          <NavigationalProperty Id="24ffb5a4-5bd6-4960-b3d7-1c133e780860" name="File" type="File" label="File : File" nullable="true" kind="Persistent" fieldName="_file" isDependent="false" isManaged="false" />
+        </classHasNavigationalProperties>
+      </navigationalProperties>
+    </DomainClass>
   </Types>
   <domainContext>
     <domainModelHasDomainContext Id="7b92edd9-ebe8-49dd-9ad5-28b51fc3922c">
@@ -3167,6 +3498,8 @@
         <entitySetProperty name="AccessObjects" namespace="WProject.DataAccess" type="AccessObject" label="AccessObjects : IQueryable&lt;WProject.DataAccess.AccessObject&gt;" />
         <entitySetProperty name="Accesses" namespace="WProject.DataAccess" type="Access" label="Accesses : IQueryable&lt;WProject.DataAccess.Access&gt;" />
         <entitySetProperty name="ProjectMembers" namespace="WProject.DataAccess" type="ProjectMember" label="ProjectMembers : IQueryable&lt;WProject.DataAccess.ProjectMember&gt;" />
+        <entitySetProperty name="TaskDiscutions" namespace="WProject.DataAccess" type="TaskDiscution" label="TaskDiscutions : IQueryable&lt;WProject.DataAccess.TaskDiscution&gt;" />
+        <entitySetProperty name="TaskComments" namespace="WProject.DataAccess" type="TaskComment" label="TaskComments : IQueryable&lt;WProject.DataAccess.TaskComment&gt;" />
       </domainContainer>
     </domainModelHasDomainContext>
   </domainContext>

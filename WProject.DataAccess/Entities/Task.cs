@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Telerik.OpenAccess.FetchOptimization;
 
 namespace WProject.DataAccess
 {
@@ -24,6 +25,11 @@ namespace WProject.DataAccess
         public WebApiClasses.Classes.Task ToWebApi()
         {
             return ToWebApi(this);
+        }
+
+        public WebApiClasses.Classes.Task ToWebApi(wpContext context)
+        {
+            return ToWebApi(this, context);
         }
 
         public static WebApiClasses.Classes.Task ToWebApi(Task task)
@@ -80,6 +86,42 @@ namespace WProject.DataAccess
             mt.Backlog = Backlog.ToWebApi(Backlog.GetById(mt.BacklogId, context));
 
             return mt;
+        }
+
+        public WebApiClasses.Classes.Task ToWebApiExtended(wpContext context)
+        {
+            return ToWebApiExtended(this, context);
+        }
+
+        private static WebApiClasses.Classes.Task ToWebApiExtended(Task task, wpContext context)
+        {
+            var mtask = task.ToWebApi(context);
+
+            FetchStrategy mfs = new FetchStrategy();
+            mfs.LoadWith<TaskAttachement>(f => f.File);
+            mfs.LoadWith<TaskAttachement>(f => f.User);
+
+            mtask.Attachments = context.CreateDetachedCopy(context.TaskAttachements.Where(t => t.TaskId == mtask.Id).ToList(), mfs)
+                                       .Select(ta => ta.ToWebApi(context, false))
+                                       .ToList();
+
+            mfs = new FetchStrategy();
+            mfs.LoadWith<TaskComment>(f => f.File);
+            mfs.LoadWith<TaskComment>(f => f.User);
+
+            mtask.Comments = context.CreateDetachedCopy(context.TaskComments.Where(tc => tc.TaskId == mtask.Id).ToList(), mfs)
+                                    .Select(tc => tc.ToWebApi(false))
+                                    .ToList();
+
+            mfs = new FetchStrategy();
+            mfs.LoadWith<TaskDiscution>(f => f.File);
+            mfs.LoadWith<TaskDiscution>(f => f.User);
+
+            mtask.Discusion = context.CreateDetachedCopy(context.TaskDiscutions.Where(td => td.TaskId == mtask.Id).ToList(), mfs)
+                                     .Select(td => td.ToWebApi(false))
+                                     .ToList();
+
+            return mtask;
         }
     }
 }

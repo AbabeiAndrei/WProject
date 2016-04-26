@@ -107,6 +107,24 @@ namespace WProject
             }
         }
 
+        protected override void WndProc(ref Message msg)
+        {
+            try
+            {
+                if (msg.Msg != WMConstants.WM_SYSCOMMAND)
+                    return;
+
+                if (msg.WParam == new IntPtr(WMConstants.SC_MAXIMIZE) || 
+                    msg.WParam == new IntPtr(WMConstants.SC_RESTORE) || 
+                    msg.WParam == new IntPtr(WMConstants.SC_MINIMIZE))
+                    OnSizeChanged(EventArgs.Empty);
+            }
+            finally
+            {
+                base.WndProc(ref msg);
+            }
+        }
+
         #endregion
 
         private async void OnLoggedConfirmed()

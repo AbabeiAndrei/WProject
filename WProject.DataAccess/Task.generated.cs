@@ -301,9 +301,8 @@ namespace WProject.DataAccess
 		}
 		
 		private string _description;
-		[Column("description", OpenAccessType = OpenAccessType.UnicodeStringInfiniteLength, Length = 0, Scale = 0, SqlType = "longtext")]
+		[Column("description", OpenAccessType = OpenAccessType.UnicodeStringInfiniteLength, IsNullable = true, Length = 0, Scale = 0, SqlType = "longtext")]
 		[Storage("_description")]
-		[System.ComponentModel.DataAnnotations.Required()]
 		public virtual string Description
 		{
 			get
@@ -337,6 +336,26 @@ namespace WProject.DataAccess
 					this.OnPropertyChanging("Deleted");
 					this._deleted = value;
 					this.OnPropertyChanged("Deleted");
+				}
+			}
+		}
+		
+		private string _metadata;
+		[Column("metadata", OpenAccessType = OpenAccessType.UnicodeStringInfiniteLength, IsNullable = true, Length = 0, Scale = 0, SqlType = "longtext")]
+		[Storage("_metadata")]
+		public virtual string Metadata
+		{
+			get
+			{
+				return this._metadata;
+			}
+			set
+			{
+				if(this._metadata != value)
+				{
+					this.OnPropertyChanging("Metadata");
+					this._metadata = value;
+					this.OnPropertyChanged("Metadata");
 				}
 			}
 		}
@@ -513,6 +532,28 @@ namespace WProject.DataAccess
 			get
 			{
 				return this._taskAttachements;
+			}
+		}
+		
+		private IList<TaskDiscution> _taskDiscutions = new List<TaskDiscution>();
+		[Collection(InverseProperty = "Task")]
+		[Storage("_taskDiscutions")]
+		public virtual IList<TaskDiscution> TaskDiscutions
+		{
+			get
+			{
+				return this._taskDiscutions;
+			}
+		}
+		
+		private IList<TaskComment> _taskComments = new List<TaskComment>();
+		[Collection(InverseProperty = "Task")]
+		[Storage("_taskComments")]
+		public virtual IList<TaskComment> TaskComments
+		{
+			get
+			{
+				return this._taskComments;
 			}
 		}
 		

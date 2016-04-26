@@ -7,7 +7,7 @@ using WProject.WebApiClasses.Interfaces;
 
 namespace WProject.WebApiClasses.Classes
 {
-    public class TaskAttachemt : TableNameble
+    public class TaskAttachement : TableNameble
     {
         public const string TABLE_NAME = "task_comment";
 

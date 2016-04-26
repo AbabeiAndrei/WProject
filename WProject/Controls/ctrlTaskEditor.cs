@@ -8,7 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WProject.Classes;
+using WProject.Connection;
 using WProject.GenericLibrary.Helpers.Extensions;
+using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
 using WProject.UiLibrary.Classes;
 using WProject.UiLibrary.Controls;
@@ -23,6 +25,8 @@ namespace WProject.Controls
         #region Fields
 
         private Task _task;
+        private bool _fullScreen;
+        private int _taskId;
 
         #endregion
 
@@ -30,22 +34,11 @@ namespace WProject.Controls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Task Task
-        {
-            get
-            {
-                return _task;
-            }
-            set
-            {
-                _task = value;
-                SetTaskData();
-            }
-        }
-        
+        public Task Task => GenerateTask();
+
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Action OnFullScreen { get; set; }
+        public Action<FullScreenEventArgs> OnFullScreen { get; set; }
         
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -61,7 +54,23 @@ namespace WProject.Controls
         
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Action OnPrint { get; set; }
+        public Action OnPrintTask { get; set; }
+
+        public override bool FullScreen
+        {
+            get
+            {
+                return base.FullScreen;
+            }
+            set
+            {
+                base.FullScreen = value;
+
+                btnFullScreen.Image = FullScreen 
+                                        ? Properties.Resources.fullscreen_exit_s
+                                        : Properties.Resources.fullscreen_arrow_s;
+            }
+        }
 
         #endregion
 
@@ -72,11 +81,10 @@ namespace WProject.Controls
             InitializeComponent();
         }
 
-        public ctrlTaskEditor(Task task)
+        public ctrlTaskEditor(int taskId)
             : this()
         {
-            _task = task;
-            SetTaskData();
+            _taskId = taskId;
         }
 
         #endregion
@@ -95,11 +103,35 @@ namespace WProject.Controls
 
         #region Overrides of WpUserControl
 
-        protected override void OnLoad(EventArgs e)
+        protected override async void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
             txtName.LeftButton = btnCopy;
+
+            await LoadTask();
+        }
+
+        private async System.Threading.Tasks.Task LoadTask()
+        {
+            if(_taskId == 0)
+                return;
+
+            try
+            {
+                var mres = await WebCallFactory.GetTask(_taskId);
+
+                if (mres.Error)
+                    throw mres.Exception;
+
+                _task = mres.Task;
+                SetTaskData();
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+                UIHelper.ShowError(mex);
+            }
         }
 
         #endregion
@@ -112,34 +144,15 @@ namespace WProject.Controls
                 Clipboard.SetText(_task.FullName);
         }
 
-        #endregion
-
-        #region Private methods
-
-        private void SetTaskData()
-        {
-            nudPriority.Value = Task.Priority ?? 1;
-            txtLeft.Text = Task.RemainingWork.If(v => v.HasValue, v => v.GetValueOrDefault().ToString(), v => string.Empty);
-            lblTask.Text = $"Task {Task.Id}";
-            txtName.Text = Task.Name;
-            txtDetails.Text = Task.Description;
-            if (Task.Comments != null)
-                ttComents.Messages = Task.Comments.Select(c => Convertors.Convert(c, c.UserId == WPSuite.ConnectedUserId)).ToList();
-
-            if (Task.Discusion != null)
-                ttDiscution.Messages = Task.Discusion.Select(c => Convertors.Convert(c, c.UserId == WPSuite.ConnectedUserId)).ToList();
-
-            if (Task.Attachments != null)
-                flAttachments.Files = Task.Attachments.Select(f => Convertors.Convert(f.File)).ToList();
-        }
-
-        #endregion
-
-        #region Events
-
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
-            OnFullScreen?.Invoke();
+            var mfsEveArgs = new FullScreenEventArgs();
+            OnFullScreen?.Invoke(mfsEveArgs);
+
+            if (mfsEveArgs.Handled)
+                return;
+
+            FullScreen = !FullScreen;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -176,8 +189,48 @@ namespace WProject.Controls
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            OnPrint?.Invoke();
+            OnPrintTask?.Invoke();
         }
+
+        #endregion
+
+        #region Private methods
+
+        private void SetTaskData()
+        {
+            try
+            {
+                SuspendLayout();
+                nudPriority.Value = Task.Priority ?? 1;
+                txtLeft.Text = Task.RemainingWork.If(v => v.HasValue, v => v.GetValueOrDefault().ToString(), v => string.Empty);
+                lblTask.Text = $"Task {Task.Id}";
+                txtName.Text = Task.Name;
+                txtDetails.Text = Task.Description;
+
+                if (Task.Comments != null)
+                    ttComents.Messages = Task.Comments.Select(c => Convertors.Convert(c, c.UserId == WPSuite.ConnectedUserId)).ToList();
+
+                if (Task.Discusion != null)
+                    ttDiscution.Messages = Task.Discusion.Select(c => Convertors.Convert(c, c.UserId == WPSuite.ConnectedUserId)).ToList();
+
+                if (Task.Attachments != null)
+                    flAttachments.Files = Task.Attachments.Select(f => Convertors.Convert(f.File)).ToList();
+            }
+            finally
+            {
+                ResumeLayout();
+                Refresh();
+            }
+
+        }
+
+        private Task GenerateTask()
+        {
+            //throw new NotImplementedException();
+
+            return _task;
+        }
+
 
         #endregion
 

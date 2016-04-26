@@ -31,5 +31,7 @@ namespace WProject.WebApiClasses.MessanginCenter
         public const int ERROR_REGISTER_BACKLOG_STATE_BACKLOG_NOT_FOUND = 14;
         public const int ERROR_REGISTER_BACKLOG_STATE_STATE_NOT_FOUND = 15;
         public const int ERROR_REGISTER_BACKLOG_STATE_SAVE_CONTEXT = 16;
+
+        public const int ERROR_GET_TASK_NOT_FOUND = 17;
     }
 }

@@ -113,8 +113,8 @@ namespace WProject.UiLibrary.Controls
             if(!mb.Visible)
                 return;
 
-            mb.Size = new Size(Height, Height);
-            mb.Location = new Point(ClientSize.Width - Height, -1);
+            mb.Size = new Size(Height - 1, Height - 2);
+            mb.Location = new Point(ClientSize.Width - Height - 1, 1);
 
             User32.SendMessage(Handle, Constants.EM_SETMARGINS, (IntPtr)2, (IntPtr)(mb.Width << 16));
         }

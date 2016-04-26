@@ -159,6 +159,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\Base\WpBaseUserControl.resx">
+      <DependentUpon>WpBaseUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\SpecificControls\InnerControls\WpFileItem.resx">
       <DependentUpon>WpFileItem.cs</DependentUpon>
     </EmbeddedResource>

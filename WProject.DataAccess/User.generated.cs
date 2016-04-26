@@ -524,6 +524,28 @@ namespace WProject.DataAccess
 			}
 		}
 		
+		private IList<TaskDiscution> _taskDiscutions = new List<TaskDiscution>();
+		[Collection(InverseProperty = "User")]
+		[Storage("_taskDiscutions")]
+		public virtual IList<TaskDiscution> TaskDiscutions
+		{
+			get
+			{
+				return this._taskDiscutions;
+			}
+		}
+		
+		private IList<TaskComment> _taskComments = new List<TaskComment>();
+		[Collection(InverseProperty = "User")]
+		[Storage("_taskComments")]
+		public virtual IList<TaskComment> TaskComments
+		{
+			get
+			{
+				return this._taskComments;
+			}
+		}
+		
 		#region INotifyPropertyChanging members
 		
 		public event PropertyChangingEventHandler PropertyChanging;

@@ -146,6 +146,7 @@
             // btnFullScreen
             // 
             this.btnFullScreen.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFullScreen.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFullScreen.FlatAppearance.BorderSize = 0;
             this.btnFullScreen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFullScreen.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -250,6 +251,7 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -302,6 +304,7 @@
             this.pnlLeftDock.OwnStyle = false;
             this.pnlLeftDock.Size = new System.Drawing.Size(15, 87);
             this.pnlLeftDock.TabIndex = 0;
+            this.pnlLeftDock.Visible = false;
             // 
             // pnlBotom
             // 

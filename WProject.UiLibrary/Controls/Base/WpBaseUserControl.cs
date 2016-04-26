@@ -104,5 +104,17 @@ namespace WProject.UiLibrary.Controls.Base
         }
 
         #endregion
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // WpBaseUserControl
+            // 
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Name = "WpBaseUserControl";
+            this.ResumeLayout(false);
+
+        }
     }
 }
