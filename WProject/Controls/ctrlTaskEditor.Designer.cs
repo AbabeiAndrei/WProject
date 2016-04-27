@@ -1,4 +1,6 @@
-﻿namespace WProject.Controls
+﻿using WProject.UiLibrary.Classes;
+
+namespace WProject.Controls
 {
     partial class ctrlTaskEditor
     {
@@ -103,6 +105,7 @@
             this.flAttachments.OwnStyle = false;
             this.flAttachments.Size = new System.Drawing.Size(791, 281);
             this.flAttachments.TabIndex = 0;
+            this.flAttachments.OnFileUploaded += new FileItemEventHandler(this.flAttachments_OnFileUploaded);
             // 
             // pnlTop
             // 
@@ -539,6 +542,7 @@
             this.ttComents.SendMessageForeColor = System.Drawing.Color.Empty;
             this.ttComents.Size = new System.Drawing.Size(326, 275);
             this.ttComents.TabIndex = 0;
+            this.ttComents.OnSend += new SendMessageEventHandler(this.ttComents_OnSend);
             // 
             // wpPanel1
             // 

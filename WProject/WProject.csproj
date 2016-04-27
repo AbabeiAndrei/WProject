@@ -905,6 +905,7 @@
     <None Include="Resources\clipboard_l.png" />
     <None Include="Resources\clipboard_m.png" />
     <None Include="Resources\clipboard_s1.png" />
+    <None Include="Resources\file.png" />
     <Content Include="Resources\Icons\undo_l.png" />
     <Content Include="Resources\Icons\undo_m.png" />
     <Content Include="Resources\Icons\undo_s.png" />

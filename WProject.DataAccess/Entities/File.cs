@@ -46,5 +46,36 @@ namespace WProject.DataAccess
                 return null;
             }
         }
+
+        public static File FromWebApi(WebApiClasses.Classes.File file)
+        {
+            try
+            {
+                if (file == null)
+                    return null;
+
+                return new File
+                {
+                    Id = file.Id,
+                    Name = file.Name,
+                    Type = file.Type,
+                    Content = file.Content,
+                    Thumbnail = file.Thumbmail,
+                    Size = file.Size,
+                    ParentType = file.ParentType,
+                    ParentId = file.ParentId,
+                    Metadata = file.Metadata,
+                    Path = file.Path,
+                    Url = file.Url,
+                    CreatedAt = file.CreatedAt,
+                    CreatedBy = file.CreatedById,
+                    Deleted = file.Deleted ? 1 : (short?)null //todo
+                };
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

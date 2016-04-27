@@ -25,6 +25,7 @@ namespace WProject.DataAccess
 {
 	[Table("task_attachement")]
 	[ConcurrencyControl(OptimisticConcurrencyControlStrategy.Changed)]
+	[KeyGenerator(KeyGenerator.Autoinc)]
 	public partial class TaskAttachement : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		private int _id;

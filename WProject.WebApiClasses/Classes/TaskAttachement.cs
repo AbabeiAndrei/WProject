@@ -22,5 +22,17 @@ namespace WProject.WebApiClasses.Classes
         public int FileId { get; set; }
 
         public File File { get; set; }
+
+        public DateTime AttachedAt { get; set; }
+
+        public int AttachedBy { get; set; }
+
+        public string Comments { get; set; }
+
+        public string Metadata { get; set; }
+
+        public bool Deleted { get; set; }
+
+        public User User { get; set; }
     }
 }

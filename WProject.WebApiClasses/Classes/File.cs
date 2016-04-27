@@ -14,6 +14,15 @@ namespace WProject.WebApiClasses.Classes
     {
         private const string TABLE_NAME = "file";
 
+        public static readonly string[] IMAGE_EXTENSIONS =
+        {
+            "jpg",
+            "jpeg",
+            "png",
+            "bmp",
+            "gif"
+        };
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -73,6 +82,8 @@ namespace WProject.WebApiClasses.Classes
                 return await ImageHelper.DownloadImageAsync(Url);
             return null;
         }
+
+        public bool IsImage => !string.IsNullOrEmpty(Extension) && IMAGE_EXTENSIONS.Contains(Extension);
 
         public new static string TableName => TABLE_NAME;
     }

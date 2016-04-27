@@ -296,10 +296,9 @@ namespace WProject.DataAccess
 		}
 		
 		private string _extension;
-		[Column("extension", OpenAccessType = OpenAccessType.UnicodeStringVariableLength, Length = 256, Scale = 0, SqlType = "nvarchar")]
+		[Column("extension", OpenAccessType = OpenAccessType.UnicodeStringVariableLength, IsNullable = true, Length = 256, Scale = 0, SqlType = "nvarchar")]
 		[Storage("_extension")]
 		[System.ComponentModel.DataAnnotations.StringLength(256)]
-		[System.ComponentModel.DataAnnotations.Required()]
 		public virtual string Extension
 		{
 			get

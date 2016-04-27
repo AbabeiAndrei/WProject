@@ -1,4 +1,6 @@
-﻿namespace WProject.DesktopTests
+﻿using WProject.UiLibrary.Classes;
+
+namespace WProject.DesktopTests
 {
     partial class Form1
     {
@@ -45,7 +47,7 @@
             this.wpFileLoader1.OwnStyle = false;
             this.wpFileLoader1.Size = new System.Drawing.Size(593, 391);
             this.wpFileLoader1.TabIndex = 0;
-            this.wpFileLoader1.OnFileUploaded += new WProject.UiLibrary.Controls.SpecificControls.FileItemEventHandler(this.wpFileLoader1_OnFileUploaded);
+            this.wpFileLoader1.OnFileUploaded += new FileItemEventHandler(this.wpFileLoader1_OnFileUploaded);
             // 
             // Form1
             // 

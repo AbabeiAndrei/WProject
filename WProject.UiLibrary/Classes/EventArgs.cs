@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,4 +70,18 @@ namespace WProject.UiLibrary.Classes
     {
         public bool Handled { get; set; }
     }
+
+    public class SendMessageEventArgs
+    {
+        public SendMessageEventArgs(string text)
+        {
+            Text = text;
+        }
+
+        public string Text { get; set; }
+    }
+    
+    public delegate void SendMessageEventHandler(object sender, SendMessageEventArgs args);
+    public delegate void WpFileItemEventHandler(object sender, WpFileItemEventArgs args);
+    public delegate void FileItemEventHandler(object sender, FileItemEventArgs args);
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -34,7 +35,7 @@ namespace WProject.DataAccess
                     Deleted = taskComment.Deleted.HasValue && taskComment.Deleted.Value == 1
                 };
             }
-            catch
+            catch 
             {
                 return null;
             }
@@ -60,6 +61,36 @@ namespace WProject.DataAccess
                 User = taskDiscution.User,
                 File = taskDiscution.File
             };
+        }
+
+        public static TaskComment FromWebApi(WebApiClasses.Classes.TaskComment taskComment)
+        {
+            try
+            {
+                if (taskComment == null)
+                    return null;
+
+                return new TaskComment
+                {
+                    Id = taskComment.Id,
+                    CreatedAt = taskComment.CreatedAt,
+                    UserId = taskComment.UserId,
+                    CustomName = taskComment.CustomName,
+                    FileId = taskComment.FileId,
+                    TaskId = taskComment.TaskId,
+                    Text = taskComment.Text,
+                    Deleted = taskComment.Deleted ? 1 : (short?)null
+                };
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static TaskComment GetById(int id, wpContext context)
+        {
+            return context.TaskComments.FirstOrDefault(tc => tc.Id == id);
         }
     }
 }

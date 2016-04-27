@@ -25,6 +25,7 @@ namespace WProject.DataAccess
 {
 	[Table("task_comment")]
 	[ConcurrencyControl(OptimisticConcurrencyControlStrategy.Changed)]
+	[KeyGenerator(KeyGenerator.Autoinc)]
 	public partial class TaskComment : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		private int _id;

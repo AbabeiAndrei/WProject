@@ -99,6 +99,7 @@ namespace WProject.DataAccess
 
             FetchStrategy mfs = new FetchStrategy();
             mfs.LoadWith<TaskAttachement>(f => f.File);
+            mfs.LoadWith<File>(f => f.User);
             mfs.LoadWith<TaskAttachement>(f => f.User);
 
             mtask.Attachments = context.CreateDetachedCopy(context.TaskAttachements.Where(t => t.TaskId == mtask.Id).ToList(), mfs)

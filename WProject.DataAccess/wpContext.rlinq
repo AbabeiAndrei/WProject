@@ -366,6 +366,9 @@
       <orm:class name="TaskAttachement" uniqueId="edfa9bb3-2d87-47b0-9a56-fc0da09e2253">
         <orm:table name="task_attachement" />
         <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
           <orm:single-field field-name="_id" />
         </orm:identity>
         <orm:concurrency strategy="changed" />
@@ -841,7 +844,7 @@
           <orm:column name="created_by" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
         </orm:field>
         <orm:field name="_extension" property="Extension" behavior="readwrite" uniqueId="cf06bf0e-0715-4a58-aebb-c3cf7040f48d" type="System.String">
-          <orm:column name="extension" sql-type="nvarchar" nullable="false" length="256" scale="0" ado-type="UnicodeStringVariableLength" />
+          <orm:column name="extension" sql-type="nvarchar" nullable="true" length="256" scale="0" ado-type="UnicodeStringVariableLength" />
         </orm:field>
         <orm:field name="_deleted" property="Deleted" behavior="readwrite" uniqueId="6d962d82-08b5-4af9-9ae4-1c5d820bb89f" type="System.Nullable`1[[System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
@@ -1362,6 +1365,7 @@
       <orm:class name="TaskDiscution" uniqueId="1daf33e7-84e9-4bf8-a950-79a2845b2b03">
         <orm:table name="task_discution" />
         <orm:identity>
+          <orm:key-generator name="autoinc" />
           <orm:single-field field-name="_id" />
         </orm:identity>
         <orm:concurrency strategy="changed" />
@@ -1414,6 +1418,9 @@
       <orm:class name="TaskComment" uniqueId="9e0fdc7b-ddda-4590-a631-f631d3c37157">
         <orm:table name="task_comment" />
         <orm:identity>
+          <orm:key-generator name="autoinc">
+            <orm:key-generator-member property-name="Id" />
+          </orm:key-generator>
           <orm:single-field field-name="_id" />
         </orm:identity>
         <orm:concurrency strategy="changed" />
@@ -1724,7 +1731,7 @@
         <orm:column name="url" sql-type="mediumtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         <orm:column name="created_at" sql-type="datetime" nullable="true" length="0" scale="0" ado-type="DateTime" />
         <orm:column name="created_by" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
-        <orm:column name="extension" sql-type="nvarchar" nullable="false" length="256" scale="0" ado-type="UnicodeStringVariableLength" />
+        <orm:column name="extension" sql-type="nvarchar" nullable="true" length="256" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
         <orm:constraint name="file_user_FK_created_by" delete-action="dbdefaultrule" destination-table="user">
           <orm:column name="created_by" sql-type="integer" nullable="true" length="0" scale="0" ado-type="Int32" />
@@ -2371,7 +2378,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="edfa9bb3-2d87-47b0-9a56-fc0da09e2253" name="TaskAttachement" namespace="WProject.DataAccess" showPropertiesCompartment="true" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+    <DomainClass Id="edfa9bb3-2d87-47b0-9a56-fc0da09e2253" name="TaskAttachement" namespace="WProject.DataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="35db756b-11c0-44b8-8378-41887616ac74" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
       <Property Id="679fefbd-50d9-4f1d-ba61-5b840b9b4e57" name="AttachedAt" type="DateTime" label="AttachedAt : DateTime" kind="Persistent" fieldName="_attachedAt" />
       <Property Id="fa7177ae-c87e-4506-aa59-11a4f308ec71" name="AttachedBy" type="Int32" label="AttachedBy : Int32" kind="Persistent" fieldName="_attachedBy" />
@@ -3410,7 +3417,7 @@
         </classHasNavigationalProperties>
       </navigationalProperties>
     </DomainClass>
-    <DomainClass Id="9e0fdc7b-ddda-4590-a631-f631d3c37157" name="TaskComment" namespace="WProject.DataAccess" showPropertiesCompartment="true" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true">
+    <DomainClass Id="9e0fdc7b-ddda-4590-a631-f631d3c37157" name="TaskComment" namespace="WProject.DataAccess" showPropertiesCompartment="true" identityMechanism="DatabaseServerCalculated" concurrencyMode="Changed" showNavigationCompartment="true" showImplementationCompartment="true" identityMechanismMember="Id">
       <Property Id="c6930c46-c509-4482-ace7-631b0e72950c" name="Id" type="Int32" label="Id : Int32" kind="Persistent" identity="true" fieldName="_id" />
       <Property Id="0f4cf2ab-1582-487f-ab9c-118f203c1af5" name="CreatedAt" type="DateTime" label="CreatedAt : DateTime" kind="Persistent" fieldName="_createdAt" />
       <Property Id="33a01da0-417c-48a3-9950-f308bf7dfd89" name="Deleted" type="Int16" label="Deleted : Int16" nullable="true" kind="Persistent" fieldName="_deleted" />

@@ -14,9 +14,11 @@ using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
 using WProject.UiLibrary.Classes;
 using WProject.UiLibrary.Controls;
+using WProject.UiLibrary.Controls.SpecificControls;
 using WProject.UiLibrary.Theme;
 using Task = WProject.WebApiClasses.Classes.Task;
 using WProject.WebApiClasses.Classes;
+using WProject.WebApiClasses.MessanginCenter;
 
 namespace WProject.Controls 
 {
@@ -234,5 +236,79 @@ namespace WProject.Controls
 
         #endregion
 
+        private async void ttComents_OnSend(object sender, SendMessageEventArgs e)
+        {
+            var mt = sender as WpTextThread;
+
+            if(mt == null)
+                return;
+
+            var mtc = new TaskComment
+            {
+                UserId = WPSuite.ConnectedUserId,
+                TaskId = _taskId,
+                Text = e.Text
+            };
+
+            try
+            {
+                Logger.Log($"Send commnet to dispatcher for task {_taskId}");
+                var mres = await WebCallFactory.PostCommentOnTask(mtc);
+
+                if (mres.Error)
+                    throw mres.Exception;
+                
+                Logger.Log("Comment send with success!");
+
+                mt.Messages.Add(Convertors.Convert(mres.TaskComment, true));
+            }
+            catch (Exception mex)
+            {
+                UIHelper.ShowError(mex);
+                Logger.Log(mex);
+            }
+        }
+
+        private async void flAttachments_OnFileUploaded(object sender, FileItemEventArgs args)
+        {
+            var mt = sender as WpFileLoader;
+
+            if (mt == null)
+                return;
+
+            var mf = System.IO.File.ReadAllBytes(args.FileItem.FilePath);
+
+            var mtc = new TaskAttachement
+            {
+                TaskId = _taskId,
+                AttachedBy = WPSuite.ConnectedUserId,
+                File = new File
+                {
+                    Size = args.FileItem.Size,
+                    Name = args.FileItem.Name,
+                    CreatedById = WPSuite.ConnectedUserId,
+                    Extension = args.FileItem.Extension,
+                    Content = mf
+                }
+            };
+
+            try
+            {
+                Logger.Log($"Send file to dispatcher for task {_taskId}");
+                var mres = await WebCallFactory.AttachFileToTask(mtc);
+
+                if (mres.Error)
+                    throw mres.Exception;
+
+                Logger.Log("File send with success!");
+
+                mt.Files.Add(Convertors.Convert(mres.TaskAttachement.File));
+            }
+            catch (Exception mex)
+            {
+                UIHelper.ShowError(mex);
+                Logger.Log(mex);
+            }
+        }
     }
 }

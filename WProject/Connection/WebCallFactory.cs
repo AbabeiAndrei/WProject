@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WProject.GenericLibrary.Exceptions;
 using WProject.GenericLibrary.Helpers.Log;
+using WProject.WebApiClasses.Classes;
 using WProject.WebApiClasses.MessanginCenter;
 using Task = WProject.WebApiClasses.Classes.Task;
 
@@ -172,6 +173,22 @@ namespace WProject.Connection
             });
         }
 
+        public static async Task<PostCommentOnTaskReponse> PostCommentOnTask(TaskComment mtc)
+        {
+            return await ExecuteMethod<PostCommentOnTaskReponse>("PostCommentOnTask", new PostCommentOnTaskRequest
+            {
+                TaskComment = mtc
+            });
+        }
+
+        public static async Task<AttachFileToTaskResoponse> AttachFileToTask(TaskAttachement taskAttachement)
+        {
+            return await ExecuteMethod<AttachFileToTaskResoponse>("AttachFileToTask", new AttachFileToTaskRequest
+            {
+                TaskAttachement = taskAttachement
+            });
+        }
+
         public static async Task<T> ExecuteMethod<T>(string method, object content, bool continueThrow = false, bool checkForEmpty = true)
             where T : IMessangingCenterResponse, new()
         {
@@ -216,7 +233,7 @@ namespace WProject.Connection
             try
             {
                 if (!Connection.ConnectionIsAlive)
-                    throw new Exception("Connection is not allive");
+                    throw new Exception("Connection is not alive");
 
 
                 MessagingCenterPackage mpackage = new MessagingCenterPackage
@@ -239,6 +256,5 @@ namespace WProject.Connection
                 Connection.NetworkTransferInProgress = false;
             }
         }
-
     }
 }

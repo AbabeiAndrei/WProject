@@ -46,7 +46,7 @@ namespace WProject.UiLibrary.Controls
         public virtual bool ClearOnSend { get; set; } = true;
 
         [Category("Action")]
-        public event EventHandler OnSend;
+        public event SendMessageEventHandler OnSend;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -208,7 +208,7 @@ namespace WProject.UiLibrary.Controls
         {
             pnlMain.ScrollToBottom();
 
-            OnSend?.Invoke(this, EventArgs.Empty);
+            OnSend?.Invoke(this, new SendMessageEventArgs(txtMessage.Text));
 
             if (ClearOnSend)
                 txtMessage.Clear();

@@ -25,6 +25,7 @@ namespace WProject.DataAccess
 {
 	[Table("task_discution")]
 	[ConcurrencyControl(OptimisticConcurrencyControlStrategy.Changed)]
+	[KeyGenerator(KeyGenerator.Autoinc)]
 	public partial class TaskDiscution : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		private int _id;

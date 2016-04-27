@@ -171,9 +171,43 @@ namespace WProject.WebApiClasses.MessanginCenter
         public int TaskId { get; set; }
     }
 
-    public class GetTaskResponse :IMessangingCenterResponse
+    public class GetTaskResponse : IMessangingCenterResponse
     {
         public Task Task { get; set; }
+
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
+
+    public class PostCommentOnTaskRequest
+    {
+        public TaskComment TaskComment { get; set; }
+    }
+
+    public class PostCommentOnTaskReponse : IMessangingCenterResponse
+    {
+        public TaskComment TaskComment { get; set; }
+
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
+
+    public class AttachFileToTaskRequest
+    {
+        public TaskAttachement TaskAttachement { get; set; }
+    }
+
+    public class AttachFileToTaskResoponse : IMessangingCenterResponse
+    {
+        public TaskAttachement TaskAttachement { get; set; }
 
         #region Implementation of IMessangingCenterResponse
 

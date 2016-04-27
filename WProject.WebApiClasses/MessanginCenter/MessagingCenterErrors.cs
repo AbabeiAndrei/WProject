@@ -33,5 +33,11 @@ namespace WProject.WebApiClasses.MessanginCenter
         public const int ERROR_REGISTER_BACKLOG_STATE_SAVE_CONTEXT = 16;
 
         public const int ERROR_GET_TASK_NOT_FOUND = 17;
+
+        public const int ERROR_ATTACH_FILE_TO_TASK_TASK_ATTACHEMENT_IS_NULL = 18;
+        public const int ERROR_ATTACH_FILE_TO_TASK_TASK_SAVE_CONTEXT = 19;
+
+        public const int ERROR_COMMENT_TO_TASK_COMMENT_IS_NULL = 20;
+        public const int ERROR_COMMENT_TO_TASK_SAVE_CONTEXT = 21;
     }
 }

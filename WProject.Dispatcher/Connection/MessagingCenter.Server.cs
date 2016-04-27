@@ -461,5 +461,125 @@ namespace WProject.Dispatcher.Connection
 
             return mres;
         }
+
+        public MessagingCenterResponse PostCommentOnTask(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                if (string.IsNullOrEmpty(package.Content))
+                    throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
+
+                var mreq = JsonConvert.DeserializeObject<PostCommentOnTaskRequest>(package.Content);
+
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+
+                    var mtaskc = TaskComment.FromWebApi(mreq.TaskComment);
+
+                    if (mtaskc == null)
+                        throw new WpException(MessagingCenterErrors.ERROR_COMMENT_TO_TASK_COMMENT_IS_NULL, "Task comment is null");
+
+                    mtaskc.CreatedAt = DateTime.Now;
+
+                    mctx.Add(mtaskc);
+
+                    try
+                    {
+                        mctx.SaveChanges();
+                    }
+                    catch (Exception mex)
+                    {
+                        throw new WpException(MessagingCenterErrors.ERROR_COMMENT_TO_TASK_SAVE_CONTEXT, "Cannot save task comment", mex);
+                    }
+
+                    mres.Content = JsonConvert.SerializeObject(new PostCommentOnTaskReponse
+                    {
+                        TaskComment = TaskComment.ToWebApi(mtaskc, false)
+                    });
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
+
+        public MessagingCenterResponse AttachFileToTask(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                if (string.IsNullOrEmpty(package.Content))
+                    throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
+
+                var mreq = JsonConvert.DeserializeObject<AttachFileToTaskRequest>(package.Content);
+
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+
+                    var mtaska = TaskAttachement.FromWebApi(mreq.TaskAttachement);
+                    var mfile = File.FromWebApi(mreq.TaskAttachement.File);
+
+                    if(mtaska == null || mfile == null)
+                        throw new WpException(MessagingCenterErrors.ERROR_ATTACH_FILE_TO_TASK_TASK_ATTACHEMENT_IS_NULL, "Task attachement or file is null");
+                    
+                    mtaska.File = mfile;
+                    mtaska.AttachedAt = DateTime.Now;
+                    mfile.CreatedAt = DateTime.Now;
+                    
+
+                    mctx.Add(mtaska);
+
+                    try
+                    {
+                        mctx.SaveChanges();
+                    }
+                    catch (Exception mex)
+                    {
+                        throw new WpException(MessagingCenterErrors.ERROR_ATTACH_FILE_TO_TASK_TASK_SAVE_CONTEXT, "Cannot save task attachement", mex);
+                    }
+                   
+                    mres.Content = JsonConvert.SerializeObject(new AttachFileToTaskResoponse
+                    {
+                        TaskAttachement = TaskAttachement.ToWebApi(mtaska, false)
+                    });
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
     }
 }

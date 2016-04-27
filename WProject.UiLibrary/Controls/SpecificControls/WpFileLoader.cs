@@ -190,11 +190,11 @@ namespace WProject.UiLibrary.Controls.SpecificControls
                 SetItems();
             }
         }
-        
+
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IEnumerable<FileItem> SelectedFiles => SelectedItems.Select(wp => wp.File);
-        
+
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
         public IEnumerable<WpFileItem> Items => pnlFiles.Controls.OfType<WpFileItem>();
@@ -214,7 +214,7 @@ namespace WProject.UiLibrary.Controls.SpecificControls
 
         [Category("Items")]
         public event WpFileItemEventHandler OnDeleteItem;
-        
+
         [Category("Action")]
         public event EventHandler OnCheckAll;
 
@@ -249,7 +249,7 @@ namespace WProject.UiLibrary.Controls.SpecificControls
         public WpFileLoader(IEnumerable<FileItem> files)
             : this()
         {
-            if(files == null)
+            if (files == null)
                 return;
 
             _files = new ObservableCollection<FileItem>(files);
@@ -289,7 +289,7 @@ namespace WProject.UiLibrary.Controls.SpecificControls
                     {
                         var mc = Items.FirstOrDefault(i => i.File.Equals(mitem));
 
-                        if(mc != null)
+                        if (mc != null)
                             pnlFiles.Controls.Remove(mc);
                     }
                     break;
@@ -328,7 +328,7 @@ namespace WProject.UiLibrary.Controls.SpecificControls
         {
             OnUpload?.Invoke(this, EventArgs.Empty);
 
-            if(CustomUploader)
+            if (CustomUploader)
                 return;
 
             if (ParentForm != null)
@@ -340,8 +340,6 @@ namespace WProject.UiLibrary.Controls.SpecificControls
         private void fdUpload_FileOk(object sender, CancelEventArgs e)
         {
             var mfile = new FileItem(fdUpload.FileName);
-
-            Files.Add(mfile);
 
             OnFileUploaded?.Invoke(this, mfile);
         }
@@ -415,7 +413,7 @@ namespace WProject.UiLibrary.Controls.SpecificControls
         {
             const string ZERO_BITES = "0 b";
 
-            if(!lblCount.Visible)
+            if (!lblCount.Visible)
                 return;
 
             var msitems = SelectedFiles.ToList();
@@ -428,7 +426,7 @@ namespace WProject.UiLibrary.Controls.SpecificControls
                 msstring = mscount + "/";
                 try
                 {
-                    if(DesignMode)
+                    if (DesignMode)
                         mssizestring = ZERO_BITES;
                     else
                         mssizestring = Utils.FormatToSize(msitems.Select(fi => fi.Size).DefaultIfEmpty(0).Sum()) + "/";
@@ -473,7 +471,4 @@ namespace WProject.UiLibrary.Controls.SpecificControls
 
         #endregion
     }
-
-    public delegate void WpFileItemEventHandler(object sender, WpFileItemEventArgs args);
-    public delegate void FileItemEventHandler(object sender, FileItemEventArgs args);
 }
