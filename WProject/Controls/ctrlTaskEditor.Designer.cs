@@ -103,9 +103,14 @@ namespace WProject.Controls
             this.flAttachments.Location = new System.Drawing.Point(0, 0);
             this.flAttachments.Name = "flAttachments";
             this.flAttachments.OwnStyle = false;
+            this.flAttachments.ShowCheckAll = false;
+            this.flAttachments.ShowDeleteSelected = false;
+            this.flAttachments.ShowNumberOfFiles = false;
+            this.flAttachments.ShowSaveSelected = false;
+            this.flAttachments.ShowUpload = false;
             this.flAttachments.Size = new System.Drawing.Size(791, 281);
             this.flAttachments.TabIndex = 0;
-            this.flAttachments.OnFileUploaded += new FileItemEventHandler(this.flAttachments_OnFileUploaded);
+            this.flAttachments.OnFileUploaded += new WProject.UiLibrary.Classes.FileItemEventHandler(this.flAttachments_OnFileUploaded);
             // 
             // pnlTop
             // 
@@ -332,9 +337,8 @@ namespace WProject.Controls
             this.flwActions.Controls.Add(this.btnUndo);
             this.flwActions.Controls.Add(this.btnSaveAndClose);
             this.flwActions.Controls.Add(this.btnSave);
-            this.flwActions.Dock = System.Windows.Forms.DockStyle.Right;
-            this.flwActions.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;
-            this.flwActions.Location = new System.Drawing.Point(434, 0);
+            this.flwActions.Dock = System.Windows.Forms.DockStyle.Left;
+            this.flwActions.Location = new System.Drawing.Point(0, 0);
             this.flwActions.Name = "flwActions";
             this.flwActions.Size = new System.Drawing.Size(365, 38);
             this.flwActions.TabIndex = 2;
@@ -346,7 +350,7 @@ namespace WProject.Controls
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrint.Image = global::WProject.Properties.Resources.print_s;
-            this.btnPrint.Location = new System.Drawing.Point(327, 3);
+            this.btnPrint.Location = new System.Drawing.Point(3, 3);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Selected = false;
             this.btnPrint.Size = new System.Drawing.Size(35, 30);
@@ -362,7 +366,7 @@ namespace WProject.Controls
             this.btnFollow.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFollow.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnFollow.Image = global::WProject.Properties.Resources.heart_empty_s;
-            this.btnFollow.Location = new System.Drawing.Point(286, 3);
+            this.btnFollow.Location = new System.Drawing.Point(44, 3);
             this.btnFollow.Name = "btnFollow";
             this.btnFollow.Selected = false;
             this.btnFollow.Size = new System.Drawing.Size(35, 30);
@@ -378,7 +382,7 @@ namespace WProject.Controls
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.Image = global::WProject.Properties.Resources.refresh_s;
-            this.btnRefresh.Location = new System.Drawing.Point(245, 3);
+            this.btnRefresh.Location = new System.Drawing.Point(85, 3);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Selected = false;
             this.btnRefresh.Size = new System.Drawing.Size(35, 30);
@@ -394,7 +398,7 @@ namespace WProject.Controls
             this.btnUndo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUndo.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUndo.Image = global::WProject.Properties.Resources.undo_s;
-            this.btnUndo.Location = new System.Drawing.Point(204, 3);
+            this.btnUndo.Location = new System.Drawing.Point(126, 3);
             this.btnUndo.Name = "btnUndo";
             this.btnUndo.Selected = false;
             this.btnUndo.Size = new System.Drawing.Size(35, 30);
@@ -410,7 +414,7 @@ namespace WProject.Controls
             this.btnSaveAndClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSaveAndClose.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSaveAndClose.Image = global::WProject.Properties.Resources.save_s;
-            this.btnSaveAndClose.Location = new System.Drawing.Point(163, 3);
+            this.btnSaveAndClose.Location = new System.Drawing.Point(167, 3);
             this.btnSaveAndClose.Name = "btnSaveAndClose";
             this.btnSaveAndClose.Selected = false;
             this.btnSaveAndClose.Size = new System.Drawing.Size(35, 30);
@@ -427,7 +431,7 @@ namespace WProject.Controls
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSave.Image = global::WProject.Properties.Resources.save_outline_s;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(82, 3);
+            this.btnSave.Location = new System.Drawing.Point(208, 3);
             this.btnSave.Name = "btnSave";
             this.btnSave.Selected = false;
             this.btnSave.Size = new System.Drawing.Size(75, 30);
@@ -542,7 +546,7 @@ namespace WProject.Controls
             this.ttComents.SendMessageForeColor = System.Drawing.Color.Empty;
             this.ttComents.Size = new System.Drawing.Size(326, 275);
             this.ttComents.TabIndex = 0;
-            this.ttComents.OnSend += new SendMessageEventHandler(this.ttComents_OnSend);
+            this.ttComents.OnSend += new WProject.UiLibrary.Classes.SendMessageEventHandler(this.ttComents_OnSend);
             // 
             // wpPanel1
             // 

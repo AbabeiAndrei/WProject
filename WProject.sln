@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WProject.Library", "WProject.Library\WProject.Library.csproj", "{6D8E2B1F-931E-45A9-99AB-4F338FF0888A}"
 EndProject
@@ -24,6 +24,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WProject.DataAccess", "WProject.DataAccess\WProject.DataAccess.csproj", "{B78D52BF-DBD0-4F95-8596-DEE5B3712C73}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WProject.DesktopTests", "WProject.DesktopTests\WProject.DesktopTests.csproj", "{F2649BAF-C8F9-4872-935F-3BD9F43D5EFB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{0D17A1F0-FD87-4C1D-86A0-3C8BBBD6085F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WProject.DesktopUtils", "WProject.DesktopUtils\WProject.DesktopUtils.csproj", "{B439DF50-92BB-413F-BB2A-1F536C906A4D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +67,10 @@ Global
 		{F2649BAF-C8F9-4872-935F-3BD9F43D5EFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2649BAF-C8F9-4872-935F-3BD9F43D5EFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2649BAF-C8F9-4872-935F-3BD9F43D5EFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B439DF50-92BB-413F-BB2A-1F536C906A4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B439DF50-92BB-413F-BB2A-1F536C906A4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B439DF50-92BB-413F-BB2A-1F536C906A4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B439DF50-92BB-413F-BB2A-1F536C906A4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -76,5 +84,6 @@ Global
 		{2615E4D4-EE4F-49B0-B3FF-AE6358099A06} = {40B37F7D-B2DA-4977-89DB-45B1B0F2D026}
 		{B78D52BF-DBD0-4F95-8596-DEE5B3712C73} = {447E1896-1234-4E2E-9BE1-C56BFED61FF6}
 		{F2649BAF-C8F9-4872-935F-3BD9F43D5EFB} = {28BA4B94-3A25-4E3E-9503-0A41A109EDFF}
+		{B439DF50-92BB-413F-BB2A-1F536C906A4D} = {0D17A1F0-FD87-4C1D-86A0-3C8BBBD6085F}
 	EndGlobalSection
 EndGlobal
