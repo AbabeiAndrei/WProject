@@ -11,6 +11,7 @@ using WProject.UiLibrary.Theme;
 
 namespace WProject.UiLibrary.Controls
 {
+    [DefaultEvent("Click")]
     public partial class WpPictureBox : WpUserControl
     {
         #region Fields

@@ -8,6 +8,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Net;
 using System.Runtime.InteropServices;
+using System.Runtime.Remoting.Messaging;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WProject.GenericLibrary.Exceptions;
@@ -130,7 +131,7 @@ namespace WProject.GenericLibrary.Helpers.Drawing
                             _cacheImages.Add(url, mimg);
                         else
                             _cacheImages[url] = mimg;
-
+;
                         return mimg;
                     }
                 }
@@ -208,6 +209,46 @@ namespace WProject.GenericLibrary.Helpers.Drawing
                                       : new Bitmap(image, boxWidth, (int)(boxWidth / dbl));
 
             return resizedImage;
+        }
+
+        public static Image GenerateGravatarFromName(string name, Size size = default(Size))
+        {
+            if (string.IsNullOrEmpty(name))
+                return null;
+
+            if(size.IsEmpty)
+                size = new Size(32, 32);
+
+            var mbmp = new Bitmap(size.Width, size.Height);
+            var mgfx = Graphics.FromImage(mbmp);
+
+            var mrand = new Random(name.GetHashCode());
+
+            var mbounds = new Rectangle(0, 0, size.Width, size.Height);
+            var mbkCol = Color.FromArgb(mrand.Next(0xFF), mrand.Next(0xFF), mrand.Next(0xFF));
+            var mfoCol = mbkCol.InvertColor();
+            var mbkBrush = new SolidBrush(mbkCol);
+            var mfoBrush = new SolidBrush(mfoCol);
+            var mfont = new Font("Segoe UI", 18f);
+            var mtxt = new string(name.Split(' ').Select(s => s.FirstOrDefault()).Take(2).ToArray());
+            var msformat = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+
+            mgfx.FillRectangle(mbkBrush, mbounds);
+            mgfx.DrawString(mtxt, mfont, mfoBrush, mbounds, msformat);
+
+            mbmp = new Bitmap(size.Width, size.Height, mgfx);
+
+            mgfx.Dispose();
+            mbkBrush.Dispose();
+            mfoBrush.Dispose();
+            mfont.Dispose();
+            msformat.Dispose();
+
+            return mbmp;
         }
     }
 }

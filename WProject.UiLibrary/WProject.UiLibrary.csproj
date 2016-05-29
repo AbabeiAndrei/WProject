@@ -122,6 +122,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Designer\WpDropDownControlDesigner.cs" />
+    <Compile Include="Helpers\GUI\ListViewEx.cs" />
     <Compile Include="Helpers\GUI\RitchTextBoxEx.cs" />
     <Compile Include="Helpers\GUI\TreeViewEx.cs" />
     <Compile Include="Helpers\Utils.cs" />

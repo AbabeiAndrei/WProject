@@ -262,6 +262,9 @@
         <orm:field name="_deleted" property="Deleted" behavior="readwrite" uniqueId="13a63808-ed59-4569-a756-cfdc650a7a33" type="System.Nullable`1[[System.Int16, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
           <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
         </orm:field>
+        <orm:field name="_changeStamp" property="ChangeStamp" behavior="readwrite" uniqueId="82d1426c-586d-44ab-a7f4-b1e3a50bf137" type="System.String">
+          <orm:column name="change_stamp" sql-type="nvarchar" nullable="false" length="64" scale="0" ado-type="UnicodeStringVariableLength" />
+        </orm:field>
         <orm:field name="_task" property="Task" behavior="readwrite" uniqueId="2532382a-6e93-40a6-ac30-ad023a9c32ab" type="WProject.DataAccess.Task">
           <orm:reference uniqueId="6531638a-30c4-49ed-9989-e84d1482c78b" association-name="TaskHistoryHasTask">
             <orm:sharedfield name="_taskId" target-class="WProject.DataAccess.Task" target-field="_id" />
@@ -1528,6 +1531,7 @@
         <orm:column name="comments" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         <orm:column name="metadata" sql-type="text" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
+        <orm:column name="change_stamp" sql-type="nvarchar" nullable="false" length="64" scale="0" ado-type="UnicodeStringVariableLength" />
         <orm:constraint name="task_history_task_FK_task_id" delete-action="dbdefaultrule" destination-table="task">
           <orm:column name="task_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -2211,6 +2215,7 @@
       <Property Id="f4d024d0-b6e1-4a5d-9ddd-bc5aafb46a4f" name="TaskId" type="Int32" label="TaskId : Int32" kind="Persistent" fieldName="_taskId" />
       <Property Id="bc820ea8-bdaa-4b2c-8bb6-2756de431a47" name="UpdatedAt" type="DateTime" label="UpdatedAt : DateTime" kind="Persistent" fieldName="_updatedAt" />
       <Property Id="587c14af-b2f1-42e9-8cb9-fb51c1893147" name="UpdatedBy" type="Int32" label="UpdatedBy : Int32" kind="Persistent" fieldName="_updatedBy" />
+      <Property Id="82d1426c-586d-44ab-a7f4-b1e3a50bf137" name="ChangeStamp" label="ChangeStamp : String" kind="Persistent" fieldName="_changeStamp" />
       <AssociationTargets>
         <Association Id="6531638a-30c4-49ed-9989-e84d1482c78b" SourceMultiplicity="One" name="TaskHistoryHasTask">
           <DomainClassMoniker name="/wpContext/Task" />

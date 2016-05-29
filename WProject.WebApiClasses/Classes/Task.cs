@@ -66,6 +66,8 @@ namespace WProject.WebApiClasses.Classes
 
         public IEnumerable<TaskAttachement> Attachments { get; set; }
 
+        public IEnumerable<TaskHistory> Changes { get; set; }
+
         public new static string TableName => TABLE_NAME;
 
         public string FullName => $"Task {Id} {Name}";

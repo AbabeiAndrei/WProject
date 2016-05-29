@@ -237,6 +237,28 @@ namespace WProject.DataAccess
 			}
 		}
 		
+		private string _changeStamp;
+		[Column("change_stamp", OpenAccessType = OpenAccessType.UnicodeStringVariableLength, Length = 64, Scale = 0, SqlType = "nvarchar")]
+		[Storage("_changeStamp")]
+		[System.ComponentModel.DataAnnotations.StringLength(64)]
+		[System.ComponentModel.DataAnnotations.Required()]
+		public virtual string ChangeStamp
+		{
+			get
+			{
+				return this._changeStamp;
+			}
+			set
+			{
+				if(this._changeStamp != value)
+				{
+					this.OnPropertyChanging("ChangeStamp");
+					this._changeStamp = value;
+					this.OnPropertyChanged("ChangeStamp");
+				}
+			}
+		}
+		
 		private Task _task;
 		[ForeignKeyAssociation(ConstraintName = "task_history_task_FK_task_id", SharedFields = "TaskId", TargetFields = "Id")]
 		[Storage("_task")]

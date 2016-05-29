@@ -184,6 +184,12 @@
     <Compile Include="Controls\MainPageControls\MainPageControl.Designer.cs">
       <DependentUpon>MainPageControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainPageControls\Task Editor Controls\ctrlTaskHistoryItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\Task Editor Controls\ctrlTaskHistoryItem.Designer.cs">
+      <DependentUpon>ctrlTaskHistoryItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Convertors.cs" />
     <Compile Include="Helpers\UIEnums.cs" />
     <Compile Include="Helpers\UIHelper.cs" />
@@ -239,6 +245,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainPageControls\DashboardControls\ctrlDashBoardTasks.resx">
       <DependentUpon>ctrlDashBoardTasks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\Task Editor Controls\ctrlTaskHistoryItem.resx">
+      <DependentUpon>ctrlTaskHistoryItem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

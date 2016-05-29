@@ -99,5 +99,10 @@ namespace WProject.GenericLibrary.Helpers.Drawing
             points.Add(new Point(R.Right, R.Top));
             return new GraphicsPath(points.ToArray(), fm);
         }
+
+        public static Color InvertColor(this Color color)
+        {
+            return Color.FromArgb(color.ToArgb() ^ 0xffffff);
+        }
     }
 }

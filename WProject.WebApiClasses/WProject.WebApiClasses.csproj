@@ -57,6 +57,7 @@
     <Compile Include="Classes\Task.cs" />
     <Compile Include="Classes\TaskAttachement.cs" />
     <Compile Include="Classes\TaskComment.cs" />
+    <Compile Include="Classes\TaskHistory.cs" />
     <Compile Include="Classes\User.cs" />
     <Compile Include="Data\SimpleCache.cs" />
     <Compile Include="Interfaces\ITableNameble.cs" />
