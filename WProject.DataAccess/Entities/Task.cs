@@ -122,6 +122,13 @@ namespace WProject.DataAccess
                                      .Select(td => td.ToWebApi(false))
                                      .ToList();
 
+            mfs = new FetchStrategy();
+            mfs.LoadWith<TaskHistory>(f => f.User);
+
+            mtask.Changes = context.CreateDetachedCopy(context.TaskHistories.Where(td => td.TaskId == mtask.Id).ToList(), mfs)
+                                   .Select(th => th.ToWebApi())
+                                   .ToList();
+
             return mtask;
         }
     }

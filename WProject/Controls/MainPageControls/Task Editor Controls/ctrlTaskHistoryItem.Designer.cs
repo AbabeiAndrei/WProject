@@ -38,8 +38,8 @@
             // 
             // pbExpandColapse
             // 
-            this.pbExpandColapse.BackColor = System.Drawing.Color.Transparent;
-            this.pbExpandColapse.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pbExpandColapse.BackColor = System.Drawing.Color.White;
+            this.pbExpandColapse.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbExpandColapse.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.pbExpandColapse.ForeColor = System.Drawing.Color.Black;
             this.pbExpandColapse.Image = null;
@@ -69,7 +69,7 @@
             this.lvChanges.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvChanges.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvChanges.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lvChanges.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chField,
             this.chNewValue,
@@ -77,10 +77,10 @@
             this.lvChanges.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvChanges.FullRowSelect = true;
             this.lvChanges.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
-            this.lvChanges.Location = new System.Drawing.Point(43, 41);
+            this.lvChanges.Location = new System.Drawing.Point(43, 31);
             this.lvChanges.MultiSelect = false;
             this.lvChanges.Name = "lvChanges";
-            this.lvChanges.Size = new System.Drawing.Size(630, 0);
+            this.lvChanges.Size = new System.Drawing.Size(630, 10);
             this.lvChanges.TabIndex = 2;
             this.lvChanges.UseCompatibleStateImageBehavior = false;
             this.lvChanges.View = System.Windows.Forms.View.Details;
@@ -103,14 +103,14 @@
             // 
             // ctrlTaskHistoryItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.lvChanges);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pbExpandColapse);
             this.Name = "ctrlTaskHistoryItem";
-            this.Size = new System.Drawing.Size(682, 32);
+            this.Size = new System.Drawing.Size(682, 43);
             this.Load += new System.EventHandler(this.ctrlTaskHistoryItem_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

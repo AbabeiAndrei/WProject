@@ -9,14 +9,21 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WProject.GenericLibrary.WinApi;
 using WProject.Properties;
+using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Helpers.GUI;
 using WProject.WebApiClasses.Classes;
 
 namespace WProject.Controls.MainPageControls.Task_Editor_Controls
 {
-    public partial class ctrlTaskHistoryItem : UserControl
+    public partial class ctrlTaskHistoryItem : WpUserControl
     {
+        #region Fields
+
         private bool _expanded;
+
+        #endregion
+
+        #region Properties
 
         public bool Expanded
         {
@@ -30,6 +37,10 @@ namespace WProject.Controls.MainPageControls.Task_Editor_Controls
             }
         }
 
+        #endregion
+
+        #region Constructors
+
         public ctrlTaskHistoryItem()
         {
             InitializeComponent();
@@ -37,14 +48,20 @@ namespace WProject.Controls.MainPageControls.Task_Editor_Controls
             lblTitle.Text = string.Empty;
         }
 
-        public ctrlTaskHistoryItem(IEnumerable<TaskHistory> changes)
+        public ctrlTaskHistoryItem(IEnumerable<TaskHistory> changes) 
+            : this()
         {
             SetItems(changes);
         }
 
+        #endregion
+
+        #region Events
+
         private void ctrlTaskHistoryItem_Load(object sender, EventArgs e)
         {
             pbExpandColapse.Image = Resources.expand_m;
+            pbExpandColapse.Cursor = Cursors.Hand;
             UXTheme.SetWindowTheme(lvChanges.Handle);
         }
 
@@ -53,34 +70,38 @@ namespace WProject.Controls.MainPageControls.Task_Editor_Controls
             SetExpand(!_expanded);
         }
 
+        #endregion
+
+        #region Private methods
+
         private void SetExpand(bool expand)
         {
             _expanded = expand;
 
-            if(expand)
+            if (expand)
+            {
+                pbExpandColapse.Image = Resources.tree_m;
+                Height = 200;
+            }
+            else
             {
                 pbExpandColapse.Image = Resources.expand_m;
                 Height = 32;
             }
-            else
-            {
-                pbExpandColapse.Image = Resources.collapse_m;
-                Height = 315;
-            }
 
             lvChanges.Visible = expand;
         }
-        
+
         private void SetItems(IEnumerable<TaskHistory> changes)
         {
-            if(changes == null)
-                return; 
+            if (changes == null)
+                return;
 
             var mchanges = changes as IList<TaskHistory> ?? changes.ToList();
 
             var mfirst = mchanges.FirstOrDefault();
 
-            if(mfirst == null)
+            if (mfirst == null)
                 return;
 
             lblTitle.Text = mfirst.UpdatedBy?.Name + " made field changes at " + mfirst.UpdatedAt.ToString("G");
@@ -112,5 +133,8 @@ namespace WProject.Controls.MainPageControls.Task_Editor_Controls
                 }
             };
         }
+
+        #endregion
+
     }
 }

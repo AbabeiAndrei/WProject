@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WProject.Classes;
 using WProject.Connection;
+using WProject.Controls.MainPageControls.Task_Editor_Controls;
 using WProject.GenericLibrary.Helpers.Extensions;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
@@ -217,6 +218,9 @@ namespace WProject.Controls
 
                 if (Task.Attachments != null)
                     flAttachments.Files = Task.Attachments.Select(f => Convertors.Convert(f.File)).ToList();
+
+                if(Task.Changes != null)
+                    tpHistory.Controls.AddRange(Task.Changes.GroupBy(tc => tc.ChangeStamp).Select(CreateTaskChangeControl).ToArray());
             }
             finally
             {
@@ -224,6 +228,14 @@ namespace WProject.Controls
                 Refresh();
             }
 
+        }
+
+        private static Control CreateTaskChangeControl(IEnumerable<TaskHistory> th)
+        {
+            return new ctrlTaskHistoryItem(th)
+            {
+                Dock = DockStyle.Top
+            };
         }
 
         private Task GenerateTask()

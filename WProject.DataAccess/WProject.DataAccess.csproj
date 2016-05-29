@@ -76,6 +76,7 @@
     <Compile Include="Entities\TaskAttachement.cs" />
     <Compile Include="Entities\TaskComment.cs" />
     <Compile Include="Entities\TaskDiscusion.cs" />
+    <Compile Include="Entities\TaskHistory.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="File.generated.cs">
       <DependentUpon>wpContext.rlinq</DependentUpon>

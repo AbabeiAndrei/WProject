@@ -600,6 +600,7 @@ namespace WProject.Controls
             // 
             // tpHistory
             // 
+            this.tpHistory.AutoScroll = true;
             this.tpHistory.Location = new System.Drawing.Point(4, 37);
             this.tpHistory.Name = "tpHistory";
             this.tpHistory.Size = new System.Drawing.Size(791, 281);
