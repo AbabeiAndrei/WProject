@@ -6,12 +6,19 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using WProject.GenericLibrary.Exceptions;
 using WProject.GenericLibrary.Helpers.Log;
+using WProject.Properties;
 using WProject.WebApiClasses.Classes;
 using WProject.WebApiClasses.MessanginCenter;
 using Task = WProject.WebApiClasses.Classes.Task;
 
 namespace WProject.Connection
 {
+    public enum SendMethod : short
+    {
+        Http = 0,
+        SignalR = 1
+    }
+
     public static class WebCallFactory
     {
         public static async Task<MessagingCenterResponse> TestMethod()
@@ -228,13 +235,14 @@ namespace WProject.Connection
 　　 　　        >　 　 　,ノ
 　　　　　        ∠_,,,/´       The messanger
         */
-        public static async Task<MessagingCenterResponse> ExecuteMethod(string method, object content)
+        public static async Task<MessagingCenterResponse> ExecuteMethod(string method, object content, SendMethod sendType = SendMethod.Http )
         {
             try
             {
                 if (!Connection.ConnectionIsAlive)
                     throw new Exception("Connection is not alive");
 
+                MessagingCenterResponse mresult;
 
                 MessagingCenterPackage mpackage = new MessagingCenterPackage
                 {
@@ -248,12 +256,25 @@ namespace WProject.Connection
                     mpackage.Content = string.Empty;
 
                 Connection.NetworkTransferInProgress = true;
-                MessagingCenterResponse mresult = await Connection.Hub.Invoke<MessagingCenterResponse>("CallServiceMethod", mpackage);
+
+                if (sendType == SendMethod.SignalR)
+                    mresult = await Connection.Hub.Invoke<MessagingCenterResponse>("CallServiceMethod", mpackage);
+                else
+                    mresult = await ExecuteMethodWeb(mpackage); 
+
                 return mresult;
             }
             finally
             {
                 Connection.NetworkTransferInProgress = false;
+            }
+        }
+
+        private static Task<MessagingCenterResponse> ExecuteMethodWeb(MessagingCenterPackage package)
+        {
+            using (var mwebService = new WebService())
+            {
+                return null;
             }
         }
     }

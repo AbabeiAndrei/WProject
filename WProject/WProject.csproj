@@ -58,6 +58,7 @@
     <Compile Include="Classes\WPSuite.cs" />
     <Compile Include="Connection\Connection.cs" />
     <Compile Include="Connection\WebCallFactory.cs" />
+    <Compile Include="Connection\WebService.cs" />
     <Compile Include="Controls\ChildForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -918,6 +919,9 @@
     <Content Include="Resources\Icons\undo_l.png" />
     <Content Include="Resources\Icons\undo_m.png" />
     <Content Include="Resources\Icons\undo_s.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

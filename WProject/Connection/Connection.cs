@@ -70,7 +70,7 @@ namespace WProject.Connection
                 ConnectionIsAlive = true;
                 State = ConnectionState.Connected;
 
-                Logger.Log($"CONNECTION CREATED TO : {Settings.Default.DispatcherUrl} HOORAY!!");
+                Logger.Log($"CONNECTION CREATED TO : {Settings.Default.DispatcherUrl} HOORAY!");
             }
             catch (Exception mex)
             {
