@@ -8,6 +8,21 @@ namespace WProject.DataAccess
 {
     public partial class TaskHistory
     {
+        public static TaskHistory Create(int taskId, string changeStamp, string fieldName, string oldValue, string newValue, int updatedBy, string comments = "")
+        {
+            return new TaskHistory
+            {
+                TaskId = taskId,
+                ChangeStamp = changeStamp,
+                FieldName = fieldName,
+                FieldOldValue = oldValue,
+                FieldNewValue = newValue,
+                UpdatedAt = DateTime.Now,
+                UpdatedBy = updatedBy,
+                Comments = comments
+            };
+        }
+
         public WebApiClasses.Classes.TaskHistory ToWebApi()
         {
             return ToWebApi(this);

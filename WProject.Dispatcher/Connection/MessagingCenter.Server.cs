@@ -16,7 +16,7 @@ namespace WProject.Dispatcher.Connection
 {
     public partial class MessagingCenter
     {
-        public MessagingCenterResponse TestResponse(MessagingCenterPackage package)
+        public static MessagingCenterResponse TestResponse(MessagingCenterPackage package)
         {
             var mv = int.Parse(package.Content);
 
@@ -26,7 +26,7 @@ namespace WProject.Dispatcher.Connection
             };
         }
 
-        public MessagingCenterResponse GetAllProjects(MessagingCenterPackage package)
+        public static MessagingCenterResponse GetAllProjects(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
 
@@ -153,7 +153,7 @@ namespace WProject.Dispatcher.Connection
             return mres;
         }
 
-        public MessagingCenterResponse GetSprings(MessagingCenterPackage package)
+        public static MessagingCenterResponse GetSprings(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
 
@@ -210,7 +210,7 @@ namespace WProject.Dispatcher.Connection
             return mres;
         }
 
-        public MessagingCenterResponse GetAllBackLogs(MessagingCenterPackage package)
+        public static MessagingCenterResponse GetAllBackLogs(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
 
@@ -261,7 +261,7 @@ namespace WProject.Dispatcher.Connection
             return mres;
         }
 
-        public MessagingCenterResponse GetSimleCache(MessagingCenterPackage package)
+        public static MessagingCenterResponse GetSimleCache(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
 
@@ -300,7 +300,7 @@ namespace WProject.Dispatcher.Connection
             return mres;
         }
 
-        public MessagingCenterResponse ChangeTaskState(MessagingCenterPackage package)
+        public static MessagingCenterResponse ChangeTaskState(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
 
@@ -358,7 +358,7 @@ namespace WProject.Dispatcher.Connection
             return mres;
         }
 
-        public MessagingCenterResponse ChangeBacklogState(MessagingCenterPackage package)
+        public static MessagingCenterResponse ChangeBacklogState(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
 
@@ -416,7 +416,7 @@ namespace WProject.Dispatcher.Connection
             return mres;
         }
 
-        public MessagingCenterResponse GetTask(MessagingCenterPackage package)
+        public static MessagingCenterResponse GetTask(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
 
@@ -462,7 +462,7 @@ namespace WProject.Dispatcher.Connection
             return mres;
         }
 
-        public MessagingCenterResponse PostCommentOnTask(MessagingCenterPackage package)
+        public static MessagingCenterResponse PostCommentOnTask(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
 
@@ -520,7 +520,7 @@ namespace WProject.Dispatcher.Connection
             return mres;
         }
 
-        public MessagingCenterResponse AttachFileToTask(MessagingCenterPackage package)
+        public static MessagingCenterResponse AttachFileToTask(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
 
@@ -556,10 +556,78 @@ namespace WProject.Dispatcher.Connection
                         throw new WpException(MessagingCenterErrors.ERROR_ATTACH_FILE_TO_TASK_TASK_SAVE_CONTEXT, "Cannot save task attachement", mex);
                     }
                    
-                    mres.Content = JsonConvert.SerializeObject(new AttachFileToTaskResoponse
+                    mres.Content = JsonConvert.SerializeObject(new AttachFileToTaskResponse
                     {
                         TaskAttachement = TaskAttachement.ToWebApi(mtaska, false)
                     });
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
+
+        public static MessagingCenterResponse SaveTask(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                if (string.IsNullOrEmpty(package.Content))
+                    throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
+
+                var mreq = JsonConvert.DeserializeObject<SaveTaskRequest>(package.Content);
+
+                var moldTask = mreq.Task;
+                var mtaskIsNew = moldTask.Id == 0;
+
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+                    var mtask = !mtaskIsNew
+                                    ? Task.GetById(moldTask.Id, mctx)
+                                    : new Task();
+
+                    if (!mtaskIsNew)
+                    {
+                        var mdiff = mtask.GetDiferences(Task.FromWebApi(moldTask), moldTask.UpdatedById);
+                        mctx.Add(mdiff);
+                        mctx.FlushChanges();
+                    }
+
+                    mtask.Name = moldTask.Name;
+                    mtask.StateId = moldTask.StateId;
+                    mtask.AssignedToId = moldTask.AssignedToId;
+                    mtask.CreatedAt = DateTime.Now;
+                    mtask.CreatedById = moldTask.CreatedById;
+                    mtask.BacklogId = moldTask.BacklogId;
+                    mtask.Deleted = moldTask.Deleted.If((short?) 1, null);
+                    mtask.Description = moldTask.Description;
+                    mtask.Metadata = moldTask.Metadata;
+                    mtask.PeriodFrom = moldTask.From;
+                    mtask.PeriodTo = moldTask.To;
+                    mtask.Priority = moldTask.Priority;
+                    mtask.RemainingWork = moldTask.RemainingWork;
+                    mtask.StageId = moldTask.StageId;
+
+                    if(mtaskIsNew)
+                        mctx.Add(mtask);
+
+                    mctx.SaveChanges();
                 }
             }
             catch (WpException mex)

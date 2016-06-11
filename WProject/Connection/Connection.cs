@@ -35,6 +35,8 @@ namespace WProject.Connection
         public static bool NetworkTransferInProgress { get; set; }
         public static IHubProxy Hub => _hubProxy;
 
+        public static string WebUrl => Settings.Default.DispatcherUrl;
+
         public static ConnectionState State
         {
             get

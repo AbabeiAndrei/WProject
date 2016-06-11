@@ -72,6 +72,7 @@ namespace WProject.Controls.MainPageControls
             Settings.Default.Save();
 
             await _tasks.LoadTasks(spring, category);
+            _tasks.RecalculateColumns();    //something weird happen is remove this line
         }
 
         #endregion

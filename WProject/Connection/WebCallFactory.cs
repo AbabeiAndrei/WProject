@@ -181,11 +181,19 @@ namespace WProject.Connection
             });
         }
 
-        public static async Task<AttachFileToTaskResoponse> AttachFileToTask(TaskAttachement taskAttachement)
+        public static async Task<AttachFileToTaskResponse> AttachFileToTask(TaskAttachement taskAttachement)
         {
-            return await ExecuteMethod<AttachFileToTaskResoponse>("AttachFileToTask", new AttachFileToTaskRequest
+            return await ExecuteMethod<AttachFileToTaskResponse>("AttachFileToTask", new AttachFileToTaskRequest
             {
                 TaskAttachement = taskAttachement
+            });
+        }
+
+        public static async Task<SaveTaskResponse> SaveTask(Task task)
+        {
+            return await ExecuteMethod<SaveTaskResponse>("SaveTask", new SaveTaskRequest
+            {
+                Task = task
             });
         }
 

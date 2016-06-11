@@ -37,15 +37,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             {
                 SuspendLayout();
 
-                int mitemWidth = (int)Math.Floor((Width - ctrlDashBoardBacklogItem.DefaultSize.Width - 5d) /3);
-
-                lblToDo.Width =
-                    lblInProgress.Width =
-                    lblDone.Width = mitemWidth;
-
-                foreach (var mresult in pnlBackLogs.Controls.OfType<ctrlDashBoardBacklogItem>())
-                    mresult.Columns = DashBoardColumnsCollectionSize.Create(lblToDo.Width, lblInProgress.Width, lblDone.Width, Width - ctrlDashBoardBacklogItem.DefaultSize.Width);
-
+                RecalculateColumns();
             }
             finally
             {
@@ -90,6 +82,21 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             {
                 pnlBackLogs.ResumeLayout();
             }
+        }
+        
+        public void RecalculateColumns()
+        {
+            int mitemWidth = (int)Math.Floor((Width - ctrlDashBoardBacklogItem.DefaultSize.Width - 5d) / 3);
+
+            lblToDo.Width =
+                lblInProgress.Width =
+                lblDone.Width = mitemWidth;
+
+            foreach (var mresult in pnlBackLogs.Controls.OfType<ctrlDashBoardBacklogItem>())
+                mresult.Columns = DashBoardColumnsCollectionSize.Create(lblToDo.Width,
+                                                                        lblInProgress.Width,
+                                                                        lblDone.Width,
+                                                                        Width - ctrlDashBoardBacklogItem.DefaultSize.Width);
         }
 
         #endregion

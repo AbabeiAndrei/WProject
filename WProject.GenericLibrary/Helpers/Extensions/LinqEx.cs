@@ -12,5 +12,15 @@ namespace WProject.GenericLibrary.Helpers.Extensions
         {
             return items.Union(source);
         }
+
+        public static IEnumerable<T> InsertAt<T>(this IEnumerable<T> source, T item, int index = 0)
+        {
+            if(index == 0)
+                return source.UnionAtStart(new [] {item});
+
+            var ml = source.ToList();
+            ml.Insert(index, item);
+            return ml;
+        }
     }
 }

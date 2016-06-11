@@ -27,6 +27,8 @@ namespace WProject.WebApiClasses.Classes
 
         public int? AssignedToId { get; set; }
 
+        public int UpdatedById { get; set; }
+
         public int StateId { get; set; }
 
         public int TypeId { get; set; }
@@ -45,6 +47,8 @@ namespace WProject.WebApiClasses.Classes
         /// In Minutes
         /// </summary>
         public int? RemainingWork { get; set; }
+
+        public string Metadata { get; set; }
 
         public bool Deleted { get; set; }
 
@@ -71,5 +75,6 @@ namespace WProject.WebApiClasses.Classes
         public new static string TableName => TABLE_NAME;
 
         public string FullName => $"Task {Id} {Name}";
+
     }
 }

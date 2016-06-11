@@ -38,5 +38,20 @@ namespace WProject.WebApiClasses.Classes
         public DictItem Parent { get; set; }
 
         public new static string TableName => TABLE_NAME;
+
+        public static class Types
+        {
+            private const string TSK_TYPE = "TSK_TYPE";
+            private const string TSK_STATE = "TSK_STATE";
+            private const string TSK_ACTIVITY = "TSK_ACTIVITY";
+            private const string BCK_TYPE = "BCK_TYPE";
+            private const string BCK_STATE = "BCK_STATE";
+
+            public static string TaskType => TSK_TYPE;
+            public static string TaskState => TSK_STATE;
+            public static string TaskActivity => TSK_ACTIVITY;
+            public static string BacklogType => BCK_TYPE;
+            public static string BacklogState => BCK_STATE;
+        }
     }
 }

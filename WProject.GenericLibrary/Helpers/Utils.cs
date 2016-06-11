@@ -145,5 +145,22 @@ namespace WProject.GenericLibrary.Helpers
 
             return $"{adjustedSize.ToString(format, culture ?? CultureInfo.DefaultThreadCurrentCulture)} {ms}";
         }
+
+        public static int TryIntParse(string text, int @default)
+        {
+            return TryIntParse(text, (int?) @default) ?? @default;
+        }
+
+        public static int? TryIntParse(string text, int? @default)
+        {
+            int mv;
+
+            if (string.IsNullOrEmpty(text))
+                return @default;
+
+            if (int.TryParse(text, out mv))
+                return mv;
+            return @default;
+        }
     }
 }

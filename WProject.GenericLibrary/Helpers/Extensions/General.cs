@@ -8,6 +8,11 @@ namespace WProject.GenericLibrary.Helpers.Extensions
 {
     public static class GeneralExtensions
     {
+        public static T If<T>(this bool boolean, T onTrue, T onFalse)
+        {
+            return boolean ? onTrue : onFalse;
+        }
+
         public static T If<T>(this T obj, Predicate<T> predicate, T onTrue, T onFalse)
         {
             return predicate(obj) ? onTrue : onFalse;

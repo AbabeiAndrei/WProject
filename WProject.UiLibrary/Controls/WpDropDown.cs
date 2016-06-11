@@ -407,7 +407,7 @@ namespace WProject.UiLibrary.Controls
         {
             var mlbl = new WpLabel
             {
-                Style = ItemStyle.Clone(),
+                Style = ItemStyle?.Clone() ?? DefaultItemStyle?.Clone(),
                 StyleType = StyleType.Normal,
                 Text = DisplayMember?.Invoke(item) ?? item?.ToString() ?? string.Empty,
                 Tag = ValueMember?.Invoke(item) ?? item,

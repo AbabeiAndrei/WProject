@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Telerik.OpenAccess.FetchOptimization;
+using WProject.GenericLibrary.Helpers.Extensions;
 
 namespace WProject.DataAccess
 {
@@ -130,6 +131,79 @@ namespace WProject.DataAccess
                                    .ToList();
 
             return mtask;
+        }
+
+        public static Task FromWebApi(WebApiClasses.Classes.Task task)
+        {
+            try
+            {
+                if (task == null)
+                    return null;
+
+                return new Task
+                {
+                    Id = task.Id,
+                    Name = task.Name,
+                    CreatedAt = task.CreatedAt,
+                    CreatedById = task.CreatedById,
+                    AssignedToId = task.AssignedToId,
+                    StateId = task.StateId,
+                    TypeId = task.TypeId,
+                    StageId = task.StageId,
+                    BacklogId = task.BacklogId,
+                    Priority = task.Priority,
+                    PeriodFrom= task.From,
+                    PeriodTo= task.To,
+                    RemainingWork = task.RemainingWork,
+                    Description = task.Description,
+                    Deleted = task.Deleted.If((short?)1, null)
+                };
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public IEnumerable<TaskHistory> GetDiferences(Task newTask, int updatedBy)
+        {
+            var mchstamp = Guid.NewGuid().ToString();
+
+            if (Name != newTask.Name)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(Name), Name, newTask.Name, updatedBy); 
+
+            if(StateId != newTask.StateId && State != null && newTask.State != null)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(State), State.Name, newTask.State.Name, updatedBy);
+            else if (StateId != newTask.StateId)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(State), StateId.ToString(), newTask.StateId.ToString(), updatedBy);
+
+            if(AssignedToId != newTask.AssignedToId && AssignedTo != null && newTask.AssignedTo != null)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(AssignedTo), AssignedTo.Name, newTask.AssignedTo.Name, updatedBy);
+            else if (AssignedToId != newTask.AssignedToId)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(AssignedTo), AssignedToId.ToString(), newTask.AssignedToId.ToString(), updatedBy);
+            
+            if(BacklogId != newTask.BacklogId)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(Backlog), BacklogId.ToString(), BacklogId.ToString(), updatedBy);
+
+            if(Description != newTask.Description)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(Description), Description, Description, updatedBy);
+
+            if (PeriodFrom != newTask.PeriodFrom)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(PeriodFrom), PeriodFrom.ToString(), PeriodFrom.ToString(), updatedBy);
+
+            if (PeriodTo != newTask.PeriodTo)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(PeriodTo), PeriodTo.ToString(), PeriodTo.ToString(), updatedBy);
+
+            if (Priority != newTask.Priority)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(Priority), Priority?.ToString() ?? "none", Priority?.ToString() ?? "none", updatedBy);
+
+            if (RemainingWork != newTask.RemainingWork)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(RemainingWork), RemainingWork?.ToString() ?? "none", RemainingWork?.ToString() ?? "none", updatedBy);
+            
+            if (StageId != newTask.StageId && Stage != null && newTask.Stage != null)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(Stage), Stage.Name, newTask.Stage.Name, updatedBy);
+            else if (StageId != newTask.StageId)
+                yield return TaskHistory.Create(Id, mchstamp, nameof(Stage), StageId.ToString(), newTask.StageId.ToString(), updatedBy);
         }
     }
 }

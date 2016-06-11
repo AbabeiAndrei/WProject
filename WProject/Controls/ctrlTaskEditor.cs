@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using WProject.Classes;
 using WProject.Connection;
 using WProject.Controls.MainPageControls.Task_Editor_Controls;
+using WProject.GenericLibrary.Constants;
+using WProject.GenericLibrary.Helpers;
 using WProject.GenericLibrary.Helpers.Extensions;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
@@ -19,6 +21,7 @@ using WProject.UiLibrary.Controls.SpecificControls;
 using WProject.UiLibrary.Theme;
 using Task = WProject.WebApiClasses.Classes.Task;
 using WProject.WebApiClasses.Classes;
+using WProject.WebApiClasses.Data;
 using WProject.WebApiClasses.MessanginCenter;
 
 namespace WProject.Controls 
@@ -82,6 +85,8 @@ namespace WProject.Controls
         public ctrlTaskEditor()
         {
             InitializeComponent();
+
+            AddToValidate(txtName, ValidateGuiMode.NotEmpty, "Task name");
         }
 
         public ctrlTaskEditor(int taskId)
@@ -112,16 +117,49 @@ namespace WProject.Controls
 
             txtName.LeftButton = btnCopy;
 
+            LoadGeneral();
             await LoadTask();
+        }
+
+        private void LoadGeneral()
+        {
+            ddUser.Items = SimpleCache.GetAll<User>()
+                                      .InsertAt(User.None)
+                                      .ToList();
+            ddUser.DisplayMember = user => user.Name;
+            ddUser.ValueMember = user => user.Id;
+            ddUser.ShowImage = true;
+            ddUser.ImageMember = user => user.Avatar?.GetImage();
+
+            ddState.Items = SimpleCache.GetAll<DictItem>().Where(di => di.Type == DictItem.Types.TaskState).ToList();
+            ddState.DisplayMember = dict => dict.Name;
+            ddState.ValueMember = dict => dict.Id;
+
+            txtViewLink.LeftButton = btnCopyViewLink;
+            txtEditLink.LeftButton = btnCopyEditLink;
+            txtBasicViewLink.LeftButton = btnCopyBasicViewLink;
+            txtDiscutionLink.LeftButton = btnCopyDiscutionLink;
+
+            flAttachments.ShowCheckAll =
+                flAttachments.ShowDeleteSelected =
+                flAttachments.ShowNumberOfFiles =
+                flAttachments.ShowSaveSelected =
+                flAttachments.ShowUpload = true;
         }
 
         private async System.Threading.Tasks.Task LoadTask()
         {
-            if(_taskId == 0)
+            if (_taskId == 0)
+            {
+                if (ParentForm != null)
+                    ParentForm.Text = "New task";
                 return;
+            }
 
             try
             {
+                UIHelper.ShowLoader("LOAD TASK", ParentForm);
+
                 var mres = await WebCallFactory.GetTask(_taskId);
 
                 if (mres.Error)
@@ -129,11 +167,17 @@ namespace WProject.Controls
 
                 _task = mres.Task;
                 SetTaskData();
+                UIHelper.HideLoader();
             }
             catch (Exception mex)
             {
+                UIHelper.HideLoader();
                 Logger.Log(mex);
                 UIHelper.ShowError(mex);
+            }
+            finally
+            {
+                UIHelper.HideLoader();
             }
         }
 
@@ -163,16 +207,15 @@ namespace WProject.Controls
             OnClose?.Invoke();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
-
+            await TaskSave();
         }
 
-        private void btnSaveAndClose_Click(object sender, EventArgs e)
+        private async void btnSaveAndClose_Click(object sender, EventArgs e)
         {
-            btnSave.PerformClick();
-
-            OnClose?.Invoke();
+            if (await TaskSave())
+                btnClose.PerformClick();
         }
 
         private void btnUndo_Click(object sender, EventArgs e)
@@ -195,64 +238,11 @@ namespace WProject.Controls
             OnPrintTask?.Invoke();
         }
 
-        #endregion
-
-        #region Private methods
-
-        private void SetTaskData()
-        {
-            try
-            {
-                SuspendLayout();
-                nudPriority.Value = Task.Priority ?? 1;
-                txtLeft.Text = Task.RemainingWork.If(v => v.HasValue, v => v.GetValueOrDefault().ToString(), v => string.Empty);
-                lblTask.Text = $"Task {Task.Id}";
-                txtName.Text = Task.Name;
-                txtDetails.Text = Task.Description;
-
-                if (Task.Comments != null)
-                    ttComents.Messages = Task.Comments.Select(c => Convertors.Convert(c, c.UserId == WPSuite.ConnectedUserId)).ToList();
-
-                if (Task.Discusion != null)
-                    ttDiscution.Messages = Task.Discusion.Select(c => Convertors.Convert(c, c.UserId == WPSuite.ConnectedUserId)).ToList();
-
-                if (Task.Attachments != null)
-                    flAttachments.Files = Task.Attachments.Select(f => Convertors.Convert(f.File)).ToList();
-
-                if(Task.Changes != null)
-                    tpHistory.Controls.AddRange(Task.Changes.GroupBy(tc => tc.ChangeStamp).Select(CreateTaskChangeControl).ToArray());
-            }
-            finally
-            {
-                ResumeLayout();
-                Refresh();
-            }
-
-        }
-
-        private static Control CreateTaskChangeControl(IEnumerable<TaskHistory> th)
-        {
-            return new ctrlTaskHistoryItem(th)
-            {
-                Dock = DockStyle.Top
-            };
-        }
-
-        private Task GenerateTask()
-        {
-            //throw new NotImplementedException();
-
-            return _task;
-        }
-
-
-        #endregion
-
         private async void ttComents_OnSend(object sender, SendMessageEventArgs e)
         {
             var mt = sender as WpTextThread;
 
-            if(mt == null)
+            if (mt == null)
                 return;
 
             var mtc = new TaskComment
@@ -269,7 +259,7 @@ namespace WProject.Controls
 
                 if (mres.Error)
                     throw mres.Exception;
-                
+
                 Logger.Log("Comment send with success!");
 
                 mt.Messages.Add(Convertors.Convert(mres.TaskComment, true));
@@ -322,5 +312,196 @@ namespace WProject.Controls
                 Logger.Log(mex);
             }
         }
+
+        private void btnCopyViewLink_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(txtViewLink.Text);
+        }
+
+        private void btnCopyEditLink_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(txtEditLink.Text);
+        }
+
+        private void btnCopyBasicViewLink_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(txtBasicViewLink.Text);
+        }
+
+        private void btnCopyDiscutionLink_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(txtDiscutionLink.Text);
+        }
+
+        private void chkView_OnCheckChanged(object sender, EventArgs e)
+        {
+            txtViewLink.Enabled = chkView.Checked;
+        }
+
+        private void chkEdit_OnCheckChanged(object sender, EventArgs e)
+        {
+            txtEditLink.Enabled = chkEdit.Checked;
+        }
+
+        private void chkBasicView_OnCheckChanged(object sender, EventArgs e)
+        {
+            txtBasicViewLink.Enabled = chkBasicView.Checked;
+        }
+
+        private void chkDiscution_OnCheckChanged(object sender, EventArgs e)
+        {
+            txtDiscutionLink.Enabled = chkDiscution.Checked;
+        }
+
+        private void btnViewGenerate_Click(object sender, EventArgs e)
+        {
+            //todo
+            txtViewLink.Text = Connection.Connection.WebUrl + "/" + Guid.NewGuid().ToString("N");
+        }
+
+        private void btnEditGenerate_Click(object sender, EventArgs e)
+        {
+            //todo
+            txtEditLink.Text = Connection.Connection.WebUrl + "/" + Guid.NewGuid().ToString("N");
+        }
+
+        private void btnBasicViewGenerate_Click(object sender, EventArgs e)
+        {
+            //todo
+            txtBasicViewLink.Text = Connection.Connection.WebUrl + "/" + Guid.NewGuid().ToString("N");
+        }
+
+        private void btnDiscutionGenerate_Click(object sender, EventArgs e)
+        {
+            //todo
+            txtDiscutionLink.Text = Connection.Connection.WebUrl + "/" + Guid.NewGuid().ToString("N");
+        }
+        
+        #endregion
+
+        #region Private methods
+
+        private void SetTaskData()
+        {
+            try
+            {
+                SuspendLayout();
+
+                if (ParentForm != null)
+                    ParentForm.Text = "Edit task " + _task.Id;
+
+                nudPriority.Value = Task.Priority ?? 1;
+                txtLeft.Text = Task.RemainingWork.If(v => v.HasValue, v => v.GetValueOrDefault().ToString(), v => string.Empty);
+                lblTask.Text = $"Task {Task.Id}";
+                txtName.Text = Task.Name;
+                txtDetails.Text = Task.Description;
+
+                if (Task.Comments != null)
+                    ttComents.Messages = Task.Comments.Select(c => Convertors.Convert(c, c.UserId == WPSuite.ConnectedUserId)).ToList();
+
+                if (Task.Discusion != null)
+                    ttDiscution.Messages = Task.Discusion.Select(c => Convertors.Convert(c, c.UserId == WPSuite.ConnectedUserId)).ToList();
+
+                if (Task.Attachments != null)
+                    flAttachments.Files = Task.Attachments.Select(f => Convertors.Convert(f.File)).ToList();
+
+                if(Task.Changes != null)
+                    tpHistory.Controls.AddRange(Task.Changes.GroupBy(tc => tc.ChangeStamp).Select(CreateTaskChangeControl).ToArray());
+
+                if(Task.AssignedToId.HasValue)
+                    ddUser.SetSelectedItem(u => u.Id == Task.AssignedToId);
+
+                ddState.SetSelectedItem(di => di.Id == Task.StateId);
+            }
+            finally
+            {
+                ResumeLayout();
+                Refresh();
+            }
+
+        }
+
+        private static Control CreateTaskChangeControl(IEnumerable<TaskHistory> th)
+        {
+            return new ctrlTaskHistoryItem(th)
+            {
+                Dock = DockStyle.Top
+            };
+        }
+
+        private Task GenerateTask()
+        {
+            //throw new NotImplementedException();
+
+            return _task;
+        }
+        
+        private void MakeBindingsToEntity()
+        {
+            Task.Name = txtName.Text;
+            Task.StateId = ddState.SelectedItem.Id;
+
+            var mownedBy = ddUser.SelectedItem?.Id ?? 0;
+            Task.AssignedToId = mownedBy != 0
+                                    ? mownedBy
+                                    : (int?) null;
+
+            Task.Priority = nudPriority.Value != 0
+                                ? (int)nudPriority.Value
+                                : (int?) null;
+
+            Task.RemainingWork = Utils.TryIntParse(txtLeft.Text, null);
+
+            Task.Description = txtDetails.Text;
+            Task.UpdatedById = WPSuite.ConnectedUserId;
+        }
+
+        private async Task<bool> TaskSave()
+        {
+            try
+            {
+                UIHelper.ShowLoader("Save task");
+
+                var mvalid = ValidateGui();
+                if (!string.IsNullOrEmpty(mvalid))
+                {
+                    UIHelper.ShowError(mvalid);
+                    return false;
+                }
+
+                MakeBindingsToEntity();
+
+                var mres = await WebCallFactory.SaveTask(Task);
+
+                if (mres.Error)
+                {
+                    Logger.Log(mres.Exception);
+                    UIHelper.ShowError(mres.Exception);
+                    return false;
+                }
+
+                Logger.Log("Task saved");
+
+                _task = mres.Task;
+                SetTaskData();
+
+                UIHelper.HideLoader();
+                return true;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+                UIHelper.HideLoader();
+                UIHelper.ShowError(mex);
+                return false;
+            }
+            finally
+            {
+                UIHelper.HideLoader();
+            }
+        }
+
+        #endregion
+
     }
 }

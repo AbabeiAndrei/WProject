@@ -205,9 +205,26 @@ namespace WProject.WebApiClasses.MessanginCenter
         public TaskAttachement TaskAttachement { get; set; }
     }
 
-    public class AttachFileToTaskResoponse : IMessangingCenterResponse
+    public class AttachFileToTaskResponse : IMessangingCenterResponse
     {
         public TaskAttachement TaskAttachement { get; set; }
+
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
+
+    public class SaveTaskRequest
+    {
+        public Task Task { get; set; }
+    }
+
+    public class SaveTaskResponse : IMessangingCenterResponse
+    {
+        public Task Task { get; set; }
 
         #region Implementation of IMessangingCenterResponse
 
