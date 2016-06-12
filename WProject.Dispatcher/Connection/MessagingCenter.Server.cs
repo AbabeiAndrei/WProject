@@ -582,7 +582,7 @@ namespace WProject.Dispatcher.Connection
             return mres;
         }
 
-        public static MessagingCenterResponse SaveTask(MessagingCenterPackage package)
+        public MessagingCenterResponse SaveTask(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
 
@@ -590,7 +590,7 @@ namespace WProject.Dispatcher.Connection
             {
                 if (string.IsNullOrEmpty(package.Content))
                     throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
-
+ 
                 var mreq = JsonConvert.DeserializeObject<SaveTaskRequest>(package.Content);
 
                 var moldTask = mreq.Task;
@@ -604,9 +604,13 @@ namespace WProject.Dispatcher.Connection
 
                     if (!mtaskIsNew)
                     {
-                        var mdiff = mtask.GetDiferences(Task.FromWebApi(moldTask), moldTask.UpdatedById);
-                        mctx.Add(mdiff);
-                        mctx.FlushChanges();
+                        var mdiff = mtask.GetDiferences(Task.FromWebApi(moldTask), moldTask.UpdatedById)
+                                         .ToList();
+                        if(mdiff.Any())
+                        {
+                            mctx.Add(mdiff);
+                            mctx.FlushChanges();
+                        }
                     }
 
                     mtask.Name = moldTask.Name;
@@ -628,6 +632,13 @@ namespace WProject.Dispatcher.Connection
                         mctx.Add(mtask);
 
                     mctx.SaveChanges();
+
+                    mres.Content = JsonConvert.SerializeObject(new SaveTaskResponse
+                    {
+                        Task = mtask.ToWebApiExtended(mctx)
+                    });
+
+                    Clients.All.REFRESH_DASHBOARD_BROADCAST("Save task");
                 }
             }
             catch (WpException mex)

@@ -80,6 +80,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             }
             finally
             {
+                RecalculateColumns();         //something weird happen is remove this line
                 pnlBackLogs.ResumeLayout();
             }
         }

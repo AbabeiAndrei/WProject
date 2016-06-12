@@ -192,5 +192,25 @@ namespace WProject.Helpers
         {
             return;
         }
+
+        public static async void RefreshDashboard()
+        {
+            var mctrl = MainPanel?.GetPage(Pages.DashBoard) as ctrlDashBoard;
+            if(mctrl == null)
+                return;
+            
+            await mctrl.RefreshTasks();
+
+        }
+
+        public static void ExecuteServerMethod(string data, Action action, string method)
+        {
+            RunOnUiThread(() =>
+            {
+                Logger.Log($"Run metgod {method} with data : {data}");
+
+                action?.Invoke();
+            });
+        }
     }
 }

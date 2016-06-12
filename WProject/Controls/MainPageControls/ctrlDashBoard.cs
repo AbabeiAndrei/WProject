@@ -13,6 +13,7 @@ using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Style;
 using WProject.UiLibrary.Theme;
 using WProject.WebApiClasses.Classes;
+using Task = System.Threading.Tasks.Task;
 
 namespace WProject.Controls.MainPageControls
 {
@@ -72,7 +73,6 @@ namespace WProject.Controls.MainPageControls
             Settings.Default.Save();
 
             await _tasks.LoadTasks(spring, category);
-            _tasks.RecalculateColumns();    //something weird happen is remove this line
         }
 
         #endregion
@@ -128,6 +128,11 @@ namespace WProject.Controls.MainPageControls
         }
 
         #endregion
+
+        public async Task RefreshTasks()
+        {
+            await _tasks.LoadTasks(WPSuite.SelectedSpring, WPSuite.SelectedCategory);
+        }
     }
     
 }

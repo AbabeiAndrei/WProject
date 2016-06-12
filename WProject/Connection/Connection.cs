@@ -60,7 +60,10 @@ namespace WProject.Connection
             _connection.Reconnected += Connection_Reconnected;
             _hubProxy = _connection.CreateHubProxy("MessagingCenter");
             
-            _hubProxy.On<string>("ShutDownClient", reason => UIHelper.RunOnUiThread(UIHelper.CloseApplication));
+            _hubProxy.On<string>(WPClient.Broadcasts.SHUT_DOWN_CLIENT, 
+                                 reason => UIHelper.ExecuteServerMethod(reason, UIHelper.CloseApplication, WPClient.Broadcasts.SHUT_DOWN_CLIENT));
+            _hubProxy.On<string>(WPClient.Broadcasts.REFRESH_DASHBOARD_BROADCAST, 
+                                 data => UIHelper.ExecuteServerMethod(data, UIHelper.RefreshDashboard, WPClient.Broadcasts.REFRESH_DASHBOARD_BROADCAST));
 
             try
             {
