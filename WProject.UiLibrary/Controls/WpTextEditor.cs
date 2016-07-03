@@ -176,7 +176,7 @@ namespace WProject.UiLibrary.Controls
 
         private void SetText(string htmlText)
         {
-            rtbText.Rtf = HtmlToRtfConverter.ConvertHtmlToRtf(htmlText);
+            rtbText.Rtf = HtmlToRtfConverter.ConvertHtmlToRtf(htmlText ?? string.Empty);
         }
 
         #endregion

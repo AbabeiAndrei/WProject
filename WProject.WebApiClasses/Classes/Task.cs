@@ -8,11 +8,6 @@ namespace WProject.WebApiClasses.Classes
 {
     public class Task : TableNameble
     {
-        public const string TO_DO_CODE = "TO_DO";
-        public const string IN_PROGRESS_CODE = "IN_PROGR";
-        public const string DONE_CODE = "DONE";
-        public const string REMOVED_CODE = "REMOVED";
-
         public const string TABLE_NAME = "task";
 
         public int Id { get; set; }
@@ -76,5 +71,18 @@ namespace WProject.WebApiClasses.Classes
 
         public string FullName => $"Task {Id} {Name}";
 
+        public static class Types
+        {
+            public const string TASK = "TASK";
+            public const string BUG = "BUG";
+        }
+
+        public static class States
+        {
+            public const string TO_DO_CODE = "TO_DO";
+            public const string IN_PROGRESS_CODE = "IN_PROGR";
+            public const string DONE_CODE = "DONE";
+            public const string REMOVED_CODE = "REMOVED";
+        }
     }
 }

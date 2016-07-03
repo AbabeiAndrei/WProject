@@ -197,6 +197,14 @@ namespace WProject.Connection
             });
         }
 
+        public static async Task<SaveBacklogResponse> SaveBacklog(Backlog backlog)
+        {
+            return await ExecuteMethod<SaveBacklogResponse>("SaveBacklog", new SaveBacklogRequest
+            {
+                Backlog = backlog
+            });
+        }
+
         public static async Task<T> ExecuteMethod<T>(string method, object content, bool continueThrow = false, bool checkForEmpty = true)
             where T : IMessangingCenterResponse, new()
         {
@@ -256,7 +264,10 @@ namespace WProject.Connection
                     mpackage.Content = string.Empty;
 
                 Connection.NetworkTransferInProgress = true;
-                MessagingCenterResponse mresult = await Connection.Hub.Invoke<MessagingCenterResponse>("CallServiceMethod", mpackage);
+
+                //Make webCall
+                var mresult = await Connection.Hub.Invoke<MessagingCenterResponse>("CallServiceMethod", mpackage);
+
                 return mresult;
             }
             finally

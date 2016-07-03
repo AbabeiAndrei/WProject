@@ -59,5 +59,7 @@ namespace WProject.WebApiClasses.Classes
         public IEnumerable<Task> Tasks { get; set; }
 
         public new static string TableName => TABLE_NAME;
+
+        public string FullName => $"Backlog {Id}";
     }
 }

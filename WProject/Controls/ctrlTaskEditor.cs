@@ -52,7 +52,7 @@ namespace WProject.Controls
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
-        public Action<Task> OnSave { get; set; }
+        public Func<Task, System.Threading.Tasks.Task> OnSave { get; set; }
         
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -95,6 +95,14 @@ namespace WProject.Controls
             _taskId = taskId;
         }
 
+        public ctrlTaskEditor(Task task)
+            : this()
+        {
+            _taskId = task?.Id ?? 0;
+
+            _task = task;
+        }
+
         #endregion
 
         #region Overrides of WpStyledControl
@@ -105,6 +113,9 @@ namespace WProject.Controls
 
             if (pnlLeftDock != null)
                 pnlLeftDock.BackColor = WpThemeColors.Amber;
+
+            if(btnCopy != null)
+                ApplyStyleToAllButtons(this, btnCopy.Name);
         }
 
         #endregion
@@ -149,23 +160,28 @@ namespace WProject.Controls
 
         private async System.Threading.Tasks.Task LoadTask()
         {
-            if (_taskId == 0)
-            {
-                if (ParentForm != null)
-                    ParentForm.Text = "New task";
-                return;
-            }
-
+            
             try
             {
                 UIHelper.ShowLoader("LOAD TASK", ParentForm);
 
-                var mres = await WebCallFactory.GetTask(_taskId);
+                if (_taskId == 0)
+                {
+                    if (ParentForm != null)
+                        ParentForm.Text = "New task";
+                }
+                else
+                {
+                    if (ParentForm != null)
+                        ParentForm.Text = $"Edit task {_taskId}";
 
-                if (mres.Error)
-                    throw mres.Exception;
+                    var mres = await WebCallFactory.GetTask(_taskId);
 
-                _task = mres.Task;
+                    if (mres.Error)
+                        throw mres.Exception;
+
+                    _task = mres.Task;
+                }
                 SetTaskData();
                 UIHelper.HideLoader();
             }
@@ -209,7 +225,8 @@ namespace WProject.Controls
 
         private async void btnSave_Click(object sender, EventArgs e)
         {
-            await TaskSave();
+            if (await TaskSave() && OnSave != null)
+                await OnSave(_task);
         }
 
         private async void btnSaveAndClose_Click(object sender, EventArgs e)
@@ -387,12 +404,11 @@ namespace WProject.Controls
             {
                 SuspendLayout();
 
-                if (ParentForm != null)
-                    ParentForm.Text = "Edit task " + _task.Id;
-
                 nudPriority.Value = Task.Priority ?? 1;
                 txtLeft.Text = Task.RemainingWork.If(v => v.HasValue, v => v.GetValueOrDefault().ToString(), v => string.Empty);
-                lblTask.Text = $"Task {Task.Id}";
+                lblTask.Text = Task.Id != 0 
+                                    ? $"Task {Task.Id}"
+                                    : "New task";
                 txtName.Text = Task.Name;
                 txtDetails.Text = Task.Description;
 

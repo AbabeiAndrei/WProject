@@ -28,20 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            WProject.UiLibrary.Style.UiStyle uiStyle1 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style1 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle2 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style2 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle3 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style3 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle4 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style4 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle5 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style5 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle6 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style6 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle7 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style7 = new WProject.UiLibrary.Style.Style();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.pbFiltre = new WProject.UiLibrary.Controls.WpPictureBox();
             this.flwRight = new System.Windows.Forms.FlowLayoutPanel();
@@ -85,20 +71,6 @@
             this.pbFiltre.OwnStyle = false;
             this.pbFiltre.Size = new System.Drawing.Size(24, 24);
             this.pbFiltre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            uiStyle1.ClickStyle = null;
-            uiStyle1.HoverStyle = null;
-            style1.BackColor = System.Drawing.Color.Transparent;
-            style1.BorderColor = null;
-            style1.BorderWidth = null;
-            style1.Cursor = System.Windows.Forms.Cursors.Default;
-            style1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style1.ForeColor = System.Drawing.Color.White;
-            style1.Margin = new System.Windows.Forms.Padding(3);
-            style1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle1.NormalStyle = style1;
-            uiStyle1.SelectedStyle = null;
-            this.pbFiltre.Style = uiStyle1;
-            this.pbFiltre.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.pbFiltre.TabIndex = 2;
             // 
             // flwRight
@@ -127,20 +99,6 @@
             this.pbFullScreen.OwnStyle = false;
             this.pbFullScreen.Size = new System.Drawing.Size(24, 24);
             this.pbFullScreen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            uiStyle2.ClickStyle = null;
-            uiStyle2.HoverStyle = null;
-            style2.BackColor = System.Drawing.Color.Transparent;
-            style2.BorderColor = null;
-            style2.BorderWidth = null;
-            style2.Cursor = System.Windows.Forms.Cursors.Default;
-            style2.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style2.ForeColor = System.Drawing.Color.White;
-            style2.Margin = new System.Windows.Forms.Padding(3);
-            style2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle2.NormalStyle = style2;
-            uiStyle2.SelectedStyle = null;
-            this.pbFullScreen.Style = uiStyle2;
-            this.pbFullScreen.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.pbFullScreen.TabIndex = 0;
             // 
             // pbSettings
@@ -155,20 +113,6 @@
             this.pbSettings.OwnStyle = false;
             this.pbSettings.Size = new System.Drawing.Size(24, 24);
             this.pbSettings.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            uiStyle3.ClickStyle = null;
-            uiStyle3.HoverStyle = null;
-            style3.BackColor = System.Drawing.Color.Transparent;
-            style3.BorderColor = null;
-            style3.BorderWidth = null;
-            style3.Cursor = System.Windows.Forms.Cursors.Default;
-            style3.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style3.ForeColor = System.Drawing.Color.White;
-            style3.Margin = new System.Windows.Forms.Padding(3);
-            style3.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle3.NormalStyle = style3;
-            uiStyle3.SelectedStyle = null;
-            this.pbSettings.Style = uiStyle3;
-            this.pbSettings.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.pbSettings.TabIndex = 2;
             // 
             // pbInfo
@@ -183,20 +127,6 @@
             this.pbInfo.OwnStyle = false;
             this.pbInfo.Size = new System.Drawing.Size(24, 24);
             this.pbInfo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            uiStyle4.ClickStyle = null;
-            uiStyle4.HoverStyle = null;
-            style4.BackColor = System.Drawing.Color.Transparent;
-            style4.BorderColor = null;
-            style4.BorderWidth = null;
-            style4.Cursor = System.Windows.Forms.Cursors.Default;
-            style4.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style4.ForeColor = System.Drawing.Color.White;
-            style4.Margin = new System.Windows.Forms.Padding(3);
-            style4.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle4.NormalStyle = style4;
-            uiStyle4.SelectedStyle = null;
-            this.pbInfo.Style = uiStyle4;
-            this.pbInfo.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.pbInfo.TabIndex = 1;
             // 
             // pbGraph
@@ -211,20 +141,6 @@
             this.pbGraph.OwnStyle = false;
             this.pbGraph.Size = new System.Drawing.Size(80, 24);
             this.pbGraph.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Normal;
-            uiStyle5.ClickStyle = null;
-            uiStyle5.HoverStyle = null;
-            style5.BackColor = System.Drawing.Color.Transparent;
-            style5.BorderColor = null;
-            style5.BorderWidth = null;
-            style5.Cursor = System.Windows.Forms.Cursors.Default;
-            style5.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style5.ForeColor = System.Drawing.Color.White;
-            style5.Margin = new System.Windows.Forms.Padding(3);
-            style5.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle5.NormalStyle = style5;
-            uiStyle5.SelectedStyle = null;
-            this.pbGraph.Style = uiStyle5;
-            this.pbGraph.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.pbGraph.TabIndex = 3;
             // 
             // lblPeriod
@@ -327,20 +243,6 @@
             this.pbAdd.OwnStyle = false;
             this.pbAdd.Size = new System.Drawing.Size(54, 54);
             this.pbAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            uiStyle6.ClickStyle = null;
-            uiStyle6.HoverStyle = null;
-            style6.BackColor = System.Drawing.Color.Transparent;
-            style6.BorderColor = null;
-            style6.BorderWidth = null;
-            style6.Cursor = System.Windows.Forms.Cursors.Default;
-            style6.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style6.ForeColor = System.Drawing.Color.White;
-            style6.Margin = new System.Windows.Forms.Padding(3);
-            style6.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle6.NormalStyle = style6;
-            uiStyle6.SelectedStyle = null;
-            this.pbAdd.Style = uiStyle6;
-            this.pbAdd.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
             this.pbAdd.TabIndex = 3;
             // 
             // ctrlDashBoardTasks
@@ -351,19 +253,6 @@
             this.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.Name = "ctrlDashBoardTasks";
             this.Size = new System.Drawing.Size(1175, 613);
-            uiStyle7.ClickStyle = null;
-            uiStyle7.HoverStyle = null;
-            style7.BackColor = System.Drawing.Color.Transparent;
-            style7.BorderColor = null;
-            style7.BorderWidth = null;
-            style7.Cursor = System.Windows.Forms.Cursors.Default;
-            style7.Font = new System.Drawing.Font("Segoe UI", 14F);
-            style7.ForeColor = System.Drawing.Color.Black;
-            style7.Margin = new System.Windows.Forms.Padding(3);
-            style7.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle7.NormalStyle = style7;
-            uiStyle7.SelectedStyle = null;
-            this.Style = uiStyle7;
             this.pnlTop.ResumeLayout(false);
             this.flwRight.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);

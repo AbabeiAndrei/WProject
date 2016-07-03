@@ -172,6 +172,18 @@ namespace WProject.UiLibrary.Theme
                             Cursor = Cursors.Hand
                         }
                     }
+                },
+                {
+                    WpThemeConstants.WPSTYLE_BUTTON,
+                    new UiStyle
+                    {
+                        NormalStyle = new Style.Style
+                        {
+                            Font = new Font(WpThemeFonts.SEGOE_UI, 12f),
+                            BackColor = WpThemeColors.Blue,
+                            ForeColor = WpThemeColors.White
+                        }
+                    }
                 }
             };
         }
@@ -190,6 +202,7 @@ namespace WProject.UiLibrary.Theme
 
         public const string WPSTYLE_HEADER = "WPSTYLE_HEADER";
         public const string WPSTYLE_HEADER_TOP = "WPSTYLE_HEADER_TOP";
+        public const string WPSTYLE_BUTTON = "WPSTYLE_BUTTON";
     }
 
     public static class WpThemeColors

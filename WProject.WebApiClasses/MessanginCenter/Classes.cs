@@ -234,4 +234,20 @@ namespace WProject.WebApiClasses.MessanginCenter
         #endregion
     }
 
+    public class SaveBacklogRequest
+    {
+        public Backlog Backlog { get; set; }
+    }
+
+    public class SaveBacklogResponse : IMessangingCenterResponse
+    {
+        public Backlog Backlog { get; set; }
+
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
 }

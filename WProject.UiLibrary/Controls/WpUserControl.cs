@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 using WProject.UiLibrary.Style;
 using WProject.UiLibrary.Theme;
@@ -115,8 +116,7 @@ namespace WProject.UiLibrary.Controls
         }
 
         #endregion
-
-
+        
         #region Public methods
 
         public void AddToValidate(TextBox txt, ValidateGuiMode mode, string name = "", int minLen = 0, int numericMin = 0, int numericMax = 0 )
@@ -178,6 +178,20 @@ namespace WProject.UiLibrary.Controls
             finally
             {
                 Style = ms;
+            }
+        }
+
+        public static void ApplyStyleToAllButtons(WpUserControl control, params string[] except)
+        {
+            if (control == null)
+                return;
+
+            foreach (Control mcontrol in control.Controls)
+            {
+                var mbtn = mcontrol as WpButton;
+                if (mbtn != null && !except.Contains(mbtn.Name))
+                    mbtn.ApplyStyle();
+                ApplyStyleToAllButtons(mcontrol as WpUserControl, except);
             }
         }
 

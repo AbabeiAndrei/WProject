@@ -93,6 +93,36 @@ namespace WProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_w_l {
+            get {
+                object obj = ResourceManager.GetObject("add_w_l", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap add_w_m {
+            get {
+                object obj = ResourceManager.GetObject("add_w_m", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap add_w_s {
+            get {
+                object obj = ResourceManager.GetObject("add_w_s", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap archive_l {
             get {
                 object obj = ResourceManager.GetObject("archive_l", resourceCulture);
@@ -1013,6 +1043,36 @@ namespace WProject.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap heart_empty_w_l {
+            get {
+                object obj = ResourceManager.GetObject("heart_empty_w_l", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heart_empty_w_m {
+            get {
+                object obj = ResourceManager.GetObject("heart_empty_w_m", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heart_empty_w_s {
+            get {
+                object obj = ResourceManager.GetObject("heart_empty_w_s", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap heart_l {
             get {
                 object obj = ResourceManager.GetObject("heart_l", resourceCulture);
@@ -1036,6 +1096,36 @@ namespace WProject.Properties {
         internal static System.Drawing.Bitmap heart_s {
             get {
                 object obj = ResourceManager.GetObject("heart_s", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heart_w_l {
+            get {
+                object obj = ResourceManager.GetObject("heart_w_l", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heart_w_m {
+            get {
+                object obj = ResourceManager.GetObject("heart_w_m", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap heart_w_s {
+            get {
+                object obj = ResourceManager.GetObject("heart_w_s", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -1636,6 +1726,36 @@ namespace WProject.Properties {
         internal static System.Drawing.Bitmap print_s {
             get {
                 object obj = ResourceManager.GetObject("print_s", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap print_w_l {
+            get {
+                object obj = ResourceManager.GetObject("print_w_l", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap print_w_m {
+            get {
+                object obj = ResourceManager.GetObject("print_w_m", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap print_w_s {
+            get {
+                object obj = ResourceManager.GetObject("print_w_s", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

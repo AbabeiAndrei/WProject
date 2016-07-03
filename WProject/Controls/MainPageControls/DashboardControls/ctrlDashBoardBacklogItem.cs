@@ -18,6 +18,7 @@ using WProject.UiLibrary;
 using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Theme;
 using WProject.WebApiClasses.Classes;
+using WProject.WebApiClasses.Data;
 using Task = WProject.WebApiClasses.Classes.Task;
 
 namespace WProject.Controls.MainPageControls.DashboardControls
@@ -26,10 +27,11 @@ namespace WProject.Controls.MainPageControls.DashboardControls
     {
         #region Fields
 
-        private Backlog _backLog;
+        private Backlog _backlog;
         private bool _collapsed;
         private DashBoardColumnsCollectionSize _columns;
-        private ctrlDashBoardBacklogItemControl ctrlDashBoardBacklogItemControl;
+        private readonly ctrlDashBoardBacklogItemControl ctrlDashBoardBacklogItemControl;
+        private bool _onDrag;
 
         public new static Size DefaultSize { get; }
         
@@ -37,15 +39,15 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
         #region Properties
 
-        public Backlog BackLog
+        public Backlog Backlog
         {
             get
             {
-                return _backLog;
+                return _backlog;
             }
             set
             {
-                _backLog = value;
+                _backlog = value;
 
                 InitStuff();
             }
@@ -64,6 +66,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                 pbColapse.Image = _collapsed
                                       ? Resources.expand_l
                                       : Resources.tree_l;
+                btnAddTask.Visible = !_collapsed;
 
                 RecalculateSize();
                 Refresh();
@@ -86,6 +89,15 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
         public event BacklogCollaptionChanged OnCollaptionChange;
 
+        public Action<Backlog, Action> OnAddClick { get; set; }
+
+        public IEnumerable<ctrlDashBoardTaskItem> TaskControls => flwToDo.Controls
+                                                                         .OfType<ctrlDashBoardTaskItem>()
+                                                                         .Union(flwInProgress.Controls
+                                                                                             .OfType<ctrlDashBoardTaskItem>())
+                                                                         .Union(flwDone.Controls
+                                                                                       .OfType<ctrlDashBoardTaskItem>());
+
         #endregion
         
         #region Constructors
@@ -101,6 +113,8 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                 Visible = false
             };
 
+            ctrlDashBoardBacklogItemControl.Click += OnDashBoardBacklogItemControl_Click;
+
             _collapsed = true;
 
             Controls.Add(ctrlDashBoardBacklogItemControl);
@@ -109,17 +123,17 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
             DoubleBuffered = true;
 
-            flwToDo.Tag = Task.TO_DO_CODE;
-            flwInProgress.Tag = Task.IN_PROGRESS_CODE;
-            flwDone.Tag = Task.DONE_CODE;
+            flwToDo.Tag = Task.States.TO_DO_CODE;
+            flwInProgress.Tag = Task.States.IN_PROGRESS_CODE;
+            flwDone.Tag = Task.States.DONE_CODE;
         }
 
-        public ctrlDashBoardBacklogItem(Backlog backLog)
+        public ctrlDashBoardBacklogItem(Backlog backlog)
             : this()
         {
-            _backLog = backLog;
+            _backlog = backlog;
 
-            ctrlDashBoardBacklogItemControl.Backlog = backLog;
+            ctrlDashBoardBacklogItemControl.Backlog = backlog;
 
             Columns = new DashBoardColumnsCollectionSize();
         }
@@ -134,11 +148,18 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
         #region Overrides of WpStyledControl
 
+        public override void ApplyStyle()
+        {
+            btnAddTask?.ApplyStyle();
+
+            base.ApplyStyle();
+        }
+
         protected override async void OnPaint(PaintEventArgs e)
         {
             try
             {
-                if (BackLog == null)
+                if (Backlog == null)
                     return;
 
                 ctrlDashBoardBacklogItemControl.Visible = !Collapsed;
@@ -157,10 +178,10 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         {
             e.Graphics.FillRectangle(new SolidBrush(WpThemeColors.Blue.SetOpacity(40)), 0, 0, Width, Height);
 
-            if (BackLog.Type?.Color != null)
+            if (Backlog.Type?.Color != null)
                 try
                 {
-                    using (Brush mb = new SolidBrush(BackLog.Type.Color.Value))
+                    using (Brush mb = new SolidBrush(Backlog.Type.Color.Value))
                         e.Graphics.FillRectangle(mb, pbColapse.Right + 1, 6, 6, pbColapse.Height);
                 }
                 catch
@@ -168,13 +189,13 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                     //ignored
                 }
 
-            e.Graphics.DrawString(BackLog.Name ?? string.Empty,
+            e.Graphics.DrawString(Backlog.Name ?? string.Empty,
                                   WpThemeFonts.DefaultBackLogNameFont,
                                   Brushes.Black,
                                   pbColapse.Right + 10,
                                   4);
 
-            Task<Image> mtask = BackLog?.AssignedTo?.Avatar?.GetImageAsync();
+            Task<Image> mtask = Backlog?.AssignedTo?.Avatar?.GetImageAsync();
             if (mtask != null)
             {
                 var mimage = await mtask;
@@ -182,13 +203,13 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                     e.Graphics.DrawImage(mimage, new RectangleF(pbColapse.Right, pbColapse.Bottom + 6, 16, 16));
             }
 
-            e.Graphics.DrawString(BackLog.AssignedTo?.Name ?? string.Empty,
+            e.Graphics.DrawString(Backlog.AssignedTo?.Name ?? string.Empty,
                                   WpThemeFonts.DefaultBackLogFont,
                                   Brushes.Black,
                                   pbColapse.Right + 20,
                                   pbColapse.Bottom + 8);
 
-            if (_backLog.Tasks == null && Columns.Sum < 3)
+            if (_backlog.Tasks == null && Columns.Sum < 3)
                 return;
 
             var mtodoCount = flwToDo.Controls.Count;
@@ -262,13 +283,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         {
             ToggleExpand();
         }
-
-        private void ctrlTaskItem_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-                DoDragDrop(sender, DragDropEffects.Move);
-        }
-
+        
         private void flwDragEfect_Enter(object sender, DragEventArgs e)
         {
             FlowLayoutPanel mp = sender as FlowLayoutPanel;
@@ -282,6 +297,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             e.Effect = DragDropEffects.Move;
 
             mp.BackColor = WpThemeColors.Yellow.SetOpacity(100);
+            _onDrag = true;
         }
 
         private void flwDragEfect_Leave(object sender, EventArgs e)
@@ -292,6 +308,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                 return;
 
             mp.BackColor = Color.Transparent;
+            _onDrag = false;
         }
 
         private async void flwDragEfect_Drop(object sender, DragEventArgs e)
@@ -316,6 +333,23 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
             if (!await ChangeTaskState(mc.Task, mp.Tag.ToString()))
                 mc.Parent = moldParent;
+
+            _onDrag = false;
+        }
+
+        private void btnAddTask_Click(object sender, EventArgs e)
+        {
+            OnAddClick?.Invoke(Backlog, InitStuff);
+        }
+
+        private void ctrlDashBoardBacklogItem_SizeChanged(object sender, EventArgs e)
+        {
+            btnAddTask.Top = Height - btnAddTask.Height - 2;
+        }
+        
+        private void OnDashBoardBacklogItemControl_Click(object sender, EventArgs eventArgs)
+        {
+            UIHelper.ShowBackLogEditor(Backlog, backlog => SetBacklog(backlog));
         }
 
         #endregion
@@ -324,7 +358,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
         private void InitStuff()
         {
-            if (_backLog.Tasks == null)
+            if (_backlog.Tasks == null)
                 return;
 
             try
@@ -333,15 +367,17 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                 flwInProgress.SuspendLayout();
                 flwDone.SuspendLayout();
 
-                foreach (var mtask in _backLog.Tasks.Where(t => t.State != null))
+                ClearTasks();
+
+                foreach (var mtask in _backlog.Tasks.Where(t => t.State != null))
                 {
                     var mc = CreateTaskControl(mtask);
 
-                    if (mtask.State.Code == Task.TO_DO_CODE)
+                    if (mtask.State.Code == Task.States.TO_DO_CODE)
                         flwToDo.Controls.Add(mc);
-                    else if (mtask.State.Code == Task.IN_PROGRESS_CODE)
+                    else if (mtask.State.Code == Task.States.IN_PROGRESS_CODE)
                         flwInProgress.Controls.Add(mc);
-                    else if (mtask.State.Code == Task.DONE_CODE)
+                    else if (mtask.State.Code == Task.States.DONE_CODE)
                         flwDone.Controls.Add(mc);
                 }
             }
@@ -354,6 +390,13 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             }
         }
 
+        private void ClearTasks()
+        {
+            flwToDo.Controls.Clear();
+            flwInProgress.Controls.Clear();
+            flwDone.Controls.Clear();
+        }
+
         private Control CreateTaskControl(Task task)
         {
             var mtsk = new ctrlDashBoardTaskItem(task)
@@ -362,16 +405,20 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                 AllowDrop = true
             };
 
-            mtsk.MouseUp += (sender, args) =>
+            mtsk.Click += (sender, args) =>
             {
                 var mte = sender as ctrlDashBoardTaskItem;
 
                 if (mte?.Task != null)
-                    UIHelper.ShowTaskEditor(mte.Task.Id, task1 => {}, parentForm:ParentForm);
+                    UIHelper.ShowTaskEditor(mte.Task, async t => mte.SetTask(t), parentForm:ParentForm);
             };
 
-            mtsk.MouseDown += ctrlTaskItem_MouseDown;
-
+            mtsk.MouseMove += (sender, args) =>
+            {
+                if (args.Button == MouseButtons.Left)
+                    DoDragDrop(sender, DragDropEffects.Move);
+            };
+            
             return mtsk;
         }
 
@@ -389,14 +436,14 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                     return;
                 }
                 int mheight = 150;
-                if (_backLog.Tasks != null)
-                    mheight = Math.Max(_backLog.Tasks
+                if (_backlog.Tasks != null)
+                    mheight = Math.Max(_backlog.Tasks
                                                .GroupBy(t => t.StateId)
                                                .Select(t => t.Count())
                                                .DefaultIfEmpty(0)
                                                .Max(t => t)*120,
                                        mheight);
-                Height = mheight + 8;
+                Height = mheight + 16;
 
                 flwToDo.Width = Columns.ToDoWidth;
                 flwInProgress.Width = Columns.InProgressWitdh;
@@ -452,8 +499,53 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             Collapsed = collapsed;
         }
 
-        #endregion
+        public void AddTask(Task task)
+        {
+            var mc = CreateTaskControl(task);
 
+            var mnewState = SimpleCache.GetAll<DictItem>()
+                                       .FirstOrDefault(di => di.Id == task.StateId);
+
+            if(mnewState == null)
+                return;
+
+            if (mnewState.Code == Task.States.TO_DO_CODE)
+                flwToDo.Controls.Add(mc);
+            else if (mnewState.Code == Task.States.IN_PROGRESS_CODE)
+                flwInProgress.Controls.Add(mc);
+            else if (mnewState.Code == Task.States.DONE_CODE)
+                flwDone.Controls.Add(mc);
+        }
+
+        public void SetTaskState(Task task, int stateId)
+        {
+            var mctrl = TaskControls.FirstOrDefault(tc => tc.Task.Id == task.Id);
+
+            if(mctrl?.Task == null || mctrl.Task.StateId == stateId)
+                return;
+
+            var mnewState = SimpleCache.GetAll<DictItem>()
+                                       .FirstOrDefault(di => di.Id == stateId);
+
+            if(mnewState == null)
+                return;
+
+            if (mnewState.Code == Task.States.TO_DO_CODE)
+                mctrl.Parent = flwToDo;
+            else if(mnewState.Code == Task.States.IN_PROGRESS_CODE)
+                mctrl.Parent = flwInProgress;
+            else if (mnewState.Code == Task.States.DONE_CODE)
+                mctrl.Parent = flwDone;
+            else if (mnewState.Code == Task.States.REMOVED_CODE)
+                mctrl.Dispose();
+        }
+
+        public void SetBacklog(Backlog backlog)
+        {
+            ctrlDashBoardBacklogItemControl.SetBacklog(backlog);
+        }
+
+        #endregion
     }
 
     public delegate void BacklogCollaptionChanged(object sender, BacklogCollaptionChangedArgs args);

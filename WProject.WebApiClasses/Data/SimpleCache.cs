@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WProject.WebApiClasses.Classes;
 using WProject.WebApiClasses.Interfaces;
 
 namespace WProject.WebApiClasses.Data
@@ -75,6 +76,16 @@ namespace WProject.WebApiClasses.Data
         private static string GetTableName<T>() where T : TableNameble
         {
             return typeof (T).GetProperty("TableName").GetValue(null)?.ToString() ?? string.Empty;
+        }
+
+        public static class Util
+        {
+            public static User GetUserById(int userId)
+            {
+                return userId != 0 
+                        ? GetAll<User>().FirstOrDefault(u => u.Id == userId) 
+                        : null;
+            }
         }
     }
 }

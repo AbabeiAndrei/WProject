@@ -3,13 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR.Client;
+using Newtonsoft.Json;
+using WProject.Classes;
+using WProject.Controls.MainPageControls;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.GenericLibrary.Helpers.Networking;
 using WProject.Helpers;
 using WProject.Properties;
+using WProject.WebApiClasses.Classes;
+using WProject.WebApiClasses.Data;
 using WProject.WebApiClasses.MessanginCenter;
+using Task = System.Threading.Tasks.Task;
 
 namespace WProject.Connection
 {
@@ -62,8 +67,8 @@ namespace WProject.Connection
             
             _hubProxy.On<string>(WPClient.Broadcasts.SHUT_DOWN_CLIENT, 
                                  reason => UIHelper.ExecuteServerMethod(reason, UIHelper.CloseApplication, WPClient.Broadcasts.SHUT_DOWN_CLIENT));
-            _hubProxy.On<string>(WPClient.Broadcasts.REFRESH_DASHBOARD_BROADCAST, 
-                                 data => UIHelper.ExecuteServerMethod(data, UIHelper.RefreshDashboard, WPClient.Broadcasts.REFRESH_DASHBOARD_BROADCAST));
+            _hubProxy.On<string>(WPClient.Broadcasts.REFRESH_DASHBOARD_BROADCAST,   //broadcast modificare task/backlog
+                                 data => UIHelper.ExecuteServerMethod(data, RefreshDashBoard, WPClient.Broadcasts.REFRESH_DASHBOARD_BROADCAST));
 
             try
             {
@@ -83,6 +88,69 @@ namespace WProject.Connection
                 ConnectionIsAlive = false;
                 Logger.Log(mex);
             }
+        }
+
+        private static void RefreshDashBoard(string data)   
+        {
+            if(string.IsNullOrEmpty(data))
+                UIHelper.RefreshDashboard();
+
+            var mdata = JsonConvert.DeserializeObject<RefreshDashboardInfo>(data);
+
+            if(mdata == null)
+                return;
+
+            if (UIHelper.MainPanel.SelectedPage == Pages.DashBoard) //todo de continuat cu restul paginilor 
+            {
+                var mdboard = UIHelper.MainPanel.GetPage(Pages.DashBoard) as ctrlDashBoard;
+
+                if(mdboard == null)
+                    return;
+
+                if (mdata.RefreshAll)   //in caz ca se face refresh all 
+                {
+                    UIHelper.RefreshDashboard();
+                    return;
+                }
+
+                if (mdata.Tasks != null)
+                    foreach (var mtask in mdata.Tasks)
+                    {
+                        var mctrlb = mdboard.TasksControl
+                                            .BacklogControls
+                                            .FirstOrDefault(bc => bc.Backlog.Id == mtask.BacklogId);
+
+                        if (mctrlb == null)
+                            continue; // task-ul trimis nu se afla in lista ( utilizatorul se afla pe alt spring sau alta categorie)
+
+                        var mtctrl = mctrlb.TaskControls
+                                           .FirstOrDefault(tc => tc.Task.Id == mtask.Id);
+                        if (mtctrl == null)
+                            mctrlb.AddTask(mtask); //nu exista task-ul (se adauga)
+                        else
+                        {
+                            if (mtask.StateId != mtctrl.Task.StateId)
+                                mctrlb.SetTaskState(mtctrl.Task, mtask.StateId);
+
+                            mtctrl.SetTask(mtask);
+                        }
+                    }
+
+                if(mdata.Backlogs != null)
+                    foreach (var mbacklog in mdata.Backlogs)
+                    {
+                        var mctrlb = mdboard.TasksControl
+                                            .BacklogControls
+                                            .FirstOrDefault(bc => bc.Backlog.Id == mbacklog.Id);
+
+                        if (mctrlb != null)
+                            mctrlb.SetBacklog(mbacklog);
+                        else
+                            mdboard.TasksControl.AddBackLog(mbacklog);  //nu exista backlogul
+                    }
+            } 
+
+
         }
 
         public static void InitStuff()

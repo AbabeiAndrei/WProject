@@ -84,8 +84,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         public ctrlDashBoardBacklogItemControl(Backlog backlog)
                 :this()
         {
-            _backlog = backlog;
-            SetBacklogData();
+            SetBacklog(backlog);
         }
 
         static ctrlDashBoardBacklogItemControl()
@@ -200,6 +199,16 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             ddStates.Style = ddUsers.Style.Clone();
         }
 
+
+        #endregion
+
+        #region Public methods
+
+        public void SetBacklog(Backlog backlog)
+        {
+            _backlog = backlog;
+            SetBacklogData();
+        }
 
         #endregion
 

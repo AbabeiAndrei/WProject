@@ -64,6 +64,12 @@
     <Compile Include="Controls\ChildForm.Designer.cs">
       <DependentUpon>ChildForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ctrlBacklogEditor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlBacklogEditor.Designer.cs">
+      <DependentUpon>ctrlBacklogEditor.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ctrlLoginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -206,6 +212,9 @@
     <Compile Include="Classes\StatusBarVisbility.cs" />
     <EmbeddedResource Include="Controls\ChildForm.resx">
       <DependentUpon>ChildForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlBacklogEditor.resx">
+      <DependentUpon>ctrlBacklogEditor.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlHeader.resx">
       <DependentUpon>ctrlHeader.cs</DependentUpon>
@@ -889,6 +898,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Paterns.txt" />
+    <None Include="Resources\print_w_m.png" />
+    <None Include="Resources\print_w_l.png" />
+    <None Include="Resources\print_w_s.png" />
     <None Include="Resources\Icons\x_s.png" />
     <None Include="Resources\Icons\x_m.png" />
     <None Include="Resources\Icons\x_l.png" />
@@ -915,6 +927,15 @@
     <None Include="Resources\clipboard_m.png" />
     <None Include="Resources\clipboard_s1.png" />
     <None Include="Resources\file.png" />
+    <None Include="Resources\add_w_l.png" />
+    <None Include="Resources\add_w_m.png" />
+    <None Include="Resources\add_w_s.png" />
+    <None Include="Resources\heart_w_s.png" />
+    <None Include="Resources\heart_empty_w_l.png" />
+    <None Include="Resources\heart_empty_w_m.png" />
+    <None Include="Resources\heart_empty_w_s.png" />
+    <None Include="Resources\heart_w_l.png" />
+    <None Include="Resources\heart_w_m.png" />
     <Content Include="Resources\Icons\undo_l.png" />
     <Content Include="Resources\Icons\undo_m.png" />
     <Content Include="Resources\Icons\undo_s.png" />

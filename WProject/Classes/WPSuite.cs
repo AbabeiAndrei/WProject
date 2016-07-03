@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WProject.WebApiClasses.Classes;
+using WProject.WebApiClasses.Data;
+using Task = WProject.WebApiClasses.Classes.Task;
 
 namespace WProject.Classes
 {
@@ -15,5 +17,23 @@ namespace WProject.Classes
         public static Category SelectedCategory { get; set; }
 
         public static int ConnectedUserId => ConnectedUser?.Id ?? 0;
+
+        public static Task CreateTask(Backlog backlog)
+        {
+            return new Task
+            {
+                BacklogId = backlog.Id,
+                CreatedAt = DateTime.Now,
+                CreatedById = ConnectedUserId,
+                TypeId = GetTaskTypeId()
+            };
+        }
+
+        private static int GetTaskTypeId()
+        {
+            return SimpleCache.GetAll<DictItem>()
+                              .FirstOrDefault(di => di.Type == DictItem.Types.TaskType && di.Code == Task.Types.TASK)?
+                              .Id ?? 0;
+        }
     }
 }

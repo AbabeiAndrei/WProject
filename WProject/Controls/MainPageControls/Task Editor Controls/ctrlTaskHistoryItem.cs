@@ -86,7 +86,7 @@ namespace WProject.Controls.MainPageControls.Task_Editor_Controls
             else
             {
                 pbExpandColapse.Image = Resources.expand_m;
-                Height = 32;
+                Height = 43;
             }
 
             lvChanges.Visible = expand;

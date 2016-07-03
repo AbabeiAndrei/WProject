@@ -97,6 +97,7 @@
       <DependentUpon>wpContext.rlinq</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaveDataResponse.cs" />
     <Compile Include="Spring.generated.cs">
       <DependentUpon>wpContext.rlinq</DependentUpon>
     </Compile>

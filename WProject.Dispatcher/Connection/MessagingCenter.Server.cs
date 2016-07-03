@@ -9,6 +9,7 @@ using WProject.GenericLibrary.Exceptions;
 using WProject.GenericLibrary.Helpers.Extensions;
 using WProject.Library.Helpers.Log;
 using WProject.Library.Helpers.Utils.Db;
+using WProject.WebApiClasses.Data;
 using WProject.WebApiClasses.Interfaces;
 using WProject.WebApiClasses.MessanginCenter;
 
@@ -627,6 +628,7 @@ namespace WProject.Dispatcher.Connection
                     mtask.Priority = moldTask.Priority;
                     mtask.RemainingWork = moldTask.RemainingWork;
                     mtask.StageId = moldTask.StageId;
+                    mtask.TypeId = moldTask.TypeId;
 
                     if(mtaskIsNew)
                         mctx.Add(mtask);
@@ -638,7 +640,16 @@ namespace WProject.Dispatcher.Connection
                         Task = mtask.ToWebApiExtended(mctx)
                     });
 
-                    Clients.All.REFRESH_DASHBOARD_BROADCAST("Save task");
+                    var mrefdata = new RefreshDashboardInfo
+                    {
+                        Tasks = new List<WebApiClasses.Classes.Task>
+                        {
+                            mtask.ToWebApi()
+                        }
+                    };
+
+                    //nu se face broadcast la cel care a trimis
+                    Clients.AllExcept(package.FromAddress.ConnectionId).REFRESH_DASHBOARD_BROADCAST(JsonConvert.SerializeObject(mrefdata));
                 }
             }
             catch (WpException mex)
@@ -660,5 +671,61 @@ namespace WProject.Dispatcher.Connection
 
             return mres;
         }
+        public MessagingCenterResponse SaveBacklog(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                if (string.IsNullOrEmpty(package.Content))
+                    throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
+
+                var mreq = JsonConvert.DeserializeObject<SaveBacklogRequest>(package.Content);
+                
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+                    var mblog = Backlog.FromWebApi(mreq.Backlog);
+
+                    Backlog.Save(mblog, mctx);
+                    
+                    mctx.SaveChanges();
+
+                    mres.Content = JsonConvert.SerializeObject(new SaveBacklogResponse
+                    {
+                        Backlog = mblog.ToWebApi(mctx)
+                    });
+
+                    var mrefdata = new RefreshDashboardInfo
+                    {
+                        Backlogs = new List<WebApiClasses.Classes.Backlog>
+                        {
+                            mblog.ToWebApi()
+                        }
+                    };
+
+                    //nu se face broadcast la cel care a trimis
+                    Clients.AllExcept(package.FromAddress.ConnectionId).REFRESH_DASHBOARD_BROADCAST(JsonConvert.SerializeObject(mrefdata));
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
+        
     }
 }

@@ -28,44 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            WProject.UiLibrary.Style.UiStyle uiStyle1 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style1 = new WProject.UiLibrary.Style.Style();
-            WProject.UiLibrary.Style.UiStyle uiStyle2 = new WProject.UiLibrary.Style.UiStyle();
-            WProject.UiLibrary.Style.Style style2 = new WProject.UiLibrary.Style.Style();
-            this.pbColapse = new WProject.UiLibrary.Controls.WpPictureBox();
             this.flwDone = new System.Windows.Forms.FlowLayoutPanel();
             this.flwInProgress = new System.Windows.Forms.FlowLayoutPanel();
             this.flwToDo = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnAddTask = new WProject.UiLibrary.Controls.WpButton();
+            this.pbColapse = new WProject.UiLibrary.Controls.WpPictureBox();
             this.SuspendLayout();
-            // 
-            // pbColapse
-            // 
-            this.pbColapse.BackColor = System.Drawing.Color.Transparent;
-            this.pbColapse.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pbColapse.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.pbColapse.ForeColor = System.Drawing.Color.White;
-            this.pbColapse.Image = global::WProject.Properties.Resources.expand_m;
-            this.pbColapse.Location = new System.Drawing.Point(0, 6);
-            this.pbColapse.Name = "pbColapse";
-            this.pbColapse.OwnStyle = true;
-            this.pbColapse.Size = new System.Drawing.Size(24, 24);
-            this.pbColapse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            uiStyle1.ClickStyle = null;
-            uiStyle1.HoverStyle = null;
-            style1.BackColor = System.Drawing.Color.Transparent;
-            style1.BorderColor = null;
-            style1.BorderWidth = null;
-            style1.Cursor = System.Windows.Forms.Cursors.Default;
-            style1.Font = new System.Drawing.Font("Segoe UI", 12F);
-            style1.ForeColor = System.Drawing.Color.White;
-            style1.Margin = new System.Windows.Forms.Padding(3);
-            style1.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle1.NormalStyle = style1;
-            uiStyle1.SelectedStyle = null;
-            this.pbColapse.Style = uiStyle1;
-            this.pbColapse.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
-            this.pbColapse.TabIndex = 0;
-            this.pbColapse.Click += new System.EventHandler(this.pbColapse_Click);
             // 
             // flwDone
             // 
@@ -112,10 +80,43 @@
             this.flwToDo.DragEnter += new System.Windows.Forms.DragEventHandler(this.flwDragEfect_Enter);
             this.flwToDo.DragLeave += new System.EventHandler(this.flwDragEfect_Leave);
             // 
+            // btnAddTask
+            // 
+            this.btnAddTask.FlatAppearance.BorderSize = 0;
+            this.btnAddTask.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddTask.Image = global::WProject.Properties.Resources.add_w_s;
+            this.btnAddTask.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddTask.Location = new System.Drawing.Point(25, 21);
+            this.btnAddTask.Name = "btnAddTask";
+            this.btnAddTask.Selected = false;
+            this.btnAddTask.Size = new System.Drawing.Size(98, 38);
+            this.btnAddTask.TabIndex = 3;
+            this.btnAddTask.Text = "ADD";
+            this.btnAddTask.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddTask.UseVisualStyleBackColor = true;
+            this.btnAddTask.Visible = false;
+            this.btnAddTask.Click += new System.EventHandler(this.btnAddTask_Click);
+            // 
+            // pbColapse
+            // 
+            this.pbColapse.BackColor = System.Drawing.Color.White;
+            this.pbColapse.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pbColapse.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.pbColapse.ForeColor = System.Drawing.Color.Black;
+            this.pbColapse.Image = global::WProject.Properties.Resources.expand_m;
+            this.pbColapse.Location = new System.Drawing.Point(0, 6);
+            this.pbColapse.Name = "pbColapse";
+            this.pbColapse.OwnStyle = true;
+            this.pbColapse.Size = new System.Drawing.Size(24, 24);
+            this.pbColapse.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbColapse.TabIndex = 0;
+            this.pbColapse.Click += new System.EventHandler(this.pbColapse_Click);
+            // 
             // ctrlDashBoardBacklogItem
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 31F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnAddTask);
             this.Controls.Add(this.flwToDo);
             this.Controls.Add(this.flwInProgress);
             this.Controls.Add(this.pbColapse);
@@ -123,20 +124,8 @@
             this.Font = new System.Drawing.Font("Segoe UI", 14F);
             this.Name = "ctrlDashBoardBacklogItem";
             this.Size = new System.Drawing.Size(1024, 60);
-            uiStyle2.ClickStyle = null;
-            uiStyle2.HoverStyle = null;
-            style2.BackColor = System.Drawing.Color.Transparent;
-            style2.BorderColor = null;
-            style2.BorderWidth = null;
-            style2.Cursor = System.Windows.Forms.Cursors.Default;
-            style2.Font = new System.Drawing.Font("Segoe UI", 14F);
-            style2.ForeColor = System.Drawing.Color.Black;
-            style2.Margin = new System.Windows.Forms.Padding(3);
-            style2.Padding = new System.Windows.Forms.Padding(0, 0, 0, 0);
-            uiStyle2.NormalStyle = style2;
-            uiStyle2.SelectedStyle = null;
-            this.Style = uiStyle2;
             this.Load += new System.EventHandler(this.ctrlDashBoardBacklogItem_Load);
+            this.SizeChanged += new System.EventHandler(this.ctrlDashBoardBacklogItem_SizeChanged);
             this.ResumeLayout(false);
 
         }
@@ -147,5 +136,6 @@
         private System.Windows.Forms.FlowLayoutPanel flwToDo;
         private System.Windows.Forms.FlowLayoutPanel flwDone;
         private System.Windows.Forms.FlowLayoutPanel flwInProgress;
+        private UiLibrary.Controls.WpButton btnAddTask;
     }
 }

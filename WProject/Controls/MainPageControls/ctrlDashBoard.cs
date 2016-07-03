@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -23,6 +24,12 @@ namespace WProject.Controls.MainPageControls
 
         private ctrlDashBoardSprings _springs;
         private ctrlDashBoardTasks _tasks;
+
+        #endregion
+
+        #region Properties
+
+        public ctrlDashBoardTasks TasksControl => _tasks;
 
         #endregion
 
