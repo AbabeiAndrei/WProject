@@ -349,7 +349,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         
         private void OnDashBoardBacklogItemControl_Click(object sender, EventArgs eventArgs)
         {
-            UIHelper.ShowBackLogEditor(Backlog, backlog => SetBacklog(backlog));
+            UIHelper.ShowBackLogEditor(Backlog, async backlog => SetBacklog(backlog));
         }
 
         #endregion

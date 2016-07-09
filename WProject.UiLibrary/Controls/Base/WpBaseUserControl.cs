@@ -3,6 +3,7 @@ using System;
 using System.Drawing;
 using System.Windows.Forms;
 using WProject.GenericLibrary.Helpers;
+using WProject.GenericLibrary.Helpers.Log;
 using WProject.GenericLibrary.WinApi;
 using WProject.UiLibrary.Classes;
 
@@ -86,35 +87,31 @@ namespace WProject.UiLibrary.Controls.Base
         {
             if (Disposing)
                 return 0;
-            int mwp = wParam.ToInt32();
-            if (nCode >= 0 && Utils.EqualsToAny(mwp, Constants.WM_LBUTTONUP, Constants.WM_MBUTTONUP, Constants.WM_RBUTTONUP))
+            try
             {
-                Point mousePosition = PointToClient(MousePosition);
+                int mwp = wParam.ToInt32();
+                if (nCode >= 0 && Utils.EqualsToAny(mwp, Constants.WM_LBUTTONUP, Constants.WM_MBUTTONUP, Constants.WM_RBUTTONUP))
+                {
+                    Point mousePosition = PointToClient(MousePosition);
 
-                if (Visible && !ClientRectangle.Contains(mousePosition))
-                    MouseClickOutside?.Invoke(this,
-                                              new MouseEventArgs(Helpers.Utils.GetMouseButtonsFromMessage(mwp),
-                                                                 1,
-                                                                 mousePosition.X,
-                                                                 mousePosition.Y,
-                                                                 0));
+                    if (Visible && !ClientRectangle.Contains(mousePosition))
+                        MouseClickOutside?.Invoke(this,
+                                                  new MouseEventArgs(Helpers.Utils.GetMouseButtonsFromMessage(mwp),
+                                                                     1,
+                                                                     mousePosition.X,
+                                                                     mousePosition.Y,
+                                                                     0));
+                }
+
+                return User32.CallNextHookEx(hHook, nCode, wParam, lParam);
             }
-
-            return User32.CallNextHookEx(hHook, nCode, wParam, lParam);
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+                return -1;
+            }
         }
 
         #endregion
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // WpBaseUserControl
-            // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Name = "WpBaseUserControl";
-            this.ResumeLayout(false);
-
-        }
     }
 }

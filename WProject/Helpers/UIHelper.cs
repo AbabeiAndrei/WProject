@@ -181,13 +181,14 @@ namespace WProject.Helpers
             ShowControlInForm(mc, ShowInFormControlSize.ControlSize, parentForm: parentForm);
         }
 
-        public static void ShowBackLogEditor(Backlog backlog, Action<Backlog> onSave = null, Action onClose = null, Form parentForm = null)
+        public static void ShowBackLogEditor(Backlog backlog, Func<Backlog, Task> onSave = null, Action onClose = null, Form parentForm = null)
         {
             var mc = new ctrlBacklogEditor(backlog);
 
-            mc.OnSave = mbacklog =>
+            mc.OnSave = async mbacklog =>
             {
-                onSave?.Invoke(mbacklog);
+                if(onSave != null)
+                    await onSave(mbacklog);
 
                 mc.ParentForm?.Close();
             };

@@ -29,6 +29,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utils", "Utils", "{0D17A1F0
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WProject.DesktopUtils", "WProject.DesktopUtils\WProject.DesktopUtils.csproj", "{B439DF50-92BB-413F-BB2A-1F536C906A4D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{B606E01C-C3B6-492A-9A70-4D16F3E01ABE}"
+	ProjectSection(SolutionItems) = preProject
+		Doc\Lucrare.docx = Doc\Lucrare.docx
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
