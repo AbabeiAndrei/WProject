@@ -1,6 +1,6 @@
 ﻿namespace WProject.Controls.MainPageControls
 {
-    partial class ctrlTimeLine
+    sealed partial class ctrlTimeLine
     {
         /// <summary> 
         /// Required designer variable.

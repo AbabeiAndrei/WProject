@@ -21,6 +21,8 @@ DASHBOARD
 	filtre
 	chat in springs
 	mesaje in edit backlog
+	refresh task (control) dupa edit
+	background dropDown user in card task dupa editare utilizator din formular task
 TIMELINE
 	implementare
 CHATS

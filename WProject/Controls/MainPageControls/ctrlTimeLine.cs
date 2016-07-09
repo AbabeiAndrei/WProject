@@ -7,13 +7,15 @@ using WProject.WebApiClasses.Classes;
 
 namespace WProject.Controls.MainPageControls
 {
-    public partial class ctrlTimeLine : MainPageControl
+    public sealed partial class ctrlTimeLine : MainPageControl
     {
         #region Constructors
 
         public ctrlTimeLine()
         {
             InitializeComponent();
+
+            StatusBarVisibility.Visible = false;
         }
 
         #endregion
