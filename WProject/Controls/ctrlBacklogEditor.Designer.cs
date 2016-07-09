@@ -32,6 +32,8 @@ namespace WProject.Controls
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ctrlBacklogEditor));
             this.pnlTop = new WProject.UiLibrary.Controls.WpPanel();
+            this.lblAssigned = new WProject.UiLibrary.Controls.WpLabel();
+            this.lblState = new WProject.UiLibrary.Controls.WpLabel();
             this.btnCopy = new WProject.UiLibrary.Controls.WpButton();
             this.ddState = new WProject.UiLibrary.Controls.WpDropDown<DictItem>();
             this.ddUser = new WProject.UiLibrary.Controls.WpDropDown<User>();
@@ -55,6 +57,8 @@ namespace WProject.Controls
             // pnlTop
             // 
             this.pnlTop.BackColor = System.Drawing.Color.Transparent;
+            this.pnlTop.Controls.Add(this.lblAssigned);
+            this.pnlTop.Controls.Add(this.lblState);
             this.pnlTop.Controls.Add(this.btnCopy);
             this.pnlTop.Controls.Add(this.ddState);
             this.pnlTop.Controls.Add(this.ddUser);
@@ -73,6 +77,28 @@ namespace WProject.Controls
             this.pnlTop.OwnStyle = false;
             this.pnlTop.Size = new System.Drawing.Size(874, 73);
             this.pnlTop.TabIndex = 0;
+            // 
+            // lblAssigned
+            // 
+            this.lblAssigned.Location = new System.Drawing.Point(230, 38);
+            this.lblAssigned.Name = "lblAssigned";
+            this.lblAssigned.Selected = false;
+            this.lblAssigned.Size = new System.Drawing.Size(95, 24);
+            this.lblAssigned.Style = null;
+            this.lblAssigned.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
+            this.lblAssigned.TabIndex = 8;
+            this.lblAssigned.Text = "Assigned to";
+            // 
+            // lblState
+            // 
+            this.lblState.Location = new System.Drawing.Point(23, 38);
+            this.lblState.Name = "lblState";
+            this.lblState.Selected = false;
+            this.lblState.Size = new System.Drawing.Size(45, 24);
+            this.lblState.Style = null;
+            this.lblState.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
+            this.lblState.TabIndex = 7;
+            this.lblState.Text = "State";
             // 
             // btnCopy
             // 
@@ -97,7 +123,7 @@ namespace WProject.Controls
             this.ddState.ForeColor = System.Drawing.Color.Black;
             this.ddState.ImageMember = null;
             this.ddState.ItemStyle = ((WProject.UiLibrary.Style.UiStyle)(resources.GetObject("ddState.ItemStyle")));
-            this.ddState.Location = new System.Drawing.Point(23, 39);
+            this.ddState.Location = new System.Drawing.Point(74, 39);
             this.ddState.Name = "ddState";
             this.ddState.SelectedIndex = 0;
             this.ddState.ShowImage = false;
@@ -116,7 +142,7 @@ namespace WProject.Controls
             this.ddUser.ForeColor = System.Drawing.Color.Black;
             this.ddUser.ImageMember = null;
             this.ddUser.ItemStyle = ((WProject.UiLibrary.Style.UiStyle)(resources.GetObject("ddUser.ItemStyle")));
-            this.ddUser.Location = new System.Drawing.Point(200, 39);
+            this.ddUser.Location = new System.Drawing.Point(331, 39);
             this.ddUser.Name = "ddUser";
             this.ddUser.SelectedIndex = 0;
             this.ddUser.ShowImage = false;
@@ -308,6 +334,7 @@ namespace WProject.Controls
             this.txtDesc.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtDesc.ForeColor = System.Drawing.Color.Black;
             this.txtDesc.Location = new System.Drawing.Point(0, 73);
+            this.txtDesc.Margin = new System.Windows.Forms.Padding(6);
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.OwnStyle = false;
             this.txtDesc.Size = new System.Drawing.Size(511, 320);
@@ -349,5 +376,7 @@ namespace WProject.Controls
         private UiLibrary.Controls.WpTextEditor txtDesc;
         private UiLibrary.Controls.WpDropDown<DictItem> ddState;
         private UiLibrary.Controls.WpButton btnCopy;
+        private UiLibrary.Controls.WpLabel lblState;
+        private UiLibrary.Controls.WpLabel lblAssigned;
     }
 }

@@ -1,0 +1,31 @@
+GENERAL
+	buton (WpButton) login
+	checkbox (WpCheckBox) login
+	flag show selected page on paint
+	cautare
+	notificari
+	profil
+	fisiere in chat
+DASHBOARD
+	imagine transparenta expand backlog
+	refresh backlogs dupa adaugare
+	ordine controale backlogs
+	padding editare backlog
+	update user din controlul din BacklogItems al userului (ddUser)
+	culoare backlog (blue ribbon) chiar daca acesta nu este setat
+	label from to spring (category)
+	grafic
+	info button (sus icon)
+	settings button
+	full screen button
+	filtre
+	chat in springs
+	mesaje in edit backlog
+TIMELINE
+	implementare
+CHATS
+	implementare
+ADMIN
+	implementare
+HELP
+	implementare

@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using WProject.Controls;
 using WProject.Controls.MainPageControls;
 using WProject.GenericLibrary.Constants;
 using WProject.GenericLibrary.Exceptions;
+using WProject.GenericLibrary.Helpers.Drawing;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.GenericLibrary.WinApi;
 using WProject.UiLibrary.Annotations;
 using WProject.UiLibrary.Controls;
+using WProject.UiLibrary.Helpers;
+using WProject.UiLibrary.Style;
 using WProject.UiLibrary.Theme;
 using WProject.WebApiClasses.Classes;
 using Task = System.Threading.Tasks.Task;
@@ -93,22 +97,54 @@ namespace WProject.Helpers
             Environment.Exit(0);
         }
 
+        public static void UpdateStatusBarTexts()
+        {
+            MainPanel.UpdateStatusBar();
+        }
+
+        public static int GetTopMostItem(Control panel, Direction direction)
+        {
+            var mcl = panel.Controls
+                        .OfType<Control>();
+
+
+            IEnumerable<int> mlv;
+            switch (direction)
+            {
+                case Direction.Left:
+                    mlv = mcl.Select(c => c.Left);
+                    break;
+                case Direction.Up:
+                    mlv = mcl.Select(c => c.Top);
+                    break;
+                case Direction.Right:
+                    mlv = mcl.Select(c => c.Right);
+                    break;
+                case Direction.Down:
+                    mlv = mcl.Select(c => c.Bottom);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(direction), direction, null);
+            }
+
+            if (direction == Direction.Up || direction == Direction.Left)
+                return mlv.DefaultIfEmpty(0).Min();
+
+            return mlv.DefaultIfEmpty(0).Max();
+        }
+
         #endregion
 
         #region Forms
 
         public static void ShowError(WpException exception, Form parent = null)
         {
-            ShowError("ERROR : " + exception.Message + "\n" +
-                      "ERROR CODE : " + exception.ErrorCode + "\n" +
-                      (!string.IsNullOrEmpty(exception.Metadata) ? "METADATA : " + exception.Metadata : string.Empty),
-                      parent);
+            ShowError("ERROR : " + exception.Message + "\n" + "ERROR CODE : " + exception.ErrorCode + "\n" + (!string.IsNullOrEmpty(exception.Metadata) ? "METADATA : " + exception.Metadata : string.Empty), parent);
         }
 
         public static void ShowError(Exception exception, Form parent = null)
         {
-            ShowError("ERROR : " + exception.Message + "\n",
-                      parent);
+            ShowError("ERROR : " + exception.Message + "\n", parent);
         }
 
         public static void ShowError(string error, Form parent = null)
@@ -154,11 +190,7 @@ namespace WProject.Helpers
                 _loaderControl.Visible = false;
         }
 
-        public static void ShowTaskEditor(WebApiClasses.Classes.Task task,
-                                          Func<WebApiClasses.Classes.Task, Task> onSave,
-                                          Action onClose = null,
-                                          Action onFollow = null,
-                                          Form parentForm = null)
+        public static void ShowTaskEditor(WebApiClasses.Classes.Task task, Func<WebApiClasses.Classes.Task, Task> onSave, Action onClose = null, Action onFollow = null, Form parentForm = null)
         {
             var mc = new ctrlTaskEditor(task);
 
@@ -187,7 +219,7 @@ namespace WProject.Helpers
 
             mc.OnSave = async mbacklog =>
             {
-                if(onSave != null)
+                if (onSave != null)
                     await onSave(mbacklog);
 
                 mc.ParentForm?.Close();
@@ -204,22 +236,17 @@ namespace WProject.Helpers
             ShowControlInForm(mc, ShowInFormControlSize.ControlSize, parentForm: parentForm);
         }
 
-        public static void ShowControlInForm(Control control,
-                                             ShowInFormControlSize size,
-                                             Color? borderColor = null,
-                                             Form parentForm = null)
+        public static void ShowControlInForm(Control control, ShowInFormControlSize size, Color? borderColor = null, Form parentForm = null)
         {
             var mform = new ChildForm(borderColor ?? WpThemeColors.Purple)
             {
-                FormBorderStyle = FormBorderStyle.None,
-                StartPosition = FormStartPosition.CenterParent
+                FormBorderStyle = FormBorderStyle.None, StartPosition = FormStartPosition.CenterParent
             };
 
             if (size == ShowInFormControlSize.MainFormSize)
                 mform.Size = Program.MainForm.Size;
             else
-                mform.Size = control.Size +
-                             new Size((int) mform.BorderWidth*2, (int) mform.BorderWidth + mform.TitleHeight);
+                mform.Size = control.Size + new Size((int) mform.BorderWidth*2, (int) mform.BorderWidth + mform.TitleHeight);
 
             control.Location = new Point((int) mform.BorderWidth, mform.TitleHeight);
             control.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
@@ -234,7 +261,6 @@ namespace WProject.Helpers
             }
             else
                 mform.ShowDialog();
-
         }
 
         private static void ChildFormPaint(object sender, PaintEventArgs e)
@@ -243,14 +269,12 @@ namespace WProject.Helpers
             if (mchildForm == null || !mchildForm.DrawBorder)
                 return;
 
-            e.Graphics.FillRectangle(mchildForm.BorderBrush,
-                                     new Rectangle(0, 0, mchildForm.Width, mchildForm.TitleHeight));
+            e.Graphics.FillRectangle(mchildForm.BorderBrush, new Rectangle(0, 0, mchildForm.Width, mchildForm.TitleHeight));
             e.Graphics.DrawRectangle(mchildForm.BorderPen, mchildForm.DrawBorderRect);
-
         }
 
         #endregion
-        
+
         #region Connection methods
 
         public static async Task PerformLogout()
@@ -265,7 +289,6 @@ namespace WProject.Helpers
                 return;
 
             await mctrl.RefreshTasks();
-
         }
 
         public static void ExecuteServerMethod(string data, Action action, string method)
@@ -290,5 +313,29 @@ namespace WProject.Helpers
 
         #endregion
 
+        #region Default method themes
+
+        public static void SetStylForDropDowns(params WpStyledControl[] dropDowns)
+        {
+            if (dropDowns == null)
+                return;
+
+            var mstyle = new UiStyle
+            {
+                NormalStyle = new Style
+                {
+                    BackColor = Color.Transparent, ForeColor = Color.Black, Padding = new Padding(0, 3, 0, 0), BorderColor = WpThemeColors.Teal.SetOpacity(60), BorderWidth = 1f
+                },
+                HoverStyle = new Style
+                {
+                    BackColor = Color.Transparent, ForeColor = Color.Black, Padding = new Padding(0, 3, 0, 0), BorderColor = WpThemeColors.Teal, BorderWidth = 1f, Cursor = Cursors.Hand
+                }
+            };
+
+            foreach (var mdropDown in dropDowns.Where(dd => dd != null))
+                mdropDown.Style = mstyle.Clone();
+        }
+
+        #endregion
     }
 }

@@ -22,8 +22,20 @@ namespace WProject.Controls.MainPageControls.DashboardControls
     {
         #region Properties
 
-        public IEnumerable<ctrlDashBoardBacklogItem> BacklogControls
-            => pnlBackLogs?.Controls.OfType<ctrlDashBoardBacklogItem>() ?? Enumerable.Empty<ctrlDashBoardBacklogItem>();
+        public IEnumerable<ctrlDashBoardBacklogItem> BacklogControls => pnlBackLogs?.Controls.OfType<ctrlDashBoardBacklogItem>() ?? 
+                                                                        Enumerable.Empty<ctrlDashBoardBacklogItem>();
+
+        public bool CanAddBacklog
+        {
+            get
+            {
+                return btnAdd.Visible;
+            }
+            set
+            {
+                btnAdd.Visible = value;
+            }
+        }
 
         #endregion
 
@@ -55,6 +67,26 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
         #endregion
 
+        #region Overrides of WpStyledControl
+
+        public override void ApplyStyle()
+        {
+            base.ApplyStyle();
+            
+            btnAdd?.ApplyStyle();
+        }
+
+        #endregion
+
+        #region Event handlers
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            UIHelper.ShowBackLogEditor(WPSuite.CreateBacklog(WPSuite.SelectedCategory), async backlog => UIHelper.UpdateStatusBarTexts());
+        }
+
+        #endregion
+
         #region Private methods
 
         private void ClearControls()
@@ -69,7 +101,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         {
             var mctrlbtem = new ctrlDashBoardBacklogItem(backLog)
             {
-                Size = new Size(lblDone.Right - pbAdd.Left, 56),
+                Size = new Size(lblDone.Right - btnAdd.Left, 56),
                 Dock = DockStyle.Top,
                 Margin = new Padding(0, 4, 0, 2),
                 Columns = DashBoardColumnsCollectionSize.Create(lblToDo.Width,
@@ -135,6 +167,8 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
             backlog.Tasks = mltasks;
 
+            UIHelper.UpdateStatusBarTexts();
+
             afterSave?.Invoke();
         }
 
@@ -162,6 +196,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                     throw mres.Exception;
 
                 pnlBackLogs.Controls.AddRange(mres.Backlogs.Select(CreateBackLogControl).Cast<Control>().ToArray());
+                UIHelper.UpdateStatusBarTexts();
 
                 UIHelper.HideLoader();
             }
@@ -198,5 +233,6 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         }
 
         #endregion
+
     }
 }

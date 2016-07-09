@@ -36,6 +36,11 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         #region Properties
 
         public Task Task => _task;
+        public DictItem State => _task.State ?? 
+                                SimpleCache.FirstOrDefault<DictItem>(di => di.Type == DictItem.Types.TaskState && 
+                                                                           di.Code == Task.States.TO_DO_CODE);
+
+        public User OwnedBy => ddUsers.SelectedItem;
 
         #endregion
 

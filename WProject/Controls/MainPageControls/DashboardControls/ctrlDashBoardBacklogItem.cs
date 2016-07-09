@@ -9,23 +9,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WProject.Classes;
 using WProject.Connection;
-using WProject.GenericLibrary.Helpers;
 using WProject.GenericLibrary.Helpers.Drawing;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
 using WProject.Properties;
 using WProject.UiLibrary;
 using WProject.UiLibrary.Controls;
+using WProject.UiLibrary.Helpers;
 using WProject.UiLibrary.Theme;
 using WProject.WebApiClasses.Classes;
 using WProject.WebApiClasses.Data;
 using Task = WProject.WebApiClasses.Classes.Task;
+using Utils = WProject.GenericLibrary.Helpers.Utils;
 
 namespace WProject.Controls.MainPageControls.DashboardControls
 {
     public partial class ctrlDashBoardBacklogItem : WpUserControl
     {
         #region Fields
+
+        public const int MIN_HEIGHT_FOR_BACKLOG_OPEN = 160;
 
         private Backlog _backlog;
         private bool _collapsed;
@@ -98,8 +101,10 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                                                                          .Union(flwDone.Controls
                                                                                        .OfType<ctrlDashBoardTaskItem>());
 
+        public DictItem State => ctrlDashBoardBacklogItemControl?.State;
+
         #endregion
-        
+
         #region Constructors
 
         public ctrlDashBoardBacklogItem()
@@ -331,15 +336,17 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             var moldParent = mc.Parent;
             mc.Parent = mp;
 
-            if (!await ChangeTaskState(mc.Task, mp.Tag.ToString()))
+            if (!await ChangeTaskState(mc.Task, mp.Tag.ToString())) //daca nu a reusit mutarea 
                 mc.Parent = moldParent;
+            else
+                AfterTaskEdit();
 
             _onDrag = false;
         }
 
         private void btnAddTask_Click(object sender, EventArgs e)
         {
-            OnAddClick?.Invoke(Backlog, InitStuff);
+            OnAddClick?.Invoke(Backlog, InitStuff); //todo metoda de adaugare separata (de schimbat InitStuff-ul cu o metoda specializata)
         }
 
         private void ctrlDashBoardBacklogItem_SizeChanged(object sender, EventArgs e)
@@ -380,6 +387,8 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                     else if (mtask.State.Code == Task.States.DONE_CODE)
                         flwDone.Controls.Add(mc);
                 }
+
+                AfterTaskEdit();
             }
             finally
             {
@@ -410,7 +419,11 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                 var mte = sender as ctrlDashBoardTaskItem;
 
                 if (mte?.Task != null)
-                    UIHelper.ShowTaskEditor(mte.Task, async t => mte.SetTask(t), parentForm:ParentForm);
+                    UIHelper.ShowTaskEditor(mte.Task, async t =>
+                    {
+                        mte.SetTask(t);
+                        AfterTaskEdit();
+                    }, parentForm:ParentForm);
             };
 
             mtsk.MouseMove += (sender, args) =>
@@ -421,6 +434,26 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             
             return mtsk;
         }
+
+        private void AfterTaskEdit()
+        {
+            UIHelper.UpdateStatusBarTexts();
+            if(!Collapsed)
+                Height = CalculateSize();
+        }
+
+        private int CalculateSize()
+        {
+            return Math.Max(new[]
+            {
+                UIHelper.GetTopMostItem(flwToDo, Direction.Down),
+                UIHelper.GetTopMostItem(flwInProgress, Direction.Down),
+                UIHelper.GetTopMostItem(flwDone, Direction.Down)
+            }.DefaultIfEmpty(Height)
+             .Max(), MIN_HEIGHT_FOR_BACKLOG_OPEN);
+        }
+
+        
 
         private void RecalculateSize()
         {
@@ -435,15 +468,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                     Height = 60;
                     return;
                 }
-                int mheight = 150;
-                if (_backlog.Tasks != null)
-                    mheight = Math.Max(_backlog.Tasks
-                                               .GroupBy(t => t.StateId)
-                                               .Select(t => t.Count())
-                                               .DefaultIfEmpty(0)
-                                               .Max(t => t)*120,
-                                       mheight);
-                Height = mheight + 16;
+                Height = CalculateSize();
 
                 flwToDo.Width = Columns.ToDoWidth;
                 flwInProgress.Width = Columns.InProgressWitdh;
@@ -466,9 +491,12 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             {
                 Logger.Log($"Change task {task.Id} state from {task.State?.Code} to {newState}");
                 var mres = await WebCallFactory.ChangeTaskState(task.Id, newState);
-            
-                if(!mres.Error)
+
+                if (!mres.Error)
+                {
                     Logger.Log("Success!");
+                    task.State = SimpleCache.FirstOrDefault<DictItem>(di => di.IsType(DictItem.Types.TaskState) && di.Code == newState);
+                }
 
                 return !mres.Error;
             }
@@ -515,6 +543,8 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                 flwInProgress.Controls.Add(mc);
             else if (mnewState.Code == Task.States.DONE_CODE)
                 flwDone.Controls.Add(mc);
+
+            AfterTaskEdit();
         }
 
         public void SetTaskState(Task task, int stateId)
@@ -538,6 +568,8 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                 mctrl.Parent = flwDone;
             else if (mnewState.Code == Task.States.REMOVED_CODE)
                 mctrl.Dispose();
+
+            AfterTaskEdit();
         }
 
         public void SetBacklog(Backlog backlog)

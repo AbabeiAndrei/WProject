@@ -221,6 +221,11 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                     tvSprings.SelectedNode = mmn;
                 }
 
+                if (Settings.Default.LastSelectedCategoryId != 0)
+                    WPSuite.SelectedCategory = mres.Springs
+                                                   .SelectMany(s => s.Categories)
+                                                   .FirstOrDefault(c => c.Id == Settings.Default.LastSelectedCategoryId);
+
                 UIHelper.HideLoader();
             }
             catch (Exception mex)

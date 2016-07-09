@@ -125,6 +125,11 @@ namespace WProject.Controls
                        : null;
         }
 
+        public void UpdateStatusBar()
+        {
+            UIHelper.StatusBar.SetTexts(_controls[SelectedPage].StatusBarTexts);
+        }
+
         #endregion
     }
 }

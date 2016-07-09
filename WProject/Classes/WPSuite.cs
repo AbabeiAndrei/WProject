@@ -35,5 +35,22 @@ namespace WProject.Classes
                               .FirstOrDefault(di => di.Type == DictItem.Types.TaskType && di.Code == Task.Types.TASK)?
                               .Id ?? 0;
         }
+
+        public static Backlog CreateBacklog(Category category)
+        {
+            return new Backlog
+            {
+                CategoryId = category.Id,
+                CreatedAt = DateTime.Now,
+                CreatedById = ConnectedUserId,
+                TypeId = GetBacklogTypeId()
+            };
+        }
+        private static int GetBacklogTypeId()
+        {
+            return SimpleCache.GetAll<DictItem>()
+                              .FirstOrDefault(di => di.Type == DictItem.Types.BacklogType && di.Code == Backlog.Types.BACKLOG)?
+                              .Id ?? 0;
+        }
     }
 }

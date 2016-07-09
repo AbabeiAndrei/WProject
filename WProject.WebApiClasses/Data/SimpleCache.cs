@@ -18,6 +18,11 @@ namespace WProject.WebApiClasses.Data
             _items = new Dictionary<string, List<object>>();
         }
 
+        public static T FirstOrDefault<T>(Predicate<T> predicate) where T : TableNameble
+        {
+            return GetAll<T>().FirstOrDefault(t => predicate(t));
+        }
+
         public static IList<T> GetAll<T>() where T : TableNameble
         {
             try

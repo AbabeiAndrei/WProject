@@ -84,15 +84,18 @@ namespace WProject.Controls
         public override void ApplyStyle()
         {
             base.ApplyStyle();
-            
-            ApplyStyleToAllButtons(this);
+
+            if (btnCopy != null)
+                ApplyStyleToAllButtons(this, btnCopy.Name);
+
+            UIHelper.SetStylForDropDowns(ddUser, ddState);
         }
 
         #endregion
 
         #region Overrides of WpUserControl
 
-        protected override async void OnLoad(EventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
 
@@ -118,7 +121,7 @@ namespace WProject.Controls
 
         #endregion
 
-        #region Events
+        #region Events handlers
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
@@ -181,6 +184,10 @@ namespace WProject.Controls
                 ParentForm.Text = _backlog.Id != 0 
                                     ? $"Edit backlog {_backlog.Id}" 
                                     : "Create new backlog";
+
+            lblBacklogId.Text = _backlog.Id != 0
+                                    ? $"Backlog {_backlog.Id}"
+                                    : "Create backlog";
 
             txtName.Text = _backlog.Name;
             txtDesc.Text = _backlog.Description;

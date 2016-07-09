@@ -61,5 +61,20 @@ namespace WProject.WebApiClasses.Classes
         public new static string TableName => TABLE_NAME;
 
         public string FullName => $"Backlog {Id}";
+
+        public static class Types
+        {
+            public const string BACKLOG = "BACKLOG";
+            public const string BACKLOG_BUG = "BACKLOG_BUG";
+        }
+
+        public static class States
+        {
+            public const string BCK_STATE_TO_DO = "BCK_STATE_TO_DO";
+            public const string BCK_STATE_IN_PROGR = "BCK_STATE_IN_PROGR";
+            public const string BCK_STATE_REMOVED = "BCK_STATE_REMOVED";
+            public const string BCK_STATE_DONE = "BCK_STATE_DONE";
+
+        }
     }
 }

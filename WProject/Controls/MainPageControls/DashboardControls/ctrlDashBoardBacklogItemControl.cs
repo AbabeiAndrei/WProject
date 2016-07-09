@@ -56,8 +56,32 @@ namespace WProject.Controls.MainPageControls.DashboardControls
             }
         }
 
+        public DictItem State => ddStates?.SelectedItem ??
+                                 Backlog?.State ??
+                                 (Backlog != null
+                                     ? SimpleCache.FirstOrDefault<DictItem>(di => di.Id == Backlog?.StateId)
+                                     : null);
+
         #endregion
-        
+
+        #region Events
+
+        public new event EventHandler Click
+        {
+            add
+            {
+                lblName.Click += value;
+                base.Click += value;
+            }
+            remove
+            {
+                lblName.Click -= value;
+                base.Click -= value;
+            }
+        }
+
+        #endregion
+
         #region Constructors
 
         public ctrlDashBoardBacklogItemControl()
@@ -95,7 +119,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         }
 
         #endregion
-
+        
         #region Overrides of WpStyledControl
 
         protected override void OnPaint(PaintEventArgs e)
@@ -131,7 +155,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
         #endregion
 
-        #region Events
+        #region Event handlers
 
         private async void DdStatesOnSelectedItemChanged(object sender, SelectedItemChangeHandlerArgs args)
         {
@@ -142,6 +166,8 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
                 if (mres.Error)
                     throw mres.Exception;
+
+                UIHelper.UpdateStatusBarTexts();
 
                 Logger.Log("Success!");
             }

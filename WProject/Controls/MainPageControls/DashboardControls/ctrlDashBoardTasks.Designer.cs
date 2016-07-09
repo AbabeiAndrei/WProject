@@ -42,7 +42,7 @@
             this.lblToDo = new WProject.UiLibrary.Controls.WpLabel();
             this.lblInProgress = new WProject.UiLibrary.Controls.WpLabel();
             this.lblDone = new WProject.UiLibrary.Controls.WpLabel();
-            this.pbAdd = new WProject.UiLibrary.Controls.WpPictureBox();
+            this.btnAdd = new WProject.UiLibrary.Controls.WpButton();
             this.pnlTop.SuspendLayout();
             this.flwRight.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -176,10 +176,10 @@
             // 
             // pnlHeader
             // 
+            this.pnlHeader.Controls.Add(this.btnAdd);
             this.pnlHeader.Controls.Add(this.lblToDo);
             this.pnlHeader.Controls.Add(this.lblInProgress);
             this.pnlHeader.Controls.Add(this.lblDone);
-            this.pnlHeader.Controls.Add(this.pbAdd);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
             this.pnlHeader.Name = "pnlHeader";
@@ -231,19 +231,19 @@
             this.lblDone.Text = "Done";
             this.lblDone.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
             // 
-            // pbAdd
+            // btnAdd
             // 
-            this.pbAdd.BackColor = System.Drawing.Color.Transparent;
-            this.pbAdd.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pbAdd.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.pbAdd.ForeColor = System.Drawing.Color.White;
-            this.pbAdd.Image = global::WProject.Properties.Resources.add_m;
-            this.pbAdd.Location = new System.Drawing.Point(3, 6);
-            this.pbAdd.Name = "pbAdd";
-            this.pbAdd.OwnStyle = false;
-            this.pbAdd.Size = new System.Drawing.Size(54, 54);
-            this.pbAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pbAdd.TabIndex = 3;
+            this.btnAdd.BackColor = System.Drawing.Color.DarkGray;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Image = global::WProject.Properties.Resources.add_m;
+            this.btnAdd.Location = new System.Drawing.Point(5, 6);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Selected = false;
+            this.btnAdd.Size = new System.Drawing.Size(52, 52);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // ctrlDashBoardTasks
             // 
@@ -273,10 +273,10 @@
         private UiLibrary.Controls.WpPictureBox pbFiltre;
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Panel pnlHeader;
-        private UiLibrary.Controls.WpPictureBox pbAdd;
         private UiLibrary.Controls.WpLabel lblToDo;
         private UiLibrary.Controls.WpLabel lblDone;
         private UiLibrary.Controls.WpLabel lblInProgress;
         private System.Windows.Forms.Panel pnlBackLogs;
+        private UiLibrary.Controls.WpButton btnAdd;
     }
 }

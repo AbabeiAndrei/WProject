@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WProject.Classes;
@@ -79,6 +80,8 @@ namespace WProject.Controls.MainPageControls
 
             Settings.Default.Save();
 
+            _tasks.CanAddBacklog = Settings.Default.LastSelectedCategoryId != 0;
+
             await _tasks.LoadTasks(spring, category);
         }
 
@@ -104,9 +107,9 @@ namespace WProject.Controls.MainPageControls
 
         public override string[] StatusBarTexts => new[]
         {
-            "0 Tasks in queue",
-            "1 Task in progress",
-            "25 Tasks completed today"
+            GetCountTasks(WebApiClasses.Classes.Task.States.TO_DO_CODE, "in to do"),
+            GetCountTasks(WebApiClasses.Classes.Task.States.IN_PROGRESS_CODE, "in progress"),
+            GetCountTasks(WebApiClasses.Classes.Task.States.DONE_CODE, "done")
         };
 
         #endregion
@@ -134,12 +137,44 @@ namespace WProject.Controls.MainPageControls
             }
         }
 
+        private string GetCountTasks(string taskState, string state)
+        {
+            var mcount = _tasks.BacklogControls
+                               .Where(bc =>
+                               {
+                                   var mstate = bc?.State;
+                                   if (mstate == null)
+                                       return false;
+
+                                   return mstate.Code == Backlog.States.BCK_STATE_TO_DO ||
+                                          mstate.Code == Backlog.States.BCK_STATE_IN_PROGR;
+                               })
+                               .SelectMany(bc => bc.TaskControls)
+                               .Count(tc => tc.OwnedBy?.Id == WPSuite.ConnectedUserId &&
+                                            tc.State?.Code == taskState);
+
+            if (mcount == 0)
+                return "No task " + state;
+
+            string mtask = "tasks";
+
+            if (mcount == 1)
+                mtask = "task";
+
+            return $"{mcount} {mtask} {state}";
+        }
+
         #endregion
+
+        #region Public methods
 
         public async Task RefreshTasks()
         {
             await _tasks.LoadTasks(WPSuite.SelectedSpring, WPSuite.SelectedCategory);
         }
+
+        #endregion
+
     }
     
 }

@@ -116,6 +116,8 @@ namespace WProject.Controls
 
             if(btnCopy != null)
                 ApplyStyleToAllButtons(this, btnCopy.Name);
+            
+            UIHelper.SetStylForDropDowns(ddUser, ddState);
         }
 
         #endregion

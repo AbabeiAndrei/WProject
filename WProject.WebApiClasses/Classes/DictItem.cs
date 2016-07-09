@@ -37,6 +37,11 @@ namespace WProject.WebApiClasses.Classes
 
         public DictItem Parent { get; set; }
 
+        public bool IsType(string type)
+        {
+            return OfType(this, type);
+        }
+
         public new static string TableName => TABLE_NAME;
 
         public static class Types
@@ -52,6 +57,11 @@ namespace WProject.WebApiClasses.Classes
             public static string TaskActivity => TSK_ACTIVITY;
             public static string BacklogType => BCK_TYPE;
             public static string BacklogState => BCK_STATE;
+        }
+
+        public static bool OfType(DictItem di, string type)
+        {
+            return di.Type == type;
         }
     }
 }
