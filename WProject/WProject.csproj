@@ -196,6 +196,12 @@
     <Compile Include="Controls\MainPageControls\Task Editor Controls\ctrlTaskHistoryItem.Designer.cs">
       <DependentUpon>ctrlTaskHistoryItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRowHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRowHeader.Designer.cs">
+      <DependentUpon>ctrlTimeLineRowHeader.cs</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\Convertors.cs" />
     <Compile Include="Helpers\UIEnums.cs" />
     <Compile Include="Helpers\UIHelper.cs" />

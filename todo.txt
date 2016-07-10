@@ -1,4 +1,6 @@
 GENERAL
+	adaugare camp zile in backlog
+	adaugare camp ore de lucru in task
 	buton (WpButton) login
 	checkbox (WpCheckBox) login
 	flag show selected page on paint
