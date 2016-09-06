@@ -5,7 +5,7 @@ using System.Web;
 
 namespace WProject.WebApiClasses.MessanginCenter
 {
-    public class MessagingCenterPackage
+    public class MessagingCenterPackage : IRequest, IFromAddress
     {
         public string Method { get; set; }
 

@@ -44,20 +44,13 @@ namespace WProject.Dispatcher
 #endif
         }
     }
-    
-    class Startup
+
+    internal class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             app.UseCors(CorsOptions.AllowAll);
-            var hubConfiguration = new HubConfiguration
-            {
-#if DEBUG
-                EnableDetailedErrors = true
-#else
-                EnableDetailedErrors = false
-#endif
-            };
+            var hubConfiguration = new HubConfiguration();
             app.MapSignalR(hubConfiguration);
         }
     }

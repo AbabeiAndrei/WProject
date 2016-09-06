@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace WProject.WebApiClasses.MessanginCenter
 {
-    public class MessagingAddress : IMessagingAddress
+    public interface IRequest
     {
-        public string ConnectionId { get; set; }
-        public string Ip { get; set; }
+        string Method { get; }
+
+        string Content { get; }
     }
 }

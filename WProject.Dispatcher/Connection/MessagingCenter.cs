@@ -18,7 +18,7 @@ namespace WProject.Dispatcher.Connection
 {
     public partial class MessagingCenter : Hub
     {
-        #region Fields
+        #region Constants
 
         public const int MAXIMUM_NUMBER_CONNECTIONS = 2;
 

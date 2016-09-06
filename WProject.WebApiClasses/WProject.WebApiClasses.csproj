@@ -63,7 +63,11 @@
     <Compile Include="Data\SimpleCache.cs" />
     <Compile Include="Interfaces\ITableNameble.cs" />
     <Compile Include="MessanginCenter\Classes.cs" />
-    <Compile Include="MessanginCenter\IMessangingCenterResponse.cs" />
+    <Compile Include="MessanginCenter\Interfaces\IFromAddress.cs" />
+    <Compile Include="MessanginCenter\Interfaces\IMessagingAddress.cs" />
+    <Compile Include="MessanginCenter\Interfaces\IMessangingCenterResponse.cs" />
+    <Compile Include="MessanginCenter\Interfaces\IRequest.cs" />
+    <Compile Include="MessanginCenter\Interfaces\IResponse.cs" />
     <Compile Include="MessanginCenter\MessagingAddress.cs" />
     <Compile Include="MessanginCenter\MessagingCenterErrors.cs" />
     <Compile Include="MessanginCenter\MessagingCenterPackage.cs" />

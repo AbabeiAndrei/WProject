@@ -57,8 +57,8 @@ namespace WProject.Controls.MainPageControls
 
         protected override void OnPaint(PaintEventArgs e)
         {
-            /*if(Visible)
-                e.Graphics.DrawString(Page.ToString().ToUpper(), Font, new SolidBrush(Color.Black), PointF.Empty);*/
+            if(Visible)
+                e.Graphics.DrawString(Page.ToString().ToUpper(), Font, new SolidBrush(Color.Black), PointF.Empty);
             base.OnPaint(e);
         }
 

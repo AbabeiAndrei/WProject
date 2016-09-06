@@ -3,7 +3,7 @@ using WProject.GenericLibrary.Exceptions;
 
 namespace WProject.WebApiClasses.MessanginCenter
 {
-    public class MessagingCenterResponse
+    public class MessagingCenterResponse : IResponse
     {
         public string Content { get; set; }
         public int ErrorCode { get; set; }
