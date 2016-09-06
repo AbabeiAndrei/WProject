@@ -88,7 +88,14 @@ namespace WProject.WebApiClasses.Data
             public static User GetUserById(int userId)
             {
                 return userId != 0 
-                        ? GetAll<User>().FirstOrDefault(u => u.Id == userId) 
+                        ? FirstOrDefault<User>(u => u.Id == userId) 
+                        : null;
+            }
+
+            public static DictItem GetDictItemById(int dictItemId)
+            {
+                return dictItemId != 0
+                        ? FirstOrDefault<DictItem>(di => di.Id == dictItemId)
                         : null;
             }
         }

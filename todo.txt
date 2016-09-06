@@ -9,7 +9,6 @@ GENERAL
 	profil
 	fisiere in chat
 DASHBOARD
-	imagine transparenta expand backlog
 	refresh backlogs dupa adaugare
 	ordine controale backlogs
 	padding editare backlog

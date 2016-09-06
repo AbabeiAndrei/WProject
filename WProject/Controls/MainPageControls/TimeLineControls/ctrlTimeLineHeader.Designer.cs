@@ -1,6 +1,6 @@
-﻿namespace WProject.UiLibrary.Controls
+﻿namespace WProject.Controls.MainPageControls.TimeLineControls
 {
-    partial class WpPictureBox
+    partial class ctrlTimeLineHeader
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ctrlTimeLineHeader
+            // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Name = "ctrlTimeLineHeader";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

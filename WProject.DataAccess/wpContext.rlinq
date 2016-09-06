@@ -475,6 +475,15 @@
         <orm:field name="_metadata" property="Metadata" behavior="readwrite" uniqueId="ccd89dc1-be31-40b1-b506-8e4fc35f58ed" type="System.String">
           <orm:column name="metadata" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         </orm:field>
+        <orm:field name="_workDate" property="WorkDate" behavior="readwrite" uniqueId="e2537b2f-0509-4279-85f7-1e2c6f9bf89d" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="work_date" sql-type="date" nullable="true" length="0" scale="0" ado-type="Date" />
+        </orm:field>
+        <orm:field name="_startHour" property="StartHour" behavior="readwrite" uniqueId="639bd3a1-0780-4539-8e23-054a59482dfa" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="start_hour" sql-type="time" nullable="true" length="0" scale="0" ado-type="Time" />
+        </orm:field>
+        <orm:field name="_endHour" property="EndHour" behavior="readwrite" uniqueId="60b4bdb1-1046-475b-8cf7-8f2c522a815f" type="System.Nullable`1[[System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]]">
+          <orm:column name="end_hour" sql-type="time" nullable="true" length="0" scale="0" ado-type="Time" />
+        </orm:field>
         <orm:field name="_backlog" property="Backlog" behavior="readwrite" uniqueId="9a25bed6-73aa-4373-aef7-58904024865e" type="WProject.DataAccess.Backlog">
           <orm:reference uniqueId="4cc92da5-f991-460c-9aaf-332d2ebc97f2" association-name="TaskHasBacklog">
             <orm:sharedfield name="_backlogId" target-class="WProject.DataAccess.Backlog" target-field="_id" />
@@ -1610,6 +1619,9 @@
         <orm:column name="description" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
         <orm:column name="deleted" sql-type="tinyint" nullable="true" length="0" scale="0" ado-type="Byte" />
         <orm:column name="metadata" sql-type="longtext" nullable="true" length="0" scale="0" ado-type="UnicodeStringInfiniteLength" />
+        <orm:column name="work_date" sql-type="date" nullable="true" length="0" scale="0" ado-type="Date" />
+        <orm:column name="start_hour" sql-type="time" nullable="true" length="0" scale="0" ado-type="Time" />
+        <orm:column name="end_hour" sql-type="time" nullable="true" length="0" scale="0" ado-type="Time" />
         <orm:constraint name="task_backlog_FK_backlog_id" delete-action="dbdefaultrule" destination-table="backlog">
           <orm:column name="backlog_id" sql-type="integer" nullable="false" length="0" scale="0" ado-type="Int32" />
         </orm:constraint>
@@ -2462,6 +2474,9 @@
       <Property Id="cfa822fd-d5b8-410e-8358-888e229e2ecf" name="StateId" type="Int32" label="StateId : Int32" kind="Persistent" fieldName="_stateId" />
       <Property Id="b146b285-68fd-4a77-8069-4a6d29249993" name="TypeId" type="Int32" label="TypeId : Int32" kind="Persistent" fieldName="_typeId" />
       <Property Id="ccd89dc1-be31-40b1-b506-8e4fc35f58ed" name="Metadata" label="Metadata : String" kind="Persistent" fieldName="_metadata" />
+      <Property Id="e2537b2f-0509-4279-85f7-1e2c6f9bf89d" name="WorkDate" type="DateTime" label="WorkDate : DateTime" nullable="true" kind="Persistent" fieldName="_workDate" />
+      <Property Id="639bd3a1-0780-4539-8e23-054a59482dfa" name="StartHour" type="DateTime" label="StartHour : DateTime" nullable="true" kind="Persistent" fieldName="_startHour" />
+      <Property Id="60b4bdb1-1046-475b-8cf7-8f2c522a815f" name="EndHour" type="DateTime" label="EndHour : DateTime" nullable="true" kind="Persistent" fieldName="_endHour" />
       <AssociationTargets>
         <Association Id="4cc92da5-f991-460c-9aaf-332d2ebc97f2" SourceMultiplicity="One" name="TaskHasBacklog">
           <DomainClassMoniker name="/wpContext/Backlog" />

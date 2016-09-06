@@ -57,6 +57,12 @@
     <Compile Include="Classes\ChatMessage.cs" />
     <Compile Include="Classes\EventArgs.cs" />
     <Compile Include="Classes\FileItem.cs" />
+    <Compile Include="Components\GraphicalOverlay.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Components\GraphicalOverlay.Designer.cs">
+      <DependentUpon>GraphicalOverlay.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Base\WpBaseUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

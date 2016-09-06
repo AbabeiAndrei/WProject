@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Telerik.OpenAccess.FetchOptimization;
+using WProject.GenericLibrary.Helpers;
 using WProject.GenericLibrary.Helpers.Extensions;
 
 namespace WProject.DataAccess
@@ -55,6 +56,9 @@ namespace WProject.DataAccess
                     From = task.PeriodFrom,
                     To = task.PeriodTo,
                     RemainingWork = task.RemainingWork,
+                    WorkDate = task.WorkDate,
+                    StartHour = Utils.GetTimpStampFromDateTime(task.StartHour),
+                    EndHour = Utils.GetTimpStampFromDateTime(task.EndHour),
                     Description = task.Description,
                     Deleted = task.Deleted.GetValueOrDefault() == 1
                 };
@@ -155,6 +159,9 @@ namespace WProject.DataAccess
                     PeriodFrom= task.From,
                     PeriodTo= task.To,
                     RemainingWork = task.RemainingWork,
+                    WorkDate = task.WorkDate,
+                    StartHour = Utils.GetDateFromTimeStamp(task.StartHour),
+                    EndHour = Utils.GetDateFromTimeStamp(task.EndHour),
                     Description = task.Description,
                     Deleted = task.Deleted.If((short?)1, null)
                 };

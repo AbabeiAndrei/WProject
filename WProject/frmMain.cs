@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using WProject.GenericLibrary.Constants;
 using WProject.GenericLibrary.Helpers.Drawing;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
+using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Style;
 using WProject.UiLibrary.Theme;
 
@@ -20,6 +22,14 @@ namespace WProject
 {
     public sealed partial class frmMain : Form
     {
+        #region Fields
+
+        private WpForm _form;
+
+        #endregion
+
+        #region Constructors
+
         public frmMain()
         {
             InitializeComponent();
@@ -45,7 +55,7 @@ namespace WProject
                 Dock = DockStyle.Fill,
                 Name = nameof(ctrlLoginControl)
             };
-            
+
             Controls.Add(ctrlMainPanel);
             Controls.Add(ctrlHeader);
             Controls.Add(ctrlLoginControl);
@@ -54,7 +64,24 @@ namespace WProject
 
             UIHelper.MainPanel = ctrlMainPanel;
             UIHelper.MainForm = this;
+
+            InitOverlayForm();
         }
+
+        private void InitOverlayForm()
+        {
+            _form = new WpForm
+            {
+                Location = new Point(0, 0),
+                BackColor = Color.Black,
+                Opacity = 0.2,
+                FormBorderStyle = FormBorderStyle.None,
+                ShowInTaskbar = false,
+                AutoScaleMode = AutoScaleMode.None
+            };
+        }
+
+        #endregion
 
         #region Overrides of Form
 
@@ -127,6 +154,30 @@ namespace WProject
 
         #endregion
 
+        #region Overrides of Control
+
+        protected override void OnLocationChanged(EventArgs e)
+        {
+            base.OnLocationChanged(e);
+            if (_form == null)
+                return;
+
+            _form.Location = PointToScreen(Point.Empty);
+        }
+        
+        protected override void OnSizeChanged(EventArgs e)
+        {
+            base.OnSizeChanged(e);
+            if (_form == null)
+                return;
+
+            _form.Size = ClientSize;
+        }
+
+        #endregion
+
+        #region Private methods
+
         private async void OnLoggedConfirmed()
         {
             if (WPSuite.ConnectedUser == null)
@@ -165,5 +216,20 @@ namespace WProject
                 ResumeLayout();
             }
         }
+
+        #endregion
+
+        #region Public methods
+
+        public void ShowOverlay(bool show = true)
+        {
+            if(show)
+                _form?.Show(this);
+            else
+                _form.Hide();
+        }
+
+        #endregion
+
     }
 }

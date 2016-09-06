@@ -108,6 +108,7 @@ namespace WProject.Controls
             SelectedPage = page;
 
             _controls[SelectedPage].Visible = true;
+            _controls[SelectedPage].OnPageSelected();
 
             UIHelper.HeaderControl.CanChangeProject = _controls[SelectedPage].CanChangeProject;
             UIHelper.StatusBar.Visible = _controls[SelectedPage].StatusBarVisibility?.Visible ?? false;

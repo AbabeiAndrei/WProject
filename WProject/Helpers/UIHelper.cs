@@ -254,13 +254,22 @@ namespace WProject.Helpers
             mform.Controls.Add(control);
             mform.Paint += ChildFormPaint;
 
-            if (parentForm != null)
+            try
             {
-                //User32.SetParent(mform.Handle, parentForm.Handle);
-                mform.ShowDialog(parentForm);
+                MainForm.ShowOverlay();
+
+                if (parentForm != null)
+                {
+                    //User32.SetParent(mform.Handle, parentForm.Handle);
+                    mform.ShowDialog(parentForm);
+                }
+                else
+                    mform.ShowDialog();
             }
-            else
-                mform.ShowDialog();
+            finally
+            {
+                MainForm.ShowOverlay(false);
+            }
         }
 
         private static void ChildFormPaint(object sender, PaintEventArgs e)

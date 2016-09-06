@@ -250,4 +250,22 @@ namespace WProject.WebApiClasses.MessanginCenter
 
         #endregion
     }
+
+    public class GetAllTasksForTodayRequest
+    {
+        public int ProjectId { get; set; }
+        public DateTime? Date { get; set; }
+    }
+
+    public class GetAllTasksForTodayResponse : IMessangingCenterResponse
+    {
+        public IEnumerable<Task> Tasks { get; set; }
+        
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
 }

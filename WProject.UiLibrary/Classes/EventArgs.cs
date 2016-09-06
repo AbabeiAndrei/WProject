@@ -9,24 +9,24 @@ using WProject.UiLibrary.Controls.SpecificControls.InnerControls;
 
 namespace WProject.UiLibrary.Classes
 {
-    public class OnStartMoveArgs
+    public class OnStartMoveArgs : EventArgs
     {
         public bool Cancel { get; set; }
     }
 
-    public class OnMoveArgs
+    public class OnMoveArgs : EventArgs
     {
         public Point OldLocation { get; set; }
         public Point NewLocation { get; set; }
     }
 
-    public class OnEndMoveArgs
+    public class OnEndMoveArgs : EventArgs
     {
         public Point OldLocation { get; set; }
         public Point NewLocation { get; set; }
     }
 
-    public class SelectedItemChangeHandlerArgs
+    public class SelectedItemChangeHandlerArgs : EventArgs
     {
         public int OldSelectedIndex { get; set; }
         public int NewSelectedIndex { get; set; }
@@ -45,7 +45,7 @@ namespace WProject.UiLibrary.Classes
         }
     }
 
-    public class FileItemEventArgs
+    public class FileItemEventArgs : EventArgs
     {
         public FileItem FileItem { get; set; }
 
@@ -66,12 +66,12 @@ namespace WProject.UiLibrary.Classes
         }
     }
 
-    public class FullScreenEventArgs
+    public class FullScreenEventArgs : EventArgs
     {
         public bool Handled { get; set; }
     }
 
-    public class SendMessageEventArgs
+    public class SendMessageEventArgs : EventArgs
     {
         public SendMessageEventArgs(string text)
         {
@@ -80,8 +80,32 @@ namespace WProject.UiLibrary.Classes
 
         public string Text { get; set; }
     }
-    
+
+    public class BacklogCollaptionChangedArgs : EventArgs
+    {
+        public bool Collapsed { get; set; }
+
+        public BacklogCollaptionChangedArgs(bool collapsed)
+        {
+            Collapsed = collapsed;
+        }
+    }
+
+    public class TimeLineRowHeaderExpandArgs : EventArgs
+    {
+        public int UserId { get; set; }
+        public bool Expanded { get; set; }
+
+        public TimeLineRowHeaderExpandArgs(int userId, bool expanded)
+        {
+            UserId = userId;
+            Expanded = expanded;
+        }
+    }
+
     public delegate void SendMessageEventHandler(object sender, SendMessageEventArgs args);
     public delegate void WpFileItemEventHandler(object sender, WpFileItemEventArgs args);
     public delegate void FileItemEventHandler(object sender, FileItemEventArgs args);
+    public delegate void TimeLineRowHeaderExpand(object sender, TimeLineRowHeaderExpandArgs args);
+    public delegate void BacklogCollaptionChanged(object sender, BacklogCollaptionChangedArgs args);
 }

@@ -1,6 +1,6 @@
-﻿namespace WProject.UiLibrary.Controls
+﻿namespace WProject.Controls.MainPageControls.TimeLineControls
 {
-    partial class WpPictureBox
+    partial class ctrlTimeLineBacklogItem
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ctrlTimeLineBacklogItem
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Name = "ctrlTimeLineBacklogItem";
+            this.Size = new System.Drawing.Size(235, 46);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

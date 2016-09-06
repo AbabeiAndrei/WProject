@@ -104,6 +104,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
                 Size = new Size(lblDone.Right - btnAdd.Left, 56),
                 Dock = DockStyle.Top,
                 Margin = new Padding(0, 4, 0, 2),
+                Padding = new Padding(0, 5, 0, 0),
                 Columns = DashBoardColumnsCollectionSize.Create(lblToDo.Width,
                                                                 lblInProgress.Width,
                                                                 lblDone.Width,

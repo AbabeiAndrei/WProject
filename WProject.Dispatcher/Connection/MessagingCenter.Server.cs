@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
+using Telerik.OpenAccess.Data.Common;
+using Telerik.OpenAccess.Util;
 using WProject.DataAccess;
 using WProject.GenericLibrary.Constants;
 using WProject.GenericLibrary.Exceptions;
+using WProject.GenericLibrary.Helpers;
 using WProject.GenericLibrary.Helpers.Extensions;
 using WProject.Library.Helpers.Log;
 using WProject.Library.Helpers.Utils.Db;
@@ -629,8 +633,11 @@ namespace WProject.Dispatcher.Connection
                     mtask.RemainingWork = moldTask.RemainingWork;
                     mtask.StageId = moldTask.StageId;
                     mtask.TypeId = moldTask.TypeId;
+                    mtask.WorkDate = moldTask.WorkDate;
+                    mtask.StartHour = Utils.GetDateFromTimeStamp(moldTask.StartHour);
+                    mtask.EndHour = Utils.GetDateFromTimeStamp(moldTask.EndHour);
 
-                    if(mtaskIsNew)
+                    if (mtaskIsNew)
                         mctx.Add(mtask);
 
                     mctx.SaveChanges();
@@ -671,6 +678,7 @@ namespace WProject.Dispatcher.Connection
 
             return mres;
         }
+
         public MessagingCenterResponse SaveBacklog(MessagingCenterPackage package)
         {
             MessagingCenterResponse mres = new MessagingCenterResponse();
@@ -726,6 +734,63 @@ namespace WProject.Dispatcher.Connection
 
             return mres;
         }
-        
+
+        public MessagingCenterResponse GetAllBackLogsForToday(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                if (string.IsNullOrEmpty(package.Content))
+                    throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
+
+                var mreq = JsonConvert.DeserializeObject<GetAllTasksForTodayRequest>(package.Content);
+                
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+                    var mdate = mreq.Date ?? DateTime.Now.Date;
+
+                    var mquery = @"SELECT t.*
+                                   FROM task t
+                                   INNER JOIN backlog b ON b.id = t.backlog_id
+                                   INNER JOIN category c ON c.id = b.category_id
+                                   INNER JOIN spring s ON s.id = c.spring_id
+                                   WHERE s.project_id = @project_id AND t.work_date = @work_date";
+
+                    var mparams = new DbParameter[]
+                    {
+                        new OAParameter("project_id", mreq.ProjectId),
+                        new OAParameter("work_date", mdate)
+                    };
+
+                    var mltasks = mctx.CreateDetachedCopy(mctx.ExecuteQuery<Task>(mquery, mparams).ToList())
+                                      .Select(t => t.ToWebApiExtended(mctx))
+                                      .ToList();
+
+                    mres.Content = JsonConvert.SerializeObject(new GetAllTasksForTodayResponse
+                    {
+                        Tasks = mltasks
+                    });
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
     }
 }

@@ -20,7 +20,7 @@ namespace WProject.UiLibrary.Style
 
     [Serializable]
     //[TypeConverter(typeof(UiStyleEditorTypeConverter))]
-    public class UiStyle : INotifyPropertyChanged
+    public class UiStyle : INotifyPropertyChanged, IDisposable
     {
         #region Fields
 
@@ -164,6 +164,18 @@ namespace WProject.UiLibrary.Style
 
         #endregion
 
+        #region Implementation of IDisposable
+
+        public void Dispose()
+        {
+            _normalStyle?.Dispose();
+            _hoverStyle?.Dispose();
+            _clickStyle?.Dispose();
+            _selectedStyle?.Dispose();
+        }
+
+        #endregion
+
         #region Public methods
 
         public UiStyle Clone()
@@ -189,7 +201,7 @@ namespace WProject.UiLibrary.Style
     [Serializable]
     [TypeConverter(typeof(UiStyleEditorTypeConverter))]
     [Editor(typeof(StyleEditor), typeof(UITypeEditor))]
-    public class Style : INotifyPropertyChanged
+    public class Style : INotifyPropertyChanged, IDisposable
     {
         #region Fields
 
@@ -358,6 +370,15 @@ namespace WProject.UiLibrary.Style
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        #endregion
+
+        #region Implementation of IDisposable
+
+        public void Dispose()
+        {
+
         }
 
         #endregion

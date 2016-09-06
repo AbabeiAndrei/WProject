@@ -1,6 +1,6 @@
-﻿namespace WProject.UiLibrary.Controls
+﻿namespace WProject.Controls.MainPageControls.TimeLineControls
 {
-    partial class WpPictureBox
+    partial class ctrlTimeLineBacklogRow
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
         }
 
         #endregion

@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\UserPosition.cs" />
     <Compile Include="Classes\DashBoardColumnsCollectionSize.cs" />
     <Compile Include="Classes\WPSuite.cs" />
     <Compile Include="Connection\Connection.cs" />
@@ -196,11 +197,53 @@
     <Compile Include="Controls\MainPageControls\Task Editor Controls\ctrlTaskHistoryItem.Designer.cs">
       <DependentUpon>ctrlTaskHistoryItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineBacklogItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineBacklogItem.Designer.cs">
+      <DependentUpon>ctrlTimeLineBacklogItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineBacklogRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineBacklogRow.Designer.cs">
+      <DependentUpon>ctrlTimeLineBacklogRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineHeader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineHeader.Designer.cs">
+      <DependentUpon>ctrlTimeLineHeader.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRowHeader.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRowHeader.Designer.cs">
       <DependentUpon>ctrlTimeLineRowHeader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRowHeaderUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRowHeaderUser.Designer.cs">
+      <DependentUpon>ctrlTimeLineRowHeaderUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRow.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRow.Designer.cs">
+      <DependentUpon>ctrlTimeLineRow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineTaskItem.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineTaskItem.Designer.cs">
+      <DependentUpon>ctrlTimeLineTaskItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineTasks.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineTasks.Designer.cs">
+      <DependentUpon>ctrlTimeLineTasks.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Convertors.cs" />
     <Compile Include="Helpers\UIEnums.cs" />
@@ -211,7 +254,9 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IUserPositions.cs" />
     <Compile Include="Interfaces\IMainPageControl.cs" />
+    <Compile Include="Interfaces\ITaskAddableControl.cs" />
     <Compile Include="Module.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -263,6 +308,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainPageControls\Task Editor Controls\ctrlTaskHistoryItem.resx">
       <DependentUpon>ctrlTaskHistoryItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineBacklogItem.resx">
+      <DependentUpon>ctrlTimeLineBacklogItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineHeader.resx">
+      <DependentUpon>ctrlTimeLineHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRowHeader.resx">
+      <DependentUpon>ctrlTimeLineRowHeader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRowHeaderUser.resx">
+      <DependentUpon>ctrlTimeLineRowHeaderUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineRow.resx">
+      <DependentUpon>ctrlTimeLineRow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineTaskItem.resx">
+      <DependentUpon>ctrlTimeLineTaskItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\TimeLineControls\ctrlTimeLineTasks.resx">
+      <DependentUpon>ctrlTimeLineTasks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

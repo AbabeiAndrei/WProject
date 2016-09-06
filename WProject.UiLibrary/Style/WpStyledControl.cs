@@ -237,6 +237,23 @@ namespace WProject.UiLibrary.Style
         
         #endregion
 
+        #region Overrides of WpBaseUserControl
+
+        protected override void Dispose(bool disposing)
+        {
+            try
+            {
+                _style?.Dispose();
+                _borderPen?.Dispose();
+            }
+            finally
+            {
+                base.Dispose(disposing);
+            }
+        }
+
+        #endregion
+
         #region Events
 
         public new event EventHandler StyleChanged;

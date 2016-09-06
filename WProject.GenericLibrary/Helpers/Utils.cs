@@ -162,5 +162,19 @@ namespace WProject.GenericLibrary.Helpers
                 return mv;
             return @default;
         }
+
+        public static DateTime? GetDateFromTimeStamp(TimeSpan? timeSpan)
+        {
+            return timeSpan.HasValue
+                       ? new DateTime(timeSpan.Value.Ticks)
+                       : (DateTime?) null;
+        }
+
+        public static TimeSpan? GetTimpStampFromDateTime(DateTime? dateTime)
+        {
+            return dateTime.HasValue
+                       ? TimeSpan.FromTicks(dateTime.Value.Ticks)
+                       : (TimeSpan?) null;
+        }
     }
 }

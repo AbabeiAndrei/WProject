@@ -68,9 +68,6 @@ namespace WProject.Controls
             this.ttDiscution = new WProject.UiLibrary.Controls.WpTextThread();
             this.tpHistory = new System.Windows.Forms.TabPage();
             this.tpLinks = new System.Windows.Forms.TabPage();
-            this.tpConstraints = new System.Windows.Forms.TabPage();
-            this.tpSettings = new System.Windows.Forms.TabPage();
-            this.wpButtonCopy = new WProject.UiLibrary.Controls.WpButton();
             this.btnCopyDiscutionLink = new WProject.UiLibrary.Controls.WpButton();
             this.btnCopyBasicViewLink = new WProject.UiLibrary.Controls.WpButton();
             this.btnCopyEditLink = new WProject.UiLibrary.Controls.WpButton();
@@ -87,11 +84,20 @@ namespace WProject.Controls
             this.chkEdit = new WProject.UiLibrary.Controls.WpCheckBox();
             this.chkView = new WProject.UiLibrary.Controls.WpCheckBox();
             this.txtViewLink = new WProject.UiLibrary.Controls.WpTextBox();
+            this.tpConstraints = new System.Windows.Forms.TabPage();
             this.lvConditions = new System.Windows.Forms.ListView();
             this.chEnable = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chConditionItem = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chCondition = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tpSettings = new System.Windows.Forms.TabPage();
+            this.wpButtonCopy = new WProject.UiLibrary.Controls.WpButton();
+            this.lblToHour = new WProject.UiLibrary.Controls.WpLabel();
+            this.lblFromHour = new WProject.UiLibrary.Controls.WpLabel();
+            this.lblDate = new WProject.UiLibrary.Controls.WpLabel();
+            this.dtpWorkDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpFromHour = new System.Windows.Forms.DateTimePicker();
+            this.dtpToHour = new System.Windows.Forms.DateTimePicker();
             tpAttachements = new System.Windows.Forms.TabPage();
             tpAttachements.SuspendLayout();
             this.pnlTop.SuspendLayout();
@@ -102,8 +108,8 @@ namespace WProject.Controls
             this.tpGeneral.SuspendLayout();
             this.pnlDetails.SuspendLayout();
             this.pnlComents.SuspendLayout();
+            this.tpDetails.SuspendLayout();
             this.tpDiscusion.SuspendLayout();
-            this.tpHistory.SuspendLayout();
             this.tpLinks.SuspendLayout();
             this.tpConstraints.SuspendLayout();
             this.SuspendLayout();
@@ -586,6 +592,12 @@ namespace WProject.Controls
             // 
             // tpDetails
             // 
+            this.tpDetails.Controls.Add(this.dtpToHour);
+            this.tpDetails.Controls.Add(this.dtpFromHour);
+            this.tpDetails.Controls.Add(this.dtpWorkDate);
+            this.tpDetails.Controls.Add(this.lblToHour);
+            this.tpDetails.Controls.Add(this.lblFromHour);
+            this.tpDetails.Controls.Add(this.lblDate);
             this.tpDetails.Location = new System.Drawing.Point(4, 30);
             this.tpDetails.Name = "tpDetails";
             this.tpDetails.Padding = new System.Windows.Forms.Padding(3);
@@ -655,39 +667,6 @@ namespace WProject.Controls
             this.tpLinks.TabIndex = 5;
             this.tpLinks.Text = "Links";
             this.tpLinks.UseVisualStyleBackColor = true;
-            // 
-            // tpConstraints
-            // 
-            this.tpConstraints.Controls.Add(this.lvConditions);
-            this.tpConstraints.Location = new System.Drawing.Point(4, 30);
-            this.tpConstraints.Name = "tpConstraints";
-            this.tpConstraints.Size = new System.Drawing.Size(791, 288);
-            this.tpConstraints.TabIndex = 6;
-            this.tpConstraints.Text = "Constraints";
-            this.tpConstraints.UseVisualStyleBackColor = true;
-            // 
-            // tpSettings
-            // 
-            this.tpSettings.Location = new System.Drawing.Point(4, 30);
-            this.tpSettings.Name = "tpSettings";
-            this.tpSettings.Size = new System.Drawing.Size(791, 288);
-            this.tpSettings.TabIndex = 7;
-            this.tpSettings.Text = "Settings";
-            this.tpSettings.UseVisualStyleBackColor = true;
-            // 
-            // wpButtonCopy
-            // 
-            this.wpButtonCopy.Cursor = System.Windows.Forms.Cursors.Default;
-            this.wpButtonCopy.FlatAppearance.BorderSize = 0;
-            this.wpButtonCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.wpButtonCopy.Image = global::WProject.Properties.Resources.clipboard_s;
-            this.wpButtonCopy.Location = new System.Drawing.Point(525, -1);
-            this.wpButtonCopy.Name = "wpButtonCopy";
-            this.wpButtonCopy.Selected = false;
-            this.wpButtonCopy.Size = new System.Drawing.Size(34, 34);
-            this.wpButtonCopy.TabIndex = 0;
-            this.wpButtonCopy.UseVisualStyleBackColor = true;
-            this.wpButtonCopy.Click += new System.EventHandler(this.wpButtonCopy_Click);
             // 
             // btnCopyDiscutionLink
             // 
@@ -893,6 +872,16 @@ namespace WProject.Controls
             this.txtViewLink.Size = new System.Drawing.Size(539, 29);
             this.txtViewLink.TabIndex = 20;
             // 
+            // tpConstraints
+            // 
+            this.tpConstraints.Controls.Add(this.lvConditions);
+            this.tpConstraints.Location = new System.Drawing.Point(4, 30);
+            this.tpConstraints.Name = "tpConstraints";
+            this.tpConstraints.Size = new System.Drawing.Size(791, 288);
+            this.tpConstraints.TabIndex = 6;
+            this.tpConstraints.Text = "Constraints";
+            this.tpConstraints.UseVisualStyleBackColor = true;
+            // 
             // lvConditions
             // 
             this.lvConditions.AutoArrange = false;
@@ -933,6 +922,94 @@ namespace WProject.Controls
             this.chData.Text = "Data";
             this.chData.Width = 229;
             // 
+            // tpSettings
+            // 
+            this.tpSettings.Location = new System.Drawing.Point(4, 30);
+            this.tpSettings.Name = "tpSettings";
+            this.tpSettings.Size = new System.Drawing.Size(791, 288);
+            this.tpSettings.TabIndex = 7;
+            this.tpSettings.Text = "Settings";
+            this.tpSettings.UseVisualStyleBackColor = true;
+            // 
+            // wpButtonCopy
+            // 
+            this.wpButtonCopy.Cursor = System.Windows.Forms.Cursors.Default;
+            this.wpButtonCopy.FlatAppearance.BorderSize = 0;
+            this.wpButtonCopy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.wpButtonCopy.Image = global::WProject.Properties.Resources.clipboard_s;
+            this.wpButtonCopy.Location = new System.Drawing.Point(525, -1);
+            this.wpButtonCopy.Name = "wpButtonCopy";
+            this.wpButtonCopy.Selected = false;
+            this.wpButtonCopy.Size = new System.Drawing.Size(34, 34);
+            this.wpButtonCopy.TabIndex = 0;
+            this.wpButtonCopy.UseVisualStyleBackColor = true;
+            this.wpButtonCopy.Click += new System.EventHandler(this.wpButtonCopy_Click);
+            // 
+            // lblToHour
+            // 
+            this.lblToHour.AutoSize = true;
+            this.lblToHour.Location = new System.Drawing.Point(521, 10);
+            this.lblToHour.Name = "lblToHour";
+            this.lblToHour.Selected = false;
+            this.lblToHour.Size = new System.Drawing.Size(66, 21);
+            this.lblToHour.Style = null;
+            this.lblToHour.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
+            this.lblToHour.TabIndex = 5;
+            this.lblToHour.Text = "To Hour";
+            // 
+            // lblFromHour
+            // 
+            this.lblFromHour.AutoSize = true;
+            this.lblFromHour.Location = new System.Drawing.Point(268, 10);
+            this.lblFromHour.Name = "lblFromHour";
+            this.lblFromHour.Selected = false;
+            this.lblFromHour.Size = new System.Drawing.Size(86, 21);
+            this.lblFromHour.Style = null;
+            this.lblFromHour.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
+            this.lblFromHour.TabIndex = 4;
+            this.lblFromHour.Text = "From Hour";
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(6, 10);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Selected = false;
+            this.lblDate.Size = new System.Drawing.Size(42, 21);
+            this.lblDate.Style = null;
+            this.lblDate.StyleType = WProject.UiLibrary.Style.StyleType.Normal;
+            this.lblDate.TabIndex = 3;
+            this.lblDate.Text = "Date";
+            // 
+            // dtpWorkDate
+            // 
+            this.dtpWorkDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpWorkDate.Location = new System.Drawing.Point(81, 6);
+            this.dtpWorkDate.Name = "dtpWorkDate";
+            this.dtpWorkDate.ShowCheckBox = true;
+            this.dtpWorkDate.Size = new System.Drawing.Size(169, 29);
+            this.dtpWorkDate.TabIndex = 6;
+            // 
+            // dtpFromHour
+            // 
+            this.dtpFromHour.CustomFormat = "HH:mm";
+            this.dtpFromHour.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFromHour.Location = new System.Drawing.Point(360, 6);
+            this.dtpFromHour.Name = "dtpFromHour";
+            this.dtpFromHour.ShowCheckBox = true;
+            this.dtpFromHour.Size = new System.Drawing.Size(120, 29);
+            this.dtpFromHour.TabIndex = 7;
+            // 
+            // dateTimePicker1
+            // 
+            this.dtpToHour.CustomFormat = "HH:mm";
+            this.dtpToHour.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpToHour.Location = new System.Drawing.Point(605, 6);
+            this.dtpToHour.Name = "dtpToHour";
+            this.dtpToHour.ShowCheckBox = true;
+            this.dtpToHour.Size = new System.Drawing.Size(105, 29);
+            this.dtpToHour.TabIndex = 8;
+            // 
             // ctrlTaskEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -954,8 +1031,9 @@ namespace WProject.Controls
             this.pnlDetails.ResumeLayout(false);
             this.pnlDetails.PerformLayout();
             this.pnlComents.ResumeLayout(false);
+            this.tpDetails.ResumeLayout(false);
+            this.tpDetails.PerformLayout();
             this.tpDiscusion.ResumeLayout(false);
-            this.tpHistory.ResumeLayout(false);
             this.tpLinks.ResumeLayout(false);
             this.tpLinks.PerformLayout();
             this.tpConstraints.ResumeLayout(false);
@@ -1024,5 +1102,11 @@ namespace WProject.Controls
         private System.Windows.Forms.ColumnHeader chConditionItem;
         private System.Windows.Forms.ColumnHeader chCondition;
         private System.Windows.Forms.ColumnHeader chData;
+        private UiLibrary.Controls.WpLabel lblToHour;
+        private UiLibrary.Controls.WpLabel lblFromHour;
+        private UiLibrary.Controls.WpLabel lblDate;
+        private System.Windows.Forms.DateTimePicker dtpWorkDate;
+        private System.Windows.Forms.DateTimePicker dtpFromHour;
+        private System.Windows.Forms.DateTimePicker dtpToHour;
     }
 }

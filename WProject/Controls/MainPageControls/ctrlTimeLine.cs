@@ -1,14 +1,39 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Windows.Forms;
+using WProject.Classes;
+using WProject.Connection;
+using WProject.Controls.MainPageControls.TimeLineControls;
+using WProject.GenericLibrary.Helpers.Drawing;
 using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
 using WProject.Interfaces;
+using WProject.UiLibrary.Classes;
+using WProject.UiLibrary.Components;
+using WProject.UiLibrary.Theme;
 using WProject.WebApiClasses.Classes;
 
 namespace WProject.Controls.MainPageControls
 {
     public sealed partial class ctrlTimeLine : MainPageControl
     {
+        #region Fields
+
+        private IEnumerable<Task> _tasks;
+        private readonly ctrlTimeLineRowHeader ctrlTimeLineRowHeader;
+        private readonly ctrlTimeLineTasks ctrlTimeLineTasks;
+
+        #endregion
+
+        #region Properties
+
+        public bool Loaded { get; set; }
+
+        #endregion
+
         #region Constructors
 
         public ctrlTimeLine()
@@ -16,6 +41,32 @@ namespace WProject.Controls.MainPageControls
             InitializeComponent();
 
             StatusBarVisibility.Visible = false;
+
+            ctrlTimeLineTasks = new ctrlTimeLineTasks
+            {
+                Name = nameof(ctrlTimeLineTasks),
+                Dock = DockStyle.Fill,
+                StartHour = 8,
+                EndHour = 17
+            };
+
+            ctrlTimeLineRowHeader = new ctrlTimeLineRowHeader
+            {
+                Name = nameof(ctrlTimeLineRowHeader),
+                Dock = DockStyle.Left,
+                Size = new Size(250, 0),
+                TopPadding = ctrlTimeLineTasks.HEADER_SIZE
+            };
+
+
+            ctrlTimeLineRowHeader.OnRowElaptionChanged += ctrlTimeLineRowHeader_OnRowElaptionChanged;
+
+            Controls.Add(ctrlTimeLineRowHeader);
+            Controls.Add(ctrlTimeLineTasks);
+
+            ctrlTimeLineRowHeader.BacklogMouseEnter += (backlogId, color) => ctrlTimeLineTasks.SetBacklogHover(backlogId,color);
+            ctrlTimeLineTasks.BringToFront();
+            ctrlTimeLineTasks.PerformResizeWidth();
         }
 
         #endregion
@@ -28,9 +79,9 @@ namespace WProject.Controls.MainPageControls
 
         #region Overrides of MainPageControl
         
-        public override void SetProject(Project project)
+        public override async void SetProject(Project project)
         {
-            SetTimeLineForProject(project);
+            await SetTimeLineForProject(project);
         }
         
         protected override void OnStatusBarChatClick()
@@ -38,18 +89,142 @@ namespace WProject.Controls.MainPageControls
             ShowChatsWindow();
         }
 
+        public override async void OnPageSelected()
+        {
+            //if (!Loaded)  todo de scos
+            await LoadTasks();
+        }
+
+        #endregion
+
+        #region Overrides of WpStyledControl
+
+        public override void ApplyStyle()
+        {
+            base.ApplyStyle();
+
+            ctrlTimeLineRowHeader?.ApplyStyle();
+            ctrlTimeLineTasks?.ApplyStyle();
+        }
+
+        #endregion
+
+        #region Overrides of UserControl
+
+        protected override void OnResize(EventArgs e)
+        {
+            try
+            {
+                if(ctrlTimeLineRowHeader == null || ctrlTimeLineTasks == null)
+                    return;
+
+                int mheight = ctrlTimeLineRowHeader.ResizeControls();
+
+                ctrlTimeLineTasks.PerformResizeWidth(ctrlTimeLineTasks.ClientSize.Width - 1);
+                ctrlTimeLineTasks.PerformResizeHeigh(Math.Max(mheight, ctrlTimeLineTasks.ClientSize.Height - 1));
+            }
+            finally
+            {
+                base.OnResize(e);
+            }
+        }
+
+        #endregion
+
+        #region Event handlers
+
+        private void ctrlTimeLineRowHeader_OnRowElaptionChanged(object sender, TimeLineRowHeaderExpandArgs args)
+        {
+            if (ctrlTimeLineRowHeader == null || ctrlTimeLineTasks == null)
+                return;
+
+            ctrlTimeLineTasks.SetExpanded(args.UserId, args.Expanded);
+
+            int mheight = ctrlTimeLineRowHeader.ResizeControls();
+
+            ctrlTimeLineTasks.PerformResizeWidth(ctrlTimeLineTasks.ClientSize.Width - 1);
+            ctrlTimeLineTasks.PerformResizeHeigh(Math.Max(mheight, ctrlTimeLineTasks.ClientSize.Height - 1));
+        }
+        
         #endregion
 
         #region Private methods
 
-        private void SetTimeLineForProject(Project project)
+        private async System.Threading.Tasks.Task SetTimeLineForProject(Project project)
         {
             Logger.Log("ctrlTimeLine > " + project.Name);
+            await SetTasks(project.Id);
+        }
+
+        private async System.Threading.Tasks.Task SetTasks(int projectId)
+        {
+            try
+            {
+                UIHelper.ShowLoader("Load tasks...");
+                Logger.Log($"Get tasks for project {projectId}");
+
+
+                var mres = await WebCallFactory.GetAllBackLogsForToday(projectId);
+
+                if (mres.Error)
+                    throw mres.Exception;
+
+                Logger.Log("Success get tasks");
+
+                SetTasks(mres.Tasks);
+
+                Logger.Log("Success load tasks");
+            }
+            catch (Exception mex)
+            {
+                UIHelper.HideLoader();
+                Logger.Log(mex);
+                UIHelper.ShowError(mex);
+            }
+            finally
+            {
+                UIHelper.HideLoader();
+            }
         }
 
         private void ShowChatsWindow()
         {
             Logger.Log("ctrlTimeLine > ShowChatsWindow (NOT IMPLEMENTED)");
+        }
+
+        #endregion
+
+        #region Public methods
+
+        public async System.Threading.Tasks.Task LoadTasks()
+        {
+            await SetTasks(WPSuite.SelectedProjectId);
+        }
+
+        public void SetTasks(IEnumerable<Task> task)
+        {
+            try
+            {
+                Loaded = true;
+
+                _tasks = task.Where(t => t.StartHour.HasValue);
+
+                ctrlTimeLineRowHeader.SuspendLayout();
+
+                ctrlTimeLineRowHeader.Clear();
+
+                ctrlTimeLineRowHeader.SetTasks(_tasks, ctrlTimeLineTasks);
+
+                int mheight = ctrlTimeLineRowHeader.ResizeControls();
+
+                ctrlTimeLineTasks.PerformResizeHeigh(Math.Max(mheight, ctrlTimeLineTasks.ClientSize.Height));
+
+                ctrlTimeLineTasks.RepositionControls(ctrlTimeLineRowHeader);
+            }
+            finally
+            {
+                ctrlTimeLineRowHeader.ResumeLayout();
+            }
         }
 
         #endregion

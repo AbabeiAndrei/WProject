@@ -45,6 +45,12 @@ namespace WProject.WebApiClasses.Classes
 
         public string Metadata { get; set; }
 
+        public TimeSpan? StartHour { get; set; }
+
+        public TimeSpan? EndHour { get; set; }
+
+        public DateTime? WorkDate { get; set; }
+
         public bool Deleted { get; set; }
 
         public User CreatedBy { get; set; }

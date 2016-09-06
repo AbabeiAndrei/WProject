@@ -1,6 +1,6 @@
-﻿namespace WProject.UiLibrary.Controls
+﻿namespace WProject.Controls.MainPageControls.TimeLineControls
 {
-    partial class WpPictureBox
+    partial class ctrlTimeLineTaskItem
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,8 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ctrlTimeLineTaskItem
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.Name = "ctrlTimeLineTaskItem";
+            this.Size = new System.Drawing.Size(150, 26);
+            this.ResumeLayout(false);
+
         }
 
         #endregion

@@ -17,6 +17,7 @@ namespace WProject.Classes
         public static Category SelectedCategory { get; set; }
 
         public static int ConnectedUserId => ConnectedUser?.Id ?? 0;
+        public static int SelectedProjectId => SelectedProject?.Id ?? 0;
 
         public static Task CreateTask(Backlog backlog)
         {

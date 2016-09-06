@@ -32,8 +32,10 @@ namespace WProject.UiLibrary.Controls
 
         #region Properties
 
-        public virtual string StyleKey => WpThemeConstants.WPSTYLE_DEFAULT_USER_CONTROL;
         public bool OwnStyle { get; set; }
+
+        [Browsable(false)]
+        public virtual string StyleKey => WpThemeConstants.WPSTYLE_DEFAULT_USER_CONTROL;
 
         [Browsable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -193,6 +195,11 @@ namespace WProject.UiLibrary.Controls
                     mbtn.ApplyStyle();
                 ApplyStyleToAllButtons(mcontrol as WpUserControl, except);
             }
+        }
+
+        public virtual void DisposeComponents()
+        {
+            _validateControls.Clear();
         }
 
         #endregion

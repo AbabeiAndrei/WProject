@@ -430,6 +430,17 @@ namespace WProject.Controls
                     ddUser.SetSelectedItem(u => u.Id == Task.AssignedToId);
 
                 ddState.SetSelectedItem(di => di.Id == Task.StateId);
+
+                dtpFromHour.Checked = _task.StartHour.HasValue;
+                dtpToHour.Checked = _task.EndHour.HasValue;
+                dtpWorkDate.Checked = _task.WorkDate.HasValue;
+
+                if (_task.StartHour.HasValue)
+                    dtpFromHour.Value = new DateTime(_task.StartHour.Value.Ticks);
+                if (_task.EndHour.HasValue)
+                    dtpToHour.Value = new DateTime(_task.EndHour.Value.Ticks);
+                if (_task.WorkDate.HasValue)
+                    dtpWorkDate.Value = _task.WorkDate.Value;
             }
             finally
             {
@@ -472,6 +483,18 @@ namespace WProject.Controls
 
             Task.Description = txtDetails.Text;
             Task.UpdatedById = WPSuite.ConnectedUserId;
+
+            _task.StartHour = dtpFromHour.Checked
+                                  ? dtpFromHour.Value.TimeOfDay
+                                  : (TimeSpan?) null;
+
+            _task.EndHour = dtpToHour.Checked
+                                  ? dtpToHour.Value.TimeOfDay
+                                  : (TimeSpan?) null;
+
+            _task.WorkDate = dtpWorkDate.Checked
+                                  ? dtpWorkDate.Value
+                                  : (DateTime?) null;
         }
 
         private async Task<bool> TaskSave()

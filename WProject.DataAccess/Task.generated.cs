@@ -360,6 +360,69 @@ namespace WProject.DataAccess
 			}
 		}
 		
+		private DateTime? _workDate;
+		[Column("work_date", OpenAccessType = OpenAccessType.Date, IsNullable = true, Length = 0, Scale = 0, SqlType = "date")]
+		[Storage("_workDate")]
+		[System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
+		public virtual DateTime? WorkDate
+		{
+			get
+			{
+				return this._workDate;
+			}
+			set
+			{
+				if(this._workDate != value)
+				{
+					this.OnPropertyChanging("WorkDate");
+					this._workDate = value;
+					this.OnPropertyChanged("WorkDate");
+				}
+			}
+		}
+		
+		private DateTime? _startHour;
+		[Column("start_hour", OpenAccessType = OpenAccessType.Time, IsNullable = true, Length = 0, Scale = 0, SqlType = "time")]
+		[Storage("_startHour")]
+		[System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.Time)]
+		public virtual DateTime? StartHour
+		{
+			get
+			{
+				return this._startHour;
+			}
+			set
+			{
+				if(this._startHour != value)
+				{
+					this.OnPropertyChanging("StartHour");
+					this._startHour = value;
+					this.OnPropertyChanged("StartHour");
+				}
+			}
+		}
+		
+		private DateTime? _endHour;
+		[Column("end_hour", OpenAccessType = OpenAccessType.Time, IsNullable = true, Length = 0, Scale = 0, SqlType = "time")]
+		[Storage("_endHour")]
+		[System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.Time)]
+		public virtual DateTime? EndHour
+		{
+			get
+			{
+				return this._endHour;
+			}
+			set
+			{
+				if(this._endHour != value)
+				{
+					this.OnPropertyChanging("EndHour");
+					this._endHour = value;
+					this.OnPropertyChanged("EndHour");
+				}
+			}
+		}
+		
 		private Backlog _backlog;
 		[ForeignKeyAssociation(ConstraintName = "task_backlog_FK_backlog_id", SharedFields = "BacklogId", TargetFields = "Id")]
 		[Storage("_backlog")]

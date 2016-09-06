@@ -1,6 +1,6 @@
 ﻿namespace WProject.Controls.MainPageControls.TimeLineControls
 {
-    partial class ctrlTimeLineRowHeader
+    partial class ctrlTimeLineTasks
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,34 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlPadding = new WProject.UiLibrary.Controls.WpPanel();
+            this.pnlMain = new WProject.UiLibrary.Controls.WpPanel();
             this.SuspendLayout();
             // 
-            // pnlPadding
+            // pnlMain
             // 
-            this.pnlPadding.BackColor = System.Drawing.Color.Transparent;
-            this.pnlPadding.Cursor = System.Windows.Forms.Cursors.Default;
-            this.pnlPadding.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlPadding.DoubleBuffered = true;
-            this.pnlPadding.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.pnlPadding.ForeColor = System.Drawing.Color.Black;
-            this.pnlPadding.Location = new System.Drawing.Point(0, 0);
-            this.pnlPadding.Name = "pnlPadding";
-            this.pnlPadding.OwnStyle = false;
-            this.pnlPadding.Size = new System.Drawing.Size(150, 20);
-            this.pnlPadding.TabIndex = 0;
+            this.pnlMain.BackColor = System.Drawing.Color.Transparent;
+            this.pnlMain.Cursor = System.Windows.Forms.Cursors.Default;
+            this.pnlMain.DoubleBuffered = true;
+            this.pnlMain.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.pnlMain.ForeColor = System.Drawing.Color.Black;
+            this.pnlMain.Location = new System.Drawing.Point(0, 0);
+            this.pnlMain.Name = "pnlMain";
+            this.pnlMain.OwnStyle = false;
+            this.pnlMain.Size = new System.Drawing.Size(150, 150);
+            this.pnlMain.TabIndex = 0;
+            this.pnlMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMain_Paint);
             // 
-            // ctrlTimeLineRowHeader
+            // ctrlTimeLineTasks
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Controls.Add(this.pnlPadding);
-            this.Name = "ctrlTimeLineRowHeader";
+            this.AutoScroll = true;
+            this.Controls.Add(this.pnlMain);
+            this.Name = "ctrlTimeLineTasks";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private UiLibrary.Controls.WpPanel pnlPadding;
+        private UiLibrary.Controls.WpPanel pnlMain;
     }
 }

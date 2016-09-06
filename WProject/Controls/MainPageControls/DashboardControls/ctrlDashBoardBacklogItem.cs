@@ -14,6 +14,7 @@ using WProject.GenericLibrary.Helpers.Log;
 using WProject.Helpers;
 using WProject.Properties;
 using WProject.UiLibrary;
+using WProject.UiLibrary.Classes;
 using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Helpers;
 using WProject.UiLibrary.Theme;
@@ -181,7 +182,7 @@ namespace WProject.Controls.MainPageControls.DashboardControls
 
         private async System.Threading.Tasks.Task PaintOnColapsed(PaintEventArgs e)
         {
-            e.Graphics.FillRectangle(new SolidBrush(WpThemeColors.Blue.SetOpacity(40)), 0, 0, Width, Height);
+            //e.Graphics.FillRectangle(new SolidBrush(WpThemeColors.Blue.SetOpacity(40)), 0, 0, Width, Height);
 
             if (Backlog.Type?.Color != null)
                 try
@@ -580,15 +581,4 @@ namespace WProject.Controls.MainPageControls.DashboardControls
         #endregion
     }
 
-    public delegate void BacklogCollaptionChanged(object sender, BacklogCollaptionChangedArgs args);
-
-    public class BacklogCollaptionChangedArgs
-    {
-        public bool Collapsed { get; set; }
-
-        public BacklogCollaptionChangedArgs(bool collapsed)
-        {
-            Collapsed = collapsed;
-        }
-    }
 }

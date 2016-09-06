@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,6 +56,26 @@ namespace WProject.UiLibrary.Helpers
                 mnewPadding = new Padding(mnewPadding.Left, mnewPadding.Top, mnewPadding.Right, value);
 
             return mnewPadding;
+        }
+
+        public static void DrawBorder(this Control control)
+        {
+            control.Paint += DrawBorderHandler;
+            control.Refresh();
+        }
+
+        public static void RemoveBorder(this Control control)
+        {
+            control.Paint -= DrawBorderHandler;
+            control.Refresh();
+        }
+
+        private static void DrawBorderHandler(object sender, PaintEventArgs args)
+        {
+            var mc = sender as Control;
+
+            if (mc != null)
+                ControlPaint.DrawBorder(args.Graphics, mc.ClientRectangle, Color.Red, ButtonBorderStyle.Solid);
         }
     }
 }
