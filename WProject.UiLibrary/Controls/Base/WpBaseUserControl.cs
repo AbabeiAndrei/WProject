@@ -74,7 +74,8 @@ namespace WProject.UiLibrary.Controls.Base
 
         protected override void Dispose(bool disposing)
         {
-            User32.SetWindowsHookEx(Constants.WH_MOUSE, (n, w, l) => 0, (IntPtr)0, Kernel32.GetCurrentThreadId());
+            if (!DesignMode)
+                User32.SetWindowsHookEx(Constants.WH_MOUSE, (n, w, l) => 0, (IntPtr)0, Kernel32.GetCurrentThreadId());
 
             base.Dispose(disposing);
         }

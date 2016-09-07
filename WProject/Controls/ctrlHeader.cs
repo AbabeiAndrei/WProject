@@ -31,34 +31,53 @@ namespace WProject.Controls
         
         #region Properties
 
-        public Project SelectedProject => ddProjects.SelectedItem;
+        public Project SelectedProject => ddProjects?.SelectedItem;
 
-        public bool IsSearchActive => txtSearch.Visible;
+        public bool IsSearchActive => txtSearch?.Visible ?? false;
 
-        public bool IsNotificationWindowOpened => ctrlNotificationWindow.Visible;
+        public bool IsNotificationWindowOpened => ctrlNotificationWindow?.Visible ?? false;
 
-        public bool IsUserProfileWindowOpened => ctrlUserWindow.Visible;
+        public bool IsUserProfileWindowOpened => ctrlUserWindow?.Visible ?? false;
 
         public Image UserAvatar => _userAvatar;
 
-        public int NotificationNumber => ctrlNotificationWindow.Notification.Count;
+        public int NotificationNumber => ctrlNotificationWindow?.Notification?.Count ?? 0;
 
-        public string SearchText => txtSearch.Text;
+        public string SearchText => txtSearch?.Text ?? string.Empty;
 
         public bool CanChangeProject
         {
             get
             {
-                return ddProjects.Enabled;
+                return ddProjects?.Enabled ?? false;
             }
             set
             {
-                ddProjects.Enabled = value;
+                if (ddProjects != null)
+                    ddProjects.Enabled = value;
             }
         }
 
         #endregion
-        
+
+        #region Events
+
+        public event SelectedItemChangeHandler OnProjectSelectionChanged
+        {
+            add
+            {
+                if (ddProjects != null)
+                    ddProjects.SelectedItemChanged += value;
+            }
+            remove
+            {
+                if (ddProjects != null)
+                    ddProjects.SelectedItemChanged -= value;
+            }
+        }
+
+        #endregion
+
         #region Constructors
 
         public ctrlHeader()

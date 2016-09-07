@@ -73,7 +73,7 @@ namespace WProject
             _form = new WpForm
             {
                 Location = new Point(0, 0),
-                BackColor = Color.Black,
+                BackColor = Color.Gray,
                 Opacity = 0.2,
                 FormBorderStyle = FormBorderStyle.None,
                 ShowInTaskbar = false,
