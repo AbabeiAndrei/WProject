@@ -119,13 +119,13 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
             Controls.Add(pnlPadding);
         }
 
-        public void SetTasks(IEnumerable<Task> task, ITaskAddableControl taskAddable)
+        public void SetTasks(IEnumerable<Task> tasks, ITaskAddableControl taskAddable)
         {
-            Controls.AddRange(task.Where(t => t.AssignedToId.HasValue)
-                                  .GroupBy(t => t.AssignedToId.Value)
-                                  .OrderBy(g => g.Key == WPSuite.ConnectedUserId)
-                                  .Select(t => CreateTaskUser(t.Key, t, taskAddable))
-                                  .ToArray());
+            Controls.AddRange(tasks.Where(t => t.AssignedToId.HasValue)
+                                   .GroupBy(t => t.AssignedToId.Value)
+                                   .OrderBy(g => g.Key == WPSuite.ConnectedUserId)
+                                   .Select(t => CreateTaskUser(t.Key, t, taskAddable))
+                                   .ToArray());
         }
 
         public int ResizeControls()
