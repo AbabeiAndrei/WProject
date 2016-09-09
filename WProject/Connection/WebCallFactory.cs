@@ -147,8 +147,7 @@ namespace WProject.Connection
             }
         }
 
-        public static async Task<GetAllTasksForTodayResponse> GetAllBackLogsForToday(int projectId,
-                                                                                     DateTime? date = null)
+        public static async Task<GetAllTasksForTodayResponse> GetAllBackLogsForToday(int projectId, DateTime? date = null)
         {
             return await ExecuteMethod<GetAllTasksForTodayResponse>("GetAllBackLogsForToday", new GetAllTasksForTodayRequest
             {
