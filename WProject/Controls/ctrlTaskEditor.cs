@@ -436,9 +436,11 @@ namespace WProject.Controls
                 dtpWorkDate.Checked = _task.WorkDate.HasValue;
 
                 if (_task.StartHour.HasValue)
-                    dtpFromHour.Value = new DateTime(_task.StartHour.Value.Ticks);
+                    dtpFromHour.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 
+                                                    _task.StartHour.Value.Hours, _task.StartHour.Value.Minutes, _task.StartHour.Value.Seconds);
                 if (_task.EndHour.HasValue)
-                    dtpToHour.Value = new DateTime(_task.EndHour.Value.Ticks);
+                    dtpToHour.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day,
+                                                   _task.EndHour.Value.Hours, _task.EndHour.Value.Minutes, _task.EndHour.Value.Seconds);
                 if (_task.WorkDate.HasValue)
                     dtpWorkDate.Value = _task.WorkDate.Value;
             }

@@ -214,6 +214,18 @@ namespace WProject.Connection
             });
         }
 
+
+        /// <summary>
+        /// Execute a method from server using SignalR Hub
+        /// </summary>
+        /// <typeparam name="T">Type of response expected</typeparam>
+        /// <param name="method">Method name to call</param>
+        /// <param name="content">Request parameters requeried in WebMethod</param>
+        /// <param name="continueThrow">In any error case the exception is catched and error is return within <value>IMessangingCenterResponse</value> object, 
+        /// if flag is set on true, the exception will throw on the exception</param>
+        /// <param name="checkForEmpty">In case of response <value>Content</value> property is null or empty an exception will throw, 
+        /// if flag is set on false the method will return a new instance of <value>T</value></param>
+        /// <returns>Deserialized content of response into type <value>T</value></returns>
         public static async Task<T> ExecuteMethod<T>(string method, object content, bool continueThrow = false, bool checkForEmpty = true)
             where T : IMessangingCenterResponse, new()
         {
@@ -227,8 +239,11 @@ namespace WProject.Connection
                 if (mres.ErrorCode != MessagingCenterErrors.NO_ERROR)
                     throw new WpException(mres.ErrorCode, mres.Error, mres.Exception);
 
-                if (checkForEmpty && string.IsNullOrEmpty(mres.Content))
+                if (string.IsNullOrEmpty(mres.Content))
+                    if(checkForEmpty)
                         throw new Exception($"[{method}]Content is empty");
+                    else
+                        return new T();
 
                 return JsonConvert.DeserializeObject<T>(mres.Content);
             }
