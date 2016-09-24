@@ -1,2 +1,2 @@
 # WProject
-todo
+Project will not be developed anymore
