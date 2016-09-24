@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -72,6 +73,33 @@ namespace WProject.DataAccess
                                                                   f.Type == File.TYPE_USER_AVATAR));
 
             return mu;
+        }
+
+        public static User FromWebApi(WebApiClasses.Classes.User user)
+        {
+            try
+            {
+                if (user == null)
+                    return null;
+
+                return new User
+                {
+                    Name = user.Name,
+                    Id = user.Id,
+                    Deleted = user.Deleted ? 1 : (short?)null,
+                    Email = user.Email,
+                    Expire = user.Expire,
+                    Login = user.Login,
+                    Word= user.Password,
+                    Su = user.SuperUser ? 1 : (short?)null,
+                    Suspended = user.Suspended ? 1 : (short?)null,
+                    Metadata = user.Metadata
+                };
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

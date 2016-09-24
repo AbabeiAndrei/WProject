@@ -120,6 +120,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Module.cs" />
     <Compile Include="Pages\Clients.aspx.cs">
       <DependentUpon>Clients.aspx</DependentUpon>
@@ -152,6 +159,7 @@
   <ItemGroup>
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="index.aspx" />
     <Content Include="Pages\Clients.aspx" />
     <Content Include="Pages\InteropSerivce.aspx" />
     <Content Include="Web.config" />
@@ -163,16 +171,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ClassDiagram1.cd" />
     <None Include="Properties\PublishProfiles\PublishForTesting.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Content Include="WProject.Dispatcher.Master" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="index.html" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WProject.DataAccess\WProject.DataAccess.csproj">

@@ -35,6 +35,11 @@ namespace WProject.UiLibrary.Controls.Base
         protected WpBaseUserControl()
         {
             AutoScaleMode = AutoScaleMode.None;
+
+            SetStyle(ControlStyles.AllPaintingInWmPaint |
+                     ControlStyles.UserPaint |
+                     ControlStyles.DoubleBuffer,
+                     true);
         }
 
         #endregion

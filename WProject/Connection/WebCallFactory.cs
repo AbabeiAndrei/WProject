@@ -214,6 +214,28 @@ namespace WProject.Connection
             });
         }
 
+        public static async Task<SetNewTimeToTaskResponse> SetNewTimeToTask(int taskId, TimeSpan newTime, bool start = true)
+        {
+            return await ExecuteMethod<SetNewTimeToTaskResponse>("SetNewTimeToTask", new SetNewTimeToTaskRequest
+            {
+                TaskId = taskId,
+                NewTime = newTime,
+                Start = start
+            }, checkForEmpty: false);
+        }
+
+        public static async Task<GetAdminDataResponse> GetAdminData()
+        {
+            return await ExecuteMethod<GetAdminDataResponse>("GetAdminData", null);
+        }
+
+        public static async Task<SaveUserResponse> SaveUser(User user)
+        {
+            return await ExecuteMethod<SaveUserResponse>("SaveUser", new SaveUserRequest
+            {
+                User = user
+            });
+        }
 
         /// <summary>
         /// Execute a method from server using SignalR Hub

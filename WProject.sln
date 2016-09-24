@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WProject.Library", "WProject.Library\WProject.Library.csproj", "{6D8E2B1F-931E-45A9-99AB-4F338FF0888A}"
 EndProject
@@ -31,7 +31,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WProject.DesktopUtils", "WP
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Doc", "Doc", "{B606E01C-C3B6-492A-9A70-4D16F3E01ABE}"
 	ProjectSection(SolutionItems) = preProject
+		..\..\..\dump_wproject.sql = ..\..\..\dump_wproject.sql
 		Doc\Lucrare.docx = Doc\Lucrare.docx
+		Doc\Lucrare.pdf = Doc\Lucrare.pdf
 		todo.txt = todo.txt
 	EndProjectSection
 EndProject

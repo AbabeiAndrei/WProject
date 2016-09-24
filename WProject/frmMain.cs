@@ -152,6 +152,19 @@ namespace WProject
             }
         }
 
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams mcp = base.CreateParams;
+                //cp.ExStyle |= WinApi.WS_EX_COMPOSITED; // Turn on WS_EX_COMPOSITED
+                mcp.ExStyle |= GenericLibrary.WinApi.Constants.WS_EX_COMPOSITED;
+                //cp.ExStyle |= 0x00080000; //  Turn on WS_EX_LAYERED    | WS_EX_CLIPSIBLINGS
+                //cp.Style &= ~0x02000000;  // Turn off WS_CLIPCHILDREN
+                return mcp;
+            }
+        }
+
         #endregion
 
         #region Overrides of Control
@@ -172,6 +185,7 @@ namespace WProject
                 return;
 
             _form.Size = ClientSize;
+            Refresh();
         }
 
         #endregion

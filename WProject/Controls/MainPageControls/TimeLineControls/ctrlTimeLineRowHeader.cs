@@ -37,24 +37,14 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
             }
         }
 
+        public IEnumerable<ctrlTimeLineRowHeaderUser> Users => Controls.OfType<ctrlTimeLineRowHeaderUser>();
+
         #endregion
-        
+
         #region Events
 
         public event TimeLineRowHeaderExpand OnRowElaptionChanged;
-        public event Action<int, Color> BacklogMouseEnter
-        {
-            add
-            {
-                foreach (var mc in Controls.OfType<ctrlTimeLineRowHeaderUser>())
-                    mc.BacklogMouseEnter += value;
-            }
-            remove 
-            {
-                foreach (var mc in Controls.OfType<ctrlTimeLineRowHeaderUser>())
-                    mc.BacklogMouseEnter -= value;
-            }
-        }
+        public event Action<int, int, Color> BacklogMouseEnter;
 
         #endregion
 
@@ -80,8 +70,12 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
                                    Positions = c.InnerContainer
                                                 .Controls
                                                 .OfType<ctrlTimeLineBacklogItem>()
-                                                .Select(cb => new BacklogPosition(cb.BacklogId, c.Top + c.NameHeight + cb.Top))
-                               });
+                                                .Select(cb => new BacklogPosition(cb.BacklogId, c.Top + c.NameHeight + cb.Top)
+                                                {
+                                                    Height = cb.Height
+                                                })
+                               })
+                               .OrderByDescending(up => up.UserId == WPSuite.ConnectedUserId);
             }
         }
 
@@ -89,7 +83,7 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
         #region Private methods
 
-        private static Control CreateTaskUser(int userId, IEnumerable<Task> tasks, ITaskAddableControl taskAddable)
+        private Control CreateTaskUser(int userId, IEnumerable<Task> tasks, ITaskAddableControl taskAddable)
         {
             var mc = new ctrlTimeLineRowHeaderUser(userId)
             {
@@ -99,7 +93,11 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
             var musrc = taskAddable.AddUser(userId);
 
+            mc.BacklogMouseEnter += BacklogMouseEnter;
+
             mc.SetBacklogs(tasks, taskAddable);
+
+            mc.OnExpand += (sender, args) => OnRowElaptionChanged?.Invoke(sender, args);
 
             musrc.Height = mc.Height;
             
@@ -110,10 +108,13 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
         #region Public methods
 
-        public void Clear()
+        public void ClearItems()
         {
             foreach (var mcontrol in Controls.OfType<ctrlTimeLineRowHeaderUser>())
+            {
+                mcontrol.ClearItems();
                 mcontrol.Dispose();
+            }
 
             Controls.Clear();
             Controls.Add(pnlPadding);

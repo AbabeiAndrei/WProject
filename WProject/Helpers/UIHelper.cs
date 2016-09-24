@@ -6,6 +6,7 @@ using System.Linq;
 using System.Windows.Forms;
 using WProject.Controls;
 using WProject.Controls.MainPageControls;
+using WProject.Controls.MainPageControls.Admin_controls;
 using WProject.GenericLibrary.Constants;
 using WProject.GenericLibrary.Exceptions;
 using WProject.GenericLibrary.Helpers.Drawing;
@@ -346,5 +347,87 @@ namespace WProject.Helpers
         }
 
         #endregion
+
+        #region Admin forms
+
+        public static void ShowUserEdit(User user, Func<User, Task> afterSave = null)
+        {
+            var mc = new ctrlUserEdit(user);
+
+            mc.AfterSave = async u =>
+            {
+                if (afterSave != null)
+                    await afterSave(u);
+
+                mc.ParentForm?.Close();
+            };
+
+            ShowControlInForm(mc, ShowInFormControlSize.ControlSize);
+        }
+
+        public static void ShowGroupEdit(Group group, Func<Group, Task> afterSave = null)
+        {
+            var mc = new ctrlGroupEdit(group);
+
+            mc.AfterSave = async g =>
+            {
+                if (afterSave != null)
+                    await afterSave(g);
+
+                mc.ParentForm?.Close();
+            };
+
+            ShowControlInForm(mc, ShowInFormControlSize.ControlSize);
+        }
+
+        public static void ShowProjectEdit(Project project, Func<Project, Task> afterSave = null)
+        {
+            var mc = new ctrlProjectEdit(project);
+
+            mc.AfterSave = async p =>
+            {
+                if (afterSave != null)
+                    await afterSave(p);
+
+                mc.ParentForm?.Close();
+            };
+
+            ShowControlInForm(mc, ShowInFormControlSize.ControlSize);
+        }
+
+        public static void ShowSpringEdit(Tuple<Spring, Category> tuple,
+                                          Tuple<Project, Spring, Category> newData,
+                                          Func<Tuple<Spring, Category>, Task> afterSave = null)
+        {
+            var mc = new ctrlSpringEdit(tuple)
+            {
+                NewData = newData
+            };
+
+            mc.AfterSave = async p =>
+            {
+                if (afterSave != null)
+                    await afterSave(p);
+
+                mc.ParentForm?.Close();
+            };
+
+            ShowControlInForm(mc, ShowInFormControlSize.ControlSize);
+        }
+
+        #endregion
+
+        public static void ShowConfirmWindow(string title, string text, string key, Action action)
+        {
+            var mc = new ctrlConfirmAction
+            {
+                TextConfirm = text,
+                Text = title,
+                ConfirmKey = key,
+                ConfirmAction = action
+            };
+
+            ShowControlInForm(mc, ShowInFormControlSize.ControlSize);
+        }
     }
 }

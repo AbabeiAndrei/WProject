@@ -8,7 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WProject.Classes;
+using WProject.Connection;
 using WProject.GenericLibrary.Helpers.Drawing;
+using WProject.GenericLibrary.Helpers.Log;
+using WProject.Helpers;
 using WProject.Properties;
 using WProject.UiLibrary.Controls;
 using WProject.UiLibrary.Theme;
@@ -17,13 +20,15 @@ using Task = WProject.WebApiClasses.Classes.Task;
 
 namespace WProject.Controls.MainPageControls.TimeLineControls
 {
-    public partial class ctrlTimeLineTaskItem : WpUserControl
+    public partial class ctrlTimeLineTaskItem : ResizableControl
     {
         #region Fields
 
         private Brush _bkBrush;
         private Brush _bkTanspBrush;
         private Task _task;
+        private bool _onMove;
+        private bool _onResize;
 
         #endregion
 
@@ -45,6 +50,12 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
                 Refresh();
             }
         }
+
+        #endregion
+
+        #region Events
+
+        public event EventHandler AfterMoveOrResize;
 
         #endregion
 
@@ -121,6 +132,139 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
             var mproc = 100/meta.TotalMinutes*mpasedTime.TotalMinutes;
 
             return (int) (Width*(mproc/100));
+        }
+
+        #endregion
+
+        #region Overrides of Control
+
+        protected override void OnClick(EventArgs e)
+        {
+            try
+            {
+                if(_task == null || _onMove || _onResize)
+                    return;
+
+                var mcontrol = UIHelper.MainPanel.SelectedControlPage as ctrlTimeLine;
+
+                if (mcontrol == null)
+                    return;
+
+                var mtask = mcontrol.Tasks.FirstOrDefault(b => b.Id == _task.Id);
+
+                if (mtask != null)
+                    UIHelper.ShowTaskEditor(mtask, async b =>
+                    {
+                        await mcontrol.LoadTasks();
+                        mcontrol.SetTasks(mcontrol.Tasks);
+                    });
+            }
+            finally
+            {
+                _onMove = false;
+                _onResize = false;
+                base.OnClick(e);
+            }
+        }
+
+        #endregion
+
+        #region Event handlers
+
+        private async void ctrlTimeLineTaskItem_AfterMove(object sender, ControlMovedArgs args)
+        {
+            try
+            {
+                UIHelper.ShowLoader();
+
+                var mctrlTimeLine = UIHelper.MainPanel.SelectedControlPage as ctrlTimeLine;
+
+                var mrows = mctrlTimeLine?.RowsControl;
+
+                if (mrows == null)
+                    return;
+
+                var mnewHours = TimeSpan.FromMinutes(args.NewLocation.X/2f).Add(TimeSpan.FromHours(mrows.StartHour));
+
+                var mres = await WebCallFactory.SetNewTimeToTask(_task.Id, mnewHours);
+
+                if (mres.Error)
+                    throw mres.Exception;
+
+                AfterMoveOrResize?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception mex)
+            {
+                Location = args.OldLocation;
+
+                Logger.Log(mex);
+                UIHelper.ShowError(mex);
+            }
+            finally
+            {
+                UIHelper.HideLoader();
+            }
+        }
+
+        private async void ctrlTimeLineTaskItem_AfterResize(object sender, ControlResizedArgs args)
+        {
+
+            try
+            {
+                UIHelper.ShowLoader();
+
+                var mctrlTimeLine = UIHelper.MainPanel.SelectedControlPage as ctrlTimeLine;
+
+                var mrows = mctrlTimeLine?.RowsControl;
+
+                if (mrows == null)
+                    return;
+
+                var mnewHours = TimeSpan.FromMinutes(Right / 2f).Add(TimeSpan.FromHours(mrows.StartHour));
+
+                var mres = await WebCallFactory.SetNewTimeToTask(_task.Id, mnewHours, false);
+
+                if (mres.Error)
+                    throw mres.Exception;
+
+                AfterMoveOrResize?.Invoke(this, EventArgs.Empty);
+            }
+            catch (Exception mex)
+            {
+                Size = args.OldSize;
+
+                Logger.Log(mex);
+                UIHelper.ShowError(mex);
+            }
+            finally
+            {
+                UIHelper.HideLoader();
+            }
+        }
+
+        private void ctrlTimeLineTaskItem_BeginMove(object sender, EventArgs e)
+        {
+            _onMove = true;
+        }
+
+        private void ctrlTimeLineTaskItem_BeginResize(object sender, EventArgs e)
+        {
+            _onResize = true;
+        }
+
+        #endregion
+
+        #region Public methods
+
+        public int CalculateWidthByEstimatedTime()
+        {
+            if (_task.StartHour.HasValue && _task.EndHour.HasValue)
+                return (int) (_task.EndHour.Value - _task.StartHour.Value).TotalMinutes * 2;
+
+            if (_task.RemainingWork.HasValue)
+                return Math.Max(_task.RemainingWork.Value, 10) * 2;
+
+            return 120;
         }
 
         #endregion

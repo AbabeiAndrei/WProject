@@ -30,6 +30,7 @@ namespace WProject.Classes
     {
         public int BacklogId { get; set; }
         public int Top { get; set; }
+        public int Height { get; set; }
 
         public BacklogPosition()
         {

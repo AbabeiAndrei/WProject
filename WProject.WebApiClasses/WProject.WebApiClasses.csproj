@@ -51,6 +51,7 @@
     <Compile Include="Classes\Category.cs" />
     <Compile Include="Classes\DictItem.cs" />
     <Compile Include="Classes\File.cs" />
+    <Compile Include="Classes\Group.cs" />
     <Compile Include="Classes\Notification.cs" />
     <Compile Include="Classes\Project.cs" />
     <Compile Include="Classes\Spring.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Classes\TaskComment.cs" />
     <Compile Include="Classes\TaskHistory.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Classes\UserInGroup.cs" />
     <Compile Include="Data\RefreshDashboardInfo.cs" />
     <Compile Include="Data\SimpleCache.cs" />
     <Compile Include="Interfaces\ITableNameble.cs" />

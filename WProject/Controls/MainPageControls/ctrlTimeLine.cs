@@ -23,6 +23,7 @@ namespace WProject.Controls.MainPageControls
         #region Fields
 
         private IEnumerable<Task> _tasks;
+        private IEnumerable<Backlog> _backlogs;
         private readonly ctrlTimeLineRowHeader ctrlTimeLineRowHeader;
         private readonly ctrlTimeLineTasks ctrlTimeLineTasks;
 
@@ -31,6 +32,11 @@ namespace WProject.Controls.MainPageControls
         #region Properties
 
         public bool Loaded { get; set; }
+
+        public IEnumerable<Task> Tasks => _tasks ?? Enumerable.Empty<Task>();
+        public IEnumerable<Backlog> Backlogs => _backlogs ?? Enumerable.Empty<Backlog>();
+        public ctrlTimeLineTasks RowsControl => ctrlTimeLineTasks;
+
 
         #endregion
 
@@ -60,13 +66,23 @@ namespace WProject.Controls.MainPageControls
 
 
             ctrlTimeLineRowHeader.OnRowElaptionChanged += ctrlTimeLineRowHeader_OnRowElaptionChanged;
+            ctrlTimeLineRowHeader.BacklogMouseEnter += ctrlTimeLineRowHeaderOnBacklogMouseEnter;
 
             Controls.Add(ctrlTimeLineRowHeader);
             Controls.Add(ctrlTimeLineTasks);
 
-            ctrlTimeLineRowHeader.BacklogMouseEnter += (backlogId, color) => ctrlTimeLineTasks.SetBacklogHover(backlogId,color);
+            ctrlTimeLineRowHeader.BacklogMouseEnter += (backlogId, userId, color) => ctrlTimeLineTasks.SetBacklogHover(backlogId, userId, color);
             ctrlTimeLineTasks.BringToFront();
             ctrlTimeLineTasks.PerformResizeWidth();
+        }
+
+        private void ctrlTimeLineRowHeaderOnBacklogMouseEnter(int backlogId, int userId, Color color)
+        {
+            foreach (var mcontrol in ctrlTimeLineRowHeader.Users.SelectMany(u => u.Backlog).Where(b => b.BacklogId == backlogId && b.UserId == userId))
+                mcontrol.BackColor = color;
+
+            foreach (var mcontrol in ctrlTimeLineTasks.Users.SelectMany(u => u.BacklogControls).Where(b => b.BacklogId == backlogId && b.UserId == userId))
+                mcontrol.BackColor = color;
         }
 
         #endregion
@@ -211,7 +227,8 @@ namespace WProject.Controls.MainPageControls
 
                 ctrlTimeLineRowHeader.SuspendLayout();
 
-                ctrlTimeLineRowHeader.Clear();
+                ctrlTimeLineRowHeader.ClearItems();
+                ctrlTimeLineTasks.ClearItems();
 
                 ctrlTimeLineRowHeader.SetTasks(_tasks, ctrlTimeLineTasks);
 
@@ -220,11 +237,19 @@ namespace WProject.Controls.MainPageControls
                 ctrlTimeLineTasks.PerformResizeHeigh(Math.Max(mheight, ctrlTimeLineTasks.ClientSize.Height));
 
                 ctrlTimeLineTasks.RepositionControls(ctrlTimeLineRowHeader);
+                ctrlTimeLineTasks.ExpandAll(false, WPSuite.ConnectedUserId);
+                ctrlTimeLineTasks.SetExpanded(WPSuite.ConnectedUserId, true);
             }
             finally
             {
                 ctrlTimeLineRowHeader.ResumeLayout();
             }
+        }
+
+        public void ExpandAll()
+        {
+            ctrlTimeLineTasks.ExpandAll(false, WPSuite.ConnectedUserId);
+            ctrlTimeLineTasks.SetExpanded(WPSuite.ConnectedUserId, true);
         }
 
         #endregion

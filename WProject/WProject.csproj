@@ -71,6 +71,12 @@
     <Compile Include="Controls\ctrlBacklogEditor.Designer.cs">
       <DependentUpon>ctrlBacklogEditor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ctrlConfirmAction.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ctrlConfirmAction.Designer.cs">
+      <DependentUpon>ctrlConfirmAction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\ctrlLoginControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,6 +88,24 @@
     </Compile>
     <Compile Include="Controls\ctrlTaskEditor.Designer.cs">
       <DependentUpon>ctrlTaskEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\Admin controls\ctrlGroupEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\Admin controls\ctrlGroupEdit.Designer.cs">
+      <DependentUpon>ctrlGroupEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\Admin controls\ctrlProjectEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\Admin controls\ctrlProjectEdit.Designer.cs">
+      <DependentUpon>ctrlProjectEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\Admin controls\ctrlUserEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\Admin controls\ctrlUserEdit.Designer.cs">
+      <DependentUpon>ctrlUserEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainPageControls\ctrlAdmin.cs">
       <SubType>UserControl</SubType>
@@ -136,6 +160,12 @@
     </Compile>
     <Compile Include="Controls\MainPageControls\ctrlQueries.Designer.cs">
       <DependentUpon>ctrlQueries.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\ctrlSpringEdit.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MainPageControls\ctrlSpringEdit.Designer.cs">
+      <DependentUpon>ctrlSpringEdit.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainPageControls\ctrlTimeLine.cs">
       <SubType>UserControl</SubType>
@@ -267,6 +297,9 @@
     <EmbeddedResource Include="Controls\ctrlBacklogEditor.resx">
       <DependentUpon>ctrlBacklogEditor.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ctrlConfirmAction.resx">
+      <DependentUpon>ctrlConfirmAction.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlHeader.resx">
       <DependentUpon>ctrlHeader.cs</DependentUpon>
     </EmbeddedResource>
@@ -281,6 +314,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\ctrlTaskEditor.resx">
       <DependentUpon>ctrlTaskEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\Admin controls\ctrlUserEdit.resx">
+      <DependentUpon>ctrlUserEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MainPageControls\ctrlAdmin.resx">
+      <DependentUpon>ctrlAdmin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\MainPageControls\ctrlDashBoard.resx">
       <DependentUpon>ctrlDashBoard.cs</DependentUpon>
@@ -1012,6 +1051,7 @@
     <Content Include="Resources\Icons\undo_m.png" />
     <Content Include="Resources\Icons\undo_s.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

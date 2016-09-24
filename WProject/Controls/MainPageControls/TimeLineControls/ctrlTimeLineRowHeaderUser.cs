@@ -51,26 +51,15 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
         public int NameHeight => lblName.Height;
 
+        public IEnumerable<ctrlTimeLineBacklogItem> Backlog => pnlBacklogs?.Controls.OfType<ctrlTimeLineBacklogItem>() ?? Enumerable.Empty<ctrlTimeLineBacklogItem>();
+
         #endregion
 
         #region Events
 
         public event TimeLineRowHeaderExpand OnExpand;
 
-        public event Action<int, Color> BacklogMouseEnter
-        {
-            add
-            {
-                foreach (var mc in pnlBacklogs.Controls.OfType<ctrlTimeLineBacklogItem>())
-                    mc.BacklogMouseEnter += value;
-            }
-            remove 
-            {
-                foreach (var mc in pnlBacklogs.Controls.OfType<ctrlTimeLineBacklogItem>())
-                    mc.BacklogMouseEnter -= value;
-            }
-        }
-
+        public event Action<int, int, Color> BacklogMouseEnter;
         #endregion
 
         #region Constructors
@@ -112,11 +101,12 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
         #region Private methods
 
-        private Control CreateBacklogControl(int backlogId, string name, int typeId)
+        private Control CreateBacklogControl(int backlogId, int userId, string name, int typeId)
         {
-            return new ctrlTimeLineBacklogItem
+            var mc = new ctrlTimeLineBacklogItem
             {
                 BacklogId = backlogId,
+                UserId = userId,
                 Text = name,
                 RibbonColor = SimpleCache.FirstOrDefault<DictItem>(di => di.Id == typeId)?.Color ?? WpThemeColors.Amber,
                 Dock = DockStyle.Top,
@@ -130,6 +120,10 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
                 },
                 Name = $"{nameof(ctrlTimeLineBacklogItem)}_{backlogId}"
             };
+
+            mc.BacklogMouseEnter += BacklogMouseEnter;
+
+            return mc;
         }
 
         #endregion
@@ -142,14 +136,15 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
             {
                 t.BacklogId,
                 t.Backlog.Name,
-                t.TypeId
+                t.TypeId,
+                AssignedTo = t.AssignedToId.GetValueOrDefault(0)
             }))
             {
-                var mc = CreateBacklogControl(mitem.Key.BacklogId, mitem.Key.Name, mitem.Key.TypeId);
+                var mc = CreateBacklogControl(mitem.Key.BacklogId, mitem.Key.AssignedTo, mitem.Key.Name, mitem.Key.TypeId);
 
                 taskAddable.AddBackLog(UserId, mitem.Key.BacklogId);
 
-                mc.Height = taskAddable.AddTasks(mitem, mitem.Key.BacklogId);
+                mc.Height = taskAddable.AddTasks(mitem, mitem.Key.BacklogId, mitem.Key.AssignedTo);
 
                 pnlBacklogs.Controls.Add(mc);
             }
@@ -158,7 +153,17 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
         public void ResizeControl()
         {
             foreach (var mitem in pnlBacklogs.Controls.OfType<ctrlTimeLineBacklogItem>())
-                mitem.Height = mitem.CalculateSize() + 2;
+                mitem.Height = mitem.CalculateSize() + 4;
+        }
+
+        public void ClearItems()
+        {
+            pnlBacklogs.Controls.Clear();
+            foreach (var mitems in pnlBacklogs.Controls.OfType<ctrlTimeLineBacklogItem>())
+            {
+                mitems.ClearItems();
+                mitems.Dispose();
+            }
         }
 
         #endregion

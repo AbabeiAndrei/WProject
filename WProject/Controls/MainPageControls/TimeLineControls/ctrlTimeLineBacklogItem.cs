@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
     using WProject.GenericLibrary.Helpers.Drawing;
+    using WProject.Helpers;
     using WProject.UiLibrary.Controls;
     using WProject.UiLibrary.Theme;
     using Task = WProject.WebApiClasses.Classes.Task;
@@ -38,6 +39,8 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
         public int BacklogId { get; set; }
 
+        public int UserId { get; set; }
+
         public Color RibbonColor
         {
             get
@@ -57,7 +60,7 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
         #region Events
 
-        public event Action<int, Color> BacklogMouseEnter;
+        public event Action<int, int, Color> BacklogMouseEnter;
 
         #endregion
         
@@ -114,7 +117,7 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
         {
             try
             {
-                BacklogMouseEnter?.Invoke(BacklogId, WpThemeColors.Amber.SetOpacity(80));
+                BacklogMouseEnter?.Invoke(BacklogId, UserId, WpThemeColors.Amber.SetOpacity(80));
             }
             finally
             {
@@ -126,7 +129,7 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
         {
             try
             {
-                BacklogMouseEnter?.Invoke(BacklogId, WpThemeColors.White.SetOpacity(80));
+                BacklogMouseEnter?.Invoke(BacklogId, UserId, WpThemeColors.White.SetOpacity(80));
             }
             finally
             {
@@ -134,6 +137,29 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
             }
         }
         
+        #endregion
+
+        #region Overrides of Control
+
+        protected override void OnClick(EventArgs e)
+        {
+            try
+            {
+                var mcontrol = UIHelper.MainPanel.SelectedControlPage as ctrlTimeLine;
+
+                if(mcontrol == null)
+                    return;
+
+                var mbacklog = mcontrol.Tasks.FirstOrDefault(b => b.BacklogId == BacklogId)?.Backlog;
+
+                if(mbacklog != null)
+                    UIHelper.ShowBackLogEditor(mbacklog, async b => await mcontrol.LoadTasks());
+            }
+            finally
+            { 
+                base.OnClick(e);
+            }
+        }
 
         #endregion
 
@@ -152,7 +178,11 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
             }
         }
 
-        #endregion
+        public void ClearItems()
+        {
 
+        }
+
+        #endregion
     }
 }

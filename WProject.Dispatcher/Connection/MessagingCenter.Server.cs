@@ -172,22 +172,7 @@ namespace WProject.Dispatcher.Connection
 
                 using (wpContext mctx = DatabaseFactory.NewDbWpContext)
                 {
-                    var ml = mctx.Springs
-                                 .Where(s => (!mreq.OwnerId.HasValue || s.OwnerId == mreq.OwnerId.Value) &&
-                                             (!mreq.OnlyActive ||
-                                              (
-                                                  !s.PeriodFrom.HasValue || s.PeriodFrom.Value.Date >= DateTime.Now.Date
-                                              ) &&
-                                              (
-                                                  !s.PeriodTo.HasValue || s.PeriodTo.Value.Date <= DateTime.Now.Date
-                                              )) &&
-                                             s.Name.Contains(mreq.Name ?? string.Empty) &&
-                                             (!mreq.ProjectId.HasValue || s.ProjectId == mreq.ProjectId.Value))
-                                 .ToList()
-                                 .GroupBy(s => s.Id)
-                                 .Select(s => s.First())
-                                 .Select(s => Spring.ToWebApi(s, mctx))
-                                 .ToList();
+                    var ml = GetSprings(mctx, mreq);
 
                     mres.Content = JsonConvert.SerializeObject(new GetSpringsResponse
                     {
@@ -213,6 +198,27 @@ namespace WProject.Dispatcher.Connection
             }
 
             return mres;
+        }
+
+        private static IEnumerable<WebApiClasses.Classes.Spring> GetSprings(wpContext mctx, GetSpringsRequest mreq)
+        {
+            var ml = mctx.Springs
+                         .Where(s => (!mreq.OwnerId.HasValue || s.OwnerId == mreq.OwnerId.Value) &&
+                                     (!mreq.OnlyActive ||
+                                      (
+                                          !s.PeriodFrom.HasValue || s.PeriodFrom.Value.Date >= DateTime.Now.Date
+                                      ) &&
+                                      (
+                                          !s.PeriodTo.HasValue || s.PeriodTo.Value.Date <= DateTime.Now.Date
+                                      )) &&
+                                     s.Name.Contains(mreq.Name ?? string.Empty) &&
+                                     (!mreq.ProjectId.HasValue || s.ProjectId == mreq.ProjectId.Value))
+                         .ToList()
+                         .GroupBy(s => s.Id)    //why?... no idea....
+                         .Select(s => s.First())
+                         .Select(s => Spring.ToWebApi(s, mctx))
+                         .ToList();
+            return ml;
         }
 
         public static MessagingCenterResponse GetAllBackLogs(MessagingCenterPackage package)
@@ -771,6 +777,181 @@ namespace WProject.Dispatcher.Connection
                     {
                         Tasks = mltasks
                     });
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
+
+        public MessagingCenterResponse SetNewTimeToTask(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                if (string.IsNullOrEmpty(package.Content))
+                    throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
+
+                var mreq = JsonConvert.DeserializeObject<SetNewTimeToTaskRequest>(package.Content);
+
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+                    var mtask = mctx.Tasks.FirstOrDefault(t => t.Id == mreq.TaskId);
+
+                    if(mtask == null)
+                        throw new Exception("TASK NOT FOUND");
+
+                    TimeSpan? mnewEnd = null;
+
+                    var mnewValue = mreq.NewTime.HasValue ? new DateTime(mreq.NewTime.Value.Ticks) : (DateTime?)null;;
+
+                    if (mreq.Start)
+                    {
+                        if (mtask.StartHour.HasValue && mnewValue.HasValue)
+                            mnewEnd = mnewValue - mtask.StartHour.Value; 
+                        mtask.StartHour = mnewValue;
+
+                        if (mnewEnd.HasValue && mtask.EndHour.HasValue)
+                            mtask.EndHour = mtask.EndHour.Value.Add(mnewEnd.Value);
+                    }
+                    else
+                        mtask.EndHour = mnewValue;
+
+                    mctx.SaveChanges();
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
+
+        public MessagingCenterResponse GetAdminData(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+                    var mdr = new GetAdminDataResponse();
+
+                    mdr.Users = mctx.Users
+                                    .Where(u => u.Deleted.GetValueOrDefault() == 0)
+                                    .ToList()
+                                    .Select(User.ToWebApi)
+                                    .ToList();
+
+                    mdr.Groups = mctx.Groups
+                                     .Where(g => g.Deleted.GetValueOrDefault() == 0)
+                                     .ToList()
+                                     .Select(Group.ToWebApi)
+                                     .ToList();
+
+                    mdr.UserInGroups = mctx.UserInGroups
+                                           .Where(uig => uig.Deleted.GetValueOrDefault() == 0)
+                                           .ToList()
+                                           .Select(UserInGroup.ToWebApi)
+                                           .ToList();
+
+                    mdr.Projects = mctx.Projects
+                                       .Where(p => p.Deleted.GetValueOrDefault() == 0)
+                                       .ToList()
+                                       .Select(Project.ToWebApi)
+                                       .ToList();
+
+                    mdr.Springs = mctx.Springs
+                                      .Where(s => s.Deleted.GetValueOrDefault() == 0)
+                                      .ToList()
+                                      .GroupBy(s => s.Id)
+                                      .Select(s => s.First())
+                                      .Select(s => Spring.ToWebApi(s, mctx))
+                                      .ToList();
+
+                    mres.Content = JsonConvert.SerializeObject(mdr);
+                }
+            }
+            catch (WpException mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = mex.ErrorCode;
+            }
+            catch (Exception mex)
+            {
+                Logger.Log(mex);
+
+                mres.Exception = mex;
+                mres.Error = mex.Message;
+                mres.ErrorCode = MessagingCenterErrors.UNKNOW_ERROR;
+            }
+
+            return mres;
+        }
+
+        public MessagingCenterResponse SaveUser(MessagingCenterPackage package)
+        {
+            MessagingCenterResponse mres = new MessagingCenterResponse();
+
+            try
+            {
+                if (string.IsNullOrEmpty(package.Content))
+                    throw new WpException(MessagingCenterErrors.ERROR_MESSANGING_CENTER_CONTENT_IS_EMPTY, "CONTENT IS EMPTY");
+
+                var mreq = JsonConvert.DeserializeObject<SaveUserRequest>(package.Content);
+
+                using (wpContext mctx = DatabaseFactory.NewDbWpContext)
+                {
+                    if (mreq.User.Id == 0)
+                    {
+                        var mu = User.FromWebApi(mreq.User);
+                        mctx.Add(mu);
+                    }
+                    else
+                    {
+                        var mu = mctx.Users.FirstOrDefault(u => u.Id == mreq.User.Id);
+
+                        if (mu == null)
+                            throw new Exception("User is null");
+
+                        mu.Name = mreq.User.Name;
+                        mu.Email = mreq.User.Email;
+                        mu.Word = mreq.User.Password;
+                    }
+
+                    mctx.SaveChanges();
                 }
             }
             catch (WpException mex)

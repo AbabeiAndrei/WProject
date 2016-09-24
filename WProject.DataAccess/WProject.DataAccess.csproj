@@ -69,6 +69,7 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\DictItem.cs" />
     <Compile Include="Entities\File.cs" />
+    <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\IGenericEntity.cs" />
     <Compile Include="Entities\Project.cs" />
     <Compile Include="Entities\Spring.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="Entities\TaskDiscusion.cs" />
     <Compile Include="Entities\TaskHistory.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserInGroup.cs" />
     <Compile Include="File.generated.cs">
       <DependentUpon>wpContext.rlinq</DependentUpon>
     </Compile>

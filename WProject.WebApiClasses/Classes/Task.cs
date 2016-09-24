@@ -77,6 +77,12 @@ namespace WProject.WebApiClasses.Classes
 
         public string FullName => $"Task {Id} {Name}";
 
+        public bool InTodoOrInProgress => State != null && (State.Code == States.TO_DO_CODE || State.Code == States.IN_PROGRESS_CODE);
+
+        public bool IsDone => State?.Code == States.DONE_CODE;
+
+        public bool IsRemoved => State?.Code == States.REMOVED_CODE;
+
         public static class Types
         {
             public const string TASK = "TASK";

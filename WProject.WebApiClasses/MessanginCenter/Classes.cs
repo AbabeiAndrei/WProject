@@ -268,4 +268,54 @@ namespace WProject.WebApiClasses.MessanginCenter
 
         #endregion
     }
+
+    public class SetNewTimeToTaskRequest
+    {
+        public int TaskId { get; set; }
+        public TimeSpan? NewTime { get; set; }
+        public bool Start { get; set; }
+    }
+
+    public class SetNewTimeToTaskResponse : IMessangingCenterResponse
+    {
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
+
+    public class GetAdminDataResponse : IMessangingCenterResponse
+    {
+        public IEnumerable<User> Users { get; set; }
+        public IEnumerable<Group> Groups { get; set; }
+        public IEnumerable<UserInGroup> UserInGroups { get; set; }
+        public IEnumerable<Project> Projects { get; set; }
+        public IEnumerable<Spring> Springs { get; set; }
+
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
+    
+    public class SaveUserRequest
+    {
+        public User User { get; set; }
+    }
+
+    public class SaveUserResponse : IMessangingCenterResponse
+    {
+        public User User { get; set; }
+
+        #region Implementation of IMessangingCenterResponse
+
+        public Exception Exception { get; set; }
+        public bool Error { get; set; }
+
+        #endregion
+    }
 }

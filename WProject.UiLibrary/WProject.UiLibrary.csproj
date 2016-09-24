@@ -66,6 +66,10 @@
     <Compile Include="Controls\Base\WpBaseUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\ResizableControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ResizableControl.Designer.cs" />
     <Compile Include="Controls\SpecificControls\InnerControls\WpFileItem.cs">
       <SubType>UserControl</SubType>
     </Compile>

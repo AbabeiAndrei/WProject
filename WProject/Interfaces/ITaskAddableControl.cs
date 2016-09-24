@@ -11,7 +11,7 @@ namespace WProject.Interfaces
 {
     public interface ITaskAddableControl
     {
-        int AddTasks(IEnumerable<Task> tasks, int backlogId);
+        int AddTasks(IEnumerable<Task> tasks, int backlogId, int userId);
         Control AddUser(int userId);
         Control AddBackLog(int userId, int backlogId);
     }

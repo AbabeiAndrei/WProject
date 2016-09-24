@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -25,7 +26,7 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
         public const int HEADER_SIZE = 40;
         public const int MIN_HEIGHT_FOR_ROW = 24;
-        private const int HALF_HOUR_WIDTH = 60;
+        public const int HALF_HOUR_WIDTH = 60;
 
         #endregion
 
@@ -66,6 +67,10 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
             }
         }
 
+        public int WorkHours => Math.Abs(EndHour - StartHour);
+
+        public IEnumerable<ctrlTimeLineRow> Users => pnlMain?.Controls.OfType<ctrlTimeLineRow>() ?? Enumerable.Empty<ctrlTimeLineRow>();
+
         #endregion
 
         #region Constructors
@@ -79,12 +84,12 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
         #region Implementation of ITaskAddableControl
 
-        public int AddTasks(IEnumerable<Task> tasks, int backlogId)
+        public int AddTasks(IEnumerable<Task> tasks, int backlogId, int userId)
         {
             var mc = pnlMain.Controls
                             .OfType<ctrlTimeLineRow>()
                             .SelectMany(r => r.BacklogControls)
-                            .FirstOrDefault(b => b.BacklogId == backlogId);
+                            .FirstOrDefault(b => b.BacklogId == backlogId && b.UserId == userId);
 
             if (mc == null)
                 return MIN_HEIGHT_FOR_ROW;
@@ -117,12 +122,12 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
                             .FirstOrDefault(r => r.UserId == userId);
 
             if (mc != null)
-                return mc.AddBacklog(backlogId);    
+                return mc.AddBacklog(backlogId, userId);    
 
             //todo : return null sau throw
             var musrc = AddUser(userId) as ctrlTimeLineRow;
 
-            var mmc =  musrc?.AddBacklog(backlogId);
+            var mmc =  musrc?.AddBacklog(backlogId, userId);
 
             return mmc;
         }
@@ -188,7 +193,7 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
                                         mspoint);
                     e.Graphics.DrawLine(mpenOpaq,
                                         mspoint,
-                                        new Point(mi, Height));
+                                        new Point(mi, 1200));       //todo pnlMain.Height
 
                     misHalf = !misHalf; //alternare opac cu transarent
                 }
@@ -247,19 +252,19 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
         #region Public methods
 
         public void SetExpanded(int userId, bool expanded)
-        {/*
-            var mc = Controls.OfType<ctrlTimeLineRow>()
+        {
+            var mc = Controls.OfType<Control>()
+                             .SelectMany(c => c.Controls.OfType<ctrlTimeLineRow>())
                              .FirstOrDefault(r => r.UserId == userId);
 
-            if (mc != null)
-                mc.Expanded = expanded;*/
+            mc?.SetExpanded(expanded);
         }
 
-        public void SetBacklogHover(int backlogId, Color color)
+        public void SetBacklogHover(int backlogId, int userId, Color color)
         {
             var mc = Controls.OfType<ctrlTimeLineRow>()
                              .SelectMany(r => r.BacklogControls)
-                             .FirstOrDefault(b => b.BacklogId == backlogId);
+                             .FirstOrDefault(b => b.BacklogId == backlogId && b.UserId == userId);
 
             if(mc == null)
                 return;
@@ -281,6 +286,8 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
         public void RepositionControls(IUserPositions positions)
         {
+            int mheight = 0;
+
             foreach (var mposition in positions.Positions)
             {
                 var mc = pnlMain.Controls
@@ -290,11 +297,9 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
                 if(mc == null)
                     continue;
 
-                mc.Top = HEADER_SIZE + mposition.Top;
+                mc.Top = HEADER_SIZE + mheight;
                 mc.Left = 0;
-                mc.Width = pnlMain.Width;
-
-                int mheight = 0;
+                mc.Width = WorkHours * HALF_HOUR_WIDTH * 2;
 
                 foreach (var mbacklogPosition in mposition.Positions)
                 {
@@ -304,14 +309,45 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
                     if (mcc == null)
                         continue;
 
-                    mcc.Top = HEADER_SIZE + mbacklogPosition.Top;
+                    mcc.Top = mbacklogPosition.Top;
                     mcc.Width = mc.Width;
 
-                    mheight += mcc.CalculateHeight();
+                    //mheight += mcc.CalculateHeight();
+
+                    foreach (var mtask in mcc.Tasks)
+                    {
+                        mtask.Top = 2;
+                        mtask.Height = 22;
+                        
+                        if(mtask.Task.StartHour.HasValue)
+                        mtask.Left = (mtask.Task.StartHour.Value.Hours - StartHour) * HALF_HOUR_WIDTH * 2 + mtask.Task.StartHour.Value.Minutes * 2;
+                        mtask.Width = mtask.CalculateWidthByEstimatedTime();
+                    }
                 }
 
-                mc.Height = mheight;
+                mc.Height = mposition.Height + mposition.Positions.Select(bp => bp.Height).DefaultIfEmpty(0).Sum();
+
+                mheight += mc.Height;
             }
+        }
+
+        public void ClearItems()
+        {
+            foreach (var mrow in pnlMain.Controls.OfType<ctrlTimeLineRow>())
+            {
+                Controls.Remove(mrow);
+                mrow.ClearItems();
+                mrow.Dispose();
+            }
+        }
+
+        public void ExpandAll(bool expanded, int except)
+        {
+            foreach (ctrlTimeLineRow mc in Controls.OfType<Control>()
+                                                   .SelectMany(c => c.Controls.OfType<ctrlTimeLineRow>())
+                                                   .Where(r => r.UserId != except))
+            
+                mc.SetExpanded(expanded);
         }
 
         #endregion

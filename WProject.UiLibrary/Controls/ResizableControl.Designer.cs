@@ -1,6 +1,6 @@
-﻿namespace WProject.Controls.MainPageControls.TimeLineControls
+﻿namespace WProject.UiLibrary.Controls
 {
-    partial class ctrlTimeLineTaskItem
+    partial class ResizableControl
     {
         /// <summary> 
         /// Required designer variable.
@@ -28,23 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.tmrClick = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
-            // ctrlTimeLineTaskItem
+            // tmrClick
             // 
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.Direction = WProject.UiLibrary.Controls.ResizeDirection.East;
-            this.MoveDirection = WProject.UiLibrary.Controls.MoveDirection.Horizontal;
-            this.Name = "ctrlTimeLineTaskItem";
-            this.Size = new System.Drawing.Size(150, 26);
-            this.AfterResize += new WProject.UiLibrary.Controls.ResizableControl.ControlResizeHandler(this.ctrlTimeLineTaskItem_AfterResize);
-            this.AfterMove += new WProject.UiLibrary.Controls.ResizableControl.ControlMovedHandler(this.ctrlTimeLineTaskItem_AfterMove);
-            this.BeginResize += new System.EventHandler(this.ctrlTimeLineTaskItem_BeginResize);
-            this.BeginMove += new System.EventHandler(this.ctrlTimeLineTaskItem_BeginMove);
+            this.tmrClick.Tick += new System.EventHandler(this.tmrClick_Tick);
+            // 
+            // ResizableControl
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.DoubleBuffered = true;
+            this.Name = "ResizableControl";
             this.ResumeLayout(false);
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer tmrClick;
     }
 }

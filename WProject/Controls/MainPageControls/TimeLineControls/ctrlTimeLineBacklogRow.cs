@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
@@ -7,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WProject.Helpers;
+using WProject.UiLibrary.Controls;
 using Task = WProject.WebApiClasses.Classes.Task;
 
 namespace WProject.Controls.MainPageControls.TimeLineControls
@@ -16,6 +19,9 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
         #region Properties
 
         public int BacklogId { get; set; }
+        public int UserId { get; set; }
+
+        public IEnumerable<ctrlTimeLineTaskItem> Tasks => Controls.OfType<ctrlTimeLineTaskItem>();
 
         #endregion
 
@@ -43,14 +49,28 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
 
         #region Private methods
 
-        private static ctrlTimeLineTaskItem CreateTaskControl(Task task)
+        private ctrlTimeLineTaskItem CreateTaskControl(Task task)
         {
-            return new ctrlTimeLineTaskItem
+            var mm = new ctrlTimeLineTaskItem
             {
                 Task = task,
                 Height = 20,
-                Width = 200
+                Width = 200,
+                Direction = ResizeDirection.East
             };
+
+            mm.AfterMoveOrResize += async (sender, args) =>
+            {
+                var mc = UIHelper.MainPanel.SelectedControlPage as ctrlTimeLine;
+
+                if (mc == null)
+                    return;
+
+                await mc.LoadTasks();
+                mc.SetTasks(mc.Tasks);
+            };
+
+            return mm;
         }
 
         #endregion
@@ -65,7 +85,13 @@ namespace WProject.Controls.MainPageControls.TimeLineControls
                            .Sum();
         }
 
-        #endregion
+        public void ClearItems()
+        {
+            Controls.Clear();
+            foreach (var mtask in Tasks)
+                mtask.Dispose();
+        }
 
+        #endregion
     }
 }
